@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://btfrk8df3yk2s"]
+
+[ext_resource type="PackedScene" uid="uid://ev5ihdel24io" path="res://scenes/player_character.tscn" id="1_afcxk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yqrv1"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_i0xqh"]
+sky_material = SubResource("ProceduralSkyMaterial_yqrv1")
+
+[sub_resource type="Environment" id="Environment_okxp2"]
+background_mode = 2
+sky = SubResource("Sky_i0xqh")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PrismMesh" id="PrismMesh_o35cx"]
+left_to_right = 0.3
+size = Vector3(6, 3, 2)
+
+[node name="testEnvironment" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_okxp2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+size = Vector3(16, 1, 16)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.5, 2.43899)
+size = Vector3(12, 1, 8)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, -0.5, -11.5221)
+size = Vector3(2, 1, 2)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 5, -0.5, -13.5221)
+size = Vector3(2, 1, 2)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, -4.48128, -0.5, -9.58865)
+size = Vector3(2, 1, 2)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, -1.48128, -0.5, -16.5887)
+size = Vector3(2, 1, 2)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.12953, 2, -4)
+mesh = SubResource("PrismMesh_o35cx")
+
+[node name="playerCharacter" parent="." instance=ExtResource("1_afcxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.05745, -2.41092)

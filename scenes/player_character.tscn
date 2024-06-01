@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://ev5ihdel24io"]
+
+[ext_resource type="Script" path="res://scripts/player/player_character.gd" id="1_y87bo"]
+[ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_tu7rb"]
+[ext_resource type="Script" path="res://scripts/player/player_walk.gd" id="3_euxff"]
+[ext_resource type="Script" path="res://scripts/player/player_jump.gd" id="4_0rupf"]
+[ext_resource type="Script" path="res://scripts/player/player_airborn.gd" id="5_fv6td"]
+[ext_resource type="Script" path="res://scripts/player/player_hover.gd" id="6_0tkkq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2a5dh"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rof8f"]
+
+[node name="playerCharacter" type="CharacterBody3D"]
+collision_layer = 4
+script = ExtResource("1_y87bo")
+
+[node name="playerCol" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_2a5dh")
+
+[node name="tempMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_rof8f")
+
+[node name="neck" type="Node3D" parent="."]
+
+[node name="playerCam" type="Camera3D" parent="neck"]
+
+[node name="lookRay" type="RayCast3D" parent="neck/playerCam"]
+
+[node name="UI" type="CanvasLayer" parent="neck/playerCam"]
+
+[node name="stateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_tu7rb")
+initial_state = NodePath("playerWalk")
+
+[node name="playerWalk" type="Node" parent="stateMachine"]
+script = ExtResource("3_euxff")
+
+[node name="playerJump" type="Node" parent="stateMachine"]
+script = ExtResource("4_0rupf")
+
+[node name="playerAirborn" type="Node" parent="stateMachine"]
+script = ExtResource("5_fv6td")
+
+[node name="playerHover" type="Node" parent="stateMachine"]
+script = ExtResource("6_0tkkq")
+
+[node name="hoverRay" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+target_position = Vector3(0, -0.5, 0)
