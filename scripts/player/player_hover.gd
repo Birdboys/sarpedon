@@ -1,5 +1,6 @@
 extends State
 
+@export var move_speed := 7.5
 @export var hover_dist := 0.5
 @export var hover_strength := 10.0
 
@@ -11,7 +12,7 @@ func exit():
 	parent.hoverRay.enabled = false
 	
 func update(delta):
-	handleMovementInput(delta)
+	parent.handleMovementInput(delta, move_speed)
 	
 	if parent.hoverRay.is_colliding():
 		var ground_pos = parent.hoverRay.get_collision_point()

@@ -24,10 +24,6 @@ func _physics_process(delta):
 	if current_state:
 		current_state.physics_update(delta)
 
-func _unhandled_input(event):
-	if current_state:
-		current_state.unhandled_input(event)
-
 func on_state_transition(state, new_state_name):
 	print("TRANSITION FROM %s to %s" % [state.name, new_state_name])
 	if state != current_state:

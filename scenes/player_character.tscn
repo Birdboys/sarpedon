@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ev5ihdel24io"]
+[gd_scene load_steps=10 format=3 uid="uid://ev5ihdel24io"]
 
 [ext_resource type="Script" path="res://scripts/player/player_character.gd" id="1_y87bo"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_tu7rb"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/player/player_jump.gd" id="4_0rupf"]
 [ext_resource type="Script" path="res://scripts/player/player_airborn.gd" id="5_fv6td"]
 [ext_resource type="Script" path="res://scripts/player/player_hover.gd" id="6_0tkkq"]
+[ext_resource type="Script" path="res://scripts/player/player_talk.gd" id="7_n0ojd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2a5dh"]
 
@@ -26,8 +27,39 @@ mesh = SubResource("CapsuleMesh_rof8f")
 [node name="playerCam" type="Camera3D" parent="neck"]
 
 [node name="lookRay" type="RayCast3D" parent="neck/playerCam"]
+target_position = Vector3(0, 0, -5)
+collision_mask = 2
 
 [node name="UI" type="CanvasLayer" parent="neck/playerCam"]
+
+[node name="UIBase" type="Control" parent="neck/playerCam/UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="interactPrompt" type="Label" parent="neck/playerCam/UI/UIBase"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="hoverRay" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+target_position = Vector3(0, -0.5, 0)
 
 [node name="stateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_tu7rb")
@@ -45,6 +77,8 @@ script = ExtResource("5_fv6td")
 [node name="playerHover" type="Node" parent="stateMachine"]
 script = ExtResource("6_0tkkq")
 
-[node name="hoverRay" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-target_position = Vector3(0, -0.5, 0)
+[node name="playerTalk" type="Node" parent="stateMachine"]
+script = ExtResource("7_n0ojd")
+camera_control = false
+movement_control = false
+interact_control = false

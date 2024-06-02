@@ -1,6 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://btfrk8df3yk2s"]
+[gd_scene load_steps=10 format=3 uid="uid://btfrk8df3yk2s"]
 
 [ext_resource type="PackedScene" uid="uid://ev5ihdel24io" path="res://scenes/player_character.tscn" id="1_afcxk"]
+[ext_resource type="Texture2D" uid="uid://bh7h1vtknytyx" path="res://assets/temp/mercury1low.png" id="2_kg8gl"]
+[ext_resource type="Script" path="res://assets/temp/tempNPC.gd" id="2_xa6xs"]
+[ext_resource type="PackedScene" uid="uid://dt6bxmw7stlh8" path="res://scenes/interact_box.tscn" id="3_dqvrc"]
+[ext_resource type="Texture2D" uid="uid://4ljuwxbpr067" path="res://assets/temp/mercury3low.png" id="5_n08jw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yqrv1"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -60,3 +64,33 @@ mesh = SubResource("PrismMesh_o35cx")
 
 [node name="playerCharacter" parent="." instance=ExtResource("1_afcxk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.05745, -2.41092)
+
+[node name="tempNPC" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.195, 0)
+script = ExtResource("2_xa6xs")
+
+[node name="Sprite3D" type="Sprite3D" parent="tempNPC"]
+billboard = 2
+texture_filter = 0
+texture = ExtResource("2_kg8gl")
+
+[node name="interactBox" parent="tempNPC" instance=ExtResource("3_dqvrc")]
+transform = Transform3D(0.8, 0, 0, 0, 1.4, 0, 0, 0, 0.8, 0, 0, 0)
+object_name = "hermes"
+object_prompt = "talk [e]"
+
+[node name="tempNPC2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.195, 0)
+script = ExtResource("2_xa6xs")
+id = 1
+
+[node name="Sprite3D" type="Sprite3D" parent="tempNPC2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0349998, 0)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("5_n08jw")
+
+[node name="interactBox" parent="tempNPC2" instance=ExtResource("3_dqvrc")]
+transform = Transform3D(0.8, 0, 0, 0, 1.4, 0, 0, 0, 0.8, 0, 0, 0)
+object_name = "hermes"
+object_prompt = "talk [e]"
