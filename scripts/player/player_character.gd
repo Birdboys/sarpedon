@@ -13,6 +13,7 @@ extends CharacterBody3D
 @onready var lookRay := $neck/playerCam/lookRay
 @onready var interactPrompt := $UI/UIBase/interactPrompt
 
+var boat
 #INTERACTION TYPES
 #1) INTERACT TO PULL UP LISTENING DIALOGUE
 #2) INTERACT TO PULL UP TALKING DIALOGUE
@@ -33,7 +34,8 @@ func _unhandled_input(event):
 	
 func handlePrompt():
 	if lookRay.is_colliding():
-		interactPrompt.text = lookRay.get_collider().getPrompt()
+		if lookRay.get_collider().interactable:
+			interactPrompt.text = lookRay.get_collider().getPrompt()
 	else:
 		interactPrompt.text = ""
 
@@ -63,6 +65,13 @@ func handleInteract():
 	if lookRay.is_colliding():
 		var collider = lookRay.get_collider()
 		var ret = collider.interact()
+		match ret:
+			"boat_enter": 
+				boat = collider.get_parent()
+				stateMachine.on_state_transition(stateMachine.current_state, "playerBoat")
+			"boat_exit":
+				stateMachine.on_state_transition(stateMachine.current_state, "playerWalk")
+			_: pass
 
 func handleDialogue(type):
 	match type:

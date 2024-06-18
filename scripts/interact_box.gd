@@ -3,6 +3,7 @@ extends CSGBox3D
 @export var object_name : String
 @export var object_prompt : String
 @export var interactable := true
+@export var interact_ret : String
 signal interacted
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,3 +15,4 @@ func getPrompt():
 func interact():
 	if interactable:
 		emit_signal("interacted")
+		return interact_ret

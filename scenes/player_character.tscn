@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ev5ihdel24io"]
+[gd_scene load_steps=14 format=3 uid="uid://ev5ihdel24io"]
 
 [ext_resource type="Script" path="res://scripts/player/player_character.gd" id="1_y87bo"]
 [ext_resource type="Texture2D" uid="uid://djldtb4845f38" path="res://assets/temp/sword1_low.png" id="2_0ap74"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/player/player_airborn.gd" id="5_fv6td"]
 [ext_resource type="Script" path="res://scripts/player/player_hover.gd" id="6_0tkkq"]
 [ext_resource type="Script" path="res://scripts/player/player_talk.gd" id="7_n0ojd"]
+[ext_resource type="Script" path="res://scripts/player/player_boat.gd" id="9_cjd7d"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2a5dh"]
 
@@ -28,6 +29,7 @@ orientation = 0
 
 [node name="playerCharacter" type="CharacterBody3D"]
 collision_layer = 4
+collision_mask = 17
 script = ExtResource("1_y87bo")
 
 [node name="playerCol" type="CollisionShape3D" parent="."]
@@ -44,7 +46,7 @@ current = true
 fov = 90.0
 
 [node name="lookRay" type="RayCast3D" parent="neck/playerCam"]
-target_position = Vector3(0, 0, -5)
+target_position = Vector3(0, 0, -2.5)
 collision_mask = 2
 
 [node name="hudViewportContainer" type="SubViewportContainer" parent="neck/playerCam"]
@@ -99,6 +101,10 @@ script = ExtResource("7_n0ojd")
 camera_control = false
 movement_control = false
 interact_control = false
+
+[node name="playerBoat" type="Node" parent="stateMachine"]
+script = ExtResource("9_cjd7d")
+movement_control = false
 
 [node name="UI" type="CanvasLayer" parent="."]
 
