@@ -7,3 +7,5 @@ func enter():
 func update(delta):
 	await Dialogic.timeline_ended
 	emit_signal("transitioned", self, "playerWalk")
+	
+	parent.uiCamera.global_transform = parent.camera.global_transform

@@ -13,3 +13,5 @@ func update(delta):
 	if parent.is_on_floor():
 		emit_signal("transitioned", self, "playerWalk")
 		return
+	
+	parent.uiCamera.global_transform = parent.camera.global_transform

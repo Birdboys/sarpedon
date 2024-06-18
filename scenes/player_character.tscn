@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://ev5ihdel24io"]
+[gd_scene load_steps=13 format=3 uid="uid://ev5ihdel24io"]
 
 [ext_resource type="Script" path="res://scripts/player/player_character.gd" id="1_y87bo"]
+[ext_resource type="Texture2D" uid="uid://djldtb4845f38" path="res://assets/temp/sword1_low.png" id="2_0ap74"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_tu7rb"]
 [ext_resource type="Script" path="res://scripts/player/player_walk.gd" id="3_euxff"]
 [ext_resource type="Script" path="res://scripts/player/player_jump.gd" id="4_0rupf"]
@@ -11,6 +12,19 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2a5dh"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rof8f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xmc1c"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = ExtResource("2_0ap74")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_eewxe"]
+material = SubResource("StandardMaterial3D_xmc1c")
+flip_faces = true
+orientation = 0
 
 [node name="playerCharacter" type="CharacterBody3D"]
 collision_layer = 4
@@ -25,15 +39,15 @@ mesh = SubResource("CapsuleMesh_rof8f")
 [node name="neck" type="Node3D" parent="."]
 
 [node name="playerCam" type="Camera3D" parent="neck"]
+cull_mask = 1048573
+current = true
+fov = 90.0
 
 [node name="lookRay" type="RayCast3D" parent="neck/playerCam"]
 target_position = Vector3(0, 0, -5)
 collision_mask = 2
 
-[node name="UI" type="CanvasLayer" parent="neck/playerCam"]
-
-[node name="UIBase" type="Control" parent="neck/playerCam/UI"]
-layout_mode = 3
+[node name="hudViewportContainer" type="SubViewportContainer" parent="neck/playerCam"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -42,20 +56,23 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
+stretch = true
 
-[node name="interactPrompt" type="Label" parent="neck/playerCam/UI/UIBase"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
+[node name="hudViewport" type="SubViewport" parent="neck/playerCam/hudViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+
+[node name="uiCam" type="Camera3D" parent="neck/playerCam/hudViewportContainer/hudViewport"]
+cull_mask = 1047554
+fov = 90.0
+
+[node name="swordMesh" type="MeshInstance3D" parent="neck/playerCam"]
+transform = Transform3D(1, 0, 0, 0, -0.422618, -0.906308, 0, 0.906308, -0.422618, 0.77, -0.285, -1.137)
+layers = 2
+mesh = SubResource("PlaneMesh_eewxe")
+skeleton = NodePath("../..")
 
 [node name="hoverRay" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -82,3 +99,30 @@ script = ExtResource("7_n0ojd")
 camera_control = false
 movement_control = false
 interact_control = false
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="UIBase" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="interactPrompt" type="Label" parent="UI/UIBase"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2

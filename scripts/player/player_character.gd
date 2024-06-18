@@ -8,9 +8,10 @@ extends CharacterBody3D
 
 @onready var stateMachine := $stateMachine
 @onready var camera := $neck/playerCam
+@onready var uiCamera := $neck/playerCam/hudViewportContainer/hudViewport/uiCam
 @onready var hoverRay := $hoverRay
 @onready var lookRay := $neck/playerCam/lookRay
-@onready var interactPrompt := $neck/playerCam/UI/UIBase/interactPrompt
+@onready var interactPrompt := $UI/UIBase/interactPrompt
 
 #INTERACTION TYPES
 #1) INTERACT TO PULL UP LISTENING DIALOGUE
@@ -19,6 +20,9 @@ extends CharacterBody3D
 func _ready():
 	stateMachine.initialize(self) 
 	Dialogic.signal_event.connect(handleDialogue)
+	
+func _process(delta):
+	uiCamera.global_transform = camera.global_transform
 func _physics_process(delta):
 	handlePrompt()
 

@@ -12,3 +12,5 @@ func update(delta):
 		emit_signal("transitioned", self, "playerWalk")
 	if parent.velocity.y < 0:
 		emit_signal("transitioned", self, "playerAirborn")
+		
+	parent.uiCamera.global_transform = parent.camera.global_transform
