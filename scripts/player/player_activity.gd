@@ -8,7 +8,6 @@ func enter():
 func update(delta):
 	print(parent.uiCamera.current)
 	
-	#emit_signal("transitioned", self, "playerWalk")
 	
 func exit():
 	parent.uiCamera.current = true

@@ -28,6 +28,7 @@ directories/dch_directory={
 directories/dtl_directory={
 "graeaeExplanation": "res://assets/timelines/graeaeExplanation.dtl",
 "graeaeIntro": "res://assets/timelines/graeaeIntro.dtl",
+"graeaeMonte1": "res://assets/timelines/graeaeMonte1.dtl",
 "introMaiden": "res://assets/timelines/introMaiden.dtl",
 "maidenInterject": "res://assets/timelines/maidenInterject.dtl"
 }

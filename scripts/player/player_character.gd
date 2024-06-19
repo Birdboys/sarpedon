@@ -78,7 +78,9 @@ func handleInteract():
 			"graeae_talk_2":
 				activityHandler = collider.get_parent()
 				stateMachine.on_state_transition(stateMachine.current_state, "playerActivity")
-				pass
+			"graeae_test":
+				activityHandler = collider.get_parent()
+				stateMachine.on_state_transition(stateMachine.current_state, "playerActivity")
 			_: pass
 
 func handleDialogue(type):

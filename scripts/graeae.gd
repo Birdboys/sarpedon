@@ -5,12 +5,14 @@ extends Node3D
 @onready var monteCam := $monteCam
 @onready var billboardComp := $graeaeMesh/billboardComponent
 @onready var graeaeMesh := $graeaeMesh
+@onready var monteHandler := $monteHandler
 
 signal activity_finished
 
 func _ready():
+	Dialogic.signal_event.connect(handleDialogue)
 	trigger1.interacted.connect(firstInteraction)
-	trigger2.interacted.connect(secondInteraction)
+	trigger2.interacted.connect(monteRound1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -29,6 +31,11 @@ func transitionCamera(initial_camera: Camera3D):
 	await camera_tween.finished
 	return
 
+func handleDialogue(type):
+	match type:
+		"swapCups": monteHandler.swapRandomCups()
+		_: pass
+	
 func firstInteraction():
 	Dialogic.start("graeaeIntro")
 	trigger1.deactivate()
@@ -40,4 +47,6 @@ func secondInteraction():
 	trigger2.activate()
 	billboardComp.do_billboard = false
 	graeaeMesh.rotation.y = 0
-	
+
+func monteRound1():
+	Dialogic.start("graeaeMonte1")

@@ -52,7 +52,7 @@ on_start = false
 [node name="table" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.544338, -0.503407)
 use_collision = true
-size = Vector3(1.16016, 0.951019, 0.731445)
+size = Vector3(1, 0.951019, 0.53717)
 
 [node name="seat" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.176338, -0.544338, -0.00196183)
@@ -76,18 +76,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.009, -0.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.009, -0.5)
 
 [node name="cup0" parent="monteHandler" instance=ExtResource("7_6con7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00867154, -0.727379)
 
 [node name="cup1" parent="monteHandler" instance=ExtResource("7_6con7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.009, -0.5)
 cup_index = 1
 slot = 1
 
 [node name="cup2" parent="monteHandler" instance=ExtResource("7_6con7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.009, -0.5)
 cup_index = 1
 slot = 1
-
-[node name="moveTimer" type="Timer" parent="monteHandler"]
-
-[connection signal="timeout" from="monteHandler/moveTimer" to="monteHandler" method="_on_move_timer_timeout"]

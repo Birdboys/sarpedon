@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3olvk0uaabxt"]
+
+[ext_resource type="Texture2D" uid="uid://b6dxd88qjf37v" path="res://assets/sprites/cup.png" id="1_d7igc"]
+[ext_resource type="Script" path="res://scripts/cup.gd" id="1_ltyqu"]
+
+[node name="cup" type="Node3D"]
+script = ExtResource("1_ltyqu")
+
+[node name="cupSprite" type="Sprite3D" parent="."]
+flip_v = true
+pixel_size = 0.005
+texture_filter = 0
+texture = ExtResource("1_d7igc")
