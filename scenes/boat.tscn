@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bg11eow76lcyn"]
 
 [ext_resource type="Script" path="res://scripts/boat.gd" id="1_8uxof"]
-[ext_resource type="PackedScene" uid="uid://dt6bxmw7stlh8" path="res://scenes/interact_box.tscn" id="1_mtgiy"]
+[ext_resource type="PackedScene" uid="uid://dt6bxmw7stlh8" path="res://scenes/components/interact_box.tscn" id="1_mtgiy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g8o2v"]
 albedo_color = Color(0.4, 0.1976, 0.136, 1)
@@ -45,8 +45,9 @@ use_collision = false
 size = Vector3(3, 1.5, 1.5)
 object_name = "boat"
 object_prompt = "exit [e]"
-interactable = false
 interact_ret = "boat_exit"
+interactable = false
+on_start = false
 
 [node name="playerPosition" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.0948395, 1.67954, -0.474198)

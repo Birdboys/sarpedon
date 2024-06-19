@@ -37,15 +37,11 @@ func getExitPos():
 func playerEnter():
 	freeze = false
 	in_boat = true
-	enterBox.interactable = false
-	enterBox.use_collision = false
-	exitBox.interactable = true
-	exitBox.use_collision = true
+	enterBox.deactivate()
+	exitBox.activate()
 	
 func playerExit():
 	freeze = true
 	in_boat = false
-	enterBox.interactable = true
-	enterBox.use_collision = true
-	exitBox.interactable = false
-	exitBox.use_collision = false
+	enterBox.activate()
+	exitBox.deactivate()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ev5ihdel24io"]
+[gd_scene load_steps=15 format=3 uid="uid://ev5ihdel24io"]
 
 [ext_resource type="Script" path="res://scripts/player/player_character.gd" id="1_y87bo"]
 [ext_resource type="Texture2D" uid="uid://djldtb4845f38" path="res://assets/temp/sword1_low.png" id="2_0ap74"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/player/player_hover.gd" id="6_0tkkq"]
 [ext_resource type="Script" path="res://scripts/player/player_talk.gd" id="7_n0ojd"]
 [ext_resource type="Script" path="res://scripts/player/player_boat.gd" id="9_cjd7d"]
+[ext_resource type="Script" path="res://scripts/player/player_activity.gd" id="10_nyw2d"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2a5dh"]
 
@@ -80,6 +81,8 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 target_position = Vector3(0, -0.5, 0)
 
+[node name="activityCamera" type="Camera3D" parent="."]
+
 [node name="stateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_tu7rb")
 initial_state = NodePath("playerWalk")
@@ -105,6 +108,12 @@ interact_control = false
 [node name="playerBoat" type="Node" parent="stateMachine"]
 script = ExtResource("9_cjd7d")
 movement_control = false
+
+[node name="playerActivity" type="Node" parent="stateMachine"]
+script = ExtResource("10_nyw2d")
+camera_control = false
+movement_control = false
+interact_control = false
 
 [node name="UI" type="CanvasLayer" parent="."]
 

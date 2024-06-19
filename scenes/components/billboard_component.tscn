@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d557kilnx4qe"]
+
+[ext_resource type="Script" path="res://scripts/billboard_component.gd" id="1_vhqxd"]
+
+[node name="billboardComponent" type="Node3D" groups=["billboard_comp"]]
+script = ExtResource("1_vhqxd")

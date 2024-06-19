@@ -14,6 +14,7 @@ extends CharacterBody3D
 @onready var interactPrompt := $UI/UIBase/interactPrompt
 
 var boat
+var activityHandler
 #INTERACTION TYPES
 #1) INTERACT TO PULL UP LISTENING DIALOGUE
 #2) INTERACT TO PULL UP TALKING DIALOGUE
@@ -24,6 +25,7 @@ func _ready():
 	
 func _process(delta):
 	uiCamera.global_transform = camera.global_transform
+	
 func _physics_process(delta):
 	handlePrompt()
 
@@ -33,6 +35,8 @@ func _unhandled_input(event):
 		handleInteract()
 	
 func handlePrompt():
+	if not stateMachine.current_state.interact_control:
+		return
 	if lookRay.is_colliding():
 		if lookRay.get_collider().interactable:
 			interactPrompt.text = lookRay.get_collider().getPrompt()
@@ -71,6 +75,10 @@ func handleInteract():
 				stateMachine.on_state_transition(stateMachine.current_state, "playerBoat")
 			"boat_exit":
 				stateMachine.on_state_transition(stateMachine.current_state, "playerWalk")
+			"graeae_talk_2":
+				activityHandler = collider.get_parent()
+				stateMachine.on_state_transition(stateMachine.current_state, "playerActivity")
+				pass
 			_: pass
 
 func handleDialogue(type):

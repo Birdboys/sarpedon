@@ -1,11 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://btfrk8df3yk2s"]
+[gd_scene load_steps=14 format=3 uid="uid://btfrk8df3yk2s"]
 
+[ext_resource type="Script" path="res://assets/temp/test_environment.gd" id="1_0udj0"]
 [ext_resource type="PackedScene" uid="uid://ev5ihdel24io" path="res://scenes/player_character.tscn" id="1_afcxk"]
 [ext_resource type="Texture2D" uid="uid://bh7h1vtknytyx" path="res://assets/temp/mercury1low.png" id="2_kg8gl"]
 [ext_resource type="Script" path="res://assets/temp/tempNPC.gd" id="2_xa6xs"]
-[ext_resource type="PackedScene" uid="uid://dt6bxmw7stlh8" path="res://scenes/interact_box.tscn" id="3_dqvrc"]
+[ext_resource type="PackedScene" uid="uid://dt6bxmw7stlh8" path="res://scenes/components/interact_box.tscn" id="3_dqvrc"]
 [ext_resource type="Texture2D" uid="uid://4ljuwxbpr067" path="res://assets/temp/mercury3low.png" id="5_n08jw"]
 [ext_resource type="PackedScene" uid="uid://bg11eow76lcyn" path="res://scenes/boat.tscn" id="6_6gxfr"]
+[ext_resource type="PackedScene" uid="uid://gbl1q3e8sop0" path="res://scenes/graeae.tscn" id="8_rxdrm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yqrv1"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -28,6 +30,7 @@ size = Vector3(6, 3, 2)
 albedo_color = Color(0, 0.2639, 0.264455, 1)
 
 [node name="testEnvironment" type="Node3D"]
+script = ExtResource("1_0udj0")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_okxp2")
@@ -109,3 +112,6 @@ object_prompt = "talk [e]"
 
 [node name="boat" parent="." instance=ExtResource("6_6gxfr")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.0824, 0.370345, -3.17219)
+
+[node name="graeae" parent="." instance=ExtResource("8_rxdrm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, -6)

@@ -22,9 +22,12 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 [dialogic]
 
 directories/dch_directory={
+"graeae": "res://assets/characters/graeae.dch",
 "maiden": "res://assets/characters/maiden.dch"
 }
 directories/dtl_directory={
+"graeaeExplanation": "res://assets/timelines/graeaeExplanation.dtl",
+"graeaeIntro": "res://assets/timelines/graeaeIntro.dtl",
 "introMaiden": "res://assets/timelines/introMaiden.dtl",
 "maidenInterject": "res://assets/timelines/maidenInterject.dtl"
 }
