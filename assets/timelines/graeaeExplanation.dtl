@@ -1,4 +1,9 @@
 graeae: It’s a simple game, a game about seeking the truth.
-graeae: Three cups, all equal, all empty, until–hush, I’m getting there–until we add… a secret.
+graeae: Three cups, all equal, all empty, until–hush, I’m getting there–until we add…
+[signal arg="toggleSecretOn"]
+graeae: ...a secret.
+[signal arg="toggleSecretOff"]
 graeae: The secret hides in a cup, and it’s your job to find it.
 graeae: You know where it is?
+[wait time="1.0"]
+[signal arg="startChoice"]

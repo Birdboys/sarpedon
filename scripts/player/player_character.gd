@@ -75,11 +75,9 @@ func handleInteract():
 				stateMachine.on_state_transition(stateMachine.current_state, "playerBoat")
 			"boat_exit":
 				stateMachine.on_state_transition(stateMachine.current_state, "playerWalk")
-			"graeae_talk_2":
+			"graeae_explanation":
 				activityHandler = collider.get_parent()
-				stateMachine.on_state_transition(stateMachine.current_state, "playerActivity")
-			"graeae_test":
-				activityHandler = collider.get_parent()
+				activityHandler.player = self
 				stateMachine.on_state_transition(stateMachine.current_state, "playerActivity")
 			_: pass
 
@@ -87,3 +85,4 @@ func handleDialogue(type):
 	match type:
 		"blocking":
 			stateMachine.on_state_transition(stateMachine.current_state, "playerTalk")
+	

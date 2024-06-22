@@ -1,0 +1,20 @@
+graeae: Do you enjoy watching the cups move?
+[signal arg="randomMove"]
+graeae: The way they dance, racing round and round, chasing each other but never quite catching up.
+[signal arg="randomMove"]
+graeae: Sometimes when we tire of watching the sea, or grow wary of–you’re right, best not to think of it.
+[signal arg="randomMove"]
+graeae: Where were we? Oh, yes.
+[signal arg="randomMove"]
+graeae: We sit and we move the cups, and we watch.
+[signal arg="randomMove"]
+graeae: We watch and we watch until even though we’re the ones moving them we can’t tell one from another.
+[signal arg="randomMove"]
+graeae: It’s nice that way, focusing on the cups, not knowing where the secret is…
+[signal arg="randomMove"]
+graeae: ...not caring that there was one to begin with.
+[signal arg="randomMove"]
+graeae: Do you remember?
+[signal arg="randomMove"]
+[wait time="1.0"]
+[signal arg="startChoice"]

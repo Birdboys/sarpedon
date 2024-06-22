@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://gbl1q3e8sop0"]
+[gd_scene load_steps=11 format=3 uid="uid://gbl1q3e8sop0"]
 
 [ext_resource type="Script" path="res://scripts/graeae.gd" id="1_diuei"]
 [ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="2_n178q"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dt6bxmw7stlh8" path="res://scenes/components/interact_box.tscn" id="5_lyowc"]
 [ext_resource type="Script" path="res://scripts/monteHandler.gd" id="6_iba7j"]
 [ext_resource type="PackedScene" uid="uid://b3olvk0uaabxt" path="res://scenes/cup.tscn" id="7_6con7"]
+[ext_resource type="Texture2D" uid="uid://4awym5lfpoaw" path="res://assets/temp/eyeball.png" id="8_wj4ev"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0yyx0"]
 render_priority = 0
@@ -45,7 +46,13 @@ interact_ret = "graeae_talk"
 [node name="trigger2" parent="." instance=ExtResource("5_lyowc")]
 object_name = "graeae"
 object_prompt = "talk [e]"
-interact_ret = "graeae_talk_2"
+interact_ret = "graeae_explanation"
+interactable = false
+on_start = false
+
+[node name="trigger3" parent="." instance=ExtResource("5_lyowc")]
+object_name = "graeae"
+object_prompt = "talk [e]"
 interactable = false
 on_start = false
 
@@ -59,7 +66,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.176338, -0.544338, -0.00196
 size = Vector3(0.53418, 0.951019, 0.254105)
 
 [node name="monteCam" type="Camera3D" parent="."]
-transform = Transform3D(-1, 3.24241e-08, -1.47473e-07, -1.77636e-15, 0.976672, 0.214735, 1.50996e-07, 0.214735, -0.976672, 0, 0.4, -1.41)
+transform = Transform3D(-1, -3.47198e-08, 8.02326e-08, 0, 0.917754, 0.397148, -8.74228e-08, 0.397148, -0.917754, 0, 0.305, -1.28)
 cull_mask = 1048573
 fov = 50.0
 
@@ -67,7 +74,7 @@ fov = 50.0
 script = ExtResource("6_iba7j")
 
 [node name="pos0" type="Node3D" parent="monteHandler"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00867154, -0.727379)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.009, -0.727379)
 
 [node name="pos1" type="Node3D" parent="monteHandler"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.009, -0.5)
@@ -77,6 +84,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.009, -0.5)
 
 [node name="cup0" parent="monteHandler" instance=ExtResource("7_6con7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00867154, -0.727379)
+has_item = true
 
 [node name="cup1" parent="monteHandler" instance=ExtResource("7_6con7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.009, -0.5)
@@ -85,8 +93,14 @@ slot = 1
 
 [node name="cup2" parent="monteHandler" instance=ExtResource("7_6con7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.009, -0.5)
-cup_index = 1
-slot = 1
+cup_index = 2
+slot = 2
+
+[node name="secret" type="Sprite3D" parent="monteHandler"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.009, -0.726)
+pixel_size = 0.003
+texture_filter = 0
+texture = ExtResource("8_wj4ev")
 
 [node name="moveTimer" type="Timer" parent="monteHandler"]
 

@@ -27,8 +27,11 @@ directories/dch_directory={
 }
 directories/dtl_directory={
 "graeaeExplanation": "res://assets/timelines/graeaeExplanation.dtl",
+"graeaeExplanationFail": "res://assets/timelines/graeaeExplanationFail.dtl",
+"graeaeExplanationSuccess": "res://assets/timelines/graeaeExplanationSuccess.dtl",
 "graeaeIntro": "res://assets/timelines/graeaeIntro.dtl",
 "graeaeMonte1": "res://assets/timelines/graeaeMonte1.dtl",
+"graeaeMonte2": "res://assets/timelines/graeaeMonte2.dtl",
 "introMaiden": "res://assets/timelines/introMaiden.dtl",
 "maidenInterject": "res://assets/timelines/maidenInterject.dtl"
 }

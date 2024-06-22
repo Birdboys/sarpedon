@@ -10,3 +10,5 @@ graeae: …and she lost.
 [signal arg="swapCups"]
 graeae: How will you fare?
 [signal arg="swapCups"]
+[wait time="1.0"]
+[signal arg="startChoice"]

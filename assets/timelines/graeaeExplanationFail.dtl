@@ -1,0 +1,4 @@
+graeae: Not quite, I--no he'll get it--yes, another chance.
+graeae: Try again.
+[wait time="1.0"]
+[signal arg="startChoice"]
