@@ -1,3 +1,4 @@
+[signal arg="showSecret"]
 graeae: Do you enjoy watching the cups move?
 [signal arg="randomMove"]
 graeae: The way they dance, racing round and round, chasing each other but never quite catching up.

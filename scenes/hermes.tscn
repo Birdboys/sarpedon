@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://vwucnpm7rl8o"]
+
+[ext_resource type="Script" path="res://scripts/hermes.gd" id="1_s4wmc"]
+[ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="2_eiw8f"]
+[ext_resource type="Texture2D" uid="uid://ckgdhpytdq8xd" path="res://assets/sprites/hermes1.png" id="3_5rjdm"]
+[ext_resource type="PackedScene" uid="uid://d557kilnx4qe" path="res://scenes/components/billboard_component.tscn" id="4_asaj5"]
+[ext_resource type="Texture2D" uid="uid://drkw7raw4aqn5" path="res://assets/sprites/hermes2.png" id="4_suaqk"]
+[ext_resource type="Texture2D" uid="uid://d1p7biwygoab0" path="res://assets/sprites/hermes3.png" id="5_w4n48"]
+[ext_resource type="PackedScene" uid="uid://dt6bxmw7stlh8" path="res://scenes/components/interact_box.tscn" id="7_ejpgu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m0xwc"]
+render_priority = 0
+shader = ExtResource("2_eiw8f")
+shader_parameter/num_sections = 7.0
+shader_parameter/max_section_offset = 0.1
+shader_parameter/image_speed = 1.0
+shader_parameter/offset_speed = 5.0
+shader_parameter/image_seed = 0.0
+shader_parameter/offset_seed = 0.0
+shader_parameter/transparency = 0.8
+shader_parameter/image1 = ExtResource("3_5rjdm")
+shader_parameter/image2 = ExtResource("4_suaqk")
+shader_parameter/image3 = ExtResource("5_w4n48")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_j84vj"]
+material = SubResource("ShaderMaterial_m0xwc")
+flip_faces = true
+size = Vector2(1, 2)
+orientation = 2
+
+[node name="hermes" type="Node3D"]
+script = ExtResource("1_s4wmc")
+
+[node name="hermesMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_j84vj")
+
+[node name="billboardComponent" parent="hermesMesh" instance=ExtResource("4_asaj5")]
+
+[node name="trigger1" parent="." instance=ExtResource("7_ejpgu")]
+size = Vector3(1, 2, 1)
+object_name = "hermes_trig1"
+object_prompt = "talk [e]"
+interact_ret = "hermes_intro"
+
+[node name="trigger2" parent="." instance=ExtResource("7_ejpgu")]
+size = Vector3(1, 2, 1)
+object_name = "hermes_trig2"
+object_prompt = "talk [e]"
+interact_ret = "hermes_discus"
+interactable = false
+on_start = false

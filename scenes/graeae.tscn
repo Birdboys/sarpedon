@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b3olvk0uaabxt" path="res://scenes/cup.tscn" id="7_6con7"]
 [ext_resource type="Texture2D" uid="uid://4awym5lfpoaw" path="res://assets/temp/eyeball.png" id="8_wj4ev"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0yyx0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xr7an"]
 render_priority = 0
 shader = ExtResource("2_n178q")
 shader_parameter/num_sections = 7.0
@@ -24,7 +24,7 @@ shader_parameter/image2 = ExtResource("3_ifpgg")
 shader_parameter/image3 = ExtResource("3_ifpgg")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_wf2nw"]
-material = SubResource("ShaderMaterial_0yyx0")
+material = SubResource("ShaderMaterial_xr7an")
 flip_faces = true
 size = Vector2(1, 2)
 orientation = 2
@@ -47,12 +47,6 @@ interact_ret = "graeae_talk"
 object_name = "graeae"
 object_prompt = "talk [e]"
 interact_ret = "graeae_explanation"
-interactable = false
-on_start = false
-
-[node name="trigger3" parent="." instance=ExtResource("5_lyowc")]
-object_name = "graeae"
-object_prompt = "talk [e]"
 interactable = false
 on_start = false
 

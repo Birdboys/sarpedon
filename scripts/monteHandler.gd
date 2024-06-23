@@ -39,6 +39,7 @@ func _process(delta):
 		if Input.is_action_just_pressed("dialogic_default_action"):
 			print("YOU CHOSE CUP ", choice_id)
 			toggleCups(-1)
+			showSecretCup()
 			emit_signal("choice_made", getCupBySlot(choice_id).has_item)
 			print("PICKED THE CORRECT CUP ", getCupBySlot(choice_id).has_item)
 			choosing = false
@@ -61,6 +62,7 @@ func setUpCups():
 	cup1.has_item = false
 	cup2.has_item = false
 	secret_slot = 0
+	secret.visible = false
 
 func swapTwoCups(cupSlotA, cupSlotB):
 	var cupA = getCupBySlot(cupSlotA)
@@ -140,4 +142,17 @@ func toggleSecretCup(on: bool):
 		cup_tween.tween_property(secret_cup.cupSprite, "offset", Vector2(0,30), 1.0)
 	else:
 		cup_tween.tween_property(secret_cup.cupSprite, "offset", Vector2(0,0), 1.0)
-		cup_tween.tween_property(secret, "visible", false, 0.1)
+		await cup_tween.finished
+		secret.visible = false
+
+func showSecretCup():
+	var secret_cup = getCupBySlot(secret_slot)
+	var cup_tween = get_tree().create_tween()
+	secret.position = getPosFromSlot(secret_slot)
+	secret.position.z += 0.01
+	secret.visible = true
+	cup_tween.tween_property(secret_cup.cupSprite, "offset", Vector2(0,30), 0.5)
+	cup_tween.tween_interval(0.5)
+	cup_tween.tween_property(secret_cup.cupSprite, "offset", Vector2(0,0), 0.5)
+	await cup_tween.finished
+	secret.visible = false

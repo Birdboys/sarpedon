@@ -2,7 +2,6 @@ extends Node3D
 
 @onready var trigger1 := $trigger1
 @onready var trigger2 := $trigger2
-@onready var trigger3 := $trigger3
 @onready var monteCam := $monteCam
 @onready var billboardComp := $graeaeMesh/billboardComponent
 @onready var graeaeMesh := $graeaeMesh
@@ -41,9 +40,13 @@ func handleDialogue(type):
 		"randomMove": monteHandler.swapRandomCups() if randf() > 0.5 else monteHandler.rotateCups(randf() > 0.5)
 		"toggleSecretOn": monteHandler.toggleSecretCup(true)
 		"toggleSecretOff": monteHandler.toggleSecretCup(false)
+		"showSecret": monteHandler.showSecretCup()
 		"monteRound1":
 			Dialogic.start("graeaeMonte1")
 			current_phase = "monte_round1"
+		"monteRound2":
+			Dialogic.start("graeaeMonte2")
+			current_phase = "monte_round2"
 		"startChoice": 
 			player.interactPrompt.text = "SELECT CUP: A-D\nCHOOSE CUP: E"
 			monteHandler.startChoice()
@@ -59,21 +62,15 @@ func monteExplanation():
 	current_phase = "explanation"
 	Dialogic.start("graeaeExplanation")
 	trigger2.deactivate()
-	trigger3.activate()
 	billboardComp.do_billboard = false
 	graeaeMesh.rotation.y = 0
-
-func monteRound1():
-	Dialogic.start("graeaeMonte1")
-	await Dialogic.timeline_ended
-	player.interactPrompt.text = "SELECT CUP: A-D\nCHOOSE CUP: E"
-	await get_tree().create_timer(1.0).timeout
-	monteHandler.startChoice()
 	
 func activityDone():
 	emit_signal("activity_finished")
 	player = null
-
+	current_phase = "idle"
+	trigger1.activate()
+	
 func handleChoiceMade(correct: bool):
 	player.interactPrompt.text = ""
 	match current_phase:
@@ -81,6 +78,10 @@ func handleChoiceMade(correct: bool):
 			if correct: Dialogic.start("graeaeExplanationSuccess")
 			else: Dialogic.start("graeaeExplanationFail")
 		"monte_round1":
-			Dialogic.start("graeaeMonte2")
+			if correct: Dialogic.start("graeaeMonte1Success")
+			else: Dialogic.start("graeaeMonte1Fail")
+		"monte_round2":
+			if correct: Dialogic.start("graeaeMonte2Success")
+			else: Dialogic.start("graeaeMonte2Fail")
 		_:
-			pass 
+			pass

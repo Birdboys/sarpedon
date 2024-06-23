@@ -9,10 +9,10 @@
 "style": "dialogicstyle"
 },
 "default_portrait": "",
-"description": "approachable, maiden version of medusa",
-"display_name": "κόρη",
+"description": "literally hermes",
+"display_name": "Ἑρμῆς",
 "mirror": false,
-"nicknames": ["maiden"],
+"nicknames": ["hermes"],
 "offset": Vector2(0, 0),
 "portraits": {},
 "scale": 1.0
