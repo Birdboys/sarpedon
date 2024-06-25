@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://gbl1q3e8sop0"]
+[gd_scene load_steps=12 format=3 uid="uid://gbl1q3e8sop0"]
 
 [ext_resource type="Script" path="res://scripts/graeae.gd" id="1_diuei"]
 [ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="2_n178q"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/monteHandler.gd" id="6_iba7j"]
 [ext_resource type="PackedScene" uid="uid://b3olvk0uaabxt" path="res://scenes/cup.tscn" id="7_6con7"]
 [ext_resource type="Texture2D" uid="uid://4awym5lfpoaw" path="res://assets/temp/eyeball.png" id="8_wj4ev"]
+[ext_resource type="Texture2D" uid="uid://0o2dmpxsjwxe" path="res://assets/sprites/invis_helmet.png" id="9_yqlps"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xr7an"]
 render_priority = 0
@@ -64,6 +65,38 @@ transform = Transform3D(-1, -3.47198e-08, 8.02326e-08, 0, 0.917754, 0.397148, -8
 cull_mask = 1048573
 fov = 50.0
 
+[node name="monteUI" type="Control" parent="monteCam"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="monteCam/monteUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.5
+offset_top = -21.5
+offset_right = 59.5
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "SELECT CUP: A-D
+CHOOSE CUP: E
+
+
+
+"
+horizontal_alignment = 1
+
 [node name="monteHandler" type="Node3D" parent="."]
 script = ExtResource("6_iba7j")
 
@@ -96,6 +129,11 @@ pixel_size = 0.003
 texture_filter = 0
 texture = ExtResource("8_wj4ev")
 
-[node name="moveTimer" type="Timer" parent="monteHandler"]
+[node name="invisHelmet" type="Sprite3D" parent="monteHandler"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.035, 0.008, -0.617)
+flip_h = true
+pixel_size = 0.006
+texture_filter = 0
+texture = ExtResource("9_yqlps")
 
-[connection signal="timeout" from="monteHandler/moveTimer" to="monteHandler" method="_on_move_timer_timeout"]
+[node name="moveTimer" type="Timer" parent="monteHandler"]

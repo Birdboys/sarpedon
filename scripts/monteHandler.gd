@@ -8,6 +8,7 @@ extends Node3D
 @onready var cup1 := $cup1
 @onready var cup2 := $cup2
 
+@onready var invisHelmet := $invisHelmet
 @onready var secret := $secret
 @onready var moveTimer := $moveTimer
 
@@ -36,6 +37,9 @@ func _process(delta):
 		if Input.is_action_just_pressed("right"):
 			choice_id = wrap(choice_id-1, 0, 3)
 			toggleCups(choice_id)
+		if Input.is_action_just_pressed("jump"):
+			print("REVEALED")
+			revealInvisHelmet()
 		if Input.is_action_just_pressed("dialogic_default_action"):
 			print("YOU CHOSE CUP ", choice_id)
 			toggleCups(-1)
@@ -54,6 +58,10 @@ func setUpCups():
 	cup1.position = pos1.position
 	cup2.position = pos2.position
 	
+	cup0.cupSprite.offset = Vector2(0, 0)
+	cup1.cupSprite.offset = Vector2(0, 0)
+	cup2.cupSprite.offset = Vector2(0, 0)
+	
 	slot0 = cup0
 	slot1 = cup1
 	slot2 = cup2
@@ -61,8 +69,10 @@ func setUpCups():
 	cup0.has_item = true
 	cup1.has_item = false
 	cup2.has_item = false
+	
 	secret_slot = 0
 	secret.visible = false
+	invisHelmet.visible = false
 
 func swapTwoCups(cupSlotA, cupSlotB):
 	var cupA = getCupBySlot(cupSlotA)
@@ -117,11 +127,6 @@ func getHalfwayMovePos(posA, posB):
 	var offset := dir.rotated(Vector3.UP, PI/2.0).normalized() * randf_range(0.1,.2)
 	return posA + dir + offset
 
-func _on_move_timere_timeout():
-	return
-	swapRandomCups()
-	#moveTimer.start(randf_range(avg_wait_time-wait_time_interval,avg_wait_time+wait_time_interval))
-
 func startChoice():
 	choosing = true
 	choice_id = 1
@@ -156,3 +161,22 @@ func showSecretCup():
 	cup_tween.tween_property(secret_cup.cupSprite, "offset", Vector2(0,0), 0.5)
 	await cup_tween.finished
 	secret.visible = false
+
+func revealInvisHelmet():
+	secret.visible = false
+	secret.position = getPosFromSlot(0)
+	secret.position.z += 0.125
+	invisHelmet.modulate = Color.hex(0xffffff00)
+	invisHelmet.visible = true
+	invisHelmet.offset = Vector2(0,0)
+	var cup_tween = get_tree().create_tween().set_parallel(true)
+	for x in range(0, 3):
+		cup_tween.tween_property(getCupBySlot(x).cupSprite, "offset", Vector2(0, -35), 1.5)
+	await cup_tween.finished
+	var invis_tween = get_tree().create_tween()
+	invis_tween.tween_interval(0.5)
+	invis_tween.tween_property(invisHelmet, "modulate", Color.hex(0xffffffff), 2.0)
+	invis_tween.tween_property(secret, "visible", true, 0.0)
+	invis_tween.tween_interval(0.5)
+	invis_tween.tween_property(invisHelmet, "offset", Vector2(0, 20), 1.0)
+	return

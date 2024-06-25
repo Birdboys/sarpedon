@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="DialogicStyle" load_steps=5 format=3 uid="uid://wwkeoom0ggjq"]
 
+[ext_resource type="PackedScene" uid="uid://ddg8ypyfl0ygc" path="res://assets/temp/VisualNovelTextbox/custom_vn_textbox_layer.tscn" id="1_63cr2"]
 [ext_resource type="Script" path="res://addons/dialogic/Resources/dialogic_style_layer.gd" id="2_g8u17"]
-[ext_resource type="PackedScene" uid="uid://bquja8jyk8kbr" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Textbox/vn_textbox_layer.tscn" id="5_wk7id"]
 [ext_resource type="Script" path="res://addons/dialogic/Resources/dialogic_style.gd" id="10_n7qgg"]
 
 [sub_resource type="Resource" id="Resource_reb66"]
 script = ExtResource("2_g8u17")
-scene = ExtResource("5_wk7id")
+scene = ExtResource("1_63cr2")
 overrides = {
 "box_color_custom": "Color(0, 0, 0, 0.901961)",
 "box_color_use_global": "false",

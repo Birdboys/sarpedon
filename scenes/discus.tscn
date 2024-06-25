@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkr0ya5rmvt0k"]
+
+[ext_resource type="Script" path="res://scripts/discus.gd" id="1_aegs6"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ahisa"]
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n1b4k"]
+albedo_color = Color(0.35, 0.2135, 0.1225, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jps01"]
+material = SubResource("StandardMaterial3D_n1b4k")
+height = 0.1
+
+[node name="discus" type="RigidBody3D"]
+top_level = true
+collision_layer = 0
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_aegs6")
+
+[node name="discusCol" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_ahisa")
+
+[node name="discusMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_jps01")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

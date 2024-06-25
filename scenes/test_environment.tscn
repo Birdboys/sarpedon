@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://btfrk8df3yk2s"]
+[gd_scene load_steps=12 format=3 uid="uid://btfrk8df3yk2s"]
 
 [ext_resource type="Script" path="res://assets/temp/test_environment.gd" id="1_0udj0"]
 [ext_resource type="PackedScene" uid="uid://ev5ihdel24io" path="res://scenes/player_character.tscn" id="1_afcxk"]
 [ext_resource type="PackedScene" uid="uid://vwucnpm7rl8o" path="res://scenes/hermes.tscn" id="5_hmh2k"]
+[ext_resource type="PackedScene" uid="uid://dkr0ya5rmvt0k" path="res://scenes/discus.tscn" id="6_1ma2s"]
 [ext_resource type="PackedScene" uid="uid://bg11eow76lcyn" path="res://scenes/boat.tscn" id="6_6gxfr"]
 [ext_resource type="PackedScene" uid="uid://gbl1q3e8sop0" path="res://scenes/graeae.tscn" id="8_rxdrm"]
 
@@ -47,8 +48,8 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.5
 size = Vector3(12, 1, 8)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, -0.5, -11.5221)
-size = Vector3(2, 1, 2)
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, -3.64496, -19.2186)
+size = Vector3(2, 7.28992, 25.6562)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 5, -0.5, -13.5221)
@@ -85,3 +86,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, -6)
 
 [node name="hermes" parent="." instance=ExtResource("5_hmh2k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="discus" parent="." instance=ExtResource("6_1ma2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.3549, -1)

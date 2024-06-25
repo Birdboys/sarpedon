@@ -91,6 +91,8 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 target_position = Vector3(0, -0.5, 0)
 
+[node name="activityCamera" type="Camera3D" parent="."]
+
 [node name="stateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_tu7rb")
 initial_state = NodePath("playerWalk")

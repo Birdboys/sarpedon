@@ -6,8 +6,9 @@ extends Node3D
 @onready var billboardComp := $graeaeMesh/billboardComponent
 @onready var graeaeMesh := $graeaeMesh
 @onready var monteHandler := $monteHandler
+@onready var monteUI := $monteCam/monteUI
 @onready var current_phase := "idle"
-var player
+
 signal activity_finished
 
 func _ready():
@@ -15,7 +16,7 @@ func _ready():
 	trigger1.interacted.connect(introDialogue)
 	trigger2.interacted.connect(monteExplanation)
 	monteHandler.choice_made.connect(handleChoiceMade)
-
+	monteUI.visible = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -33,6 +34,15 @@ func transitionCamera(initial_camera: Camera3D):
 	await camera_tween.finished
 	return
 
+func unTransitionCamera(initial_camera: Camera3D):
+	var camera_tween = get_tree().create_tween().set_parallel(true)
+	camera_tween.tween_property(monteCam, "global_transform", initial_camera.global_transform, 1.0)
+	camera_tween.tween_property(monteCam, "fov", initial_camera.fov, 1.0)
+	await camera_tween.finished
+	monteCam.current = false
+	initial_camera.current = true
+	return
+
 func handleDialogue(type):
 	match type:
 		"swapCups": monteHandler.swapRandomCups()
@@ -48,7 +58,7 @@ func handleDialogue(type):
 			Dialogic.start("graeaeMonte2")
 			current_phase = "monte_round2"
 		"startChoice": 
-			player.interactPrompt.text = "SELECT CUP: A-D\nCHOOSE CUP: E"
+			monteUI.visible = true
 			monteHandler.startChoice()
 		_: pass
 	
@@ -59,6 +69,7 @@ func introDialogue():
 	trigger2.activate()
 
 func monteExplanation():
+	monteCam.current = true
 	current_phase = "explanation"
 	Dialogic.start("graeaeExplanation")
 	trigger2.deactivate()
@@ -66,13 +77,12 @@ func monteExplanation():
 	graeaeMesh.rotation.y = 0
 	
 func activityDone():
-	emit_signal("activity_finished")
-	player = null
 	current_phase = "idle"
 	trigger1.activate()
+	emit_signal("activity_finished")
 	
 func handleChoiceMade(correct: bool):
-	player.interactPrompt.text = ""
+	monteUI.visible = false
 	match current_phase:
 		"explanation":
 			if correct: Dialogic.start("graeaeExplanationSuccess")
@@ -81,7 +91,8 @@ func handleChoiceMade(correct: bool):
 			if correct: Dialogic.start("graeaeMonte1Success")
 			else: Dialogic.start("graeaeMonte1Fail")
 		"monte_round2":
-			if correct: Dialogic.start("graeaeMonte2Success")
-			else: Dialogic.start("graeaeMonte2Fail")
+			activityDone()
+			#if correct: Dialogic.start("graeaeMonte2Success")
+			#else: Dialogic.start("graeaeMonte2Fail")
 		_:
 			pass

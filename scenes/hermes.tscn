@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://vwucnpm7rl8o"]
+[gd_scene load_steps=14 format=3 uid="uid://vwucnpm7rl8o"]
 
 [ext_resource type="Script" path="res://scripts/hermes.gd" id="1_s4wmc"]
 [ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="2_eiw8f"]
@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://drkw7raw4aqn5" path="res://assets/sprites/hermes2.png" id="4_suaqk"]
 [ext_resource type="Texture2D" uid="uid://d1p7biwygoab0" path="res://assets/sprites/hermes3.png" id="5_w4n48"]
 [ext_resource type="PackedScene" uid="uid://dt6bxmw7stlh8" path="res://scenes/components/interact_box.tscn" id="7_ejpgu"]
+[ext_resource type="Script" path="res://scripts/discusHandler.gd" id="8_kwjsr"]
+[ext_resource type="Texture2D" uid="uid://dymhqgriaflra" path="res://assets/temp/discusbg_blank.png" id="8_nepbv"]
+[ext_resource type="Texture2D" uid="uid://df6ynljmpqpp0" path="res://assets/temp/discusindi.png" id="9_cj6ip"]
+[ext_resource type="Texture2D" uid="uid://c2224nusrwyr2" path="res://assets/temp/discusbg.png" id="10_oym8d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m0xwc"]
 render_priority = 0
@@ -41,6 +45,7 @@ size = Vector3(1, 2, 1)
 object_name = "hermes_trig1"
 object_prompt = "talk [e]"
 interact_ret = "hermes_intro"
+on_start = false
 
 [node name="trigger2" parent="." instance=ExtResource("7_ejpgu")]
 size = Vector3(1, 2, 1)
@@ -48,4 +53,84 @@ object_name = "hermes_trig2"
 object_prompt = "talk [e]"
 interact_ret = "hermes_discus"
 interactable = false
-on_start = false
+
+[node name="discusHandler" type="Node3D" parent="."]
+script = ExtResource("8_kwjsr")
+
+[node name="discusCam" type="Camera3D" parent="discusHandler"]
+
+[node name="discusUI" type="Control" parent="discusHandler/discusCam"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="margin" type="MarginContainer" parent="discusHandler/discusCam/discusUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 64
+
+[node name="iconAnchor" type="Control" parent="discusHandler/discusCam/discusUI/margin"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="iconBase" type="TextureRect" parent="discusHandler/discusCam/discusUI/margin/iconAnchor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("8_nepbv")
+
+[node name="iconTarget" type="TextureRect" parent="discusHandler/discusCam/discusUI/margin/iconAnchor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("10_oym8d")
+
+[node name="iconIndicator" type="TextureRect" parent="discusHandler/discusCam/discusUI/margin/iconAnchor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("9_cj6ip")

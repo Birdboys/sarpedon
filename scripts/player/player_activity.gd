@@ -6,9 +6,11 @@ func enter():
 	parent.activityHandler.activity_finished.connect(activityFinished)
 	await parent.activityHandler.transitionCamera(parent.camera)
 
-	
+
 func exit():
+	await parent.activityHandler.unTransitionCamera(parent.camera)
 	parent.uiCamera.current = true
+	parent.camera.current = true
 
 func activityFinished():
-	pass
+	emit_signal("transitioned", self, "playerWalk")

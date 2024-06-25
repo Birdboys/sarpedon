@@ -77,7 +77,9 @@ func handleInteract():
 				stateMachine.on_state_transition(stateMachine.current_state, "playerWalk")
 			"graeae_explanation":
 				activityHandler = collider.get_parent()
-				activityHandler.player = self
+				stateMachine.on_state_transition(stateMachine.current_state, "playerActivity")
+			"hermes_discus":
+				activityHandler = collider.get_parent()
 				stateMachine.on_state_transition(stateMachine.current_state, "playerActivity")
 			_: pass
 
