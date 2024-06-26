@@ -4,6 +4,7 @@ class_name StateMachine
 @export var initial_state : State
 var current_state : State
 var states : Dictionary = {}
+var prev_state : String
 
 func initialize(parent):
 	for child in get_children():
@@ -36,5 +37,6 @@ func on_state_transition(state, new_state_name):
 		current_state.exit()
 	
 	new_state.enter()
+	prev_state = current_state.name
 	current_state = new_state
 

@@ -13,7 +13,7 @@ extends Node3D
 @onready var throw_height_val := 0.0
 @onready var throw_strength_val := 0.0
 
-const MAX_DISCUS_STRENGTH := 4.0
+const MAX_DISCUS_STRENGTH := 15.0
 signal discus_thrown
 @onready var current_state := "idle"
 func _ready():

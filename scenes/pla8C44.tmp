@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ev5ihdel24io"]
+[gd_scene load_steps=22 format=3 uid="uid://ev5ihdel24io"]
 
 [ext_resource type="Script" path="res://scripts/player/player_character.gd" id="1_y87bo"]
 [ext_resource type="Texture2D" uid="uid://djldtb4845f38" path="res://assets/temp/sword1_low.png" id="2_0ap74"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://scripts/player/player_boat.gd" id="9_cjd7d"]
 [ext_resource type="Script" path="res://scripts/player/player_activity.gd" id="10_nyw2d"]
 [ext_resource type="FontFile" uid="uid://vrrmdx83skor" path="res://addons/dialogic/Example Assets/Fonts/Roboto-Regular.ttf" id="11_cct0y"]
-[ext_resource type="Script" path="res://scripts/player/player_inventory.gd" id="11_smt85"]
 [ext_resource type="Texture2D" uid="uid://byubok773wow" path="res://assets/temp/uiborders.png" id="12_a84qk"]
 [ext_resource type="Script" path="res://scripts/player/inventory.gd" id="12_hxb3m"]
 [ext_resource type="Texture2D" uid="uid://0o2dmpxsjwxe" path="res://assets/sprites/invis_helmet.png" id="13_gwvc1"]
@@ -41,7 +40,7 @@ modulate_color = Color(0, 0, 0, 0.901961)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wtemr"]
 content_margin_left = 8.0
-content_margin_top = 12.0
+content_margin_top = 8.0
 content_margin_right = 8.0
 content_margin_bottom = 8.0
 
@@ -138,12 +137,6 @@ camera_control = false
 movement_control = false
 interact_control = false
 
-[node name="playerInventory" type="Node" parent="stateMachine"]
-script = ExtResource("11_smt85")
-camera_control = false
-movement_control = false
-interact_control = false
-
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="UIBase" type="Control" parent="UI"]
@@ -183,6 +176,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("12_hxb3m")
 
 [node name="inventoryMargin" type="MarginContainer" parent="UI/UIBase/inventory"]
@@ -199,7 +193,6 @@ theme_override_constants/margin_bottom = 64
 
 [node name="inventoryPanel" type="Panel" parent="UI/UIBase/inventory/inventoryMargin"]
 layout_mode = 2
-mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_71ryk")
 
 [node name="hbox" type="HBoxContainer" parent="UI/UIBase/inventory/inventoryMargin/inventoryPanel"]
@@ -209,7 +202,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 0
 
 [node name="imageMargin" type="MarginContainer" parent="UI/UIBase/inventory/inventoryMargin/inventoryPanel/hbox"]
 layout_mode = 2
@@ -218,39 +210,18 @@ size_flags_stretch_ratio = 2.0
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
+theme_override_constants/margin_bottom = 48
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/UIBase/inventory/inventoryMargin/inventoryPanel/hbox/imageMargin"]
+[node name="itemImage" type="TextureRect" parent="UI/UIBase/inventory/inventoryMargin/inventoryPanel/hbox/imageMargin"]
 layout_mode = 2
-
-[node name="itemImage" type="TextureRect" parent="UI/UIBase/inventory/inventoryMargin/inventoryPanel/hbox/imageMargin/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
 texture = ExtResource("13_gwvc1")
 expand_mode = 1
 stretch_mode = 5
-
-[node name="itemName" type="Label" parent="UI/UIBase/inventory/inventoryMargin/inventoryPanel/hbox/imageMargin/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_font_sizes/font_size = 18
-text = "Ἅϊδος κυνέη"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="UI/UIBase/inventory/inventoryMargin/inventoryPanel/hbox/imageMargin/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_font_sizes/font_size = 12
-text = "<- A | D->"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="vbox" type="VBoxContainer" parent="UI/UIBase/inventory/inventoryMargin/inventoryPanel/hbox"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
-theme_override_constants/separation = 0
 
 [node name="itemDesc" type="Label" parent="UI/UIBase/inventory/inventoryMargin/inventoryPanel/hbox/vbox"]
 layout_mode = 2
@@ -261,7 +232,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_wtemr")
 text = "A disc of wood, hefty, with leather forearm straps and a handle on the concave side. The front is covered with a sheet of bronze, the surface polished to a mirror-like finish. The fastenings feel comfortable on your arm, as does the weight in your hand. Yet… as you stare at the image reflected in the shield, a striking absence tempers your expectations."
 autowrap_mode = 2
 
-[node name="itemTip" type="Label" parent="UI/UIBase/inventory/inventoryMargin/inventoryPanel/hbox/vbox"]
+[node name="itemTut" type="Label" parent="UI/UIBase/inventory/inventoryMargin/inventoryPanel/hbox/vbox"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0

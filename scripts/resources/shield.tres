@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://d33ophpr1djaj"]
+
+[ext_resource type="Script" path="res://scripts/resources/inventory_item.gd" id="1_0wgby"]
+[ext_resource type="Texture2D" uid="uid://csmnuqloyn2qk" path="res://assets/sprites/shield.png" id="1_xu8q0"]
+
+[resource]
+script = ExtResource("1_0wgby")
+item_id = "shield"
+name = "ἀσπίς"
+image = ExtResource("1_xu8q0")
+description = "A disc of wood, hefty, with leather forearm straps and a handle on the concave side. The front is covered with a sheet of bronze, the surface polished to a mirror-like finish. The fastenings feel comfortable on your arm, as does the weight in your hand. Yet… as you stare at the image reflected in the shield, a striking absence tempers your expectations."
+tooltip = "Press [e] to TEMP"

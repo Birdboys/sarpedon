@@ -9,6 +9,7 @@ extends Node3D
 @onready var cup2 := $cup2
 
 @onready var invisHelmet := $invisHelmet
+@onready var helmetBillboard := $invisHelmet/billboardComponent
 @onready var secret := $secret
 @onready var moveTimer := $moveTimer
 
@@ -28,6 +29,7 @@ signal choice_made(correct: bool)
 
 func _ready():
 	setUpCups()
+	moveTimer.timeout.connect(randomMoveTimer)
 
 func _process(delta):
 	if choosing:
@@ -41,11 +43,8 @@ func _process(delta):
 			print("REVEALED")
 			revealInvisHelmet()
 		if Input.is_action_just_pressed("dialogic_default_action"):
-			print("YOU CHOSE CUP ", choice_id)
 			toggleCups(-1)
-			showSecretCup()
 			emit_signal("choice_made", getCupBySlot(choice_id).has_item)
-			print("PICKED THE CORRECT CUP ", getCupBySlot(choice_id).has_item)
 			choosing = false
 			
 
@@ -180,3 +179,15 @@ func revealInvisHelmet():
 	invis_tween.tween_interval(0.5)
 	invis_tween.tween_property(invisHelmet, "offset", Vector2(0, 20), 1.0)
 	return
+
+func hideInvisHelmet():
+	var invis_tween = get_tree().create_tween()
+	invis_tween.tween_property(invisHelmet, "offset", Vector2(0, 0), 1.0)
+	invis_tween.tween_property(secret, "visible", false, 0.0)
+	
+func randomMoveTimer():
+	if randf() > 0.5:
+		swapRandomCups()
+	else:
+		rotateCups(randf() > 0.5)
+	moveTimer.start(randf_range(0.5, 1.5))

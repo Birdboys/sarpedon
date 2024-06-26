@@ -1,7 +1,7 @@
 extends CSGBox3D
 
 @export var object_name : String
-@export var object_prompt : String
+@export_multiline var object_prompt : String
 @export var interact_ret : String
 @export var interactable := true
 @export var on_start := true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://btfrk8df3yk2s"]
+[gd_scene load_steps=13 format=3 uid="uid://btfrk8df3yk2s"]
 
 [ext_resource type="Script" path="res://assets/temp/test_environment.gd" id="1_0udj0"]
 [ext_resource type="PackedScene" uid="uid://ev5ihdel24io" path="res://scenes/player_character.tscn" id="1_afcxk"]
@@ -20,6 +20,9 @@ sky = SubResource("Sky_i0xqh")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_oiaxe"]
+size = Vector3(16, 8.10751, 16)
+
 [sub_resource type="PrismMesh" id="PrismMesh_o35cx"]
 left_to_right = 0.3
 size = Vector3(6, 3, 2)
@@ -37,6 +40,15 @@ environment = SubResource("Environment_okxp2")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.64496, -19.2186)
+collision_layer = 253
+collision_mask = 253
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.262863, -4.50056, 4.61997)
+shape = SubResource("BoxShape3D_oiaxe")
+
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
 
@@ -46,10 +58,6 @@ size = Vector3(16, 1, 16)
 [node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.5, 2.43899)
 size = Vector3(12, 1, 8)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, -3.64496, -19.2186)
-size = Vector3(2, 7.28992, 25.6562)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 5, -0.5, -13.5221)

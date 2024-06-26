@@ -51,6 +51,15 @@ interact_ret = "graeae_explanation"
 interactable = false
 on_start = false
 
+[node name="trigger3" parent="." instance=ExtResource("5_lyowc")]
+object_name = "graeae"
+object_prompt = "take 
+Ἅϊδος κυνέη 
+[e]"
+interact_ret = "graeae_take_helmet"
+interactable = false
+on_start = false
+
 [node name="table" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.544338, -0.503407)
 use_collision = true
@@ -135,5 +144,8 @@ flip_h = true
 pixel_size = 0.006
 texture_filter = 0
 texture = ExtResource("9_yqlps")
+
+[node name="billboardComponent" parent="monteHandler/invisHelmet" instance=ExtResource("4_snmrf")]
+do_billboard = false
 
 [node name="moveTimer" type="Timer" parent="monteHandler"]

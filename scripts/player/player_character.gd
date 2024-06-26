@@ -12,6 +12,13 @@ extends CharacterBody3D
 @onready var hoverRay := $hoverRay
 @onready var lookRay := $neck/playerCam/lookRay
 @onready var interactPrompt := $UI/UIBase/interactPrompt
+@onready var inventoryHandler := $UI/UIBase/inventory
+
+@onready var has_invis_helmet := false
+@onready var has_winged_sandals := false
+@onready var has_sword := false
+@onready var has_shield := false
+@onready var has_bag := false
 
 var boat
 var activityHandler
@@ -28,12 +35,12 @@ func _process(delta):
 	
 func _physics_process(delta):
 	handlePrompt()
-
+	
 func _unhandled_input(event):
 	if stateMachine.current_state.camera_control: handleCamera(event)
 	if Input.is_action_just_pressed("interact") and stateMachine.current_state.interact_control: 
 		handleInteract()
-	
+
 func handlePrompt():
 	if not stateMachine.current_state.interact_control:
 		return
@@ -81,6 +88,8 @@ func handleInteract():
 			"hermes_discus":
 				activityHandler = collider.get_parent()
 				stateMachine.on_state_transition(stateMachine.current_state, "playerActivity")
+			"graeae_take_helmet":
+				has_invis_helmet = true
 			_: pass
 
 func handleDialogue(type):

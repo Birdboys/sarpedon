@@ -2,6 +2,9 @@ extends State
 @export var move_speed := 5.0
 
 func update(delta):
+	if Input.is_action_just_pressed("inventory"):
+		emit_signal("transitioned", self, "playerInventory")
+	
 	parent.handleMovementInput(delta, move_speed)
 	
 	if Input.is_action_just_pressed("jump") and parent.is_on_floor():

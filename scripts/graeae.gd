@@ -2,19 +2,21 @@ extends Node3D
 
 @onready var trigger1 := $trigger1
 @onready var trigger2 := $trigger2
+@onready var trigger3 := $trigger3
 @onready var monteCam := $monteCam
 @onready var billboardComp := $graeaeMesh/billboardComponent
 @onready var graeaeMesh := $graeaeMesh
 @onready var monteHandler := $monteHandler
 @onready var monteUI := $monteCam/monteUI
 @onready var current_phase := "idle"
-
+@onready var third_round_tries := 1
 signal activity_finished
 
 func _ready():
 	Dialogic.signal_event.connect(handleDialogue)
 	trigger1.interacted.connect(introDialogue)
 	trigger2.interacted.connect(monteExplanation)
+	trigger3.interacted.connect(giveInvisHelmet)
 	monteHandler.choice_made.connect(handleChoiceMade)
 	monteUI.visible = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,6 +43,7 @@ func unTransitionCamera(initial_camera: Camera3D):
 	await camera_tween.finished
 	monteCam.current = false
 	initial_camera.current = true
+	monteHandler.helmetBillboard.do_billboard = true
 	return
 
 func handleDialogue(type):
@@ -51,12 +54,21 @@ func handleDialogue(type):
 		"toggleSecretOn": monteHandler.toggleSecretCup(true)
 		"toggleSecretOff": monteHandler.toggleSecretCup(false)
 		"showSecret": monteHandler.showSecretCup()
+		"startRandomShuffle": monteHandler.randomMoveTimer()
+		"stopRandomShuffle": monteHandler.moveTimer.stop()
+		"revealHelmet": monteHandler.revealInvisHelmet()
+		"hideHelmet": monteHandler.hideInvisHelmet()
+		"monteFinished": 
+			activityDone()
 		"monteRound1":
 			Dialogic.start("graeaeMonte1")
 			current_phase = "monte_round1"
 		"monteRound2":
 			Dialogic.start("graeaeMonte2")
 			current_phase = "monte_round2"
+		"monteRound3":
+			Dialogic.start("graeaeMonte3")
+			current_phase = "monte_round3"
 		"startChoice": 
 			monteUI.visible = true
 			monteHandler.startChoice()
@@ -78,8 +90,13 @@ func monteExplanation():
 	
 func activityDone():
 	current_phase = "idle"
-	trigger1.activate()
+	trigger3.activate()
+	billboardComp.do_billboard = true
 	emit_signal("activity_finished")
+
+func giveInvisHelmet():
+	trigger3.deactivate()
+	monteHandler.setUpCups()
 	
 func handleChoiceMade(correct: bool):
 	monteUI.visible = false
@@ -87,12 +104,17 @@ func handleChoiceMade(correct: bool):
 		"explanation":
 			if correct: Dialogic.start("graeaeExplanationSuccess")
 			else: Dialogic.start("graeaeExplanationFail")
+			monteHandler.showSecretCup()
 		"monte_round1":
 			if correct: Dialogic.start("graeaeMonte1Success")
 			else: Dialogic.start("graeaeMonte1Fail")
+			monteHandler.showSecretCup()
 		"monte_round2":
-			activityDone()
-			#if correct: Dialogic.start("graeaeMonte2Success")
-			#else: Dialogic.start("graeaeMonte2Fail")
+			if correct: Dialogic.start("graeaeMonte2Success")
+			else: Dialogic.start("graeaeMonte2Fail")
+			monteHandler.showSecretCup()
+		"monte_round3":
+			Dialogic.start("graeaeMonte3Reveal%s" % third_round_tries)
+			third_round_tries += 1
 		_:
 			pass
