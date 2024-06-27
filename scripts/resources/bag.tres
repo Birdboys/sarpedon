@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://b088pnplwp3or"]
+
+[ext_resource type="Texture2D" uid="uid://r0alsstae5gb" path="res://assets/sprites/bag.png" id="1_1r72c"]
+[ext_resource type="Script" path="res://scripts/resources/inventory_item.gd" id="2_umc7p"]
+
+[resource]
+script = ExtResource("2_umc7p")
+item_id = "bag"
+name = "κίβῐσῐς"
+image = ExtResource("1_1r72c")
+description = "Doesn't have one yet.	"
+tooltip = "Press [e] to TEMP"

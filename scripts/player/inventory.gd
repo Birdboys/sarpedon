@@ -1,11 +1,12 @@
 extends Control
 
-@onready var itemImage := $inventoryMargin/inventoryPanel/hbox/imageMargin/VBoxContainer/itemImage
-@onready var itemName := $inventoryMargin/inventoryPanel/hbox/imageMargin/VBoxContainer/itemName
-@onready var itemDesc := $inventoryMargin/inventoryPanel/hbox/vbox/itemDesc
-@onready var itemTip := $inventoryMargin/inventoryPanel/hbox/vbox/itemTip
+@onready var itemImage := $inventoryMargin/inventoryBorder/panelMargin/hbox/imagePanel/imageMargin/VBoxContainer/itemImage
+@onready var itemName := $inventoryMargin/inventoryBorder/panelMargin/hbox/imagePanel/imageMargin/VBoxContainer/itemName
+@onready var itemDesc := $inventoryMargin/inventoryBorder/panelMargin/hbox/vbox/itemDesc
+@onready var itemTip := $inventoryMargin/inventoryBorder/panelMargin/hbox/vbox/itemTip
 @onready var is_open := false
-
+@onready var current_inventory := ["bag", "sword", "shield"]
+@onready var inventory_index := 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	visible = is_open
@@ -25,6 +26,8 @@ func loadItem(item):
 func closeInventory():
 	is_open = false
 	visible = false
-	
-func _unhandled_input(event):
-	pass
+
+func nextItem(right := true):
+	inventory_index += 1 if right else -1
+	inventory_index = wrapi(inventory_index, 0, len(current_inventory))
+	loadItem(current_inventory[inventory_index])

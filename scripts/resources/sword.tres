@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://clf57c06nhpmg"]
+
+[ext_resource type="Texture2D" uid="uid://djldtb4845f38" path="res://assets/temp/sword1_low.png" id="1_lehlp"]
+[ext_resource type="Script" path="res://scripts/resources/inventory_item.gd" id="2_cd67k"]
+
+[resource]
+script = ExtResource("2_cd67k")
+item_id = "sword"
+name = "ἅρπη"
+image = ExtResource("1_lehlp")
+description = "From the wooden handle juts a curved blade, its edge forming an arc that ends in a ruthlessly fine point. An odd shape, not like many you’ve encountered before, but an effective one. Swinging it from side to side, the weapon begins to feel like an extension of yourself, of your ability to separate flesh from bone, life from the living."
+tooltip = "Press [e] to TEMP"
