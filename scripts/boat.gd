@@ -4,9 +4,9 @@ extends RigidBody3D
 @onready var enterBox := $enterBox
 @onready var exitBox := $exitBox
 @export var boat_force := 1000.0
-@export var boat_torque := 100.0
-@export var max_boat_velocity := 15.0
-@export var max_boat_angular_velocity := 0.5
+@export var boat_torque := 1000.0
+@export var max_boat_velocity := 10.0
+@export var max_boat_angular_velocity := 0.3
 var in_boat := false
 
 func _ready():

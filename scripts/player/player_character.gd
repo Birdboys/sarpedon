@@ -90,6 +90,8 @@ func handleInteract():
 				stateMachine.on_state_transition(stateMachine.current_state, "playerActivity")
 			"graeae_take_helmet":
 				has_invis_helmet = true
+				inventoryHandler.acquireItem("invis_helmet")
+				stateMachine.on_state_transition(stateMachine.current_state, "playerInventory")
 			_: pass
 
 func handleDialogue(type):

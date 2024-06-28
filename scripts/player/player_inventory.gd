@@ -5,8 +5,8 @@ func enter():
 	parent.inventoryHandler.openInventory()
 	parent.velocity.x = 0
 	parent.velocity.z = 0
-	#	await get_tree().create_timer(0.5).timeout
-	
+	parent.interactPrompt.text = ""
+
 func update(delta):
 	if Input.is_action_just_pressed("inventory"):
 		emit_signal("transitioned", self, "playerWalk")

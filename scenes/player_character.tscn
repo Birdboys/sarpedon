@@ -272,13 +272,12 @@ text = "Ἅϊδος κυνέη"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="UI/UIBase/inventory/inventoryMargin/inventoryBorder/panelMargin/hbox/imagePanel/imageMargin/VBoxContainer"]
+[node name="controlText" type="RichTextLabel" parent="UI/UIBase/inventory/inventoryMargin/inventoryBorder/panelMargin/hbox/imagePanel/imageMargin/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 12
+bbcode_enabled = true
 text = "<- A | D->"
-horizontal_alignment = 1
-vertical_alignment = 1
+fit_content = true
 
 [node name="vbox" type="VBoxContainer" parent="UI/UIBase/inventory/inventoryMargin/inventoryBorder/panelMargin/hbox"]
 layout_mode = 2
