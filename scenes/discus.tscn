@@ -17,6 +17,9 @@ top_level = true
 collision_layer = 0
 axis_lock_angular_x = true
 axis_lock_angular_z = true
+continuous_cd = true
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("1_aegs6")
 
 [node name="discusCol" type="CollisionShape3D" parent="."]
@@ -25,5 +28,7 @@ shape = SubResource("CylinderShape3D_ahisa")
 [node name="discusMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CylinderMesh_jps01")
 
+[node name="deleteTimer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="timeout" from="deleteTimer" to="." method="_on_delete_timer_timeout"]

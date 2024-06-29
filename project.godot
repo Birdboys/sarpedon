@@ -41,6 +41,8 @@ directories/dtl_directory={
 "graeaeMonte3Reveal1": "res://assets/timelines/graeaeMonte3Reveal1.dtl",
 "graeaeMonte3Reveal2": "res://assets/timelines/graeaeMonte3Reveal2.dtl",
 "graeaeMonte3Reveal3": "res://assets/timelines/graeaeMonte3Reveal3.dtl",
+"hermesDiscusExplanation": "res://assets/timelines/hermesDiscusExplanation.dtl",
+"hermesDiscusExplanation2": "res://assets/timelines/hermesDiscusExplanation2.dtl",
 "hermesIntro": "res://assets/timelines/hermesIntro.dtl",
 "introMaiden": "res://assets/timelines/introMaiden.dtl",
 "maidenInterject": "res://assets/timelines/maidenInterject.dtl"

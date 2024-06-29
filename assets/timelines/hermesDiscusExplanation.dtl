@@ -1,0 +1,11 @@
+hermes: You’re here, incredible.
+hermes: Now, lets get to throwing! Here you go-
+hermes: Woah, looks like you might need a hand with that.
+hermes: Lucky for you I’m just about the best teacher you could have!
+hermes: I mean, when it comes to discus, I practically inven-...
+hermes: …invested, haha, invested all of my time into it.
+hermes: Anyway, it's all in the rotation of your body, the placement and timing of your feet.
+hermes: Too slow, the discus won’t go anywhere. Too fast, you’ll tie yourself up in a knot.
+hermes: Here, let me show you.
+[wait time="1.0"]
+[signal arg="hermesThrow"]

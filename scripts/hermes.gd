@@ -5,16 +5,23 @@ extends Node3D
 @onready var current_phase := "idle"
 @onready var discusCam := $discusHandler/discusCam
 @onready var discusHandler := $discusHandler
-
 signal activity_finished
 
 func _ready():
 	Dialogic.signal_event.connect(handleDialogue)
 	trigger1.interacted.connect(introDialogue)
-	discusHandler.discus_thrown.connect(discusThrown)
-	#trigger2.interacted.connect(startDiscus)
+	trigger2.interacted.connect(startDiscus)
+	discusHandler.discus_landed.connect(discusLanded)
+	
 	
 func handleDialogue(type):
+	match type:
+		"hermesThrow":
+			discusHandler.startAutoThrow()
+		"playerThrow1":
+			discusHandler.startThrow()
+		_:
+			pass
 	pass
 
 func introDialogue():
@@ -22,10 +29,12 @@ func introDialogue():
 	Dialogic.start("hermesIntro")
 	trigger1.deactivate()
 	trigger2.activate()
-
-#func startDiscus():
-	#discusHandler.startThrow()
-
+	
+func startDiscus():
+	current_phase = "discus_explanation"
+	Dialogic.start("hermesDiscusExplanation")
+	trigger2.deactivate()
+	
 func transitionCamera(initial_camera: Camera3D):
 	var original_transform = discusCam.global_transform
 	var original_fov = discusCam.fov
@@ -37,7 +46,6 @@ func transitionCamera(initial_camera: Camera3D):
 	camera_tween.tween_property(discusCam, "global_transform", original_transform, 2.0)
 	camera_tween.tween_property(discusCam, "fov", original_fov, 2.0)
 	await camera_tween.finished
-	discusHandler.startThrow()
 	return
 
 func unTransitionCamera(initial_camera: Camera3D):
@@ -49,5 +57,8 @@ func unTransitionCamera(initial_camera: Camera3D):
 	initial_camera.current = true
 	return
 
-func discusThrown():
-	emit_signal("activity_finished")
+func discusLanded():
+	match current_phase:
+		"discus_explanation":
+			current_phase = "player_throw_1"
+			Dialogic.start("hermesDiscusExplanation2")

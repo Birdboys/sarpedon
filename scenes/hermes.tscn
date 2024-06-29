@@ -132,5 +132,14 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = 6.28319
 pivot_offset = Vector2(32, 32)
 texture = ExtResource("9_cj6ip")
+
+[node name="tutorialText" type="Label" parent="discusHandler/discusCam/discusUI/margin"]
+visible = false
+layout_mode = 2
+text = "PRESS [e] WHEN CIRCLES OVERLAP
+"
+horizontal_alignment = 1
+vertical_alignment = 1

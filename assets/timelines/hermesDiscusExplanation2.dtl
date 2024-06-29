@@ -1,0 +1,7 @@
+hermes: Just like that.
+hermes: Feels good doesn’t it? Throwing something away and watching it disappear…
+hermes: …not having to look back.
+hermes: A-alright, your turn!
+hermes: I throw a little fast, but feel free to take your time.
+[wait time="1.0"]
+[signal arg="playerThrow1"]

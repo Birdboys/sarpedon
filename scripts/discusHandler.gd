@@ -5,34 +5,41 @@ extends Node3D
 @onready var iconIndicator := $discusCam/discusUI/margin/iconAnchor/iconIndicator
 @onready var discusCam := $discusCam
 @onready var discusUI := $discusCam/discusUI
+@onready var tutText := $discusCam/discusUI/margin/tutorialText
 @onready var discus := preload("res://scenes/discus.tscn")
-@onready var rot_speed_1 := 3.0
-@onready var rot_speed_2 := 5.0
-@onready var rot_speed_3 := 8.0
+@onready var rot_speed_1 := 5.0
+@onready var rot_speed_2 := 7.0
+@onready var rot_speed_3 := 10.0
 @onready var throw_rot_val := 0.0
 @onready var throw_height_val := 0.0
 @onready var throw_strength_val := 0.0
+@onready var current_state := "idle"
+var current_discus = null
 
 const MAX_DISCUS_STRENGTH := 15.0
-signal discus_thrown
-@onready var current_state := "idle"
+signal discus_landed
+
 func _ready():
 	discusUI.visible = false
 	iconTarget.rotation = 0
 	iconIndicator.rotation = 0
 
 func _process(delta):
+	#print(current_state)
 	match current_state:
 		"spinning1": iconIndicator.rotation = wrapf(iconIndicator.rotation + rot_speed_1 * delta, 0, 2*PI)
-		"spinning2": iconIndicator.rotation = wrapf(iconIndicator.rotation + rot_speed_1 * delta, 0, 2*PI)
-		"spinning3": iconIndicator.rotation = wrapf(iconIndicator.rotation + rot_speed_1 * delta, 0, 2*PI)
+		"spinning2": iconIndicator.rotation = wrapf(iconIndicator.rotation + rot_speed_2 * delta, 0, 2*PI)
+		"spinning3": iconIndicator.rotation = wrapf(iconIndicator.rotation + rot_speed_3 * delta, 0, 2*PI)
+		"throwing": if current_discus: discusCam.look_at(current_discus.global_position)
 		_: pass
 	if "spinning" in current_state and Input.is_action_just_pressed("interact"):
 		handleInteract()
+	
 	if Input.is_action_just_pressed("jump"):
 		discusUI.visible= false
 		get_parent().emit_signal("activity_finished")
 	#print(iconIndicator.rotation)
+	
 func resetIcons():
 	iconTarget.rotation = 0
 	iconIndicator.rotation = 0
@@ -40,10 +47,21 @@ func resetIcons():
 func throwDiscus(force):
 	var new_discus := discus.instantiate()
 	add_child(new_discus)
-	new_discus.global_position = discusCam.global_position
+	new_discus.global_position = discusCam.global_position - Vector3.UP * 0.25
 	new_discus.apply_central_impulse(force)
-	print(force)
-
+	new_discus.landed.connect(discusLanded)
+	new_discus.thrown()
+	current_discus = new_discus
+	current_state = "throwing"
+	
+func discusLanded():
+	current_state = "idle"
+	current_discus = null
+	discusUI.visible = false
+	var cam_tween = get_tree().create_tween()
+	cam_tween.tween_property(discusCam, "rotation", Vector3.ZERO, 1.0)
+	emit_signal("discus_landed")
+	
 func startThrow():
 	throw_rot_val = 0.0
 	throw_height_val = 0.0
@@ -52,35 +70,65 @@ func startThrow():
 	resetIcons()
 	getRandomRot()
 	current_state = "spinning1"
-	
+
+func startAutoThrow():
+	current_state = "auto_throw"
+	throw_rot_val = 0.0
+	throw_height_val = 0.0
+	throw_strength_val = 0.0
+	discusUI.visible = true
+	tutText.visible = true
+	resetIcons()
+	getRandomRot()
+	var auto_tween = get_tree().create_tween()
+	auto_tween.tween_property(iconIndicator, "rotation", deg_to_rad(360), (PI)/rot_speed_1)
+	auto_tween.tween_property(iconIndicator, "rotation", 0, 0)
+	auto_tween.tween_property(iconIndicator, "rotation", deg_to_rad(360), (2*PI)/rot_speed_1)
+	auto_tween.tween_property(iconIndicator, "rotation", 0, 0)
+	auto_tween.tween_callback(handleInteract)
+	auto_tween.tween_property(iconIndicator, "rotation", deg_to_rad(720), (4*PI)/rot_speed_2)
+	auto_tween.tween_property(iconIndicator, "rotation", 0, 0)
+	auto_tween.tween_callback(handleInteract)
+	auto_tween.tween_property(iconIndicator, "rotation", deg_to_rad(720), (4*PI)/rot_speed_3)
+	auto_tween.tween_property(tutText, "visible", false, 0)
+	auto_tween.tween_callback(handleInteract)
+	auto_tween.tween_callback(throwHermesDiscus)
+
+
 func getThrowForce():
-	#var throw_force = (-discusCam.global_basis.z).rotated(discusCam.global_basis.y, throw_rot_val)
-	#throw_force = throw_force.rotated(discusCam.global_basis.x, throw_height_val)
-	#throw_force = throw_force.normalized() * throw_strength_val
+	#var throw_force = (-discusCam.global_basis.z).rotated(discusCam.global_basis.y)
+	#throw_force = throw_force.rotated(discusCam.global_basis.x, deg_to_rad(45))
+	#throw_force = throw_force.normalized() * MAX_DISCUS_STRENGTH
+	var throw_force = (-discusCam.global_basis.z).rotated(discusCam.global_basis.y, throw_rot_val)
+	throw_force = throw_force.rotated(discusCam.global_basis.x, throw_height_val)
+	throw_force = throw_force.normalized() * throw_strength_val
 	
-	var throw_force = (-discusCam.global_basis.z)
-	throw_force = throw_force.rotated(discusCam.global_basis.x, deg_to_rad(45))
-	throw_force = throw_force.normalized() * MAX_DISCUS_STRENGTH
 	return throw_force
+
+func throwHermesDiscus():
+	var throw_force = (-discusCam.global_basis.z).rotated(discusCam.global_basis.x, deg_to_rad(45))
+	throw_force = throw_force.normalized() * MAX_DISCUS_STRENGTH * 5
+	throwDiscus(throw_force)
 	
 func getRandomRot():
-	pass
 	#iconTarget.rotation = deg_to_rad(randi_range(-90, 90))
+	iconIndicator.rotation = wrapf(iconTarget.rotation + deg_to_rad(180), 0, 2*PI)
 
 func handleInteract():
+	var icon_tween = get_tree().create_tween()
+	icon_tween.tween_property(iconIndicator, "modulate", Color(0.4, 0.4, 0.4), 0.0)
+	icon_tween.tween_property(iconIndicator, "modulate", Color(1, 1, 1), 0.25)
 	var target_diff = angle_difference(iconTarget.rotation,iconIndicator.rotation)/PI
 	match current_state:
 		"spinning1": 
 			current_state = "spinning2"
-			throw_rot_val = remap(target_diff, -1, 1, deg_to_rad(-45), deg_to_rad(45))
+			throw_strength_val = remap(abs(target_diff), 1, 0, 0, MAX_DISCUS_STRENGTH)
 		"spinning2":
 			current_state = "spinning3"
 			throw_height_val = remap(target_diff, -1, 1, deg_to_rad(0), deg_to_rad(90))
 		"spinning3":
-			current_state = "throwing"
-			throw_strength_val = remap(abs(target_diff), 1, 0, 0, MAX_DISCUS_STRENGTH)
+			throw_rot_val = remap(target_diff, 1, -1, deg_to_rad(-45), deg_to_rad(45))
 			var throw_force = getThrowForce()
 			throwDiscus(throw_force)
-			startThrow()
-			#emit_signal("discus_thrown")
-			
+		_:
+			pass

@@ -39,9 +39,11 @@ func playerEnter():
 	in_boat = true
 	enterBox.deactivate()
 	exitBox.activate()
-	
+	set_collision_layer_value(1, false)
+
 func playerExit():
 	freeze = true
 	in_boat = false
 	enterBox.activate()
 	exitBox.deactivate()
+	set_collision_layer_value(1, true)

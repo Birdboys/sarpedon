@@ -1,19 +1,22 @@
 extends RigidBody3D
 
+@onready var state := "flying"
+@onready var deleteTimer := $deleteTimer
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+signal landed
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func thrown():
+	await get_tree().create_timer(6).timeout
+	if state == "flying":
+		state = "landed"
+		emit_signal("landed")
+		deleteTimer.start(3)
 
 
 func _on_body_entered(body):
-	print("ADSDASDSA")
+	state = "landed"
+	emit_signal("landed")
+	deleteTimer.start(3)
 
-
-func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	print("QEQWEQEQ")
+func _on_delete_timer_timeout():
+	queue_free()

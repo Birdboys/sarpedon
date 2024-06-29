@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://btfrk8df3yk2s"]
+[gd_scene load_steps=15 format=3 uid="uid://btfrk8df3yk2s"]
 
 [ext_resource type="Script" path="res://assets/temp/test_environment.gd" id="1_0udj0"]
 [ext_resource type="PackedScene" uid="uid://ev5ihdel24io" path="res://scenes/player_character.tscn" id="1_afcxk"]
 [ext_resource type="PackedScene" uid="uid://vwucnpm7rl8o" path="res://scenes/hermes.tscn" id="5_hmh2k"]
-[ext_resource type="PackedScene" uid="uid://dkr0ya5rmvt0k" path="res://scenes/discus.tscn" id="6_1ma2s"]
 [ext_resource type="PackedScene" uid="uid://bg11eow76lcyn" path="res://scenes/boat.tscn" id="6_6gxfr"]
 [ext_resource type="PackedScene" uid="uid://gbl1q3e8sop0" path="res://scenes/graeae.tscn" id="8_rxdrm"]
 
@@ -108,6 +107,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, -6)
 
 [node name="hermes" parent="." instance=ExtResource("5_hmh2k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-
-[node name="discus" parent="." instance=ExtResource("6_1ma2s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.3549, -1)
