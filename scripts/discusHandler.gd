@@ -17,6 +17,7 @@ extends Node3D
 var current_discus = null
 
 const MAX_DISCUS_STRENGTH := 15.0
+const MAX_DISCUS_TORQUE := 15.0
 signal discus_landed
 
 func _ready():
@@ -49,6 +50,7 @@ func throwDiscus(force):
 	add_child(new_discus)
 	new_discus.global_position = discusCam.global_position - Vector3.UP * 0.25
 	new_discus.apply_central_impulse(force)
+	new_discus.apply_torque_impulse(Vector3.LEFT * force.length())
 	new_discus.landed.connect(discusLanded)
 	new_discus.thrown()
 	current_discus = new_discus
@@ -86,10 +88,10 @@ func startAutoThrow():
 	auto_tween.tween_property(iconIndicator, "rotation", deg_to_rad(360), (2*PI)/rot_speed_1)
 	auto_tween.tween_property(iconIndicator, "rotation", 0, 0)
 	auto_tween.tween_callback(handleInteract)
-	auto_tween.tween_property(iconIndicator, "rotation", deg_to_rad(720), (4*PI)/rot_speed_2)
+	auto_tween.tween_property(iconIndicator, "rotation", deg_to_rad(320), (2*PI)/rot_speed_2)
 	auto_tween.tween_property(iconIndicator, "rotation", 0, 0)
 	auto_tween.tween_callback(handleInteract)
-	auto_tween.tween_property(iconIndicator, "rotation", deg_to_rad(720), (4*PI)/rot_speed_3)
+	auto_tween.tween_property(iconIndicator, "rotation", deg_to_rad(320), (2*PI)/rot_speed_3)
 	auto_tween.tween_property(tutText, "visible", false, 0)
 	auto_tween.tween_callback(handleInteract)
 	auto_tween.tween_callback(throwHermesDiscus)

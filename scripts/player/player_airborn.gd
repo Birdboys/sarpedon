@@ -6,7 +6,7 @@ func update(delta):
 	parent.velocity.y -= parent.gravity * delta
 	parent.move_and_slide()
 	
-	if Input.is_action_pressed("jump"):
+	if parent.has_winged_sandals and Input.is_action_pressed("jump"):
 		emit_signal("transitioned", self, "playerHover")
 		return
 		

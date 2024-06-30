@@ -2,15 +2,18 @@ extends Node3D
 
 @onready var trigger1 := $trigger1
 @onready var trigger2 := $trigger2
+@onready var trigger3 := $trigger3
 @onready var current_phase := "idle"
 @onready var discusCam := $discusHandler/discusCam
 @onready var discusHandler := $discusHandler
+
 signal activity_finished
 
 func _ready():
 	Dialogic.signal_event.connect(handleDialogue)
 	trigger1.interacted.connect(introDialogue)
 	trigger2.interacted.connect(startDiscus)
+	trigger3.interacted.connect(giveWingedSandals)
 	discusHandler.discus_landed.connect(discusLanded)
 	
 	
@@ -18,8 +21,10 @@ func handleDialogue(type):
 	match type:
 		"hermesThrow":
 			discusHandler.startAutoThrow()
-		"playerThrow1":
+		"playerThrow":
 			discusHandler.startThrow()
+		"giveSandals":
+			trigger3.activate()
 		_:
 			pass
 	pass
@@ -62,3 +67,17 @@ func discusLanded():
 		"discus_explanation":
 			current_phase = "player_throw_1"
 			Dialogic.start("hermesDiscusExplanation2")
+		"player_throw_1":
+			current_phase = "player_throw_2"
+			Dialogic.start("hermesDiscusAfter1")
+		"player_throw_2":
+			current_phase = "player_throw_3"
+			Dialogic.start("hermesDiscusAfter2")
+		"player_throw_3":
+			current_phase = "discus_done"
+			Dialogic.start("hermesDiscusAfter3")
+		_: 
+			pass
+
+func giveWingedSandals():
+	trigger3.deactivate()

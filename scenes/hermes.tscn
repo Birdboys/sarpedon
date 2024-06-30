@@ -54,6 +54,16 @@ object_prompt = "talk [e]"
 interact_ret = "hermes_discus"
 interactable = false
 
+[node name="trigger3" parent="." instance=ExtResource("7_ejpgu")]
+size = Vector3(1, 2, 1)
+object_name = "hermes_trig2"
+object_prompt = "take
+πτερόεντα πέδιλα
+[e]"
+interact_ret = "hermes_take_sandals"
+interactable = false
+on_start = false
+
 [node name="discusHandler" type="Node3D" parent="."]
 script = ExtResource("8_kwjsr")
 

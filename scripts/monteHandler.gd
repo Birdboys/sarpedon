@@ -42,7 +42,7 @@ func _process(delta):
 		if Input.is_action_just_pressed("jump"):
 			print("REVEALED")
 			revealInvisHelmet()
-		if Input.is_action_just_pressed("dialogic_default_action"):
+		if Input.is_action_just_pressed("interact"):
 			toggleCups(-1)
 			emit_signal("choice_made", getCupBySlot(choice_id).has_item)
 			choosing = false
@@ -190,4 +190,4 @@ func randomMoveTimer():
 		swapRandomCups()
 	else:
 		rotateCups(randf() > 0.5)
-	moveTimer.start(randf_range(0.5, 1.5))
+	moveTimer.start(randf_range(0.25, 0.75))

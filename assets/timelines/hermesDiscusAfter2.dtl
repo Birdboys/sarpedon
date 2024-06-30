@@ -1,0 +1,4 @@
+hermes: Nice throw!
+hermes: Let’s do one more, give it all you’ve got.
+[wait time="1.0"]
+[signal arg="playerThrow"]

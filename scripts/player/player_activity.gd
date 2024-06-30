@@ -9,6 +9,8 @@ func enter():
 
 func exit():
 	await parent.activityHandler.unTransitionCamera(parent.camera)
+	parent.activityHandler.activity_finished.disconnect(activityFinished)
+	parent.activityHandler = null
 	parent.uiCamera.current = true
 	parent.camera.current = true
 
