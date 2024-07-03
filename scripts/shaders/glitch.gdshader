@@ -9,7 +9,7 @@ uniform float image_speed : hint_range(0.0,10.0,1.0);
 uniform float offset_speed : hint_range(0.0,10.0,1.0);
 
 uniform float image_seed : hint_range(0.0, 1.0, 0.1) = 0.0;
-uniform float offset_seed : hint_range(0.0, 1.0, 0.1) = 0.0;
+uniform float offset_seed : hint_range(0.0, 100.0, 0.1) = 0.0;
 uniform float transparency : hint_range(0.0,1.0,0.1) = 1.0;
 void vertex() {
 	// Called for every vertex the material is visible on.
@@ -29,9 +29,9 @@ void fragment() {
 	
 	if ((UV.x + stripe_offset > 1.0) || (UV.x + stripe_offset < 0.0)) {
 		image_data = vec4(0.0,0.0,0.0,0.0);
-	} else if (stripe_random >= 0.33) {
+	} else if (stripe_random <= 0.33) {
 		image_data = texture(image1, vec2(UV.x + stripe_offset, UV.y));
-	} else if (stripe_random >= 0.66) {
+	} else if (stripe_random <= 0.66) {
 		image_data = texture(image2, vec2(UV.x + stripe_offset, UV.y));
 	} else {
 		image_data = texture(image3, vec2(UV.x + stripe_offset, UV.y));

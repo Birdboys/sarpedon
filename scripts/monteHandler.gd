@@ -190,4 +190,4 @@ func randomMoveTimer():
 		swapRandomCups()
 	else:
 		rotateCups(randf() > 0.5)
-	moveTimer.start(randf_range(0.25, 0.75))
+	moveTimer.start(randf_range(0.25, 1.0))

@@ -75,7 +75,6 @@ border_width_top = 1
 border_color = Color(0.8, 0.8, 0.8, 0)
 
 [node name="playerCharacter" type="CharacterBody3D"]
-visible = false
 collision_layer = 4
 collision_mask = 17
 script = ExtResource("1_y87bo")
@@ -121,6 +120,7 @@ fov = 90.0
 
 [node name="swordMesh" type="MeshInstance3D" parent="neck/playerCam"]
 transform = Transform3D(1, 0, 0, 0, -0.422618, -0.906308, 0, 0.906308, -0.422618, 0.77, -0.285, -1.137)
+visible = false
 layers = 2
 mesh = SubResource("PlaneMesh_eewxe")
 skeleton = NodePath("../..")

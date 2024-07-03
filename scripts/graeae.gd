@@ -8,6 +8,9 @@ extends Node3D
 @onready var graeaeMesh := $graeaeMesh
 @onready var monteHandler := $monteHandler
 @onready var monteUI := $monteCam/monteUI
+@onready var sisterMeshes := [$sisterMesh1, $sisterMesh2]
+@onready var show_sisters := false
+@onready var sister_noise := FastNoiseLite.new()
 @onready var current_phase := "idle"
 @onready var third_round_tries := 1
 signal activity_finished
@@ -19,9 +22,12 @@ func _ready():
 	trigger3.interacted.connect(giveInvisHelmet)
 	monteHandler.choice_made.connect(handleChoiceMade)
 	monteUI.visible = false
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta):
-	pass
+	if show_sisters:
+		for sister in sisterMeshes:
+			sister.mesh.material.set_shader_parameter("transparency", sister_noise.get_noise_1d(Time.get_ticks_msec()/10.0)-0.2)
+
 
 func transitionCamera(initial_camera: Camera3D):
 	var original_transform = monteCam.global_transform
@@ -54,8 +60,12 @@ func handleDialogue(type):
 		"toggleSecretOn": monteHandler.toggleSecretCup(true)
 		"toggleSecretOff": monteHandler.toggleSecretCup(false)
 		"showSecret": monteHandler.showSecretCup()
-		"startRandomShuffle": monteHandler.randomMoveTimer()
-		"stopRandomShuffle": monteHandler.moveTimer.stop()
+		"startRandomShuffle": 
+			monteHandler.randomMoveTimer()
+			show_sisters = true
+		"stopRandomShuffle": 
+			monteHandler.moveTimer.stop()
+			hideSisters()
 		"revealHelmet": monteHandler.revealInvisHelmet()
 		"hideHelmet": monteHandler.hideInvisHelmet()
 		"monteFinished": 
@@ -118,3 +128,8 @@ func handleChoiceMade(correct: bool):
 			third_round_tries += 1
 		_:
 			pass
+
+func hideSisters():
+	show_sisters = false
+	for sister in sisterMeshes:
+			sister.mesh.material.set_shader_parameter("transparency", 0.0)

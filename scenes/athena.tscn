@@ -1,0 +1,88 @@
+[gd_scene load_steps=14 format=3 uid="uid://cflsdjfbphex"]
+
+[ext_resource type="Script" path="res://scripts/athena.gd" id="1_w4e46"]
+[ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="2_mm605"]
+[ext_resource type="PackedScene" uid="uid://d557kilnx4qe" path="res://scenes/components/billboard_component.tscn" id="3_arlp5"]
+[ext_resource type="Texture2D" uid="uid://drnxs8jpcc0s3" path="res://assets/sprites/athena1.png" id="3_qof3o"]
+[ext_resource type="Texture2D" uid="uid://c3q7wk4pbl5ey" path="res://assets/sprites/athena2.png" id="4_214c1"]
+[ext_resource type="Texture2D" uid="uid://bv6bpo0invpxp" path="res://assets/sprites/athena3.png" id="5_vvv0r"]
+[ext_resource type="PackedScene" uid="uid://dt6bxmw7stlh8" path="res://scenes/components/interact_box.tscn" id="7_usl54"]
+[ext_resource type="PackedScene" uid="uid://c5p6m7smmwm2n" path="res://scenes/weave_game.tscn" id="8_0yfds"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kx3nv"]
+render_priority = 0
+shader = ExtResource("2_mm605")
+shader_parameter/num_sections = 7.0
+shader_parameter/max_section_offset = 0.1
+shader_parameter/image_speed = 2.0
+shader_parameter/offset_speed = 5.0
+shader_parameter/image_seed = 0.0
+shader_parameter/offset_seed = 0.0
+shader_parameter/transparency = 0.8
+shader_parameter/image1 = ExtResource("3_qof3o")
+shader_parameter/image2 = ExtResource("4_214c1")
+shader_parameter/image3 = ExtResource("5_vvv0r")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5l8fo"]
+material = SubResource("ShaderMaterial_kx3nv")
+flip_faces = true
+size = Vector2(1, 2)
+orientation = 2
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_37d67"]
+viewport_path = NodePath("playArea")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vl2fa"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_37d67")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cj1yi"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_vl2fa")
+size = Vector2(0.9, 0.9)
+orientation = 2
+
+[node name="athena" type="Node3D"]
+script = ExtResource("1_w4e46")
+
+[node name="athenaMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_5l8fo")
+
+[node name="billboardComponent" parent="athenaMesh" instance=ExtResource("3_arlp5")]
+
+[node name="trigger1" parent="." instance=ExtResource("7_usl54")]
+size = Vector3(1, 2, 1)
+object_name = "athena_trigger"
+object_prompt = "talk [e]"
+interact_ret = "athena_talk"
+
+[node name="trigger2" parent="." instance=ExtResource("7_usl54")]
+size = Vector3(1, 2, 1)
+object_name = "athena_trigger2"
+object_prompt = "talk [e]"
+interact_ret = "athena_weave"
+interactable = false
+on_start = false
+
+[node name="loom" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="loom"]
+
+[node name="loomPoleL" type="CSGBox3D" parent="loom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+size = Vector3(0.1, 1.5, 0.1)
+
+[node name="loomPoleR" type="CSGBox3D" parent="loom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+size = Vector3(0.1, 1.5, 0.1)
+
+[node name="loom" type="MeshInstance3D" parent="loom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.102, 0)
+mesh = SubResource("PlaneMesh_cj1yi")
+
+[node name="playArea" type="SubViewport" parent="."]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+
+[node name="weaveGame" parent="playArea" instance=ExtResource("8_0yfds")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://gbl1q3e8sop0"]
+[gd_scene load_steps=22 format=3 uid="uid://gbl1q3e8sop0"]
 
 [ext_resource type="Script" path="res://scripts/graeae.gd" id="1_diuei"]
 [ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="2_n178q"]
@@ -30,6 +30,63 @@ flip_faces = true
 size = Vector2(1, 2)
 orientation = 2
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qna4t"]
+load_path = "res://.godot/imported/graeae.png-25805e0b26a79313fcd09fc5995ebcf6.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xpnk6"]
+load_path = "res://.godot/imported/graeae.png-25805e0b26a79313fcd09fc5995ebcf6.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vb51a"]
+load_path = "res://.godot/imported/graeae.png-25805e0b26a79313fcd09fc5995ebcf6.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7eclm"]
+render_priority = 0
+shader = ExtResource("2_n178q")
+shader_parameter/num_sections = 7.0
+shader_parameter/max_section_offset = 0.1
+shader_parameter/image_speed = null
+shader_parameter/offset_speed = 5.0
+shader_parameter/image_seed = 0.0
+shader_parameter/offset_seed = 21.9
+shader_parameter/transparency = 0.0
+shader_parameter/image1 = SubResource("CompressedTexture2D_qna4t")
+shader_parameter/image2 = SubResource("CompressedTexture2D_xpnk6")
+shader_parameter/image3 = SubResource("CompressedTexture2D_vb51a")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ocahs"]
+material = SubResource("ShaderMaterial_7eclm")
+flip_faces = true
+size = Vector2(1, 2)
+orientation = 2
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_26ktd"]
+load_path = "res://.godot/imported/graeae.png-25805e0b26a79313fcd09fc5995ebcf6.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1ilw3"]
+load_path = "res://.godot/imported/graeae.png-25805e0b26a79313fcd09fc5995ebcf6.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5vybo"]
+load_path = "res://.godot/imported/graeae.png-25805e0b26a79313fcd09fc5995ebcf6.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ihqm"]
+render_priority = 0
+shader = ExtResource("2_n178q")
+shader_parameter/num_sections = 7.0
+shader_parameter/max_section_offset = 0.1
+shader_parameter/image_speed = null
+shader_parameter/offset_speed = 5.0
+shader_parameter/image_seed = 0.0
+shader_parameter/offset_seed = 62.5
+shader_parameter/transparency = 0.0
+shader_parameter/image1 = SubResource("CompressedTexture2D_26ktd")
+shader_parameter/image2 = SubResource("CompressedTexture2D_1ilw3")
+shader_parameter/image3 = SubResource("CompressedTexture2D_5vybo")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_b64vp"]
+material = SubResource("ShaderMaterial_4ihqm")
+size = Vector2(1, 2)
+orientation = 2
+
 [node name="graeae" type="Node3D"]
 script = ExtResource("1_diuei")
 
@@ -37,6 +94,14 @@ script = ExtResource("1_diuei")
 mesh = SubResource("PlaneMesh_wf2nw")
 
 [node name="billboardComponent" parent="graeaeMesh" instance=ExtResource("4_snmrf")]
+
+[node name="sisterMesh1" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0.612, 0, -0.328)
+mesh = SubResource("PlaneMesh_ocahs")
+
+[node name="sisterMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -0.612, 0, -0.328)
+mesh = SubResource("PlaneMesh_b64vp")
 
 [node name="trigger1" parent="." instance=ExtResource("5_lyowc")]
 size = Vector3(1, 2, 1)

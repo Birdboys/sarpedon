@@ -55,6 +55,7 @@ func throwDiscus(force):
 	new_discus.thrown()
 	current_discus = new_discus
 	current_state = "throwing"
+	tutText.visible = true
 	
 func discusLanded():
 	current_state = "idle"
@@ -69,6 +70,7 @@ func startThrow():
 	throw_height_val = 0.0
 	throw_strength_val = 0.0
 	discusUI.visible = true
+	tutText.visible = true
 	resetIcons()
 	getRandomRot()
 	current_state = "spinning1"
@@ -88,10 +90,10 @@ func startAutoThrow():
 	auto_tween.tween_property(iconIndicator, "rotation", deg_to_rad(360), (2*PI)/rot_speed_1)
 	auto_tween.tween_property(iconIndicator, "rotation", 0, 0)
 	auto_tween.tween_callback(handleInteract)
-	auto_tween.tween_property(iconIndicator, "rotation", deg_to_rad(320), (2*PI)/rot_speed_2)
+	auto_tween.tween_property(iconIndicator, "rotation", deg_to_rad(360), (2*PI)/rot_speed_2)
 	auto_tween.tween_property(iconIndicator, "rotation", 0, 0)
 	auto_tween.tween_callback(handleInteract)
-	auto_tween.tween_property(iconIndicator, "rotation", deg_to_rad(320), (2*PI)/rot_speed_3)
+	auto_tween.tween_property(iconIndicator, "rotation", deg_to_rad(360), (2*PI)/rot_speed_3)
 	auto_tween.tween_property(tutText, "visible", false, 0)
 	auto_tween.tween_callback(handleInteract)
 	auto_tween.tween_callback(throwHermesDiscus)
@@ -118,8 +120,9 @@ func getRandomRot():
 
 func handleInteract():
 	var icon_tween = get_tree().create_tween()
-	icon_tween.tween_property(iconIndicator, "modulate", Color(0.4, 0.4, 0.4), 0.0)
-	icon_tween.tween_property(iconIndicator, "modulate", Color(1, 1, 1), 0.25)
+	icon_tween.tween_property(iconIndicator, "modulate", Color(0.2, 0.2, 0.2), 0.0)
+	icon_tween.tween_interval(0.1)
+	icon_tween.tween_property(iconIndicator, "modulate", Color(1, 1, 1), 0.15)
 	var target_diff = angle_difference(iconTarget.rotation,iconIndicator.rotation)/PI
 	match current_state:
 		"spinning1": 

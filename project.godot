@@ -22,11 +22,13 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 [dialogic]
 
 directories/dch_directory={
+"athena": "res://assets/characters/athena.dch",
 "graeae": "res://assets/characters/graeae.dch",
 "hermes": "res://assets/characters/hermes.dch",
 "maiden": "res://assets/characters/maiden.dch"
 }
 directories/dtl_directory={
+"athenaIntro": "res://assets/timelines/athenaIntro.dtl",
 "graeaeExplanation": "res://assets/timelines/graeaeExplanation.dtl",
 "graeaeExplanationFail": "res://assets/timelines/graeaeExplanationFail.dtl",
 "graeaeExplanationSuccess": "res://assets/timelines/graeaeExplanationSuccess.dtl",

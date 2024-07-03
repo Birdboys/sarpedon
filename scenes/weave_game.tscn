@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5p6m7smmwm2n"]
+
+[ext_resource type="TileSet" uid="uid://bqpsdl6mjaxgw" path="res://assets/temp/tiles.tres" id="1_8enbr"]
+[ext_resource type="Script" path="res://scripts/weave_game.gd" id="1_yia7r"]
+[ext_resource type="Texture2D" uid="uid://dyyfxpx2mi247" path="res://icon.svg" id="3_c7ex6"]
+
+[node name="weaveGame" type="Node2D"]
+script = ExtResource("1_yia7r")
+
+[node name="tileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_8enbr")
+format = 2
+layer_0/name = "tile_layer"
+layer_1/name = "cursor_layer"
+layer_1/z_index = 5
+layer_1/navigation_enabled = false
+layer_1/tile_data = PackedInt32Array()
+
+[node name="startPoint" type="Node2D" parent="."]
+
+[node name="navAgent" type="NavigationAgent2D" parent="startPoint"]
+
+[node name="Sprite2D" type="Sprite2D" parent="startPoint"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_c7ex6")
+
+[node name="endPoint" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="endPoint"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_c7ex6")
