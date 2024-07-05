@@ -1,0 +1,11 @@
+athena: Look at what you’ve done!
+athena: The threads the- they’re all wrong, tangled and confused.
+athena: Your distraction has wrought havoc upon my weaving. My tapestry is in ruins!
+athena: If you hope to escape the same fate… I suggest you aid me in reweaving it.
+athena: Are you familiar? Weaving, the loom? One of my finer creations.
+athena: The warp threads run vertically and are held in place by weights.
+athena: The weft thread runs horizontally, weaving between the warps to create patterns or images.
+athena: You must untangle the weft from the weave so we can restring them in the proper positions.
+athena: Worry not, I’ll aid you. Start with this one here…
+[signal arg="hideTapestry"]
+[signal arg="startWeave"]

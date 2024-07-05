@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5p6m7smmwm2n"]
+[gd_scene load_steps=7 format=3 uid="uid://c5p6m7smmwm2n"]
 
 [ext_resource type="TileSet" uid="uid://bqpsdl6mjaxgw" path="res://assets/temp/tiles.tres" id="1_8enbr"]
 [ext_resource type="Script" path="res://scripts/weave_game.gd" id="1_yia7r"]
 [ext_resource type="Texture2D" uid="uid://dyyfxpx2mi247" path="res://icon.svg" id="3_c7ex6"]
+[ext_resource type="Texture2D" uid="uid://xp7tbwya5ngt" path="res://assets/temp/perseuspainting.jpeg" id="4_v0ytq"]
+[ext_resource type="Texture2D" uid="uid://ugglwrl3dkbe" path="res://assets/temp/weave_texture_2.jpg" id="5_ydmbc"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ms6pd"]
+blend_mode = 3
 
 [node name="weaveGame" type="Node2D"]
+texture_filter = 1
+position = Vector2(16, 0)
 script = ExtResource("1_yia7r")
 
 [node name="tileMap" type="TileMap" parent="."]
@@ -29,3 +36,48 @@ texture = ExtResource("3_c7ex6")
 [node name="Sprite2D" type="Sprite2D" parent="endPoint"]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_c7ex6")
+
+[node name="tapestryLayer" type="CanvasLayer" parent="."]
+
+[node name="tapestryColor" type="ColorRect" parent="tapestryLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.996078, 0.952941, 0.752941, 1)
+
+[node name="tapestryImage" type="TextureRect" parent="tapestryLayer"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("4_v0ytq")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="tapestryTexture" type="TextureRect" parent="tapestryLayer"]
+visible = false
+modulate = Color(1, 1, 1, 0.254902)
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_ms6pd")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("5_ydmbc")
+expand_mode = 5
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 16.0
+default_color = Color(1, 0.454902, 1, 1)

@@ -4,18 +4,25 @@ extends Node2D
 @onready var startPoint := $startPoint
 @onready var endPoint := $endPoint
 @onready var navAgent := $startPoint/navAgent
+@onready var tapestryImage := $tapestryLayer/tapestryImage
 @onready var cursor_pos : Vector2
 @onready var prev_cursor_pos : Vector2
 @onready var beginSpot : Vector2 
 @onready var endSpot : Vector2
-@export var x_dim := 8
-@export var y_dim := 8
+@onready var plus_tile_chance := 0.2
+@onready var empty_tile_chance := 0.1
+@onready var tile_size := 64
+@export var x_dim := 6
+@export var y_dim := 12
 @export var num_blockers := 12
+
+signal weave_finished
+
 func _ready():
-	newProblem()
 	cursor_pos.x = x_dim/2 
 	cursor_pos.y = y_dim/2
 	prev_cursor_pos = cursor_pos
+	
 	
 func _process(delta):
 	var input_dir = Vector2.ZERO
@@ -49,19 +56,26 @@ func rotateTile(pos):
 	
 func mapUpdated():
 	if navAgent.is_target_reachable():
-		continueProblem()
+		#emit_signal("weave_finished")
+		#clearBoard()
+		threadFinished()
 	
 func clearBoard():
 	for x in range(x_dim):
 		for y in range(y_dim):
 			tileMap.set_cell(0, Vector2(x, y), 0, Vector2(0, 0))
-
+	for x in [-1, x_dim]:
+		for y in range(0, y_dim):
+			tileMap.set_cell(0, Vector2(x, y))
+	$Line2D.clear_points()
+			
 func moveCursor(move_dir):
 	cursor_pos += move_dir
 	cursor_pos.x = clampi(cursor_pos.x, 0, x_dim-1)
 	cursor_pos.y = clampi(cursor_pos.y, 0, y_dim-1)
 	tileMap.set_cell(1, cursor_pos, 1, Vector2(0,0))
-	tileMap.set_cell(1, prev_cursor_pos)
+	if prev_cursor_pos != cursor_pos:
+		tileMap.set_cell(1, prev_cursor_pos)
 	prev_cursor_pos = cursor_pos
 
 func setPath(path_points):
@@ -87,13 +101,12 @@ func continueProblem():
 func getTileFromPath(curr, prev, next):
 	var next_dif = next - curr
 	var prev_dif = curr - prev
-	#print(prev_dif, next_dif)
 	var difs = [prev_dif, next_dif]
 	match [prev_dif, next_dif]:
 		[Vector2i(1,0), Vector2i(1,0)], [Vector2i(-1,0), Vector2i(-1,0)]:
-			return [2, 1]
+			return [2, 1] if randf() > plus_tile_chance else [3, 0]
 		[Vector2i(0,1), Vector2i(0,1)], [Vector2i(0,-1), Vector2i(0,-1)]:
-			return [2, 0]
+			return [2, 0] if randf() > plus_tile_chance else [3, 0]
 		[Vector2i(0,1), Vector2i(1,0)]:
 			return [1, 0]
 		[Vector2i(0,-1), Vector2i(1,0)]:
@@ -104,15 +117,32 @@ func getTileFromPath(curr, prev, next):
 			return [1, 3]
 		_:
 			return [1,1]
+			
+func getLineSegFromPath(curr, prev):
+	var prev_dif = curr - prev
+	match prev_dif:
+		Vector2(1, 0):
+			pass
+			#return 
+		_:
+			return [1,1]
 		
 func getPathPoints(beginning = null):
 	var aGrid = AStarGrid2D.new()
-	aGrid.diagonal_mode =AStarGrid2D.DIAGONAL_MODE_NEVER
-	aGrid.region = Rect2(0, 0, x_dim, y_dim)
+	aGrid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
+	aGrid.region = Rect2(-1, 0, x_dim+2, y_dim)
 	aGrid.update()
 	
-	beginSpot = beginning if beginning else Vector2(0, randi_range(0, x_dim-1))
-	endSpot = Vector2(x_dim-1, randi_range(0, y_dim-1))
+	beginSpot = beginning if beginning else Vector2(-1, randi_range(0, x_dim-1))
+	endSpot = Vector2(x_dim, randi_range(0, y_dim-1))
+	while endSpot == beginSpot:
+		endSpot = Vector2(x_dim, randi_range(0, y_dim-1))
+
+	for x in [-1, x_dim]:
+		for y in range(0, y_dim):
+			if Vector2(x, y) != beginSpot and Vector2(x, y) != endSpot:
+				aGrid.set_point_solid(Vector2(x, y))
+
 	var blockers = []
 	for x in range(num_blockers):
 		var new_blocker = Vector2(randi_range(0,x_dim-1),randi_range(0,y_dim-1))
@@ -133,7 +163,7 @@ func randomizeNonPathMap():
 			var current_cell_type = tileMap.get_cell_atlas_coords(0, Vector2(x, y)).x
 			if current_cell_type == 0: #empty cell
 				var rand = randf()
-				if rand < 0.1:
+				if rand < 1.0 - empty_tile_chance:
 					rand = randf()
 					if rand < 0.33: 
 						tileMap.set_cell(0, Vector2(x, y), 0, Vector2(2, 0), randi_range(0, 1))
@@ -148,3 +178,40 @@ func randomizeNonPathMap():
 					tileMap.set_cell(0, Vector2(x, y), 0, Vector2(1, 0), randi_range(0, 3))
 				if current_cell_type == 2:
 					tileMap.set_cell(0, Vector2(x, y), 0, Vector2(2, 0), randi_range(0, 1))
+
+func hideTapestry():
+	var tap_tween = get_tree().create_tween()
+	tap_tween.tween_property(tapestryImage, "modulate", Color.TRANSPARENT, 1.0)
+
+func threadFinished():
+	var nav_path = navAgent.get_current_navigation_path()
+	var path_points = []
+	for point in nav_path:
+		var tile_cord = Vector2(int(point.x/tile_size), int(point.y/tile_size))
+		if tile_cord not in path_points:
+			path_points.append(tile_cord)
+	await clearNonPath(path_points)
+	await getLine(path_points)
+	emit_signal("weave_finished")
+
+func clearNonPath(points):
+	for x in range(x_dim-1, -1, -1):
+		for y in range(0, y_dim):
+			if Vector2(x, y) not in points:
+				tileMap.set_cell(0, Vector2(x, y), 0, Vector2(0,0))
+				
+		await get_tree().create_timer(0.1).timeout
+	#continueProblem()
+
+func getLine(points):
+	$Line2D.clear_points()
+	points.insert(0, points[0] + Vector2.LEFT)
+	for x in range(0, len(points)):
+		var tile_center = points[x] * tile_size + Vector2.ONE * tile_size/2
+		var curr_point = points[x]
+		var prev_point = points[x-1] if x != 0 else points[x] - Vector2(1, 0)
+		var prev_dif = curr_point - prev_point
+		$Line2D.add_point(tile_center - prev_dif * tile_size/2)
+		$Line2D.add_point(tile_center)
+		await get_tree().create_timer(0.1).timeout
+	#print($Line2D.points)

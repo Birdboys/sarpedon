@@ -34,12 +34,15 @@ viewport_path = NodePath("playArea")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vl2fa"]
 resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_37d67")
+texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_cj1yi"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_vl2fa")
-size = Vector2(0.9, 0.9)
+size = Vector2(0.75, 1)
 orientation = 2
 
 [node name="athena" type="Node3D"]
@@ -55,6 +58,7 @@ size = Vector3(1, 2, 1)
 object_name = "athena_trigger"
 object_prompt = "talk [e]"
 interact_ret = "athena_talk"
+on_start = false
 
 [node name="trigger2" parent="." instance=ExtResource("7_usl54")]
 size = Vector3(1, 2, 1)
@@ -62,20 +66,72 @@ object_name = "athena_trigger2"
 object_prompt = "talk [e]"
 interact_ret = "athena_weave"
 interactable = false
-on_start = false
+
+[node name="weaveCam" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.985703, 0.168489, 0, -0.168489, 0.985703, 0, 0.215, -0.3)
+
+[node name="weaveUI" type="Control" parent="weaveCam"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="uiMargin" type="MarginContainer" parent="weaveCam/weaveUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="weaveText" type="Label" parent="weaveCam/weaveUI/uiMargin"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "MOVE CURSOR
+[W, A, S, D]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="weaveText2" type="Label" parent="weaveCam/weaveUI/uiMargin"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "ROTATE TILE
+[E]"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="loom" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 0.985592, 0.169143, 0, -0.169143, 0.985592, 0, 0, -1)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="loom"]
 
 [node name="loomPoleL" type="CSGBox3D" parent="loom/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 size = Vector3(0.1, 1.5, 0.1)
 
 [node name="loomPoleR" type="CSGBox3D" parent="loom/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 size = Vector3(0.1, 1.5, 0.1)
+
+[node name="loomPoleL2" type="CSGBox3D" parent="loom/CSGCombiner3D"]
+transform = Transform3D(-1, -1.4787e-08, 8.61631e-08, 1.4787e-08, 0.942782, 0.333412, -8.61631e-08, 0.333412, -0.942782, 1, -0.21225, -0.166887)
+size = Vector3(0.1, 1, 0.1)
+
+[node name="loomPoleR2" type="CSGBox3D" parent="loom/CSGCombiner3D"]
+transform = Transform3D(-1, -1.4787e-08, 8.61631e-08, 1.4787e-08, 0.942782, 0.333412, -8.61631e-08, 0.333412, -0.942782, -1, -0.21225, -0.166887)
+size = Vector3(0.1, 1, 0.1)
 
 [node name="loom" type="MeshInstance3D" parent="loom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.102, 0)
@@ -84,5 +140,9 @@ mesh = SubResource("PlaneMesh_cj1yi")
 [node name="playArea" type="SubViewport" parent="."]
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
+size = Vector2i(544, 512)
 
 [node name="weaveGame" parent="playArea" instance=ExtResource("8_0yfds")]
+x_dim = 3
+y_dim = 4
+num_blockers = 3

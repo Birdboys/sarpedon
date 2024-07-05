@@ -96,6 +96,9 @@ func handleInteract():
 				has_winged_sandals = true
 				inventoryHandler.acquireItem("winged_sandals")
 				stateMachine.on_state_transition(stateMachine.current_state, "playerInventory")
+			"athena_weave":
+				activityHandler = collider.get_parent()
+				stateMachine.on_state_transition(stateMachine.current_state, "playerActivity")
 			_: pass
 
 func handleDialogue(type):
