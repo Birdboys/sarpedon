@@ -1,0 +1,9 @@
+athena: Success, let’s check the tapestry itself now.
+[wait time="1.0"]
+[signal arg="showTapestry"]
+athena: The image is becoming clearer, but it’s not yet correct. Another thread requires our attention.
+[signal arg="upgradeLoom"]
+[wait time="1.0"]
+[signal arg="hideTapestry"]
+athena: Now, to the untangling.
+[signal arg="startWeave"]

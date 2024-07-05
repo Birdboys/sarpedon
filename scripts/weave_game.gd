@@ -5,6 +5,7 @@ extends Node2D
 @onready var endPoint := $endPoint
 @onready var navAgent := $startPoint/navAgent
 @onready var tapestryImage := $tapestryLayer/tapestryImage
+@onready var threadLine := $threadLine
 @onready var cursor_pos : Vector2
 @onready var prev_cursor_pos : Vector2
 @onready var beginSpot : Vector2 
@@ -12,9 +13,11 @@ extends Node2D
 @onready var plus_tile_chance := 0.2
 @onready var empty_tile_chance := 0.1
 @onready var tile_size := 64
+@onready var current_phase := "idle"
 @export var x_dim := 6
 @export var y_dim := 12
 @export var num_blockers := 12
+@export var gradient_interp := 0.0
 
 signal weave_finished
 
@@ -24,21 +27,22 @@ func _ready():
 	prev_cursor_pos = cursor_pos
 	
 	
-func _process(delta):
-	var input_dir = Vector2.ZERO
-	if Input.is_action_just_pressed("forward"):
-		input_dir += Vector2.UP
-	if Input.is_action_just_pressed("left"):
-		input_dir += Vector2.LEFT
-	if Input.is_action_just_pressed("back"):
-		input_dir += Vector2.DOWN
-	if Input.is_action_just_pressed("right"):
-		input_dir += Vector2.RIGHT
-	if Input.is_action_just_pressed("interact"):
-		rotateTile(cursor_pos)
-	#var input_dir = Input.get_vector("left", "right", "forward", "back")
-	if input_dir != Vector2.ZERO:
-		moveCursor(input_dir)
+func _process(_delta):
+	match current_phase:
+		"weaving":
+			var input_dir = Vector2.ZERO
+			if Input.is_action_just_pressed("forward"):
+				input_dir += Vector2.UP
+			if Input.is_action_just_pressed("left"):
+				input_dir += Vector2.LEFT
+			if Input.is_action_just_pressed("back"):
+				input_dir += Vector2.DOWN
+			if Input.is_action_just_pressed("right"):
+				input_dir += Vector2.RIGHT
+			if Input.is_action_just_pressed("interact"):
+				rotateTile(cursor_pos)
+			if input_dir != Vector2.ZERO:
+				moveCursor(input_dir)
 
 func rotateTile(pos):
 	var rot_tile = tileMap.get_cell_atlas_coords(0, pos).x
@@ -56,9 +60,9 @@ func rotateTile(pos):
 	
 func mapUpdated():
 	if navAgent.is_target_reachable():
-		#emit_signal("weave_finished")
-		#clearBoard()
-		threadFinished()
+		tileMap.clear_layer(1)
+		current_phase = "finished"
+		emit_signal("weave_finished")
 	
 func clearBoard():
 	for x in range(x_dim):
@@ -67,7 +71,11 @@ func clearBoard():
 	for x in [-1, x_dim]:
 		for y in range(0, y_dim):
 			tileMap.set_cell(0, Vector2(x, y))
-	$Line2D.clear_points()
+	tileMap.clear_layer(1)
+	threadLine.clear_points()
+	cursor_pos.x = x_dim/2 
+	cursor_pos.y = y_dim/2
+	prev_cursor_pos = cursor_pos
 			
 func moveCursor(move_dir):
 	cursor_pos += move_dir
@@ -91,12 +99,22 @@ func newProblem():
 	clearBoard()
 	setPath(path_points)
 	randomizeNonPathMap()
+	cursor_pos.x = x_dim/2 
+	cursor_pos.y = y_dim/2
+	prev_cursor_pos = cursor_pos
+	tileMap.set_cell(1, cursor_pos, 1, Vector2(0,0))
+	current_phase = "weaving"
 
 func continueProblem():
 	var path_points = getPathPoints(beginSpot)
 	clearBoard()
 	setPath(path_points)
 	randomizeNonPathMap()
+	cursor_pos.x = x_dim/2 
+	cursor_pos.y = y_dim/2
+	prev_cursor_pos = cursor_pos
+	tileMap.set_cell(1, cursor_pos, 1, Vector2(0,0))
+	current_phase = "weaving"
 	
 func getTileFromPath(curr, prev, next):
 	var next_dif = next - curr
@@ -118,15 +136,6 @@ func getTileFromPath(curr, prev, next):
 		_:
 			return [1,1]
 			
-func getLineSegFromPath(curr, prev):
-	var prev_dif = curr - prev
-	match prev_dif:
-		Vector2(1, 0):
-			pass
-			#return 
-		_:
-			return [1,1]
-		
 func getPathPoints(beginning = null):
 	var aGrid = AStarGrid2D.new()
 	aGrid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
@@ -183,7 +192,12 @@ func hideTapestry():
 	var tap_tween = get_tree().create_tween()
 	tap_tween.tween_property(tapestryImage, "modulate", Color.TRANSPARENT, 1.0)
 
-func threadFinished():
+func showTapestry():
+	var tap_tween = get_tree().create_tween()
+	tap_tween.tween_property(tapestryImage, "modulate", Color.WHITE, 1.0)
+	
+func revealThread(backward=false):
+	current_phase = "threading"
 	var nav_path = navAgent.get_current_navigation_path()
 	var path_points = []
 	for point in nav_path:
@@ -191,8 +205,9 @@ func threadFinished():
 		if tile_cord not in path_points:
 			path_points.append(tile_cord)
 	await clearNonPath(path_points)
-	await getLine(path_points)
-	emit_signal("weave_finished")
+	await getLine(path_points) if not backward else await getLineBackwards(path_points)
+	return
+	
 
 func clearNonPath(points):
 	for x in range(x_dim-1, -1, -1):
@@ -204,14 +219,34 @@ func clearNonPath(points):
 	#continueProblem()
 
 func getLine(points):
-	$Line2D.clear_points()
+	#var line_tween = get_tree().create_tween()
+	threadLine.clear_points()
 	points.insert(0, points[0] + Vector2.LEFT)
+	points.append(points[-1] + Vector2.RIGHT)
 	for x in range(0, len(points)):
-		var tile_center = points[x] * tile_size + Vector2.ONE * tile_size/2
 		var curr_point = points[x]
 		var prev_point = points[x-1] if x != 0 else points[x] - Vector2(1, 0)
 		var prev_dif = curr_point - prev_point
-		$Line2D.add_point(tile_center - prev_dif * tile_size/2)
-		$Line2D.add_point(tile_center)
+		var tile_center = points[x] * tile_size + Vector2.ONE * tile_size/2
+		var prev_position = tile_center - prev_dif * tile_size/2
+		if threadLine.get_point_count() > 0:
+			threadLine.add_point(prev_position)
+			threadLine.add_point(tile_center)
+		else:
+			threadLine.add_point(prev_position)
+			threadLine.add_point(tile_center)
 		await get_tree().create_timer(0.1).timeout
-	#print($Line2D.points)
+
+func getLineBackwards(points):
+	var thread_tween = get_tree().create_tween()
+	threadLine.clear_points()
+	threadLine.modulate = Color.TRANSPARENT
+	points.insert(0, points[0] + Vector2.LEFT)
+	points.append(points[-1] + Vector2.RIGHT)
+	threadLine.points = points.map(func(x): return x * tile_size + Vector2.ONE * tile_size/2)
+	thread_tween.tween_property(threadLine, "modulate", Color.WHITE, 1.0)
+	await thread_tween.finished
+	for x in range(len(threadLine.points)-1, -1, -1):
+		threadLine.remove_point(x)
+		await get_tree().create_timer(0.1).timeout
+	return

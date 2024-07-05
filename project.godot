@@ -29,7 +29,10 @@ directories/dch_directory={
 }
 directories/dtl_directory={
 "athenaIntro": "res://assets/timelines/athenaIntro.dtl",
+"athenaWeave1": "res://assets/timelines/athenaWeave1.dtl",
+"athenaWeave1Cont": "res://assets/timelines/athenaWeave1Cont.dtl",
 "athenaWeaveExplanation": "res://assets/timelines/athenaWeaveExplanation.dtl",
+"athenaWeaveExplanation2": "res://assets/timelines/athenaWeaveExplanation2.dtl",
 "graeaeExplanation": "res://assets/timelines/graeaeExplanation.dtl",
 "graeaeExplanationFail": "res://assets/timelines/graeaeExplanationFail.dtl",
 "graeaeExplanationSuccess": "res://assets/timelines/graeaeExplanationSuccess.dtl",

@@ -28,6 +28,7 @@ func introDialogue():
 	trigger2.activate()
 
 func startWeave():
+	current_phase = "weave_explanation"
 	trigger2.deactivate()
 	Dialogic.start("athenaWeaveExplanation")
 	
@@ -36,16 +37,35 @@ func handleDialogue(type):
 		"startWeave": 
 			weaveUI.visible = true
 			weaveHandler.newProblem()
+		"continueWeave":
+			weaveHandler.continueProblem()
 		"hideTapestry":
+			weaveHandler.clearBoard()
 			weaveHandler.hideTapestry()
-
+		"showTapestry":
+			weaveHandler.showTapestry()
+		"upgradeLoom":
+			weaveHandler.x_dim = 6
+			weaveHandler.y_dim = 8
+			playArea.size.x = weaveHandler.x_dim * weaveHandler.tile_size + 32
+			playArea.size.y = weaveHandler.y_dim * weaveHandler.tile_size
+			
 func weaveFinished():
-	weaveHandler.x_dim *= 2
-	weaveHandler.y_dim *= 2
-	playArea.size.x = weaveHandler.x_dim * weaveHandler.tile_size + 32
-	playArea.size.y = weaveHandler.y_dim * weaveHandler.tile_size
-	weaveHandler.newProblem()
-	print(weaveHandler.x_dim, weaveHandler.y_dim)
+	match current_phase:
+		"weave_explanation":
+			await weaveHandler.revealThread(true)
+			Dialogic.start("athenaWeaveExplanation2")
+			current_phase = "weave_explanation_2"
+		"weave_explanation_2":
+			await weaveHandler.revealThread()
+			Dialogic.start("athenaWeave1")
+			current_phase = "weave_1"
+		"weave_1":
+			await weaveHandler.revealThread()
+			Dialogic.start("athenaWeave1Cont")
+		_:
+			await weaveHandler.revealThread()
+			weaveHandler.newProblem()
 
 func transitionCamera(initial_camera: Camera3D):
 	var original_transform = weaveCam.global_transform

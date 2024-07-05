@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5p6m7smmwm2n"]
+[gd_scene load_steps=6 format=3 uid="uid://c5p6m7smmwm2n"]
 
 [ext_resource type="TileSet" uid="uid://bqpsdl6mjaxgw" path="res://assets/temp/tiles.tres" id="1_8enbr"]
 [ext_resource type="Script" path="res://scripts/weave_game.gd" id="1_yia7r"]
-[ext_resource type="Texture2D" uid="uid://dyyfxpx2mi247" path="res://icon.svg" id="3_c7ex6"]
 [ext_resource type="Texture2D" uid="uid://xp7tbwya5ngt" path="res://assets/temp/perseuspainting.jpeg" id="4_v0ytq"]
 [ext_resource type="Texture2D" uid="uid://ugglwrl3dkbe" path="res://assets/temp/weave_texture_2.jpg" id="5_ydmbc"]
 
@@ -27,15 +26,7 @@ layer_1/tile_data = PackedInt32Array()
 
 [node name="navAgent" type="NavigationAgent2D" parent="startPoint"]
 
-[node name="Sprite2D" type="Sprite2D" parent="startPoint"]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_c7ex6")
-
 [node name="endPoint" type="Node2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="endPoint"]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_c7ex6")
 
 [node name="tapestryLayer" type="CanvasLayer" parent="."]
 
@@ -78,6 +69,8 @@ size_flags_vertical = 3
 texture = ExtResource("5_ydmbc")
 expand_mode = 5
 
-[node name="Line2D" type="Line2D" parent="."]
-width = 16.0
-default_color = Color(1, 0.454902, 1, 1)
+[node name="threadLine" type="Line2D" parent="."]
+width = 18.0
+default_color = Color(0.713726, 0.470588, 0.945098, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
