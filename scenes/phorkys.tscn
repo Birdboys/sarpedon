@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://gikumaarap7w"]
+
+[ext_resource type="Script" path="res://scripts/phorkys.gd" id="1_3ffxg"]
+[ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="2_l5v68"]
+[ext_resource type="PackedScene" uid="uid://d557kilnx4qe" path="res://scenes/components/billboard_component.tscn" id="3_70pob"]
+[ext_resource type="Texture2D" uid="uid://cn46s5jvk1mg7" path="res://assets/sprites/phorkys.png" id="3_olx0p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gklpl"]
+render_priority = 0
+shader = ExtResource("2_l5v68")
+shader_parameter/num_sections = 7.0
+shader_parameter/max_section_offset = 0.1
+shader_parameter/image_speed = 2.0
+shader_parameter/offset_speed = 5.0
+shader_parameter/image_seed = 0.0
+shader_parameter/offset_seed = 0.0
+shader_parameter/transparency = 0.9
+shader_parameter/image1 = ExtResource("3_olx0p")
+shader_parameter/image2 = ExtResource("3_olx0p")
+shader_parameter/image3 = ExtResource("3_olx0p")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hylr1"]
+material = SubResource("ShaderMaterial_gklpl")
+flip_faces = true
+orientation = 2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_25bnk"]
+height = 2.25989
+
+[node name="phorkys" type="Node3D"]
+script = ExtResource("1_3ffxg")
+
+[node name="phorkysMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_hylr1")
+
+[node name="billboardComponent" parent="phorkysMesh" instance=ExtResource("3_70pob")]
+
+[node name="spawnTrigger" type="Area3D" parent="."]
+
+[node name="spawnShape" type="CollisionShape3D" parent="spawnTrigger"]
+shape = SubResource("CylinderShape3D_25bnk")

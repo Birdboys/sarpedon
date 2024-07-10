@@ -13,12 +13,19 @@ extends CharacterBody3D
 @onready var lookRay := $neck/playerCam/lookRay
 @onready var interactPrompt := $UI/UIBase/interactPrompt
 @onready var inventoryHandler := $UI/UIBase/inventory
+@onready var swordMesh := $neck/playerCam/swordMesh
+@onready var shieldMesh := $neck/playerCam/shieldMesh
+@onready var shieldAnim := $anims/shieldAnim
+@onready var swordAnim := $anims/swordAnim
 
 @onready var has_invis_helmet := false
 @onready var has_winged_sandals := false
 @onready var has_sword := false
 @onready var has_shield := false
 @onready var has_bag := false
+@onready var sword_up := false
+@onready var shield_up := false
+@export var shield_hold := false
 
 var boat
 var activityHandler
@@ -38,8 +45,21 @@ func _physics_process(delta):
 	
 func _unhandled_input(event):
 	if stateMachine.current_state.camera_control: handleCamera(event)
-	if Input.is_action_just_pressed("interact") and stateMachine.current_state.interact_control: 
-		handleInteract()
+	if stateMachine.current_state.interact_control:
+		if Input.is_action_just_pressed("interact"):
+			handleInteract()
+		if Input.is_action_just_pressed("sword_equip"):
+			toggleSword()
+			pass
+		if Input.is_action_just_pressed("shield_equip"):
+			toggleShield()
+		if sword_up and Input.is_action_just_pressed("sword_attack"):
+			swordAnim.play("sword_attack")
+			pass
+		if shield_up and Input.is_action_just_pressed("shield_hold"):
+			setShieldHold(true)
+		if shield_up and shield_hold and Input.is_action_just_released("shield_hold"):
+			setShieldHold(false)
 
 func handlePrompt():
 	if not stateMachine.current_state.interact_control:
@@ -105,4 +125,34 @@ func handleDialogue(type):
 	match type:
 		"blocking":
 			stateMachine.on_state_transition(stateMachine.current_state, "playerTalk")
+
+func setSword(on := true):
+	swordMesh.visible = on
+	sword_up = on
+
+func setShield(on := true):
+	shieldMesh.visible = on
+	shield_up = on
 	
+func toggleSword():
+	if sword_up:
+		swordAnim.play_backwards("sword_equip")
+	else:
+		swordAnim.play("sword_equip")
+	sword_up = not sword_up
+	
+func toggleShield():
+	if shield_up:
+		shieldAnim.play_backwards("shield_equip")
+		print("EQUIPPING SHIELD")
+	else:
+		shieldAnim.play("shield_equip")
+		print("HOLSTERING SHIELD")
+	shield_up = not shield_up
+	shield_hold = false
+	
+func setShieldHold(raising):
+	if raising:
+		shieldAnim.play("shield_hold")
+	else:
+		shieldAnim.play_backwards("shield_hold")
