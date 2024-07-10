@@ -9,6 +9,7 @@ extends CharacterBody3D
 @onready var stateMachine := $stateMachine
 @onready var camera := $neck/playerCam
 @onready var uiCamera := $neck/playerCam/hudViewportContainer/hudViewport/uiCam
+@onready var backCamera := $backViewport/backCamera
 @onready var hoverRay := $hoverRay
 @onready var lookRay := $neck/playerCam/lookRay
 @onready var interactPrompt := $UI/UIBase/interactPrompt
@@ -20,8 +21,8 @@ extends CharacterBody3D
 
 @onready var has_invis_helmet := false
 @onready var has_winged_sandals := false
-@onready var has_sword := false
-@onready var has_shield := false
+@onready var has_sword := true
+@onready var has_shield := true
 @onready var has_bag := false
 @onready var sword_up := false
 @onready var shield_up := false
@@ -48,18 +49,20 @@ func _unhandled_input(event):
 	if stateMachine.current_state.interact_control:
 		if Input.is_action_just_pressed("interact"):
 			handleInteract()
-		if Input.is_action_just_pressed("sword_equip"):
-			toggleSword()
-			pass
-		if Input.is_action_just_pressed("shield_equip"):
-			toggleShield()
-		if sword_up and Input.is_action_just_pressed("sword_attack"):
-			swordAnim.play("sword_attack")
-			pass
-		if shield_up and Input.is_action_just_pressed("shield_hold"):
-			setShieldHold(true)
-		if shield_up and shield_hold and Input.is_action_just_released("shield_hold"):
-			setShieldHold(false)
+			
+		if has_sword:
+			if Input.is_action_just_pressed("sword_equip"):
+				toggleSword()
+			if sword_up and Input.is_action_just_pressed("sword_attack"):
+				swordAnim.play("sword_attack")
+				
+		if has_shield:
+			if Input.is_action_just_pressed("shield_equip"):
+				toggleShield()
+			if shield_up and Input.is_action_just_pressed("shield_hold"):
+				setShieldHold(true)
+			if shield_up and shield_hold and Input.is_action_just_released("shield_hold"):
+				setShieldHold(false)
 
 func handlePrompt():
 	if not stateMachine.current_state.interact_control:
@@ -128,11 +131,9 @@ func handleDialogue(type):
 
 func setSword(on := true):
 	swordMesh.visible = on
-	sword_up = on
 
 func setShield(on := true):
 	shieldMesh.visible = on
-	shield_up = on
 	
 func toggleSword():
 	if sword_up:
@@ -156,3 +157,10 @@ func setShieldHold(raising):
 		shieldAnim.play("shield_hold")
 	else:
 		shieldAnim.play_backwards("shield_hold")
+
+func syncCameras():
+	uiCamera.global_transform = camera.global_transform
+	backCamera.global_transform = camera.global_transform
+	backCamera.rotate_y(deg_to_rad(180))
+	backCamera.rotation.x *= -1
+	backCamera.rotation.x -= deg_to_rad(5)

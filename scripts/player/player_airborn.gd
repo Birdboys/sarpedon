@@ -5,7 +5,7 @@ func update(delta):
 	parent.handleMovementInput(delta, move_speed)
 	parent.velocity.y -= parent.gravity * delta
 	parent.move_and_slide()
-	parent.uiCamera.global_transform = parent.camera.global_transform
+	parent.syncCameras()
 	if parent.has_winged_sandals and Input.is_action_pressed("jump"):
 		emit_signal("transitioned", self, "playerHover")
 		return

@@ -1,9 +1,10 @@
-[gd_scene load_steps=39 format=3 uid="uid://ev5ihdel24io"]
+[gd_scene load_steps=41 format=3 uid="uid://ev5ihdel24io"]
 
 [ext_resource type="Script" path="res://scripts/player/player_character.gd" id="1_y87bo"]
 [ext_resource type="Texture2D" uid="uid://djldtb4845f38" path="res://assets/temp/sword1_low.png" id="2_0ap74"]
 [ext_resource type="Texture2D" uid="uid://csmnuqloyn2qk" path="res://assets/sprites/shield.png" id="2_84k0y"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_tu7rb"]
+[ext_resource type="Shader" path="res://scripts/shaders/shield_shader.gdshader" id="2_xx23j"]
 [ext_resource type="Script" path="res://scripts/player/player_walk.gd" id="3_euxff"]
 [ext_resource type="Script" path="res://scripts/player/player_jump.gd" id="4_0rupf"]
 [ext_resource type="Script" path="res://scripts/player/player_airborn.gd" id="5_fv6td"]
@@ -21,16 +22,21 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rof8f"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5hado"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-shading_mode = 0
-albedo_texture = ExtResource("2_84k0y")
-texture_filter = 0
+[sub_resource type="ViewportTexture" id="ViewportTexture_va13l"]
+viewport_path = NodePath("backViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xisbm"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_xx23j")
+shader_parameter/shield_percent = 0.5
+shader_parameter/shield_strength = 0.1
+shader_parameter/shield_text = ExtResource("2_84k0y")
+shader_parameter/other_image = SubResource("ViewportTexture_va13l")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_l730u"]
-material = SubResource("StandardMaterial3D_5hado")
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_xisbm")
 size = Vector2(1.5, 1.5)
 orientation = 2
 
@@ -131,9 +137,9 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(0.5, 2),
 "update": 0,
-"values": [Vector3(0, -1.053, -0.555), Vector3(0, -0.538, -0.555)]
+"values": [Vector3(0, -1.053, -0.555), Vector3(0, -0.368, -0.555)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -142,6 +148,18 @@ tracks/1/path = NodePath("..:shield_hold")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.025),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../backViewport/backCamera:current")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.025),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -184,7 +202,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.79, -0.065, -0.727)]
+"values": [Vector3(0.79, -1.65, -0.867)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -266,6 +284,7 @@ _data = {
 collision_layer = 4
 collision_mask = 17
 script = ExtResource("1_y87bo")
+shield_hold = true
 
 [node name="playerCol" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_2a5dh")
@@ -312,7 +331,7 @@ layers = 2
 mesh = SubResource("PlaneMesh_l730u")
 
 [node name="swordMesh" type="MeshInstance3D" parent="neck/playerCam"]
-transform = Transform3D(0.982936, -0.166712, 0.077741, 1.07142e-06, -0.422622, -0.906306, 0.183947, 0.890841, -0.41541, 0.79, -0.065, -0.727)
+transform = Transform3D(0.982936, -0.166712, 0.077741, 1.07142e-06, -0.422622, -0.906306, 0.183947, 0.890841, -0.41541, 0.79, -1.65, -0.867)
 layers = 2
 mesh = SubResource("PlaneMesh_eewxe")
 skeleton = NodePath("../..")
@@ -320,6 +339,14 @@ skeleton = NodePath("../..")
 [node name="hoverRay" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 target_position = Vector3(0, -0.5, 0)
+
+[node name="backViewport" type="SubViewport" parent="."]
+size = Vector2i(128, 128)
+
+[node name="backCamera" type="Camera3D" parent="backViewport"]
+cull_mask = 1048569
+current = true
+fov = 60.0
 
 [node name="stateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_tu7rb")

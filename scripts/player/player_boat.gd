@@ -2,7 +2,7 @@ extends State
 
 func update(delta):
 	parent.global_position = parent.boat.getPlayerPos()
-	parent.uiCamera.global_transform = parent.camera.global_transform
+	parent.syncCameras()
 
 func physics_update(delta):
 	var input_dir = Input.get_vector("left", "right", "forward", "back")

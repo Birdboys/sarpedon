@@ -15,6 +15,8 @@ func exit():
 	parent.activityHandler = null
 	parent.uiCamera.current = true
 	parent.camera.current = true
+	parent.setSword(false)
+	parent.setShield(false)
 
 func activityFinished():
 	emit_signal("transitioned", self, "playerWalk")
