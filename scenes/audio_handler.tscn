@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqyhbhhkmpgxl"]
+
+[ext_resource type="Script" path="res://scripts/audio_handler.gd" id="1_vxhrs"]
+
+[node name="audioHandler" type="Node"]
+script = ExtResource("1_vxhrs")

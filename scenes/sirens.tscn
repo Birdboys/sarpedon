@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://ds5vh4yxvjpn3"]
+
+[ext_resource type="Script" path="res://scripts/sirens.gd" id="1_sm0u3"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_sskra"]
+height = 20.0
+radius = 75.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qy384"]
+transparency = 1
+albedo_color = Color(1, 0.803922, 1, 0.188235)
+
+[node name="sirens" type="Node3D"]
+script = ExtResource("1_sm0u3")
+
+[node name="tempRock" type="CSGBox3D" parent="."]
+size = Vector3(5, 5, 5)
+
+[node name="boatFinder" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="finderShape" type="CollisionShape3D" parent="boatFinder"]
+shape = SubResource("CylinderShape3D_sskra")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="boatFinder"]
+radius = 75.0
+height = 20.0
+sides = 32
+material = SubResource("StandardMaterial3D_qy384")
+
+[node name="boatPuller" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="finderShape" type="CollisionShape3D" parent="boatPuller"]
+shape = SubResource("CylinderShape3D_sskra")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="boatPuller"]
+radius = 75.0
+height = 20.0
+sides = 32
+material = SubResource("StandardMaterial3D_qy384")
+
+[node name="singTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="boatFinder" to="." method="_on_boat_finder_body_entered"]
+[connection signal="body_exited" from="boatFinder" to="." method="_on_boat_finder_body_exited"]

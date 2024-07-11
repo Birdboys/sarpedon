@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://ev5ihdel24io"]
+[gd_scene load_steps=50 format=3 uid="uid://ev5ihdel24io"]
 
 [ext_resource type="Script" path="res://scripts/player/player_character.gd" id="1_y87bo"]
 [ext_resource type="Texture2D" uid="uid://djldtb4845f38" path="res://assets/temp/sword1_low.png" id="2_0ap74"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://byubok773wow" path="res://assets/temp/uiborders.png" id="12_a84qk"]
 [ext_resource type="Script" path="res://scripts/player/inventory.gd" id="12_hxb3m"]
 [ext_resource type="Texture2D" uid="uid://0o2dmpxsjwxe" path="res://assets/sprites/invis_helmet.png" id="13_gwvc1"]
+[ext_resource type="Script" path="res://scripts/player/player_sneak.gd" id="14_1g3yq"]
+[ext_resource type="Shader" path="res://scripts/shaders/invis_shader.gdshader" id="15_4wiuu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2a5dh"]
 
@@ -53,6 +55,28 @@ material = SubResource("StandardMaterial3D_xmc1c")
 flip_faces = true
 size = Vector2(1, 1)
 orientation = 0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ooowg"]
+seed = 32
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0scoj"]
+seamless = true
+noise = SubResource("FastNoiseLite_ooowg")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1t4lx"]
+seamless = true
+noise = SubResource("FastNoiseLite_ooowg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mjg6a"]
+shader = ExtResource("15_4wiuu")
+shader_parameter/distortion_strength = 0.02
+shader_parameter/noise_scale = 2.0
+shader_parameter/time_scale = 0.05
+shader_parameter/time_scale_2 = -0.02
+shader_parameter/invis_color = Color(0.432829, 0.64564, 0.795037, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_0scoj")
+shader_parameter/noise_texture_2 = SubResource("NoiseTexture2D_1t4lx")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rjoti"]
 
@@ -280,11 +304,87 @@ _data = {
 "sword_equip": SubResource("Animation_mdhac")
 }
 
+[sub_resource type="Animation" id="Animation_2bynl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("postProcess/invisEffect:material:shader_parameter/distortion_strength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.02]
+}
+
+[sub_resource type="Animation" id="Animation_wqs11"]
+resource_name = "start_sneak"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:is_invis")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.475, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("postProcess/invisEffect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("postProcess/invisEffect:material:shader_parameter/distortion_strength")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2, 0.5),
+"update": 0,
+"values": [4.75e-08, 0.02]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("postProcess/invisEffect:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.025),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gbrbt"]
+_data = {
+"RESET": SubResource("Animation_2bynl"),
+"start_sneak": SubResource("Animation_wqs11")
+}
+
 [node name="playerCharacter" type="CharacterBody3D"]
 collision_layer = 4
 collision_mask = 17
 script = ExtResource("1_y87bo")
+has_sword = true
+has_shield = true
 shield_hold = true
+is_invis = true
 
 [node name="playerCol" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_2a5dh")
@@ -386,6 +486,23 @@ camera_control = false
 movement_control = false
 interact_control = false
 
+[node name="playerSneak" type="Node" parent="stateMachine"]
+script = ExtResource("14_1g3yq")
+
+[node name="postProcess" type="CanvasLayer" parent="."]
+
+[node name="invisEffect" type="ColorRect" parent="postProcess"]
+visible = false
+material = SubResource("ShaderMaterial_mjg6a")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="UIBase" type="Control" parent="UI"]
@@ -412,6 +529,24 @@ offset_right = 20.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("11_cct0y")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rjoti")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="fpsCounter" type="Label" parent="UI/UIBase"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
@@ -563,4 +698,10 @@ libraries = {
 [node name="swordAnim" type="AnimationPlayer" parent="anims"]
 libraries = {
 "": SubResource("AnimationLibrary_s5612")
+}
+
+[node name="postProcessAnim" type="AnimationPlayer" parent="anims"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_gbrbt")
 }

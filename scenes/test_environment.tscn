@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://btfrk8df3yk2s"]
+[gd_scene load_steps=17 format=3 uid="uid://btfrk8df3yk2s"]
 
 [ext_resource type="Script" path="res://assets/temp/test_environment.gd" id="1_0udj0"]
 [ext_resource type="PackedScene" uid="uid://ev5ihdel24io" path="res://scenes/player_character.tscn" id="1_afcxk"]
 [ext_resource type="PackedScene" uid="uid://vwucnpm7rl8o" path="res://scenes/hermes.tscn" id="5_hmh2k"]
 [ext_resource type="PackedScene" uid="uid://bg11eow76lcyn" path="res://scenes/boat.tscn" id="6_6gxfr"]
 [ext_resource type="PackedScene" uid="uid://cflsdjfbphex" path="res://scenes/athena.tscn" id="6_jt7ug"]
+[ext_resource type="PackedScene" uid="uid://ds5vh4yxvjpn3" path="res://scenes/sirens.tscn" id="7_t0cpr"]
 [ext_resource type="PackedScene" uid="uid://gbl1q3e8sop0" path="res://scenes/graeae.tscn" id="8_rxdrm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yqrv1"]
@@ -111,3 +112,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42293, 0)
 
 [node name="athena" parent="." instance=ExtResource("6_jt7ug")]
 transform = Transform3D(0.653434, 0, 0.756983, 0, 1, 0, -0.756983, 0, 0.653434, -2, 1.578, -5)
+
+[node name="testPostProcess" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="testRect" type="ColorRect" parent="testPostProcess"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.47451, 1, 0.439216)
+
+[node name="sirens" parent="." instance=ExtResource("7_t0cpr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.5691, 0, 59.6527)

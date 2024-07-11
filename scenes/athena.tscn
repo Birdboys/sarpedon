@@ -49,6 +49,7 @@ orientation = 2
 script = ExtResource("1_w4e46")
 
 [node name="athenaMesh" type="MeshInstance3D" parent="."]
+layers = 4
 mesh = SubResource("PlaneMesh_5l8fo")
 
 [node name="billboardComponent" parent="athenaMesh" instance=ExtResource("3_arlp5")]

@@ -25,7 +25,8 @@ directories/dch_directory={
 "athena": "res://assets/characters/athena.dch",
 "graeae": "res://assets/characters/graeae.dch",
 "hermes": "res://assets/characters/hermes.dch",
-"maiden": "res://assets/characters/maiden.dch"
+"maiden": "res://assets/characters/maiden.dch",
+"siren": "res://assets/characters/siren.dch"
 }
 directories/dtl_directory={
 "athenaIntro": "res://assets/timelines/athenaIntro.dtl",
@@ -54,12 +55,15 @@ directories/dtl_directory={
 "hermesDiscusExplanation2": "res://assets/timelines/hermesDiscusExplanation2.dtl",
 "hermesIntro": "res://assets/timelines/hermesIntro.dtl",
 "introMaiden": "res://assets/timelines/introMaiden.dtl",
-"maidenInterject": "res://assets/timelines/maidenInterject.dtl"
+"maidenInterject": "res://assets/timelines/maidenInterject.dtl",
+"sirenLure0": "res://assets/timelines/sirenLure0.dtl"
 }
 layout/style_list=["res://assets/dialogicstyle.tres"]
 layout/default_style="res://assets/dialogicstyle.tres"
 glossary/default_case_sensitive=true
-variables={}
+variables={
+"siren_lul": 0
+}
 text/letter_speed=0.01
 text/initial_text_reveal_skippable=true
 text/text_reveal_skip_delay=0.1
@@ -157,9 +161,17 @@ shield_hold={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(100, 9),"global_position":Vector2(104, 50),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+sneak={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194326,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
 
 [layer_names]
 
+3d_render/layer_1="standard"
+3d_render/layer_2="ui"
+3d_render/layer_3="ghosts"
 3d_physics/layer_1="ground"
 3d_physics/layer_2="interact"
 3d_physics/layer_3="player"

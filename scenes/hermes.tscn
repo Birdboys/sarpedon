@@ -36,6 +36,7 @@ orientation = 2
 script = ExtResource("1_s4wmc")
 
 [node name="hermesMesh" type="MeshInstance3D" parent="."]
+layers = 4
 mesh = SubResource("PlaneMesh_j84vj")
 
 [node name="billboardComponent" parent="hermesMesh" instance=ExtResource("4_asaj5")]

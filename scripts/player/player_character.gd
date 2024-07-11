@@ -18,29 +18,31 @@ extends CharacterBody3D
 @onready var shieldMesh := $neck/playerCam/shieldMesh
 @onready var shieldAnim := $anims/shieldAnim
 @onready var swordAnim := $anims/swordAnim
+@onready var postProcessAnim := $anims/postProcessAnim
+@onready var invisEffect := $postProcess/invisEffect
 
-@onready var has_invis_helmet := false
-@onready var has_winged_sandals := false
-@onready var has_sword := true
-@onready var has_shield := true
-@onready var has_bag := false
+@export var has_invis_helmet := true
+@export var has_winged_sandals := true
+@export var has_sword := false
+@export var has_shield := false
+@export var has_bag := false
+@export var shield_hold := false
+@export var is_invis := false
+
 @onready var sword_up := false
 @onready var shield_up := false
-@export var shield_hold := false
 
 var boat
 var activityHandler
-#INTERACTION TYPES
-#1) INTERACT TO PULL UP LISTENING DIALOGUE
-#2) INTERACT TO PULL UP TALKING DIALOGUE
-#3) INTERACT TO DO SOMETHING TO ITEM
+
 func _ready():
 	stateMachine.initialize(self) 
 	Dialogic.signal_event.connect(handleDialogue)
 	
 func _process(delta):
+	$UI/UIBase/fpsCounter.text = "FPS:%s" % Engine.get_frames_per_second()
 	uiCamera.global_transform = camera.global_transform
-	
+
 func _physics_process(delta):
 	handlePrompt()
 	
@@ -63,6 +65,7 @@ func _unhandled_input(event):
 				setShieldHold(true)
 			if shield_up and shield_hold and Input.is_action_just_released("shield_hold"):
 				setShieldHold(false)
+				
 
 func handlePrompt():
 	if not stateMachine.current_state.interact_control:

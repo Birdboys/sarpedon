@@ -91,16 +91,19 @@ orientation = 2
 script = ExtResource("1_diuei")
 
 [node name="graeaeMesh" type="MeshInstance3D" parent="."]
+layers = 4
 mesh = SubResource("PlaneMesh_wf2nw")
 
 [node name="billboardComponent" parent="graeaeMesh" instance=ExtResource("4_snmrf")]
 
 [node name="sisterMesh1" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0.612, 0, -0.328)
+layers = 4
 mesh = SubResource("PlaneMesh_ocahs")
 
 [node name="sisterMesh2" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -0.612, 0, -0.328)
+layers = 4
 mesh = SubResource("PlaneMesh_b64vp")
 
 [node name="trigger1" parent="." instance=ExtResource("5_lyowc")]
