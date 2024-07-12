@@ -10,3 +10,4 @@ content_margin_bottom = 4.0
 texture = ExtResource("1_rh7c4")
 texture_margin_bottom = 16.0
 axis_stretch_horizontal = 2
+modulate_color = Color(0, 0, 0, 0.501961)

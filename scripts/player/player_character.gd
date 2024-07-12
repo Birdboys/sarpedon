@@ -38,6 +38,7 @@ var activityHandler
 func _ready():
 	stateMachine.initialize(self) 
 	Dialogic.signal_event.connect(handleDialogue)
+	PauseMenu.visibility_changed.connect(pauseToggled)
 	
 func _process(delta):
 	$UI/UIBase/fpsCounter.text = "FPS:%s" % Engine.get_frames_per_second()
@@ -81,6 +82,7 @@ func handleCamera(event):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	elif event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
 			rotate_y(-event.relative.x * sensitivity)
@@ -167,3 +169,9 @@ func syncCameras():
 	backCamera.rotate_y(deg_to_rad(180))
 	backCamera.rotation.x *= -1
 	backCamera.rotation.x -= deg_to_rad(5)
+
+func pauseToggled():
+	if PauseMenu.visible:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

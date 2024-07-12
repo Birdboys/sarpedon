@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://d100nhof1n5l4"]
+
+[ext_resource type="Script" path="res://scripts/control_remapper.gd" id="1_hlf8x"]
+[ext_resource type="Theme" uid="uid://dplwrcgvyhpcw" path="res://assets/ui_theme.tres" id="2_t44v0"]
+
+[node name="controlRemapper" type="HBoxContainer"]
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+script = ExtResource("1_hlf8x")
+
+[node name="actionText" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
+theme_type_variation = &"uiLabel"
+theme_override_font_sizes/font_size = 18
+text = "Action"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="remapButton" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_t44v0")
+theme_override_font_sizes/font_size = 18
+action_mode = 0
+text = "Key"

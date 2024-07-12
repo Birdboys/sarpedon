@@ -64,8 +64,7 @@ func weaveFinished():
 			await weaveHandler.revealThread()
 			Dialogic.start("athenaWeave1Cont")
 		_:
-			await weaveHandler.revealThread()
-			weaveHandler.newProblem()
+			pass
 
 func transitionCamera(initial_camera: Camera3D):
 	var original_transform = weaveCam.global_transform

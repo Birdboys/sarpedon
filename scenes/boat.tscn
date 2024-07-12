@@ -17,10 +17,12 @@ size = Vector3(3, 1.5, 1.5)
 radius = 1.25
 height = 5.0
 
-[node name="boat" type="RigidBody3D"]
+[node name="boat" type="CharacterBody3D"]
 collision_mask = 17
 axis_lock_angular_x = true
 axis_lock_angular_z = true
+floor_stop_on_slope = false
+floor_max_angle = 0.0
 script = ExtResource("1_8uxof")
 
 [node name="boatMesh" type="MeshInstance3D" parent="."]

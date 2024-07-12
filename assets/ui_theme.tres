@@ -1,0 +1,55 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dplwrcgvyhpcw"]
+
+[ext_resource type="FontFile" uid="uid://bguvi2je1ofym" path="res://assets/fonts/FiraSans-Bold.ttf" id="1_c2fos"]
+[ext_resource type="Texture2D" uid="uid://byubok773wow" path="res://assets/temp/uiborders.png" id="2_aoq5i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tojrn"]
+bg_color = Color(0, 0, 0, 0.901961)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ts2ka"]
+content_margin_left = 8.0
+bg_color = Color(0, 0, 0, 0.901961)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gpf4b"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0ijco"]
+content_margin_top = 16.0
+content_margin_bottom = 16.0
+texture = ExtResource("2_aoq5i")
+texture_margin_top = 16.0
+texture_margin_bottom = 16.0
+axis_stretch_horizontal = 1
+modulate_color = Color(0, 0, 0, 0.901961)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2mhj5"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 0.901961)
+
+[resource]
+default_font = ExtResource("1_c2fos")
+default_font_size = 12
+Button/colors/font_color = Color(0.737194, 0.737193, 0.737193, 1)
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_c2fos")
+Button/styles/disabled = SubResource("StyleBoxFlat_tojrn")
+Button/styles/focus = SubResource("StyleBoxFlat_tojrn")
+Button/styles/hover = SubResource("StyleBoxFlat_tojrn")
+Button/styles/normal = SubResource("StyleBoxFlat_tojrn")
+Button/styles/pressed = SubResource("StyleBoxFlat_tojrn")
+Panel/styles/panel = SubResource("StyleBoxFlat_ts2ka")
+clearUILabel/base_type = &"Label"
+clearUILabel/font_sizes/font_size = 24
+clearUILabel/styles/normal = SubResource("StyleBoxEmpty_gpf4b")
+topBotPanel/base_type = &"Panel"
+topBotPanel/styles/panel = SubResource("StyleBoxTexture_0ijco")
+uiLabel/base_type = &"Label"
+uiLabel/font_sizes/font_size = 24
+uiLabel/styles/normal = SubResource("StyleBoxFlat_2mhj5")

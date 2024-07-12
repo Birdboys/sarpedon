@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+PauseMenu="*res://scenes/pause_menu.tscn"
 
 [dialogic]
 
@@ -56,7 +57,7 @@ directories/dtl_directory={
 "hermesIntro": "res://assets/timelines/hermesIntro.dtl",
 "introMaiden": "res://assets/timelines/introMaiden.dtl",
 "maidenInterject": "res://assets/timelines/maidenInterject.dtl",
-"sirenLure0": "res://assets/timelines/sirenLure0.dtl"
+"sirenLures": "res://assets/timelines/sirenLures.dtl"
 }
 layout/style_list=["res://assets/dialogicstyle.tres"]
 layout/default_style="res://assets/dialogicstyle.tres"
@@ -164,6 +165,11 @@ shield_hold={
 sneak={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194326,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
+escape={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
 

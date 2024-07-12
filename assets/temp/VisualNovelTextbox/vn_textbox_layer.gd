@@ -114,7 +114,9 @@ enum AnimationsNewText {NONE, WIGGLE}
 @export_range(0.0, 10) var typing_sounds_volume_variance: float = 0.0
 @export var typing_sounds_ignore_characters: String = " .,!?"
 
-
+func _ready():
+	Dialogic.toggle_visibility.connect(toggleVisibility)
+	
 func _apply_export_overrides() -> void:
 	if !is_inside_tree():
 		await ready
@@ -276,3 +278,6 @@ func _apply_sounds_settings() -> void:
 	type_sounds.pitch_variance = typing_sounds_pitch_variance
 	type_sounds.volume_variance = typing_sounds_volume_variance
 	type_sounds.ignore_characters = typing_sounds_ignore_characters
+
+func toggleVisibility(on):
+	$Anchor.visible = on

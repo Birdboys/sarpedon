@@ -86,6 +86,10 @@ size = Vector3(2, 1, 2)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.12953, 2, -4)
 mesh = SubResource("PrismMesh_o35cx")
 
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -5.23033, 0, 0.3339, 0, 1, 0, -2.28625e-07, 3.14102, -0.0597625, 9.01398)
+mesh = SubResource("PrismMesh_o35cx")
+
 [node name="water" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 collision_layer = 16
@@ -126,4 +130,4 @@ mouse_filter = 2
 color = Color(1, 0.47451, 1, 0.439216)
 
 [node name="sirens" parent="." instance=ExtResource("7_t0cpr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.5691, 0, 59.6527)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.5691, 0, 93.6527)

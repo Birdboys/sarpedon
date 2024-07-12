@@ -1,48 +1,104 @@
-[gd_scene load_steps=4 format=3 uid="uid://ds5vh4yxvjpn3"]
+[gd_scene load_steps=11 format=3 uid="uid://ds5vh4yxvjpn3"]
 
 [ext_resource type="Script" path="res://scripts/sirens.gd" id="1_sm0u3"]
+[ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="2_yejcj"]
+[ext_resource type="Texture2D" uid="uid://dnko8uw84nij6" path="res://assets/sprites/siren1.png" id="3_5030n"]
+[ext_resource type="PackedScene" uid="uid://d557kilnx4qe" path="res://scenes/components/billboard_component.tscn" id="4_8pg7a"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_sskra"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kk84s"]
+render_priority = 0
+shader = ExtResource("2_yejcj")
+shader_parameter/num_sections = 7.0
+shader_parameter/max_section_offset = 0.1
+shader_parameter/image_speed = 1.0
+shader_parameter/offset_speed = 5.0
+shader_parameter/image_seed = 0.0
+shader_parameter/offset_seed = 0.0
+shader_parameter/transparency = 0.8
+shader_parameter/image1 = ExtResource("3_5030n")
+shader_parameter/image2 = ExtResource("3_5030n")
+shader_parameter/image3 = ExtResource("3_5030n")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_d564g"]
+material = SubResource("ShaderMaterial_kk84s")
+flip_faces = true
+size = Vector2(1.5, 1.5)
+orientation = 2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ew4rp"]
 height = 20.0
 radius = 75.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qy384"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jat1"]
 transparency = 1
-albedo_color = Color(1, 0.803922, 1, 0.188235)
+albedo_color = Color(0.945098, 0.376471, 0.756863, 0.188235)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_met3g"]
+height = 20.0
+radius = 75.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vcikq"]
+transparency = 1
+albedo_color = Color(0.172549, 0.803922, 1, 0.188235)
 
 [node name="sirens" type="Node3D"]
 script = ExtResource("1_sm0u3")
+sing_radius = 100.0
+pull_radius = 75.0
 
 [node name="tempRock" type="CSGBox3D" parent="."]
 size = Vector3(5, 5, 5)
+
+[node name="siren1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.39277, 0)
+layers = 4
+mesh = SubResource("PlaneMesh_d564g")
+skeleton = NodePath("../tempRock")
+
+[node name="billboardComponent" parent="siren1" instance=ExtResource("4_8pg7a")]
+
+[node name="siren2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.811462, 0, -0.584405, 0, 1, 0, 0.584405, 0, 0.811462, 1.93826, 3.01265, -2.25953)
+layers = 4
+mesh = SubResource("PlaneMesh_d564g")
+skeleton = NodePath("../tempRock")
+
+[node name="billboardComponent" parent="siren2" instance=ExtResource("4_8pg7a")]
+
+[node name="siren3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.811462, 0, -0.584405, 0, 1, 0, 0.584405, 0, 0.811462, -2.11768, 2.20686, -3.46467)
+layers = 4
+mesh = SubResource("PlaneMesh_d564g")
+skeleton = NodePath("../tempRock")
+
+[node name="billboardComponent" parent="siren3" instance=ExtResource("4_8pg7a")]
 
 [node name="boatFinder" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 4
 
 [node name="finderShape" type="CollisionShape3D" parent="boatFinder"]
-shape = SubResource("CylinderShape3D_sskra")
+shape = SubResource("CylinderShape3D_ew4rp")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="boatFinder"]
-radius = 75.0
+radius = 100.0
 height = 20.0
 sides = 32
-material = SubResource("StandardMaterial3D_qy384")
+material = SubResource("StandardMaterial3D_2jat1")
 
 [node name="boatPuller" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 4
 
-[node name="finderShape" type="CollisionShape3D" parent="boatPuller"]
-shape = SubResource("CylinderShape3D_sskra")
+[node name="pullerShape" type="CollisionShape3D" parent="boatPuller"]
+shape = SubResource("CylinderShape3D_met3g")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="boatPuller"]
-radius = 75.0
+radius = 45.0
 height = 20.0
 sides = 32
-material = SubResource("StandardMaterial3D_qy384")
+material = SubResource("StandardMaterial3D_vcikq")
 
 [node name="singTimer" type="Timer" parent="."]
 
-[connection signal="body_entered" from="boatFinder" to="." method="_on_boat_finder_body_entered"]
-[connection signal="body_exited" from="boatFinder" to="." method="_on_boat_finder_body_exited"]
+[connection signal="timeout" from="singTimer" to="." method="_on_sing_timer_timeout"]
