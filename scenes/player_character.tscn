@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://ev5ihdel24io"]
+[gd_scene load_steps=51 format=3 uid="uid://ev5ihdel24io"]
 
 [ext_resource type="Script" path="res://scripts/player/player_character.gd" id="1_y87bo"]
 [ext_resource type="Texture2D" uid="uid://djldtb4845f38" path="res://assets/temp/sword1_low.png" id="2_0ap74"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://scripts/player/inventory.gd" id="12_hxb3m"]
 [ext_resource type="Texture2D" uid="uid://0o2dmpxsjwxe" path="res://assets/sprites/invis_helmet.png" id="13_gwvc1"]
 [ext_resource type="Script" path="res://scripts/player/player_sneak.gd" id="14_1g3yq"]
+[ext_resource type="Script" path="res://scripts/player/player_boat_talk.gd" id="15_04qwm"]
 [ext_resource type="Shader" path="res://scripts/shaders/invis_shader.gdshader" id="15_4wiuu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2a5dh"]
@@ -394,6 +395,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_rof8f")
 
 [node name="neck" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.497977, 0)
 
 [node name="playerCam" type="Camera3D" parent="neck"]
 cull_mask = 1048573
@@ -439,6 +441,7 @@ skeleton = NodePath("../..")
 [node name="hoverRay" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 target_position = Vector3(0, -0.5, 0)
+collision_mask = 17
 
 [node name="backViewport" type="SubViewport" parent="."]
 size = Vector2i(128, 128)
@@ -463,6 +466,7 @@ script = ExtResource("5_fv6td")
 
 [node name="playerHover" type="Node" parent="stateMachine"]
 script = ExtResource("6_0tkkq")
+move_speed = 50.0
 
 [node name="playerTalk" type="Node" parent="stateMachine"]
 script = ExtResource("7_n0ojd")
@@ -488,6 +492,11 @@ interact_control = false
 
 [node name="playerSneak" type="Node" parent="stateMachine"]
 script = ExtResource("14_1g3yq")
+
+[node name="playerBoatTalk" type="Node" parent="stateMachine"]
+script = ExtResource("15_04qwm")
+movement_control = false
+interact_control = false
 
 [node name="postProcess" type="CanvasLayer" parent="."]
 

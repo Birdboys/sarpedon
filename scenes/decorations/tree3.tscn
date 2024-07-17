@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://db1lu1dowmcnt"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u12b3"]
+radius = 1.0
+
+[node name="tree3" type="StaticBody3D"]
+
+[node name="treeCol" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("SphereShape3D_u12b3")

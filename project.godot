@@ -27,6 +27,7 @@ directories/dch_directory={
 "graeae": "res://assets/characters/graeae.dch",
 "hermes": "res://assets/characters/hermes.dch",
 "maiden": "res://assets/characters/maiden.dch",
+"phorkys": "res://assets/characters/phorkys.dch",
 "siren": "res://assets/characters/siren.dch"
 }
 directories/dtl_directory={
@@ -57,6 +58,7 @@ directories/dtl_directory={
 "hermesIntro": "res://assets/timelines/hermesIntro.dtl",
 "introMaiden": "res://assets/timelines/introMaiden.dtl",
 "maidenInterject": "res://assets/timelines/maidenInterject.dtl",
+"phorkysIntro": "res://assets/timelines/phorkysIntro.dtl",
 "sirenLures": "res://assets/timelines/sirenLures.dtl"
 }
 layout/style_list=["res://assets/dialogicstyle.tres"]
@@ -94,7 +96,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/dreadpon.spatial_gardener/plugin.cfg")
 
 [gui]
 
@@ -186,6 +188,5 @@ escape={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="mobile"
 textures/decals/filter=2
 textures/light_projectors/filter=2

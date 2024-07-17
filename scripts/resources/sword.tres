@@ -9,4 +9,5 @@ item_id = "sword"
 name = "ἅρπη"
 image = ExtResource("1_lehlp")
 description = "From the wooden handle juts a curved blade, its edge forming an arc that ends in a ruthlessly fine point. An odd shape, not like many you’ve encountered before, but an effective one. Swinging it from side to side, the weapon begins to feel like an extension of yourself, of your ability to separate flesh from bone, life from the living."
-tooltip = "Press [e] to TEMP"
+tooltip = "Press [q] to equip/unequip sword.
+Press [lmb] to swing sword."

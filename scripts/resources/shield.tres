@@ -9,4 +9,5 @@ item_id = "shield"
 name = "ἀσπίς"
 image = ExtResource("1_xu8q0")
 description = "A disc of wood, hefty, with leather forearm straps and a handle on the concave side. The front is covered with a sheet of bronze, the surface polished to a mirror-like finish. The fastenings feel comfortable on your arm, as does the weight in your hand. Yet… as you stare at the image reflected in the shield, a striking absence tempers your expectations."
-tooltip = "Press [e] to TEMP"
+tooltip = "Press [r] to equip/unequip shield.
+Hold [rmb] to hold up shield."

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://assets/temp/VisualNovelTextbox/vn_textbox_layer.gd" id="1_bpydr"]
 [ext_resource type="Script" path="res://assets/temp/VisualNovelTextbox/animations.gd" id="2_xy7a2"]
 [ext_resource type="Script" path="res://addons/dialogic/Modules/Text/node_dialog_text.gd" id="3_4634k"]
-[ext_resource type="StyleBox" uid="uid://dkv1pl1c1dq6" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Textbox/vn_textbox_default_panel.tres" id="3_ssa84"]
+[ext_resource type="StyleBox" uid="uid://bbpf5ibf0ov5w" path="res://assets/temp/test_stylebox.tres" id="3_at1qk"]
 [ext_resource type="Script" path="res://addons/dialogic/Modules/Text/node_type_sound.gd" id="4_ma5mw"]
 [ext_resource type="Script" path="res://addons/dialogic/Modules/Text/node_next_indicator.gd" id="5_40a50"]
 [ext_resource type="Script" path="res://assets/temp/VisualNovelTextbox/autoadvance_indicator.gd" id="6_07xym"]
@@ -262,7 +262,6 @@ mouse_filter = 2
 
 [node name="DialogTextPanel" type="PanelContainer" parent="Anchor/AnimationParent/Sizer"]
 unique_name_in_owner = true
-self_modulate = Color(0.00784314, 0.00784314, 0.00784314, 0.843137)
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 1
 anchors_preset = 15
@@ -271,7 +270,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_styles/panel = ExtResource("3_ssa84")
+theme_override_styles/panel = ExtResource("3_at1qk")
 metadata/_edit_layout_mode = 1
 
 [node name="DialogicNode_DialogText" type="RichTextLabel" parent="Anchor/AnimationParent/Sizer/DialogTextPanel" node_paths=PackedStringArray("textbox_root")]
@@ -285,6 +284,7 @@ theme_override_font_sizes/italics_font_size = 15
 theme_override_font_sizes/bold_italics_font_size = 15
 bbcode_enabled = true
 text = "Some default text"
+scroll_active = false
 visible_characters_behavior = 1
 script = ExtResource("3_4634k")
 textbox_root = NodePath("..")

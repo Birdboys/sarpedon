@@ -9,4 +9,5 @@ item_id = "bag"
 name = "κίβῐσῐς"
 image = ExtResource("1_1r72c")
 description = "Doesn't have one yet.	"
-tooltip = "Press [e] to TEMP"
+tooltip = "Press [tab] to open bag and view inventory.
+Press [a|d] to move to other items."

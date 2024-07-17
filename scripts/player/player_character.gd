@@ -132,8 +132,12 @@ func handleInteract():
 func handleDialogue(type):
 	match type:
 		"blocking":
-			stateMachine.on_state_transition(stateMachine.current_state, "playerTalk")
-
+			if stateMachine.current_state.name == "playerBoat":
+				stateMachine.current_state.boat_dialogue = true
+				stateMachine.on_state_transition(stateMachine.current_state, "playerBoatTalk")
+			else:
+				stateMachine.on_state_transition(stateMachine.current_state, "playerTalk")
+		
 func setSword(on := true):
 	swordMesh.visible = on
 

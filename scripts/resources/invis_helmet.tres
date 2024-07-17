@@ -9,4 +9,4 @@ item_id = "invis_helmet"
 name = "Ἅϊδος κυνέη"
 image = ExtResource("1_tdr7a")
 description = "Doesn't have one yet."
-tooltip = "Press [e] to TEMP"
+tooltip = "Hold [ctrl] while walking to use invisibility helmet, going invisible."

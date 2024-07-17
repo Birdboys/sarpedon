@@ -8,7 +8,7 @@
 script = ExtResource("2_g8u17")
 scene = ExtResource("1_63cr2")
 overrides = {
-"box_color_custom": "Color(0, 0, 0, 0.901961)",
+"box_color_custom": "Color(1, 1, 1, 1)",
 "box_color_use_global": "false",
 "box_margin_bottom": "8.0",
 "box_panel": "\"test_stylebox.tres\"",

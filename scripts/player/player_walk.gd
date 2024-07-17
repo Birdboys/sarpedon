@@ -7,7 +7,7 @@ func enter():
 		emit_signal("transitioned", self, "playerSneak")
 
 func update(delta):
-	if Input.is_action_just_pressed("inventory"):
+	if parent.has_bag and Input.is_action_just_pressed("inventory"):
 		emit_signal("transitioned", self, "playerInventory")
 	
 	parent.handleMovementInput(delta, move_speed)
