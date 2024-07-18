@@ -15,3 +15,5 @@ hermes (hermes_default): I’m great at it!
 hermes (hermes_default): I may be known for my feet, but you can’t sleep on this arm either, haha.
 hermes (hermes_default): Why don’t we play a round? I’ve got the field lined up and everything.
 hermes (hermes_default): Meet me at the throwing area when you’re ready to throw down.
+[wait time="0.5"]
+[signal arg="goToDiscus"]

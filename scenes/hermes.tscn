@@ -46,7 +46,6 @@ size = Vector3(1, 2, 1)
 object_name = "hermes_trig1"
 object_prompt = "talk [e]"
 interact_ret = "hermes_intro"
-on_start = false
 
 [node name="trigger2" parent="." instance=ExtResource("7_ejpgu")]
 size = Vector3(1, 2, 1)
@@ -54,6 +53,7 @@ object_name = "hermes_trig2"
 object_prompt = "talk [e]"
 interact_ret = "hermes_discus"
 interactable = false
+on_start = false
 
 [node name="trigger3" parent="." instance=ExtResource("7_ejpgu")]
 size = Vector3(1, 2, 1)
@@ -155,3 +155,7 @@ text = "PRESS [e] WHEN CIRCLES OVERLAP
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="pathFollow" type="PathFollow3D" parent="."]
+
+[node name="runningPoint" type="Node3D" parent="pathFollow"]

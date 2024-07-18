@@ -1,0 +1,138 @@
+[gd_scene load_steps=5 format=3 uid="uid://chow7y3ba1gaj"]
+
+[ext_resource type="Theme" uid="uid://dplwrcgvyhpcw" path="res://assets/ui_theme.tres" id="1_txge8"]
+[ext_resource type="Script" path="res://scripts/ui/loading_screen.gd" id="2_7uofd"]
+
+[sub_resource type="Animation" id="Animation_5q01c"]
+resource_name = "loading"
+length = 1.25
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("screenMargin/quoteBorder/quoteMargin/loadingText:visible_characters")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ltpb2"]
+_data = {
+"loading": SubResource("Animation_5q01c")
+}
+
+[node name="loadingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_txge8")
+script = ExtResource("2_7uofd")
+
+[node name="background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="screenMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="quoteBorder" type="Panel" parent="screenMargin"]
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"topBotPanelW"
+
+[node name="quoteMargin" type="MarginContainer" parent="screenMargin/quoteBorder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="quoteVBox" type="VBoxContainer" parent="screenMargin/quoteBorder/quoteMargin"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="line1" type="Label" parent="screenMargin/quoteBorder/quoteMargin/quoteVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "\"Tis the melodious hue of beauty thrown"
+vertical_alignment = 1
+
+[node name="line2" type="Label" parent="screenMargin/quoteBorder/quoteMargin/quoteVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "Athwart the darkness and the glare of pain,"
+vertical_alignment = 1
+
+[node name="line3" type="Label" parent="screenMargin/quoteBorder/quoteMargin/quoteVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "Which humanize and harmonize the strain.”
+"
+vertical_alignment = 1
+
+[node name="line4" type="Label" parent="screenMargin/quoteBorder/quoteMargin/quoteVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "- P. Shelley"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="loadingText" type="Label" parent="screenMargin/quoteBorder/quoteMargin"]
+self_modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 16
+text = "Loading...
+"
+visible_characters = 7
+visible_characters_behavior = 1
+visible_ratio = 0.636364
+
+[node name="tooltipText" type="Label" parent="screenMargin/quoteBorder/quoteMargin"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(1, 1, 1, 0.501961)
+theme_override_font_sizes/font_size = 16
+text = "PRESS [e]"
+horizontal_alignment = 1
+
+[node name="loadingAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ltpb2")
+}

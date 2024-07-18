@@ -3,9 +3,16 @@ extends Node3D
 @onready var trigger1 := $trigger1
 @onready var trigger2 := $trigger2
 @onready var trigger3 := $trigger3
-@onready var current_phase := "idle"
 @onready var discusCam := $discusHandler/discusCam
 @onready var discusHandler := $discusHandler
+@onready var pathFollow := $pathFollow
+@onready var runningPoint := $pathFollow/runningPoint
+@onready var current_phase := "running"
+@onready var path_progress := 0.0
+@onready var running_speed := 3.0
+@export var runningPath : Path3D
+@export var discusPos : Node3D
+
 
 signal activity_finished
 
@@ -15,10 +22,18 @@ func _ready():
 	trigger2.interacted.connect(startDiscus)
 	trigger3.interacted.connect(giveWingedSandals)
 	discusHandler.discus_landed.connect(discusLanded)
+	pathFollow.reparent(runningPath)
 	
-	
+func _process(delta):
+	match current_phase:
+		"running":
+			pathFollow.progress += delta * running_speed
+			global_position = runningPoint.global_position
+			
 func handleDialogue(type):
 	match type:
+		"goToDiscus":
+			setupDiscus()
 		"hermesThrow":
 			discusHandler.startAutoThrow()
 		"playerThrow":
@@ -30,9 +45,14 @@ func handleDialogue(type):
 	pass
 
 func introDialogue():
-	current_phase = "intro"
-	Dialogic.start("hermesIntro")
 	trigger1.deactivate()
+	current_phase = "setting_up"
+	Dialogic.start("hermesIntro")
+
+func setupDiscus():
+	var setup_tween = get_tree().create_tween()
+	setup_tween.tween_property(self, "global_transform", discusPos.global_transform, 1.0)
+	await setup_tween.finished
 	trigger2.activate()
 	
 func startDiscus():

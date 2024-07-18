@@ -10,7 +10,7 @@ scene = ExtResource("1_63cr2")
 overrides = {
 "box_color_custom": "Color(1, 1, 1, 1)",
 "box_color_use_global": "false",
-"box_margin_bottom": "8.0",
+"box_margin_bottom": "16.0",
 "box_panel": "\"test_stylebox.tres\"",
 "box_size": "Vector2(480, 72)",
 "name_label_box_modulate": "Color(0, 0, 0, 0.901961)",

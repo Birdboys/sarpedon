@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dplwrcgvyhpcw"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://dplwrcgvyhpcw"]
 
 [ext_resource type="FontFile" uid="uid://bguvi2je1ofym" path="res://assets/fonts/FiraSans-Bold.ttf" id="1_c2fos"]
 [ext_resource type="Texture2D" uid="uid://byubok773wow" path="res://assets/temp/uiborders.png" id="2_aoq5i"]
@@ -26,6 +26,15 @@ axis_stretch_horizontal = 1
 modulate_color = Color(0, 0, 0, 0.901961)
 draw_center = false
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nm0dh"]
+content_margin_top = 16.0
+content_margin_bottom = 16.0
+texture = ExtResource("2_aoq5i")
+texture_margin_top = 16.0
+texture_margin_bottom = 16.0
+axis_stretch_horizontal = 1
+draw_center = false
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2mhj5"]
 content_margin_left = 8.0
 content_margin_top = 8.0
@@ -50,6 +59,8 @@ clearUILabel/font_sizes/font_size = 24
 clearUILabel/styles/normal = SubResource("StyleBoxEmpty_gpf4b")
 topBotPanel/base_type = &"Panel"
 topBotPanel/styles/panel = SubResource("StyleBoxTexture_0ijco")
+topBotPanelW/base_type = &"Panel"
+topBotPanelW/styles/panel = SubResource("StyleBoxTexture_nm0dh")
 uiLabel/base_type = &"Label"
 uiLabel/font_sizes/font_size = 24
 uiLabel/styles/normal = SubResource("StyleBoxFlat_2mhj5")

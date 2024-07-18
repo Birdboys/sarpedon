@@ -1,8 +1,8 @@
 extends CanvasLayer
 
-@onready var mainMenu := $pauseUI/inventoryMargin/inventoryBorder/panelMargin/VBoxContainer/menuPanel/mainMenu
-@onready var controlsMenu := $pauseUI/inventoryMargin/inventoryBorder/panelMargin/VBoxContainer/menuPanel/controlsMenu
-@onready var settingsMenu := $pauseUI/inventoryMargin/inventoryBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu
+@onready var mainMenu := $pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/mainMenu
+@onready var controlsMenu := $pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/controlsMenu
+@onready var settingsMenu := $pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu
 @onready var current_menu := "closed"
 
 func _ready():
