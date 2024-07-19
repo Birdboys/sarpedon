@@ -9,7 +9,7 @@ extends Node3D
 @onready var runningPoint := $pathFollow/runningPoint
 @onready var current_phase := "running"
 @onready var path_progress := 0.0
-@onready var running_speed := 3.0
+@onready var running_speed := 4.5
 @export var runningPath : Path3D
 @export var discusPos : Node3D
 
@@ -23,17 +23,18 @@ func _ready():
 	trigger3.interacted.connect(giveWingedSandals)
 	discusHandler.discus_landed.connect(discusLanded)
 	pathFollow.reparent(runningPath)
+	print_tree_pretty()
 	
 func _process(delta):
 	match current_phase:
 		"running":
 			pathFollow.progress += delta * running_speed
-			global_position = runningPoint.global_position
+			global_position = global_position.move_toward(runningPoint.global_position, delta * running_speed)
 			
 func handleDialogue(type):
 	match type:
 		"goToDiscus":
-			setupDiscus()
+			goToDiscusPos()
 		"hermesThrow":
 			discusHandler.startAutoThrow()
 		"playerThrow":
@@ -49,16 +50,16 @@ func introDialogue():
 	current_phase = "setting_up"
 	Dialogic.start("hermesIntro")
 
-func setupDiscus():
+func goToDiscusPos():
 	var setup_tween = get_tree().create_tween()
-	setup_tween.tween_property(self, "global_transform", discusPos.global_transform, 1.0)
+	setup_tween.tween_property(self, "global_transform", discusPos.global_transform, global_position.distance_to(discusPos.global_position)/7.0)
 	await setup_tween.finished
 	trigger2.activate()
 	
 func startDiscus():
+	trigger2.deactivate()
 	current_phase = "discus_explanation"
 	Dialogic.start("hermesDiscusExplanation")
-	trigger2.deactivate()
 	
 func transitionCamera(initial_camera: Camera3D):
 	var original_transform = discusCam.global_transform
@@ -101,3 +102,4 @@ func discusLanded():
 
 func giveWingedSandals():
 	trigger3.deactivate()
+	current_phase = "running"

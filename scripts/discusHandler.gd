@@ -16,7 +16,7 @@ extends Node3D
 @onready var current_state := "idle"
 var current_discus = null
 
-const MAX_DISCUS_STRENGTH := 15.0
+const MAX_DISCUS_STRENGTH := 30.0
 const MAX_DISCUS_TORQUE := 15.0
 signal discus_landed
 

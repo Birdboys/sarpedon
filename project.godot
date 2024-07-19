@@ -183,6 +183,7 @@ escape={
 3d_physics/layer_1="ground"
 3d_physics/layer_2="interact"
 3d_physics/layer_3="player"
+3d_physics/layer_4="trigger"
 3d_physics/layer_5="ocean_floor"
 
 [rendering]

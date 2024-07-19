@@ -1,0 +1,28 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://bvyqrteaesuq6"]
+
+[ext_resource type="Texture2D" uid="uid://cnxgic7te4sma" path="res://assets/temp/kloofendal_overcast_puresky_1k.exr" id="1_a7c5k"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_40axr"]
+panorama = ExtResource("1_a7c5k")
+
+[sub_resource type="Sky" id="Sky_i0xqh"]
+sky_material = SubResource("PanoramaSkyMaterial_40axr")
+
+[resource]
+background_mode = 2
+background_energy_multiplier = 0.5
+sky = SubResource("Sky_i0xqh")
+sky_rotation = Vector3(0, 4.94975, 0)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 11.16
+ssil_enabled = true
+sdfgi_enabled = true
+sdfgi_read_sky_light = false
+sdfgi_bounce_feedback = 0.0
+sdfgi_min_cell_size = 0.351563
+sdfgi_y_scale = 0
+sdfgi_energy = 2.935
+glow_enabled = true
+fog_density = 0.05

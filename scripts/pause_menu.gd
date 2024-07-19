@@ -24,7 +24,6 @@ func showMenu():
 	
 func hideMenu():
 	Dialogic.toggleVisibility(true)
-	print("HIDING")
 	current_menu = "closed"
 	visible = false
 	get_tree().paused = false

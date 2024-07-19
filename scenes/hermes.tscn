@@ -36,18 +36,21 @@ orientation = 2
 script = ExtResource("1_s4wmc")
 
 [node name="hermesMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.999075, 0)
 layers = 4
 mesh = SubResource("PlaneMesh_j84vj")
 
 [node name="billboardComponent" parent="hermesMesh" instance=ExtResource("4_asaj5")]
 
 [node name="trigger1" parent="." instance=ExtResource("7_ejpgu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.999075, 0)
 size = Vector3(1, 2, 1)
 object_name = "hermes_trig1"
 object_prompt = "talk [e]"
 interact_ret = "hermes_intro"
 
 [node name="trigger2" parent="." instance=ExtResource("7_ejpgu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.999075, 0)
 size = Vector3(1, 2, 1)
 object_name = "hermes_trig2"
 object_prompt = "talk [e]"
@@ -56,6 +59,7 @@ interactable = false
 on_start = false
 
 [node name="trigger3" parent="." instance=ExtResource("7_ejpgu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.999075, 0)
 size = Vector3(1, 2, 1)
 object_name = "hermes_trig2"
 object_prompt = "take
@@ -66,6 +70,7 @@ interactable = false
 on_start = false
 
 [node name="discusHandler" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.999075, 0)
 script = ExtResource("8_kwjsr")
 
 [node name="discusCam" type="Camera3D" parent="discusHandler"]

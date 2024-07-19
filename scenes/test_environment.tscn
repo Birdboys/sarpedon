@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://btfrk8df3yk2s"]
+[gd_scene load_steps=21 format=3 uid="uid://btfrk8df3yk2s"]
 
 [ext_resource type="Script" path="res://assets/temp/test_environment.gd" id="1_0udj0"]
 [ext_resource type="PackedScene" uid="uid://ev5ihdel24io" path="res://scenes/player_character.tscn" id="1_afcxk"]
@@ -50,6 +50,13 @@ radius = 55.0
 transparency = 1
 cull_mode = 2
 albedo_color = Color(1, 1, 0.419608, 0.294118)
+
+[sub_resource type="Curve3D" id="Curve3D_tbvv7"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0)
+}
+point_count = 1
 
 [node name="testEnvironment" type="Node3D"]
 script = ExtResource("1_0udj0")
@@ -114,7 +121,6 @@ mesh = SubResource("BoxMesh_k5u5y")
 
 [node name="playerCharacter" parent="." instance=ExtResource("1_afcxk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.05745, -2.41092)
-has_bag = true
 
 [node name="boat" parent="." instance=ExtResource("6_6gxfr")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.0824, 0.370345, -3.17219)
@@ -122,8 +128,10 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.082
 [node name="graeae" parent="." instance=ExtResource("8_rxdrm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, -6)
 
-[node name="hermes" parent="." instance=ExtResource("5_hmh2k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42293, 0)
+[node name="hermes" parent="." node_paths=PackedStringArray("runningPath", "discusPos") instance=ExtResource("5_hmh2k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.554099, 0)
+runningPath = NodePath("../Path3D")
+discusPos = NodePath("../Node3D")
 
 [node name="athena" parent="." instance=ExtResource("6_jt7ug")]
 transform = Transform3D(0.653434, 0, 0.756983, 0, 1, 0, -0.756983, 0, 0.653434, -2, 1.578, -5)
@@ -144,6 +152,7 @@ color = Color(1, 0.47451, 1, 0.439216)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.5691, 0, 93.6527)
 
 [node name="phorkys" parent="." node_paths=PackedStringArray("spawnArea") instance=ExtResource("8_w1711")]
+visible = false
 spawnArea = NodePath("phorkysSpawnArea")
 
 [node name="phorkysSpawnArea" type="Area3D" parent="phorkys"]
@@ -158,3 +167,8 @@ radius = 55.0
 height = 50.0
 sides = 32
 material = SubResource("StandardMaterial3D_5mat5")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_tbvv7")

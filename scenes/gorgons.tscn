@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://5nun341wi85d"]
+
+[ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="1_aii50"]
+[ext_resource type="PackedScene" uid="uid://d557kilnx4qe" path="res://scenes/components/billboard_component.tscn" id="2_diy4y"]
+[ext_resource type="Texture2D" uid="uid://dqrhssj4ilmxy" path="res://assets/sprites/stheno.png" id="2_lnv0r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_42d2s"]
+render_priority = 0
+shader = ExtResource("1_aii50")
+shader_parameter/num_sections = 1.0
+shader_parameter/max_section_offset = 0.0
+shader_parameter/image_speed = 0.0
+shader_parameter/offset_speed = 0.0
+shader_parameter/image_seed = 0.0
+shader_parameter/offset_seed = 0.0
+shader_parameter/transparency = 0.9
+shader_parameter/image1 = ExtResource("2_lnv0r")
+shader_parameter/image2 = ExtResource("2_lnv0r")
+shader_parameter/image3 = ExtResource("2_lnv0r")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tg0sv"]
+material = SubResource("ShaderMaterial_42d2s")
+flip_faces = true
+orientation = 2
+
+[node name="gorgons" type="Node3D"]
+
+[node name="stheno" type="Node3D" parent="."]
+
+[node name="sthenoMesh" type="MeshInstance3D" parent="stheno"]
+mesh = SubResource("PlaneMesh_tg0sv")
+
+[node name="billboardComponent" parent="stheno/sthenoMesh" instance=ExtResource("2_diy4y")]
+
+[node name="maidenMesh" type="MeshInstance3D" parent="stheno"]
+visible = false
+mesh = SubResource("PlaneMesh_tg0sv")
+
+[node name="billboardComponent" parent="stheno/maidenMesh" instance=ExtResource("2_diy4y")]
+
+[node name="euryale" type="Node3D" parent="."]

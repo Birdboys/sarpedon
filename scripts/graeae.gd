@@ -22,7 +22,8 @@ func _ready():
 	trigger3.interacted.connect(giveInvisHelmet)
 	monteHandler.choice_made.connect(handleChoiceMade)
 	monteUI.visible = false
-
+	monteHandler.visible = false
+	
 func _process(delta):
 	if show_sisters:
 		for sister in sisterMeshes:
@@ -91,6 +92,7 @@ func introDialogue():
 	trigger2.activate()
 
 func monteExplanation():
+	monteHandler.visible = true
 	monteCam.current = true
 	current_phase = "explanation"
 	Dialogic.start("graeaeExplanation")
@@ -106,6 +108,7 @@ func activityDone():
 
 func giveInvisHelmet():
 	trigger3.deactivate()
+	monteHandler.visible = false
 	monteHandler.setUpCups()
 	
 func handleChoiceMade(correct: bool):
