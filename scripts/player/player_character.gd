@@ -45,7 +45,6 @@ func _process(delta):
 	uiCamera.global_transform = camera.global_transform
 
 func _physics_process(delta):
-	print(global_position)
 	handlePrompt()
 	
 func _unhandled_input(event):

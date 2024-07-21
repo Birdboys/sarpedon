@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://pphjkuh5uske"]
+
+[ext_resource type="Script" path="res://scripts/maiden.gd" id="1_i0koe"]
+[ext_resource type="PackedScene" uid="uid://d557kilnx4qe" path="res://scenes/components/billboard_component.tscn" id="2_cbxs8"]
+[ext_resource type="Texture2D" uid="uid://jmp8x21i2x60" path="res://assets/sprites/medusa_maiden.png" id="2_gg6rd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvcgo"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("2_gg6rd")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_o65nr"]
+material = SubResource("StandardMaterial3D_pvcgo")
+flip_faces = true
+size = Vector2(2, 1.3)
+orientation = 2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n7t44"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tefjd"]
+radius = 1.5
+
+[node name="maiden" type="CharacterBody3D"]
+script = ExtResource("1_i0koe")
+
+[node name="maidenMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_o65nr")
+
+[node name="maidenCol" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_n7t44")
+
+[node name="maidenCam" type="Camera3D" parent="."]
+top_level = true
+cull_mask = 1048573
+fov = 90.0
+
+[node name="billboardComponent" parent="." instance=ExtResource("2_cbxs8")]
+
+[node name="leaveTrigger" type="Area3D" parent="."]
+top_level = true
+collision_layer = 0
+collision_mask = 8
+monitoring = false
+
+[node name="leaveCol" type="CollisionShape3D" parent="leaveTrigger"]
+shape = SubResource("SphereShape3D_tefjd")

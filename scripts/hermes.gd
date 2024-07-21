@@ -23,7 +23,6 @@ func _ready():
 	trigger3.interacted.connect(giveWingedSandals)
 	discusHandler.discus_landed.connect(discusLanded)
 	pathFollow.reparent(runningPath)
-	print_tree_pretty()
 	
 func _process(delta):
 	match current_phase:

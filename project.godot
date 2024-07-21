@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="sarpedon"
-run/main_scene="res://scenes/test_environment.tscn"
+run/main_scene="res://assets/temp/test_island.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
@@ -60,6 +60,7 @@ directories/dtl_directory={
 "hermesIntro": "res://assets/timelines/hermesIntro.dtl",
 "introMaiden": "res://assets/timelines/introMaiden.dtl",
 "maidenInterject": "res://assets/timelines/maidenInterject.dtl",
+"maidenIntro": "res://assets/timelines/maidenIntro.dtl",
 "phorkysIntro": "res://assets/timelines/phorkysIntro.dtl",
 "sirenLures": "res://assets/timelines/sirenLures.dtl",
 "sistersMaidenInterruption": "res://assets/timelines/sistersMaidenInterruption.dtl",

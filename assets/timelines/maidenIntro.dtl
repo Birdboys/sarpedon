@@ -1,0 +1,7 @@
+[wait time="0.5"]
+maiden: Leave, please.
+maiden: Turn your mighty ship around and go.
+maiden: Whatever you hope to find, you won't.
+maiden: There's nothing here for you, for any of y-... for anyone.
+maiden: So go… please
+[signal arg="introDone"]

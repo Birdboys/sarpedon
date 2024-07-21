@@ -40,7 +40,7 @@ radius = 1.0
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i5msu"]
 radius = 0.6
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7agah"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_seyxd"]
 render_priority = 0
 shader = ExtResource("1_aii50")
 shader_parameter/num_sections = 1.0
@@ -55,7 +55,7 @@ shader_parameter/image2 = ExtResource("6_vu6sh")
 shader_parameter/image3 = ExtResource("6_vu6sh")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1nh6h"]
-material = SubResource("ShaderMaterial_7agah")
+material = SubResource("ShaderMaterial_seyxd")
 flip_faces = true
 orientation = 2
 

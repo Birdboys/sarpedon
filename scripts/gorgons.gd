@@ -39,7 +39,6 @@ func handleDialogue(type):
 		"warningOver":
 			var player_tween = get_tree().create_tween()
 			player_tween.tween_property(player, "global_position", cave_player_pos.position, 0.5)
-			print(global_position, ",PLEASE,", cave_player_pos.position)
 			await player_tween.finished
 			current_phase = "angry"
 			player = null
