@@ -6,6 +6,7 @@ func enter():
 	parent.activityHandler.activity_finished.connect(activityFinished)
 	parent.setSword(false)
 	parent.setShield(false)
+	parent.velocity = Vector3.ZERO
 	await parent.activityHandler.transitionCamera(parent.camera)
 
 

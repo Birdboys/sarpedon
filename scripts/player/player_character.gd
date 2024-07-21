@@ -45,6 +45,7 @@ func _process(delta):
 	uiCamera.global_transform = camera.global_transform
 
 func _physics_process(delta):
+	print(global_position)
 	handlePrompt()
 	
 func _unhandled_input(event):
@@ -127,6 +128,10 @@ func handleInteract():
 			"athena_weave":
 				activityHandler = collider.get_parent()
 				stateMachine.on_state_transition(stateMachine.current_state, "playerActivity")
+			"sisters_intro":
+				activityHandler = collider.get_parent().get_parent()
+				print(activityHandler)
+				stateMachine.on_state_transition(stateMachine.current_state, "playerActivity")
 			_: pass
 
 func handleDialogue(type):
@@ -137,7 +142,11 @@ func handleDialogue(type):
 				stateMachine.on_state_transition(stateMachine.current_state, "playerBoatTalk")
 			else:
 				stateMachine.on_state_transition(stateMachine.current_state, "playerTalk")
-		
+
+func startActivity(handler):
+	activityHandler = handler
+	stateMachine.on_state_transition(stateMachine.current_state, "playerActivity")
+	
 func setSword(on := true):
 	swordMesh.visible = on
 

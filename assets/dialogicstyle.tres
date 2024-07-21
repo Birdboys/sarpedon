@@ -26,4 +26,4 @@ script = ExtResource("10_n7qgg")
 name = "dialogicstyle"
 base_overrides = {}
 layers = Array[ExtResource("2_g8u17")]([SubResource("Resource_reb66")])
-metadata/_latest_layer = 0
+metadata/_latest_layer = -1

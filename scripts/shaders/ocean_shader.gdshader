@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode world_vertex_coords, vertex_lighting;
+render_mode world_vertex_coords;
 uniform sampler2D wave_noise;
 uniform sampler2D normal_noise;
 uniform float noise_scale = 1.0;

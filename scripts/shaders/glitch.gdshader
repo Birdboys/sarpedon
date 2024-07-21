@@ -8,7 +8,7 @@ uniform float max_section_offset : hint_range(0.0,1.0,0.05);
 uniform float image_speed : hint_range(0.0,10.0,1.0);
 uniform float offset_speed : hint_range(0.0,10.0,1.0);
 
-uniform float image_seed : hint_range(0.0, 1.0, 0.1) = 0.0;
+uniform float image_seed : hint_range(0.0, 100.0, 0.1) = 0.0;
 uniform float offset_seed : hint_range(0.0, 100.0, 0.1) = 0.0;
 uniform float transparency : hint_range(0.0,1.0,0.1) = 1.0;
 void vertex() {

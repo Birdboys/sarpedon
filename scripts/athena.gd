@@ -16,11 +16,9 @@ func _ready():
 	trigger2.interacted.connect(startWeave)
 	weaveHandler.weave_finished.connect(weaveFinished)
 	weaveUI.visible = false 
+	weaveCam.current = false
 	playArea.size.x = weaveHandler.x_dim * weaveHandler.tile_size + 32
 	playArea.size.y = weaveHandler.y_dim * weaveHandler.tile_size
-	
-func _process(delta):
-	pass
 
 func introDialogue():
 	Dialogic.start("athenaIntro")
@@ -63,8 +61,6 @@ func weaveFinished():
 		"weave_1":
 			await weaveHandler.revealThread()
 			Dialogic.start("athenaWeave1Cont")
-		_:
-			pass
 
 func transitionCamera(initial_camera: Camera3D):
 	var original_transform = weaveCam.global_transform

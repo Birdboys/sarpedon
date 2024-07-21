@@ -1,7 +1,5 @@
 extends Node3D
-@onready var boatFinder := $boatFinder
 @onready var boatFinderCol := $boatFinder/finderShape
-@onready var boatPuller := $boatPuller
 @onready var boatPullerCol := $boatPuller/pullerShape
 @onready var singTimer := $singTimer
 @onready var player_in_sing_range := false
@@ -11,6 +9,10 @@ extends Node3D
 @onready var num_sing_texts := 6
 #@onready var min_boat_pull_force := 3
 @onready var max_boat_pull_force := 7
+
+@export var boatFinder : Area3D
+@export var boatPuller : Area3D
+
 var boat
 
 # Called when the node enters the scene tree for the first time.

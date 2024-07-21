@@ -1,10 +1,46 @@
-[gd_scene load_steps=6 format=3 uid="uid://5nun341wi85d"]
+[gd_scene load_steps=23 format=3 uid="uid://5nun341wi85d"]
 
+[ext_resource type="Script" path="res://scripts/gorgons.gd" id="1_471g7"]
 [ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="1_aii50"]
+[ext_resource type="Script" path="res://scripts/stheno.gd" id="2_8t2it"]
 [ext_resource type="PackedScene" uid="uid://d557kilnx4qe" path="res://scenes/components/billboard_component.tscn" id="2_diy4y"]
-[ext_resource type="Texture2D" uid="uid://dqrhssj4ilmxy" path="res://assets/sprites/stheno.png" id="2_lnv0r"]
+[ext_resource type="Texture2D" uid="uid://b25ya6vwtpsbp" path="res://assets/sprites/maiden2.png" id="4_pm0xy"]
+[ext_resource type="Texture2D" uid="uid://cf7f7wjps11xm" path="res://assets/sprites/maiden1.png" id="4_u1st4"]
+[ext_resource type="Texture2D" uid="uid://c3c7wajh2bw33" path="res://assets/sprites/maiden4.png" id="5_7gick"]
+[ext_resource type="PackedScene" uid="uid://dt6bxmw7stlh8" path="res://scenes/components/interact_box.tscn" id="5_574f0"]
+[ext_resource type="Script" path="res://scripts/euryale.gd" id="6_fyby4"]
+[ext_resource type="Texture2D" uid="uid://c26bjmcf2aucv" path="res://assets/sprites/maiden5.png" id="6_m8fcc"]
+[ext_resource type="Texture2D" uid="uid://cy0tbug7l5pqf" path="res://assets/sprites/euryale.png" id="6_vu6sh"]
+[ext_resource type="Texture2D" uid="uid://5u0d1qq2f4ea" path="res://assets/sprites/maiden3.png" id="12_08w3s"]
+[ext_resource type="Texture2D" uid="uid://b6ljkvq5td0rk" path="res://assets/sprites/maiden6.png" id="13_bjl1w"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_42d2s"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lfh5s"]
+render_priority = 0
+shader = ExtResource("1_aii50")
+shader_parameter/num_sections = 6.0
+shader_parameter/max_section_offset = 0.1
+shader_parameter/image_speed = 1.0
+shader_parameter/offset_speed = 4.0
+shader_parameter/image_seed = 12.3
+shader_parameter/offset_seed = 13.0
+shader_parameter/transparency = 0.9
+shader_parameter/image1 = ExtResource("4_pm0xy")
+shader_parameter/image2 = ExtResource("5_7gick")
+shader_parameter/image3 = ExtResource("6_m8fcc")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tg0sv"]
+material = SubResource("ShaderMaterial_lfh5s")
+flip_faces = true
+size = Vector2(1, 2)
+orientation = 2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wy7rn"]
+radius = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i5msu"]
+radius = 0.6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7agah"]
 render_priority = 0
 shader = ExtResource("1_aii50")
 shader_parameter/num_sections = 1.0
@@ -13,29 +49,99 @@ shader_parameter/image_speed = 0.0
 shader_parameter/offset_speed = 0.0
 shader_parameter/image_seed = 0.0
 shader_parameter/offset_seed = 0.0
-shader_parameter/transparency = 0.9
-shader_parameter/image1 = ExtResource("2_lnv0r")
-shader_parameter/image2 = ExtResource("2_lnv0r")
-shader_parameter/image3 = ExtResource("2_lnv0r")
+shader_parameter/transparency = 1.0
+shader_parameter/image1 = ExtResource("6_vu6sh")
+shader_parameter/image2 = ExtResource("6_vu6sh")
+shader_parameter/image3 = ExtResource("6_vu6sh")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_tg0sv"]
-material = SubResource("ShaderMaterial_42d2s")
+[sub_resource type="PlaneMesh" id="PlaneMesh_1nh6h"]
+material = SubResource("ShaderMaterial_7agah")
 flip_faces = true
 orientation = 2
 
-[node name="gorgons" type="Node3D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_762i1"]
+render_priority = 0
+shader = ExtResource("1_aii50")
+shader_parameter/num_sections = 6.0
+shader_parameter/max_section_offset = 0.1
+shader_parameter/image_speed = 1.0
+shader_parameter/offset_speed = 4.0
+shader_parameter/image_seed = 14.0
+shader_parameter/offset_seed = 15.0
+shader_parameter/transparency = 0.9
+shader_parameter/image1 = ExtResource("4_u1st4")
+shader_parameter/image2 = ExtResource("12_08w3s")
+shader_parameter/image3 = ExtResource("13_bjl1w")
 
-[node name="stheno" type="Node3D" parent="."]
+[sub_resource type="PlaneMesh" id="PlaneMesh_6e05d"]
+material = SubResource("ShaderMaterial_762i1")
+flip_faces = true
+size = Vector2(1, 2)
+orientation = 2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_70nyg"]
+radius = 1.0
+
+[node name="gorgons" type="Node3D"]
+script = ExtResource("1_471g7")
+
+[node name="stheno" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 0)
+script = ExtResource("2_8t2it")
 
 [node name="sthenoMesh" type="MeshInstance3D" parent="stheno"]
+visible = false
 mesh = SubResource("PlaneMesh_tg0sv")
 
 [node name="billboardComponent" parent="stheno/sthenoMesh" instance=ExtResource("2_diy4y")]
 
 [node name="maidenMesh" type="MeshInstance3D" parent="stheno"]
-visible = false
 mesh = SubResource("PlaneMesh_tg0sv")
 
 [node name="billboardComponent" parent="stheno/maidenMesh" instance=ExtResource("2_diy4y")]
 
-[node name="euryale" type="Node3D" parent="."]
+[node name="gorgonCol" type="CollisionShape3D" parent="stheno"]
+shape = SubResource("SphereShape3D_wy7rn")
+disabled = true
+
+[node name="maidenCol" type="CollisionShape3D" parent="stheno"]
+shape = SubResource("CapsuleShape3D_i5msu")
+
+[node name="navAgent" type="NavigationAgent3D" parent="stheno"]
+
+[node name="trigger1" parent="stheno" instance=ExtResource("5_574f0")]
+object_name = "sisters_trigger_1"
+object_prompt = "talk [e]"
+interact_ret = "sisters_intro"
+
+[node name="euryale" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0)
+script = ExtResource("6_fyby4")
+
+[node name="euryaleMesh" type="MeshInstance3D" parent="euryale"]
+visible = false
+mesh = SubResource("PlaneMesh_1nh6h")
+
+[node name="billboardComponent" parent="euryale/euryaleMesh" instance=ExtResource("2_diy4y")]
+
+[node name="maidenMesh" type="MeshInstance3D" parent="euryale"]
+mesh = SubResource("PlaneMesh_6e05d")
+
+[node name="billboardComponent" parent="euryale/maidenMesh" instance=ExtResource("2_diy4y")]
+
+[node name="gorgonCol" type="CollisionShape3D" parent="euryale"]
+shape = SubResource("SphereShape3D_70nyg")
+disabled = true
+
+[node name="maidenCol" type="CollisionShape3D" parent="euryale"]
+shape = SubResource("CapsuleShape3D_i5msu")
+
+[node name="navAgent" type="NavigationAgent3D" parent="euryale"]
+
+[node name="trigger1" parent="euryale" instance=ExtResource("5_574f0")]
+object_name = "sisters_trigger_1"
+object_prompt = "talk [e]"
+interact_ret = "sisters_intro"
+
+[node name="sisterTalkCam" type="Camera3D" parent="."]
+fov = 90.0

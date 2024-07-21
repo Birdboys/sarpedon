@@ -24,11 +24,13 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 directories/dch_directory={
 "athena": "res://assets/characters/athena.dch",
+"euryale": "res://assets/characters/euryale.dch",
 "graeae": "res://assets/characters/graeae.dch",
 "hermes": "res://assets/characters/hermes.dch",
 "maiden": "res://assets/characters/maiden.dch",
 "phorkys": "res://assets/characters/phorkys.dch",
-"siren": "res://assets/characters/siren.dch"
+"siren": "res://assets/characters/siren.dch",
+"stheno": "res://assets/characters/stheno.dch"
 }
 directories/dtl_directory={
 "athenaIntro": "res://assets/timelines/athenaIntro.dtl",
@@ -59,7 +61,10 @@ directories/dtl_directory={
 "introMaiden": "res://assets/timelines/introMaiden.dtl",
 "maidenInterject": "res://assets/timelines/maidenInterject.dtl",
 "phorkysIntro": "res://assets/timelines/phorkysIntro.dtl",
-"sirenLures": "res://assets/timelines/sirenLures.dtl"
+"sirenLures": "res://assets/timelines/sirenLures.dtl",
+"sistersMaidenInterruption": "res://assets/timelines/sistersMaidenInterruption.dtl",
+"sistersMaidenIntro": "res://assets/timelines/sistersMaidenIntro.dtl",
+"sistersMaidenWarning": "res://assets/timelines/sistersMaidenWarning.dtl"
 }
 layout/style_list=["res://assets/dialogicstyle.tres"]
 layout/default_style="res://assets/dialogicstyle.tres"

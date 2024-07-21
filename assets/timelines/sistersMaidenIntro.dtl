@@ -1,0 +1,15 @@
+[wait time="0.5" hide_text="false"]
+stheno: [signal=stheno_talk]Why… here...? Go… now.
+euryale: [signal=euryale_talk]Pardon my sister. What she means to say is “hello, how are you…
+euryale: …what are you doing here, please leave.”
+stheno: [signal=stheno_talk]Won’t… hurt… sister….
+euryale: [signal=euryale_talk]Don’t worry, I’m sure he had no intention of it.
+euryale: You wouldn’t want to wake her… would you?
+euryale: In fact, I believe you were just seeing yourself out.
+stheno: [signal=stheno_talk]Go away… our cave… don’t look…
+euryale: [signal=euryale_talk]Yes, quite right. It’s our cave, our island.
+euryale: I don’t know how you got here, what plans you think you have, what quest you think you’re on.
+euryale: I never do…
+euryale: …but it ends here. You’re not getting to her.
+euryale: There’s nothing here for you, so go.
+[signal arg="introDone"]
