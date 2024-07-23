@@ -18,6 +18,9 @@ extends CharacterBody3D
 @onready var swordAnim := $anims/swordAnim
 @onready var postProcessAnim := $anims/postProcessAnim
 @onready var invisEffect := $postProcess/invisEffect
+@onready var petrifyPostProcess := $neck/playerCam/petrifyPostProcess
+@onready var petrify_val := 0.0
+@onready var petrify_cleanse_rate := 0.3
 
 @export var has_invis_helmet := true
 @export var has_winged_sandals := true
@@ -26,7 +29,6 @@ extends CharacterBody3D
 @export var has_bag := false
 @export var shield_hold := false
 @export var is_invis := false
-@export var petrify_val := 0.0
 
 @onready var sword_up := false
 @onready var shield_up := false
@@ -42,7 +44,8 @@ func _ready():
 func _process(delta):
 	$UI/UIBase/fpsCounter.text = "FPS:%s" % Engine.get_frames_per_second()
 	uiCamera.global_transform = camera.global_transform
-
+	handlePetrify(delta)
+	
 func _physics_process(delta):
 	handlePrompt()
 	
@@ -93,8 +96,8 @@ func handleMovementInput(delta, speed):
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
 	if direction:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
+		velocity.x = direction.x * speed * (1.0 - petrify_val)
+		velocity.z = direction.z * speed * (1.0 - petrify_val)
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed*10.0*delta)
 		velocity.z = move_toward(velocity.z, 0, speed*10.0*delta)
@@ -192,5 +195,15 @@ func pauseToggled():
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-func petrify(bal):
-	print("OH FUCK IM BEING PETRIFIED")
+func handlePetrify(delta):
+	petrify_val -= petrify_cleanse_rate * delta
+	petrify_val = clamp(petrify_val, 0.0, 1.0)
+	if petrify_val == 0:
+		petrifyPostProcess.visible = false
+	else:
+		petrifyPostProcess.mesh.material.set_shader_parameter("petrify_val", petrify_val)
+		petrifyPostProcess.visible = true
+
+func petrify(val):
+	if shield_hold: return
+	petrify_val += val

@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://ev5ihdel24io"]
+[gd_scene load_steps=55 format=3 uid="uid://ev5ihdel24io"]
 
 [ext_resource type="Script" path="res://scripts/player/player_character.gd" id="1_y87bo"]
 [ext_resource type="Texture2D" uid="uid://djldtb4845f38" path="res://assets/sprites/sword.png" id="2_0ap74"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" path="res://scripts/player/player_boat_talk.gd" id="15_04qwm"]
 [ext_resource type="Shader" path="res://scripts/shaders/invis_shader.gdshader" id="15_4wiuu"]
 [ext_resource type="Script" path="res://scripts/player/player_intro.gd" id="16_5u45x"]
+[ext_resource type="Shader" path="res://scripts/shaders/petrify_shader.gdshader" id="18_gxkx7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2a5dh"]
 
@@ -60,6 +61,17 @@ material = SubResource("StandardMaterial3D_xmc1c")
 flip_faces = true
 size = Vector2(1, 1)
 orientation = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4fmi5"]
+render_priority = 0
+shader = ExtResource("18_gxkx7")
+shader_parameter/depth_range = 70.0
+shader_parameter/petrify_val = 0.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_22sj0"]
+material = SubResource("ShaderMaterial_4fmi5")
+flip_faces = true
+size = Vector2(2, 2)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ooowg"]
 seed = 32
@@ -386,9 +398,9 @@ _data = {
 collision_layer = 12
 collision_mask = 25
 script = ExtResource("1_y87bo")
-has_invis_helmet = false
 has_winged_sandals = false
 has_sword = true
+has_shield = true
 has_bag = true
 
 [node name="playerCol" type="CollisionShape3D" parent="."]
@@ -440,6 +452,11 @@ cast_shadow = 0
 mesh = SubResource("PlaneMesh_eewxe")
 skeleton = NodePath("../..")
 
+[node name="petrifyPostProcess" type="MeshInstance3D" parent="neck/playerCam"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.497977, 0)
+mesh = SubResource("QuadMesh_22sj0")
+skeleton = NodePath("../../..")
+
 [node name="hoverRay" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 target_position = Vector3(0, -0.5, 0)
@@ -459,7 +476,6 @@ initial_state = NodePath("playerWalk")
 
 [node name="playerWalk" type="Node" parent="stateMachine"]
 script = ExtResource("3_euxff")
-move_speed = 50.0
 
 [node name="playerJump" type="Node" parent="stateMachine"]
 script = ExtResource("4_0rupf")

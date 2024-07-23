@@ -4,7 +4,7 @@ extends Node3D
 @onready var euryale := $euryale
 @onready var sisterTalkCam := $sisterTalkCam
 @onready var talk_cam_tween
-@onready var current_phase := "idle"
+@onready var current_phase := "angry"
 @export var cave_trigger : Area3D
 @export var cave_player_pos : Node3D
 var player = null
@@ -75,9 +75,9 @@ func playerEnteredCave(body):
 			player.startActivity(self)
 			Dialogic.start("sistersMaidenWarning")
 		"angry":
-			pass
-		"gorgon":
-			pass
+			current_phase = "gorgon"
+			stheno.changeToGorgon()
+			euryale.changeToGorgon()
 
 func transitionCamera(initial_camera: Camera3D):
 	sisterTalkCam.global_transform = initial_camera.global_transform
