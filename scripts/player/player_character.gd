@@ -1,7 +1,5 @@
 extends CharacterBody3D
 
-
-@export var walk_speed := 5.0
 @export var jump_strength := 4.5
 @export var sensitivity := .01
 @export var gravity := 10.0
@@ -28,6 +26,7 @@ extends CharacterBody3D
 @export var has_bag := false
 @export var shield_hold := false
 @export var is_invis := false
+@export var petrify_val := 0.0
 
 @onready var sword_up := false
 @onready var shield_up := false
@@ -131,6 +130,11 @@ func handleInteract():
 				activityHandler = collider.get_parent().get_parent()
 				print(activityHandler)
 				stateMachine.on_state_transition(stateMachine.current_state, "playerActivity")
+			"athena_take_shield":
+				has_shield = true
+				shield_up = false
+				inventoryHandler.acquireItem("shield")
+				stateMachine.on_state_transition(stateMachine.current_state, "playerInventory")
 			_: pass
 
 func handleDialogue(type):
@@ -187,3 +191,6 @@ func pauseToggled():
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func petrify(bal):
+	print("OH FUCK IM BEING PETRIFIED")

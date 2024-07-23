@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://0or1kfewcx3e"]
+
+[ext_resource type="Script" path="res://scripts/petrify_component.gd" id="1_t2kwj"]
+
+[node name="petrifyComponent" type="VisibleOnScreenNotifier3D" groups=["needs_player"]]
+script = ExtResource("1_t2kwj")
+
+[node name="petrifyRay" type="RayCast3D" parent="."]
+enabled = false
+collision_mask = 21
+debug_shape_custom_color = Color(0.916667, 0, 1, 1)
+debug_shape_thickness = 5

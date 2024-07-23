@@ -1,5 +1,4 @@
 extends State
-@export var move_speed := 5.0
 
 func enter():
 	parent.inventoryHandler.openInventory()

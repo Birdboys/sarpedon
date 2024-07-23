@@ -8,5 +8,5 @@ script = ExtResource("2_yl6kn")
 item_id = "winged_sandals"
 name = "πτερόεντα πέδιλα"
 image = ExtResource("1_1ecxh")
-description = "The sandals fit your feet better than anything before. Even as the wings flanking each side of your ankles lay still, each step feels weightless, like walking on a dream, an idea. The desire for more is met with the fluttering of wings. You can only manage to stay a bit off the ground, but you feel free."
-tooltip = "Hold [space] after jumping to float using the winged sandals. "
+description = "They are the most comfortable sandals you’ve ever worn. Even as the wings flanking your ankles lay still, each step feels weightless, like walking on a dream, like infinite possibilities. You can only manage to float a few inches off the ground, but you can tell that the wings can do more, that they want to go higher. "
+tooltip = "Hold [space] after jumping to float."

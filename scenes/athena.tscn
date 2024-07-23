@@ -59,7 +59,6 @@ size = Vector3(1, 2, 1)
 object_name = "athena_trigger"
 object_prompt = "talk [e]"
 interact_ret = "athena_talk"
-on_start = false
 
 [node name="trigger2" parent="." instance=ExtResource("7_usl54")]
 size = Vector3(1, 2, 1)
@@ -67,6 +66,16 @@ object_name = "athena_trigger2"
 object_prompt = "talk [e]"
 interact_ret = "athena_weave"
 interactable = false
+on_start = false
+
+[node name="trigger3" parent="." instance=ExtResource("7_usl54")]
+size = Vector3(1, 2, 1)
+object_name = "athena_trigger3"
+object_prompt = "take ἀσπίς
+[e]"
+interact_ret = "athena_take_shield"
+interactable = false
+on_start = false
 
 [node name="weaveCam" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.985703, 0.168489, 0, -0.168489, 0.985703, 0, 0.215, -0.3)

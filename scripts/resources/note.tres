@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://c8qx73eaeg5re"]
+
+[ext_resource type="Texture2D" uid="uid://cybw1xvyd07am" path="res://assets/sprites/papyrus.png" id="1_jqo4w"]
+[ext_resource type="Script" path="res://scripts/resources/inventory_item.gd" id="2_nxced"]
+
+[resource]
+script = ExtResource("2_nxced")
+item_id = "note"
+name = "πάπυρος "
+image = ExtResource("1_jqo4w")
+description = "The edges of the coiled papyrus are tattered, waterlogged, rotting, yet the message scrawled in the center remains painfully legible. 
+
+REACH ISLAND
+SLAY BEAST
+RETURN WITH HEAD"
+tooltip = "On the back, in a faint, almost undetectable lettering, a scribbled reminder: DONT LOOK"

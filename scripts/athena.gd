@@ -1,6 +1,7 @@
 extends Node3D
 @onready var trigger1 := $trigger1
 @onready var trigger2 := $trigger2
+@onready var trigger3 := $trigger3
 @onready var weaveHandler := $playArea/weaveGame
 @onready var weaveCam := $weaveCam
 @onready var weaveUI := $weaveCam/weaveUI
@@ -14,6 +15,7 @@ func _ready():
 	Dialogic.signal_event.connect(handleDialogue)
 	trigger1.interacted.connect(introDialogue)
 	trigger2.interacted.connect(startWeave)
+	trigger3.interacted.connect(giveShield)
 	weaveHandler.weave_finished.connect(weaveFinished)
 	weaveUI.visible = false 
 	weaveCam.current = false
@@ -29,6 +31,13 @@ func startWeave():
 	current_phase = "weave_explanation"
 	trigger2.deactivate()
 	Dialogic.start("athenaWeaveExplanation")
+
+func finishWeave():
+	weaveUI.visible = false 
+	weaveHandler.showTapestry()
+	trigger3.activate()
+	current_phase = "idle"
+	emit_signal("activity_finished")
 	
 func handleDialogue(type):
 	match type:
@@ -47,6 +56,8 @@ func handleDialogue(type):
 			weaveHandler.y_dim = 8
 			playArea.size.x = weaveHandler.x_dim * weaveHandler.tile_size + 32
 			playArea.size.y = weaveHandler.y_dim * weaveHandler.tile_size
+		"finishDone":
+			finishWeave()
 			
 func weaveFinished():
 	match current_phase:
@@ -83,3 +94,6 @@ func unTransitionCamera(initial_camera: Camera3D):
 	weaveCam.current = false
 	initial_camera.current = true
 	return
+
+func giveShield():
+	trigger3.deactivate()

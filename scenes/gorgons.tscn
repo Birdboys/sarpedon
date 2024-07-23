@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://5nun341wi85d"]
+[gd_scene load_steps=24 format=3 uid="uid://5nun341wi85d"]
 
 [ext_resource type="Script" path="res://scripts/gorgons.gd" id="1_471g7"]
 [ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="1_aii50"]
 [ext_resource type="Script" path="res://scripts/stheno.gd" id="2_8t2it"]
 [ext_resource type="PackedScene" uid="uid://d557kilnx4qe" path="res://scenes/components/billboard_component.tscn" id="2_diy4y"]
+[ext_resource type="PackedScene" uid="uid://0or1kfewcx3e" path="res://scenes/components/petrify_component.tscn" id="2_r35w3"]
 [ext_resource type="Texture2D" uid="uid://b25ya6vwtpsbp" path="res://assets/sprites/maiden2.png" id="4_pm0xy"]
 [ext_resource type="Texture2D" uid="uid://cf7f7wjps11xm" path="res://assets/sprites/maiden1.png" id="4_u1st4"]
 [ext_resource type="Texture2D" uid="uid://c3c7wajh2bw33" path="res://assets/sprites/maiden4.png" id="5_7gick"]
@@ -85,7 +86,7 @@ radius = 1.0
 [node name="gorgons" type="Node3D"]
 script = ExtResource("1_471g7")
 
-[node name="stheno" type="CharacterBody3D" parent="."]
+[node name="stheno" type="CharacterBody3D" parent="." groups=["needs_player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 0)
 script = ExtResource("2_8t2it")
 
@@ -108,13 +109,19 @@ disabled = true
 shape = SubResource("CapsuleShape3D_i5msu")
 
 [node name="navAgent" type="NavigationAgent3D" parent="stheno"]
+debug_enabled = true
 
 [node name="trigger1" parent="stheno" instance=ExtResource("5_574f0")]
 object_name = "sisters_trigger_1"
 object_prompt = "talk [e]"
 interact_ret = "sisters_intro"
 
-[node name="euryale" type="CharacterBody3D" parent="."]
+[node name="petrifyComponent" parent="stheno" instance=ExtResource("2_r35w3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.825632, 0)
+aabb = AABB(-0.05, -0.05, -0.05, 0.1, 0.1, 0.1)
+petrify_length = 30.0
+
+[node name="euryale" type="CharacterBody3D" parent="." groups=["needs_player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0)
 script = ExtResource("6_fyby4")
 
@@ -142,6 +149,11 @@ shape = SubResource("CapsuleShape3D_i5msu")
 object_name = "sisters_trigger_1"
 object_prompt = "talk [e]"
 interact_ret = "sisters_intro"
+
+[node name="petrifyComponent" parent="euryale" instance=ExtResource("2_r35w3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.825632, 0)
+aabb = AABB(-0.05, -0.05, -0.05, 0.1, 0.1, 0.1)
+petrify_length = 30.0
 
 [node name="sisterTalkCam" type="Camera3D" parent="."]
 fov = 90.0

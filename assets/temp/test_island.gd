@@ -23,10 +23,24 @@ func _process(delta):
 		worldEnvironment.environment.fog_density = fog_val #+ fog_offset
 	for node in get_tree().get_nodes_in_group("billboard_comp"):
 		node.target_position = player.global_position
-
+	
 func _physics_process(delta):
+	for node in get_tree().get_nodes_in_group("needs_player"):
+		node.target_pos = player.global_position
+	return
+	#$testNav/NavigationAgent3D.target_position = player.global_position
+	#if $testNav/NavigationAgent3D.is_target_reachable():
+	#	var current_agent_position: Vector3 = $testNav.global_position
+	#	var next_path_position: Vector3 = $testNav/NavigationAgent3D.get_next_path_position()
+
+	#	$testNav.velocity = current_agent_position.direction_to(next_path_position) * 10.0
+	#	$testNav.move_and_slide()
+	#	$testNav/canGet.visible = true
+	#	$testNav/cantGet.visible = false
+	#else:
+	#	$testNav/canGet.visible = false
+	#	$testNav/cantGet.visible = true
 	pass
-	#gorgons.setGorgonTargetPos(player.global_position)
 	
 func playerEnterCave(_body):
 	if worldEnvironment.environment.fog_density != 0:

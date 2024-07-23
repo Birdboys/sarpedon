@@ -70,6 +70,8 @@ func playerEnteredCave(body):
 			player.startActivity(self)
 			Dialogic.start("sistersMaidenInterruption")
 		"aware":
+			stheno.trigger1.deactivate()
+			euryale.trigger1.deactivate()
 			player.startActivity(self)
 			Dialogic.start("sistersMaidenWarning")
 		"angry":

@@ -1,25 +1,20 @@
 extends Node3D
-@onready var boatFinderCol := $boatFinder/finderShape
-@onready var boatPullerCol := $boatPuller/pullerShape
 @onready var singTimer := $singTimer
 @onready var player_in_sing_range := false
 @onready var player_in_pull_range := false
-@export var sing_radius := 75.0
-@export var pull_radius := 55.0
 @onready var num_sing_texts := 6
 #@onready var min_boat_pull_force := 3
 @onready var max_boat_pull_force := 7
 
 @export var boatFinder : Area3D
 @export var boatPuller : Area3D
+@export var sing_radius : float
+@export var pull_radius : float
 
 var boat
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	boatFinderCol.shape.radius = sing_radius
-	boatPullerCol.shape.radius = pull_radius
-	
 	boatFinder.body_entered.connect(boatFinderEntered)
 	boatFinder.body_exited.connect(boatFinderExited)
 	boatPuller.body_entered.connect(boatPullerEntered)

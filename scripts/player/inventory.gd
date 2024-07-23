@@ -6,7 +6,7 @@ extends Control
 @onready var itemTip := $inventoryMargin/inventoryBorder/panelMargin/hbox/vbox/itemTip
 @onready var controlText := $inventoryMargin/inventoryBorder/panelMargin/hbox/imagePanel/imageMargin/VBoxContainer/controlText
 @onready var is_open := false
-@onready var current_inventory := ["bag", "sword"]
+@onready var current_inventory := ["bag", "note", "sword"]
 @onready var inventory_index := 0
 # Called when the node enters the scene tree for the first time.
 func _ready():

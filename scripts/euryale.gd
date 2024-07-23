@@ -9,7 +9,7 @@ extends CharacterBody3D
 var target_pos : Vector3
 
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

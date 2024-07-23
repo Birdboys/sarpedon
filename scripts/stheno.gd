@@ -21,6 +21,7 @@ func _physics_process(delta):
 		"chasing":
 			if navAgent.is_navigation_finished(): return
 			if not target_pos: return
+			if not navAgent.is_target_reachable(): return
 			var current_agent_position: Vector3 = global_position
 			var next_path_position: Vector3 = navAgent.get_next_path_position()
 

@@ -27,6 +27,7 @@ script = ExtResource("1_8uxof")
 
 [node name="boatMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.0948396, 0, 0.0948396)
+cast_shadow = 2
 mesh = SubResource("BoxMesh_xri4x")
 
 [node name="boatCol" type="CollisionShape3D" parent="."]
@@ -63,3 +64,6 @@ collision_layer = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="shoreFinder"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_m0ynb")
+
+[node name="introCam" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.449655, 1)

@@ -1,5 +1,4 @@
 shader_type spatial;
-render_mode unshaded;
 uniform sampler2D shield_text: filter_nearest, source_color;
 uniform sampler2D other_image;
 uniform float shield_percent = 0.5;
@@ -19,4 +18,5 @@ void fragment() {
 	float centerDist = getCenterDist(UV.x,UV.y);
 	ALBEDO = texture(shield_text, UV).rgb * centerDist + texture(other_image, UV).rgb * (shield_percent-centerDist);
 	ALPHA_SCISSOR_THRESHOLD = 0.5;
+	METALLIC =1.0;
 }

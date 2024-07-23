@@ -16,10 +16,6 @@ func _ready():
 	maidenMesh.visible = false
 	maidenMesh.transparency = 0.0
 	Dialogic.signal_event.connect(handleDialogue)
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func startInteraction(body):
 	var player_pos = body.global_position
@@ -30,7 +26,7 @@ func startInteraction(body):
 	global_position = new_pos
 	#apply_floor_snap() 
 	body.startActivity(self)
-	summonArea.monitoring = false
+	summonArea.queue_free()
 	Dialogic.start("maidenInterject")
 
 func handleDialogue(type):

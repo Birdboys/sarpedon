@@ -4,6 +4,7 @@
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_40axr"]
 panorama = ExtResource("1_sp5lm")
+filter = false
 
 [sub_resource type="Sky" id="Sky_i0xqh"]
 sky_material = SubResource("PanoramaSkyMaterial_40axr")
@@ -12,7 +13,6 @@ sky_material = SubResource("PanoramaSkyMaterial_40axr")
 background_mode = 2
 background_energy_multiplier = 0.5
 sky = SubResource("Sky_i0xqh")
-sky_rotation = Vector3(0, 4.94975, 0)
 ambient_light_source = 3
 ambient_light_color = Color(0.44183, 0.329709, 0.970644, 1)
 ambient_light_sky_contribution = 0.7
@@ -22,4 +22,7 @@ sdfgi_min_cell_size = 0.351563
 sdfgi_cascade0_distance = 22.5001
 sdfgi_max_distance = 360.001
 glow_enabled = true
+fog_light_color = Color(0.626455, 0.670486, 0.878558, 1)
+fog_sun_scatter = 0.05
 fog_density = 0.05
+fog_aerial_perspective = 0.15
