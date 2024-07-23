@@ -398,10 +398,8 @@ _data = {
 collision_layer = 12
 collision_mask = 25
 script = ExtResource("1_y87bo")
+has_invis_helmet = false
 has_winged_sandals = false
-has_sword = true
-has_shield = true
-has_bag = true
 
 [node name="playerCol" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_2a5dh")
@@ -454,6 +452,7 @@ skeleton = NodePath("../..")
 
 [node name="petrifyPostProcess" type="MeshInstance3D" parent="neck/playerCam"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.497977, 0)
+visible = false
 mesh = SubResource("QuadMesh_22sj0")
 skeleton = NodePath("../../..")
 
@@ -476,6 +475,7 @@ initial_state = NodePath("playerWalk")
 
 [node name="playerWalk" type="Node" parent="stateMachine"]
 script = ExtResource("3_euxff")
+movement_control = false
 
 [node name="playerJump" type="Node" parent="stateMachine"]
 script = ExtResource("4_0rupf")

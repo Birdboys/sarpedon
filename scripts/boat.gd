@@ -1,9 +1,12 @@
 extends CharacterBody3D
 
 @onready var shoreFinder := $shoreFinder
+@onready var boatMesh := $boatMesh
+@onready var takeSupplyBox := $takeSupplyBox
 @onready var enterBox := $enterBox
 @onready var exitBox := $exitBox
 @onready var boat_angular_velocity := 0.0
+@onready var intro_phase := "idle"
 @export var boat_force := 5
 @export var boat_torque := 5
 @export var max_boat_velocity := 10.0
@@ -11,10 +14,13 @@ extends CharacterBody3D
 @export var boat_friction := 0.4
 var in_boat := false
 
+signal activity_finished
+
 func _ready():
+	takeSupplyBox.interacted.connect(playerTakeSupplies)
 	enterBox.interacted.connect(playerEnter)
 	exitBox.interacted.connect(playerExit)
-
+	
 func _process(delta):
 	rotate(Vector3.UP, boat_angular_velocity * delta)
 	if not is_on_floor(): velocity.y -= 10.0 * delta
@@ -48,6 +54,7 @@ func playerEnter():
 	enterBox.deactivate()
 	exitBox.activate()
 	set_collision_layer_value(1, false)
+	boatMesh.mesh.surface_get_material(0).no_depth_test = true
 
 func playerExit():
 	in_boat = false
@@ -56,3 +63,7 @@ func playerExit():
 	set_collision_layer_value(1, true)
 	velocity = Vector3.ZERO
 	boat_angular_velocity = 0
+	boatMesh.mesh.surface_get_material(0).no_depth_test = false
+
+func playerTakeSupplies():
+	takeSupplyBox.deactivate()

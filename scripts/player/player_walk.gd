@@ -7,10 +7,9 @@ func enter():
 		emit_signal("transitioned", self, "playerSneak")
 
 func update(delta):
+	if not movement_control: return
 	if parent.has_bag and Input.is_action_just_pressed("inventory"):
 		emit_signal("transitioned", self, "playerInventory")
-	
-	parent.handleMovementInput(delta, move_speed)
 	
 	if Input.is_action_just_pressed("jump") and parent.is_on_floor():
 		print("JUMPED")
@@ -20,6 +19,9 @@ func update(delta):
 	if Input.is_action_just_pressed("sneak") and parent.has_invis_helmet:
 		emit_signal("transitioned", self, "playerSneak")
 		return
+		
+	
+	parent.handleMovementInput(delta, move_speed)
 	parent.move_and_slide()
 	
 	if not parent.is_on_floor():

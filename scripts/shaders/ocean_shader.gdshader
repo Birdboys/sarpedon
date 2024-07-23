@@ -15,7 +15,7 @@ float getNoise() {
 	return texture(wave_noise, vec2(world_pos.x, world_pos.z)/noise_scale + TIME * time_scale).r;
 }
 vec3 getNormalNoise() {
-	return texture(normal_noise, vec2(world_pos.x, world_pos.z)/noise_scale + current_time * time_scale).rgb;
+	return texture(normal_noise, vec2(world_pos.x, world_pos.z)/noise_scale + TIME * time_scale).rgb;
 }
 
 void vertex() {

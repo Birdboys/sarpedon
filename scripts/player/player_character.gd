@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export var gravity := 10.0
 
 @onready var stateMachine := $stateMachine
+@onready var walkState := $stateMachine/playerWalk
 @onready var camera := $neck/playerCam
 @onready var uiCamera := $neck/playerCam/hudViewportContainer/hudViewport/uiCam
 @onready var backCamera := $backViewport/backCamera
@@ -107,6 +108,12 @@ func handleInteract():
 		var collider = lookRay.get_collider()
 		var ret = collider.interact()
 		match ret:
+			"boat_take_supplies":
+				has_bag = true
+				has_sword = true
+				walkState.movement_control = true
+				stateMachine.on_state_transition(stateMachine.current_state, "playerInventory")
+				
 			"boat_enter": 
 				boat = collider.get_parent()
 				stateMachine.on_state_transition(stateMachine.current_state, "playerBoat")

@@ -9,6 +9,7 @@ extends CharacterBody3D
 var player = null
 
 signal activity_finished
+signal maiden_left
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	summonArea.body_exited.connect(startInteraction)
@@ -59,6 +60,7 @@ func goAway(_body):
 	leave_tween.tween_property(maidenMesh, "transparency", 1.0, 1.5)
 	await leave_tween.finished
 	player = null
+	emit_signal("maiden_left")
 	queue_free()
 	
 func rotatePlayer():
