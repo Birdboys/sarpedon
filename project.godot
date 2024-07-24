@@ -17,8 +17,11 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-PauseMenu="*res://scenes/pause_menu.tscn"
+PauseMenu="*res://scenes/ui/pause_menu.tscn"
+DeathScreen="*res://scenes/ui/death_screen.tscn"
+DataHandler="*res://scripts/dataHandler.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+LoadHandler="*res://scripts/loadHandler.gd"
 
 [dialogic]
 
@@ -61,6 +64,7 @@ directories/dtl_directory={
 "introMaiden": "res://assets/timelines/introMaiden.dtl",
 "maidenInterject": "res://assets/timelines/maidenInterject.dtl",
 "maidenIntro": "res://assets/timelines/maidenIntro.dtl",
+"nearingDeepWater": "res://assets/timelines/nearingDeepWater.dtl",
 "phorkysIntro": "res://assets/timelines/phorkysIntro.dtl",
 "sirenLures": "res://assets/timelines/sirenLures.dtl",
 "sistersMaidenInterruption": "res://assets/timelines/sistersMaidenInterruption.dtl",
@@ -186,6 +190,7 @@ escape={
 3d_render/layer_1="standard"
 3d_render/layer_2="ui"
 3d_render/layer_3="ghosts"
+3d_render/layer_4="petrify"
 3d_physics/layer_1="ground"
 3d_physics/layer_2="interact"
 3d_physics/layer_3="player"

@@ -96,4 +96,11 @@ func unTransitionCamera(initial_camera: Camera3D):
 	return
 
 func giveShield():
+	DataHandler.athena_done = true
 	trigger3.deactivate()
+
+func alreadyFinished():
+	current_phase = "finished"
+	trigger1.deactivate()
+	trigger2.deactivate()
+	trigger3.activate()

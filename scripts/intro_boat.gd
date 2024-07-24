@@ -8,7 +8,7 @@ extends Node3D
 @onready var tutorialPrompts := $camAnchor/camNeck/introCam/tutorialPrompts
 @onready var boatAnim := $boatAnim
 @onready var boat_angular_velocity := 0.0
-@onready var current_phase := "looking"
+@onready var current_phase := "idle"
 @onready var sensitivity := .01
 @onready var can_look := true
 @export var real_boat : CharacterBody3D

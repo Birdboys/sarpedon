@@ -110,6 +110,7 @@ func giveInvisHelmet():
 	trigger3.deactivate()
 	monteHandler.visible = false
 	monteHandler.setUpCups()
+	DataHandler.graeae_done = true
 	
 func handleChoiceMade(correct: bool):
 	monteUI.visible = false
@@ -136,3 +137,9 @@ func hideSisters():
 	show_sisters = false
 	for sister in sisterMeshes:
 			sister.mesh.material.set_shader_parameter("transparency", 0.0)
+
+func alreadyFinished():
+	current_phase = "idle"
+	trigger1.deactivate()
+	trigger2.deactivate()
+	trigger3.activate()

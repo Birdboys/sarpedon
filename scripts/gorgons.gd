@@ -17,9 +17,6 @@ func _ready():
 	Dialogic.text_signal.connect(handleTextSignal)
 	Dialogic.signal_event.connect(handleDialogue)
 	
-func _process(delta):
-	pass
-
 func setGorgonTargetPos(pos):
 	stheno.setTargetPos(pos)
 	euryale.setTargetPos(pos)

@@ -20,8 +20,11 @@ extends CharacterBody3D
 @onready var postProcessAnim := $anims/postProcessAnim
 @onready var invisEffect := $postProcess/invisEffect
 @onready var petrifyPostProcess := $neck/playerCam/petrifyPostProcess
+@onready var groundPoint := $groundArm/groundPoint
+@onready var petrifyTimer := $petrifyTimer
 @onready var petrify_val := 0.0
 @onready var petrify_cleanse_rate := 0.3
+@onready var death_type := ""
 
 @export var has_invis_helmet := true
 @export var has_winged_sandals := true
@@ -37,10 +40,12 @@ extends CharacterBody3D
 var boat
 var activityHandler
 
+signal player_died(death_type)
+
 func _ready():
 	stateMachine.initialize(self) 
 	Dialogic.signal_event.connect(handleDialogue)
-	PauseMenu.visibility_changed.connect(pauseToggled)
+	petrifyTimer.timeout.connect(deathByPetrify)
 	
 func _process(delta):
 	$UI/UIBase/fpsCounter.text = "FPS:%s" % Engine.get_frames_per_second()
@@ -83,9 +88,7 @@ func handlePrompt():
 func handleCamera(event):
 	if event is InputEventMouseButton:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	elif event.is_action_pressed("ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		
+
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
 			rotate_y(-event.relative.x * sensitivity)
@@ -210,7 +213,29 @@ func handlePetrify(delta):
 	else:
 		petrifyPostProcess.mesh.material.set_shader_parameter("petrify_val", petrify_val)
 		petrifyPostProcess.visible = true
+	if petrify_val > 0.9:
+		if petrifyTimer.is_stopped():
+			petrifyTimer.start(2)
+	else:
+		petrifyTimer.stop()
 
 func petrify(val):
 	if shield_hold: return
 	petrify_val += val
+
+func deathByPetrify():
+	death_type = "petrify"
+	stateMachine.on_state_transition(stateMachine.current_state, "playerDied")
+	
+func getGroundPos():
+	return groundPoint.global_position
+
+func exitingShallows(body):
+	print(body)
+	print("EXITING SHALLOWS")
+	if stateMachine.current_state.name == "playerBoat" or stateMachine.current_state.name == "playerDied": return
+	Dialogic.start("nearingDeepWater")
+
+func enteringDeep(_body):
+	death_type = "drowning"
+	stateMachine.on_state_transition(stateMachine.current_state, "playerDied")

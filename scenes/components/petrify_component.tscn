@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/petrify_component.gd" id="1_t2kwj"]
 
-[node name="petrifyComponent" type="VisibleOnScreenNotifier3D" groups=["needs_player"]]
+[node name="petrifyComponent" type="VisibleOnScreenNotifier3D" groups=["needs_player_eyes"]]
+layers = 8
 script = ExtResource("1_t2kwj")
 
 [node name="petrifyRay" type="RayCast3D" parent="."]

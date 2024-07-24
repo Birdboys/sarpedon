@@ -89,8 +89,10 @@ orientation = 2
 [node name="gorgons" type="Node3D"]
 script = ExtResource("1_471g7")
 
-[node name="stheno" type="CharacterBody3D" parent="." groups=["needs_player"]]
+[node name="stheno" type="CharacterBody3D" parent="." groups=["needs_player_ground"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 0)
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("2_8t2it")
 
 [node name="sthenoMesh" type="MeshInstance3D" parent="stheno"]
@@ -111,7 +113,6 @@ disabled = true
 
 [node name="navAgent" type="NavigationAgent3D" parent="stheno"]
 path_height_offset = -1.0
-avoidance_enabled = true
 radius = 15.0
 debug_enabled = true
 debug_use_custom = true
@@ -126,10 +127,11 @@ interact_ret = "sisters_intro"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.825632, 0)
 aabb = AABB(-0.05, -0.05, -0.05, 0.1, 0.1, 0.1)
 petrify_strength = 0.35
-petrify_length = 30.0
 
-[node name="euryale" type="CharacterBody3D" parent="." groups=["needs_player"]]
+[node name="euryale" type="CharacterBody3D" parent="." groups=["needs_player_ground"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0)
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("6_fyby4")
 
 [node name="euryaleMesh" type="MeshInstance3D" parent="euryale"]
@@ -149,9 +151,10 @@ shape = SubResource("CapsuleShape3D_pbtxq")
 disabled = true
 
 [node name="navAgent" type="NavigationAgent3D" parent="euryale"]
-path_height_offset = -1.0
-avoidance_enabled = true
+path_height_offset = -2.0
 radius = 15.0
+debug_enabled = true
+debug_path_custom_color = Color(0.223529, 1, 1, 1)
 
 [node name="trigger1" parent="euryale" instance=ExtResource("5_574f0")]
 object_name = "sisters_trigger_1"
@@ -162,7 +165,6 @@ interact_ret = "sisters_intro"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.825632, 0)
 aabb = AABB(-0.05, -0.05, -0.05, 0.1, 0.1, 0.1)
 petrify_strength = 0.35
-petrify_length = 30.0
 
 [node name="sisterTalkCam" type="Camera3D" parent="."]
 fov = 90.0

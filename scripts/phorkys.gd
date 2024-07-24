@@ -8,6 +8,7 @@ extends Node3D
 func _ready():
 	spawnArea.body_entered.connect(playerEntered)
 	spawnArea.body_exited.connect(playerExited)
+	Dialogic.signal_event.connect(handleDialogue)
 	phorkysMesh.visible = false
 	
 func playerEntered(body):
@@ -17,9 +18,19 @@ func playerExited(body):
 	if body.name != "playerCharacter": return
 	match current_phase:
 		"idle": firstSummon(body)
-	
+
+func handleDialogue(type):
+	match type:
+		"phorkys_leave":
+			current_phase = "after_summon"
+			var ocean_pos = phorkysMesh.global_position - Vector3.UP * 4
+			if summon_tween is Tween: summon_tween.kill()
+			summon_tween = get_tree().create_tween()
+			summon_tween.tween_property(phorkysMesh, "global_position", ocean_pos, 4.0)
+			
 func firstSummon(body):
 	if not body.boat: return
+	current_phase = "first_summon"
 	Dialogic.start("phorkysIntro")
 	var ocean_pos
 	#if body.boat:

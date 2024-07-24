@@ -5,22 +5,22 @@ extends VisibleOnScreenNotifier3D
 @export var petrify_length := 50.0
 @export var enabled := false
 @export var on_screen := false
-@export var petrifying := false
 
 var target_pos : Vector3
 
+func _ready():
+	petrifyRay.target_position = Vector3.FORWARD * petrify_length
+
 func _physics_process(delta):
-	petrifying = false
 	if not checkConditions(): return
-	petrifyRay.target_position = to_local(target_pos).normalized() * petrify_length
+	petrifyRay.look_at(target_pos)
 	petrifyRay.force_raycast_update()
 	var collider = petrifyRay.get_collider()
 	if collider == null: 
 		return
 	if collider.has_method("petrify"):
-		petrifying = true
 		collider.petrify(petrify_strength * delta)
-
+		
 func checkConditions():
 	if not enabled: 
 		return false
@@ -32,5 +32,6 @@ func checkConditions():
 	if target_pos.distance_to(global_position) > petrify_length: 
 		return false
 	return true
-func setRayPos(pos):
-	petrifyRay.target_position = pos
+	
+func setTargetPos(pos):
+	target_pos = pos

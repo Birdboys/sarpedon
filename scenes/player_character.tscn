@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://ev5ihdel24io"]
+[gd_scene load_steps=56 format=3 uid="uid://ev5ihdel24io"]
 
 [ext_resource type="Script" path="res://scripts/player/player_character.gd" id="1_y87bo"]
 [ext_resource type="Texture2D" uid="uid://djldtb4845f38" path="res://assets/sprites/sword.png" id="2_0ap74"]
@@ -23,6 +23,7 @@
 [ext_resource type="Shader" path="res://scripts/shaders/invis_shader.gdshader" id="15_4wiuu"]
 [ext_resource type="Script" path="res://scripts/player/player_intro.gd" id="16_5u45x"]
 [ext_resource type="Shader" path="res://scripts/shaders/petrify_shader.gdshader" id="18_gxkx7"]
+[ext_resource type="Script" path="res://scripts/player/player_died.gd" id="19_4cfed"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2a5dh"]
 
@@ -408,7 +409,7 @@ shape = SubResource("CapsuleShape3D_2a5dh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.497977, 0)
 
 [node name="playerCam" type="Camera3D" parent="neck"]
-cull_mask = 1048573
+cull_mask = 1047565
 current = true
 fov = 90.0
 
@@ -459,13 +460,12 @@ skeleton = NodePath("../../..")
 [node name="hoverRay" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 target_position = Vector3(0, -0.5, 0)
-collision_mask = 17
 
 [node name="backViewport" type="SubViewport" parent="."]
 size = Vector2i(128, 128)
 
 [node name="backCamera" type="Camera3D" parent="backViewport"]
-cull_mask = 1048569
+cull_mask = 1
 current = true
 fov = 60.0
 
@@ -475,7 +475,7 @@ initial_state = NodePath("playerWalk")
 
 [node name="playerWalk" type="Node" parent="stateMachine"]
 script = ExtResource("3_euxff")
-movement_control = false
+move_speed = 35.0
 
 [node name="playerJump" type="Node" parent="stateMachine"]
 script = ExtResource("4_0rupf")
@@ -520,6 +520,9 @@ interact_control = false
 [node name="playerIntro" type="Node" parent="stateMachine"]
 script = ExtResource("16_5u45x")
 movement_control = false
+
+[node name="playerDied" type="Node" parent="stateMachine"]
+script = ExtResource("19_4cfed")
 
 [node name="postProcess" type="CanvasLayer" parent="."]
 
@@ -736,3 +739,15 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_gbrbt")
 }
+
+[node name="groundArm" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+spring_length = 5.0
+
+[node name="groundPoint" type="Node3D" parent="groundArm"]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="groundArm/groundPoint"]
+radius = 0.1
+
+[node name="petrifyTimer" type="Timer" parent="."]
+one_shot = true

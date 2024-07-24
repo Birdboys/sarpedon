@@ -1,0 +1,191 @@
+[gd_scene load_steps=7 format=3 uid="uid://bd8gialjn8w4o"]
+
+[ext_resource type="Theme" uid="uid://dplwrcgvyhpcw" path="res://assets/ui_theme.tres" id="1_27ofw"]
+[ext_resource type="Script" path="res://scripts/ui/death_screen.gd" id="2_wot5r"]
+
+[sub_resource type="Animation" id="Animation_0erwn"]
+resource_name = "load_screen"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("screenMargin/quoteBorder:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("screenMargin/quoteBorder/quoteMargin/deathLine:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_knau6"]
+resource_name = "load_tooltip"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("screenMargin/quoteBorder/quoteMargin/tooltipText:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_l1r3j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("screenMargin/quoteBorder:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("screenMargin/quoteBorder/quoteMargin/deathLine:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("screenMargin/quoteBorder/quoteMargin/tooltipText:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ltpb2"]
+_data = {
+"RESET": SubResource("Animation_l1r3j"),
+"load_screen": SubResource("Animation_0erwn"),
+"load_tooltip": SubResource("Animation_knau6")
+}
+
+[node name="deathScreen" type="CanvasLayer"]
+script = ExtResource("2_wot5r")
+
+[node name="deathUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_27ofw")
+
+[node name="background" type="ColorRect" parent="deathUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="screenMargin" type="MarginContainer" parent="deathUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="quoteBorder" type="Panel" parent="deathUI/screenMargin"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"topBotPanelW"
+
+[node name="quoteMargin" type="MarginContainer" parent="deathUI/screenMargin/quoteBorder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="deathLine" type="Label" parent="deathUI/screenMargin/quoteBorder/quoteMargin"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "YOU FELL VICTIM TO DEEP WATERS"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="loadingText" type="Label" parent="deathUI/screenMargin/quoteBorder/quoteMargin"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 16
+text = "Loading...
+"
+visible_characters = 7
+visible_characters_behavior = 1
+visible_ratio = 0.636364
+
+[node name="tooltipText" type="Label" parent="deathUI/screenMargin/quoteBorder/quoteMargin"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(1, 1, 1, 0.501961)
+theme_override_font_sizes/font_size = 16
+text = "PRESS [e]"
+horizontal_alignment = 1
+
+[node name="deathAnim" type="AnimationPlayer" parent="."]
+root_node = NodePath("../deathUI")
+libraries = {
+"": SubResource("AnimationLibrary_ltpb2")
+}
+
+[node name="loadingAnim" type="AnimationPlayer" parent="."]
+root_node = NodePath("../deathUI")
+libraries = {
+"": SubResource("AnimationLibrary_ltpb2")
+}

@@ -102,3 +102,10 @@ func discusLanded():
 func giveWingedSandals():
 	trigger3.deactivate()
 	current_phase = "running"
+	DataHandler.hermes_done = true
+
+func alreadyFinished():
+	current_phase = "discus_done"
+	trigger1.deactivate()
+	trigger2.deactivate()
+	trigger3.activate()

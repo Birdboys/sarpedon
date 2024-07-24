@@ -53,7 +53,7 @@ func unTransitionCamera(initial_camera: Camera3D):
 
 func goAway(_body):
 	print("WENT AAWAY")
-	leaveTrigger.monitoring = false
+	leaveTrigger.set_deferred("monitoring", false)
 	var leave_pos = global_position + (global_position - player.global_position).normalized() * 5
 	var leave_tween = get_tree().create_tween().set_parallel(true).set_ease(Tween.EASE_IN)
 	leave_tween.tween_property(self, "global_position", leave_pos, 1.5)

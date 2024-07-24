@@ -4,7 +4,7 @@ extends CanvasLayer
 @onready var controlsMenu := $pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/controlsMenu
 @onready var settingsMenu := $pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu
 @onready var current_menu := "closed"
-
+var was_mouse_captured := false
 func _ready():
 	hideMenu()
 	mainMenu.button.connect(handleMainButtons)
@@ -14,6 +14,8 @@ func _process(delta):
 	pass
 
 func showMenu():
+	was_mouse_captured = Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	Dialogic.toggleVisibility(false)
 	current_menu = "main"
 	visible = true
@@ -23,6 +25,10 @@ func showMenu():
 	settingsMenu.close()
 	
 func hideMenu():
+	if was_mouse_captured:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	Dialogic.toggleVisibility(true)
 	current_menu = "closed"
 	visible = false
@@ -38,6 +44,8 @@ func handleMainButtons(button):
 			mainMenu.close()
 			settingsMenu.open()
 			current_menu = "settings"
+		"resume":
+			hideMenu()
 		_: pass
 
 func handleEscape():

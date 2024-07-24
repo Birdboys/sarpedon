@@ -1,5 +1,5 @@
 extends Control
-@onready var playButton := $mainMenuButtons/playButton
+@onready var resumeButton := $mainMenuButtons/resumeButton
 @onready var settingsButton := $mainMenuButtons/settingsButton
 @onready var controlsButton := $mainMenuButtons/controlsButton
 @onready var creditsButton := $mainMenuButtons/creditsButton
@@ -8,7 +8,7 @@ extends Control
 signal button(id)
 
 func _ready():
-	#playButton.pressed.connect()
+	resumeButton.pressed.connect(resume)
 	controlsButton.pressed.connect(controls)
 	settingsButton.pressed.connect(settings)
 	quitButton.pressed.connect(quit)
@@ -19,8 +19,8 @@ func open():
 func close():
 	visible = false
 	
-func play():
-	pass
+func resume():
+	emit_signal("button", "resume")
 
 func settings():
 	emit_signal("button", "settings")
