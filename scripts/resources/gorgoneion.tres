@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://78a5tyyl1se5"]
+
+[ext_resource type="Texture2D" uid="uid://cb6wuvdnw6umi" path="res://assets/sprites/medusa_maiden_head.png" id="1_gyw85"]
+[ext_resource type="Script" path="res://scripts/resources/inventory_item.gd" id="2_t5at1"]
+
+[resource]
+script = ExtResource("2_t5at1")
+item_id = "medusa_head"
+name = "Γοργόνειον"
+image = ExtResource("1_gyw85")
+description = "Hairs which are vipers, and they curl and flow  
+And their long tangles in each other lock,
+And with unending involutions shew  
+Their mailed radiance, as it were to mock  
+The torture and the death within, and saw  
+The solid air with many a ragged jaw. "
+tooltip = "Doesn't have one yet."

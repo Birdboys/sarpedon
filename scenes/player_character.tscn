@@ -1,7 +1,8 @@
-[gd_scene load_steps=56 format=3 uid="uid://ev5ihdel24io"]
+[gd_scene load_steps=64 format=3 uid="uid://ev5ihdel24io"]
 
 [ext_resource type="Script" path="res://scripts/player/player_character.gd" id="1_y87bo"]
 [ext_resource type="Texture2D" uid="uid://djldtb4845f38" path="res://assets/sprites/sword.png" id="2_0ap74"]
+[ext_resource type="Script" path="res://scripts/player/playerCam.gd" id="2_7dfx5"]
 [ext_resource type="Texture2D" uid="uid://csmnuqloyn2qk" path="res://assets/sprites/shield.png" id="2_84k0y"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_tu7rb"]
 [ext_resource type="Shader" path="res://scripts/shaders/shield_shader.gdshader" id="2_xx23j"]
@@ -26,6 +27,8 @@
 [ext_resource type="Script" path="res://scripts/player/player_died.gd" id="19_4cfed"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2a5dh"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_73vgs"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_va13l"]
 viewport_path = NodePath("backViewport")
@@ -74,6 +77,141 @@ material = SubResource("ShaderMaterial_4fmi5")
 flip_faces = true
 size = Vector2(2, 2)
 
+[sub_resource type="Animation" id="Animation_bqs75"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("neck/playerCam:v_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.72529e-09]
+}
+
+[sub_resource type="Animation" id="Animation_iobp2"]
+resource_name = "hover"
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("neck/playerCam:v_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.05, 0.0, -0.05, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xdujl"]
+resource_name = "sneak"
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("neck/playerCam:h_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.025, 0.0, 0.025, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("neck/playerCam:v_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.45, 0.5, 0.7, 0.95, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.05, -0.012, 0.0, 0.05, -0.012, 0.0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["sneak"],
+"method": &"handleFootstep"
+}, {
+"args": ["sneak"],
+"method": &"handleFootstep"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_o77vy"]
+resource_name = "walk"
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("neck/playerCam:h_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.025, 0.0, 0.025, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("neck/playerCam:v_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.45, 0.5, 0.7, 0.95, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.1, -0.025, 0.0, 0.1, -0.025, 0.0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"handleFootstep"
+}, {
+"args": [],
+"method": &"handleFootstep"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pn74m"]
+_data = {
+"RESET": SubResource("Animation_bqs75"),
+"hover": SubResource("Animation_iobp2"),
+"sneak": SubResource("Animation_xdujl"),
+"walk": SubResource("Animation_o77vy")
+}
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_n3jkf"]
+height = 2.5
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ooowg"]
 seed = 32
 fractal_octaves = 1
@@ -92,7 +230,7 @@ shader_parameter/distortion_strength = 0.02
 shader_parameter/noise_scale = 2.0
 shader_parameter/time_scale = 0.05
 shader_parameter/time_scale_2 = -0.02
-shader_parameter/invis_color = Color(0.432829, 0.64564, 0.795037, 1)
+shader_parameter/invis_color = Color(0.0788971, 0.165124, 0.223641, 1)
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_0scoj")
 shader_parameter/noise_texture_2 = SubResource("NoiseTexture2D_1t4lx")
 
@@ -286,6 +424,20 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(1.13446, 2.95659, 3.14159), Vector3(1.68948, 3.3266, 3.14159), Vector3(1.13446, 2.95659, 3.14159)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"swordAttack"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_mdhac"]
 resource_name = "sword_equip"
@@ -399,19 +551,23 @@ _data = {
 collision_layer = 12
 collision_mask = 25
 script = ExtResource("1_y87bo")
-has_invis_helmet = false
-has_winged_sandals = false
+has_sword = true
+has_shield = true
+has_bag = true
 
 [node name="playerCol" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_2a5dh")
 
 [node name="neck" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.497977, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 
 [node name="playerCam" type="Camera3D" parent="neck"]
 cull_mask = 1047565
+h_offset = 0.02
 current = true
 fov = 90.0
+script = ExtResource("2_7dfx5")
+trauma_noise = SubResource("FastNoiseLite_73vgs")
 
 [node name="lookRay" type="RayCast3D" parent="neck/playerCam"]
 target_position = Vector3(0, 0, -2.5)
@@ -457,9 +613,32 @@ visible = false
 mesh = SubResource("QuadMesh_22sj0")
 skeleton = NodePath("../../..")
 
+[node name="camAnim" type="AnimationPlayer" parent="neck/playerCam"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_pn74m")
+}
+speed_scale = 0.66
+
+[node name="swordHitbox" type="Area3D" parent="neck/playerCam"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1.25)
+collision_layer = 128
+collision_mask = 0
+
+[node name="hitboxCol" type="CollisionShape3D" parent="neck/playerCam/swordHitbox"]
+shape = SubResource("CylinderShape3D_n3jkf")
+
+[node name="playerAudio" type="AudioListener3D" parent="neck/playerCam"]
+
 [node name="hoverRay" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-target_position = Vector3(0, -0.5, 0)
+target_position = Vector3(0, -0.75, 0)
+collision_mask = 33
+
+[node name="footstepRay" type="RayCast3D" parent="."]
+enabled = false
+target_position = Vector3(0, -2, 0)
+collision_mask = 33
 
 [node name="backViewport" type="SubViewport" parent="."]
 size = Vector2i(128, 128)
@@ -469,13 +648,16 @@ cull_mask = 1
 current = true
 fov = 60.0
 
+[node name="lookRay" type="RayCast3D" parent="backViewport/backCamera"]
+target_position = Vector3(0, 0, -2.5)
+collision_mask = 64
+
 [node name="stateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_tu7rb")
 initial_state = NodePath("playerWalk")
 
 [node name="playerWalk" type="Node" parent="stateMachine"]
 script = ExtResource("3_euxff")
-move_speed = 35.0
 
 [node name="playerJump" type="Node" parent="stateMachine"]
 script = ExtResource("4_0rupf")
@@ -485,7 +667,7 @@ script = ExtResource("5_fv6td")
 
 [node name="playerHover" type="Node" parent="stateMachine"]
 script = ExtResource("6_0tkkq")
-move_speed = 7.0
+move_speed = 10.0
 
 [node name="playerTalk" type="Node" parent="stateMachine"]
 script = ExtResource("7_n0ojd")
@@ -523,6 +705,9 @@ movement_control = false
 
 [node name="playerDied" type="Node" parent="stateMachine"]
 script = ExtResource("19_4cfed")
+camera_control = false
+movement_control = false
+interact_control = false
 
 [node name="postProcess" type="CanvasLayer" parent="."]
 
@@ -746,8 +931,7 @@ spring_length = 5.0
 
 [node name="groundPoint" type="Node3D" parent="groundArm"]
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="groundArm/groundPoint"]
-radius = 0.1
-
 [node name="petrifyTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

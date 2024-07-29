@@ -1,35 +1,34 @@
-[gd_scene load_steps=11 format=3 uid="uid://b26hegrjoegv0"]
+[gd_scene load_steps=22 format=3 uid="uid://b26hegrjoegv0"]
 
 [ext_resource type="Script" path="res://scripts/medusa.gd" id="1_xwxrn"]
-[ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="2_jxsnx"]
 [ext_resource type="Texture2D" uid="uid://hty44dgmw4qe" path="res://assets/sprites/medusa.png" id="3_muxna"]
 [ext_resource type="PackedScene" uid="uid://d557kilnx4qe" path="res://scenes/components/billboard_component.tscn" id="4_cwfr4"]
 [ext_resource type="Texture2D" uid="uid://jmp8x21i2x60" path="res://assets/sprites/medusa_maiden.png" id="5_dfldd"]
+[ext_resource type="PackedScene" uid="uid://0or1kfewcx3e" path="res://scenes/components/petrify_component.tscn" id="6_5vmqo"]
+[ext_resource type="PackedScene" uid="uid://dt6bxmw7stlh8" path="res://scenes/components/interact_box.tscn" id="6_rpq05"]
+[ext_resource type="Texture2D" uid="uid://cb6wuvdnw6umi" path="res://assets/sprites/medusa_maiden_head.png" id="8_8jw68"]
+[ext_resource type="Texture2D" uid="uid://dkggpifkpwmjw" path="res://assets/sprites/medusa_maiden_wings.png" id="8_qkt5s"]
+[ext_resource type="Texture2D" uid="uid://fxq32xu2mi0t" path="res://assets/sprites/medusa_maiden_decapitated.png" id="8_r6on3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_66akd"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2bh1o"]
-render_priority = 0
-shader = ExtResource("2_jxsnx")
-shader_parameter/num_sections = 1.0
-shader_parameter/max_section_offset = 0.0
-shader_parameter/image_speed = 0.0
-shader_parameter/offset_speed = 0.0
-shader_parameter/image_seed = 0.0
-shader_parameter/offset_seed = 0.0
-shader_parameter/transparency = 1.0
-shader_parameter/image1 = ExtResource("3_muxna")
-shader_parameter/image2 = ExtResource("3_muxna")
-shader_parameter/image3 = ExtResource("3_muxna")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgnlt"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("3_muxna")
+texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_fxpil"]
-material = SubResource("ShaderMaterial_2bh1o")
+material = SubResource("StandardMaterial3D_sgnlt")
 flip_faces = true
+size = Vector2(3, 3)
 orientation = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13s8y"]
-transparency = 1
-shading_mode = 0
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("5_dfldd")
 texture_filter = 0
 
@@ -38,6 +37,51 @@ material = SubResource("StandardMaterial3D_13s8y")
 flip_faces = true
 size = Vector2(2, 1.3)
 orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s1omo"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = ExtResource("8_8jw68")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_c8vgy"]
+material = SubResource("StandardMaterial3D_s1omo")
+flip_faces = true
+size = Vector2(0.3, 0.3)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gg6v4"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = ExtResource("8_qkt5s")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_srwo7"]
+material = SubResource("StandardMaterial3D_gg6v4")
+flip_faces = true
+size = Vector2(0.5, 1)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x1plr"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = ExtResource("8_r6on3")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2h004"]
+material = SubResource("StandardMaterial3D_x1plr")
+flip_faces = true
+size = Vector2(2, 1.3)
+orientation = 2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dwgfn"]
+radius = 2.0
 
 [node name="medusa" type="CharacterBody3D"]
 script = ExtResource("1_xwxrn")
@@ -51,8 +95,88 @@ mesh = SubResource("PlaneMesh_fxpil")
 
 [node name="billboardComponent" parent="medusaMesh" instance=ExtResource("4_cwfr4")]
 
+[node name="petrifyComponent2" parent="medusaMesh" instance=ExtResource("6_5vmqo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.169463, 1.09928, 0)
+aabb = AABB(-0.05, -0.05, -0.05, 0.1, 0.1, 0.1)
+
+[node name="interactBox" parent="medusaMesh" instance=ExtResource("6_rpq05")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.187722, 1.02543, 0)
+collision_layer = 66
+size = Vector3(1.1993, 0.822397, 0.35)
+object_name = "gorgon_head_hitbox"
+object_prompt = "SLAY [USE_SWORD]"
+interact_ret = "medusa_slain"
+
 [node name="sleepMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.118898, 0)
 mesh = SubResource("PlaneMesh_uy3p3")
 
 [node name="billboardComponent" parent="sleepMesh" instance=ExtResource("4_cwfr4")]
+
+[node name="petrifyComponent" parent="sleepMesh" instance=ExtResource("6_5vmqo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.631408, -0.320602, 0)
+aabb = AABB(-0.05, -0.05, -0.05, 0.1, 0.1, 0.1)
+petrify_length = 35.0
+enabled = true
+can_petrify = true
+
+[node name="interactBox" parent="sleepMesh" instance=ExtResource("6_rpq05")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.618358, -0.267331, 0)
+collision_layer = 66
+size = Vector3(0.25, 0.25, 0.25)
+object_name = "sleeping_head_hitbox"
+object_prompt = "SLAY [USE_SWORD]"
+interact_ret = "medusa_slain"
+
+[node name="headMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.691214, 0.0604533, -0.422851)
+visible = false
+mesh = SubResource("PlaneMesh_c8vgy")
+
+[node name="billboardComponent" parent="headMesh" instance=ExtResource("4_cwfr4")]
+
+[node name="petrifyComponent" parent="headMesh" instance=ExtResource("6_5vmqo")]
+aabb = AABB(-0.05, -0.05, -0.05, 0.1, 0.1, 0.1)
+petrify_length = 35.0
+
+[node name="interactBox" parent="headMesh" instance=ExtResource("6_rpq05")]
+collision_layer = 66
+size = Vector3(0.25, 0.25, 0.25)
+object_name = "gorgon_head_trigger"
+object_prompt = "TAKE HEAD
+[INTERACT]"
+interact_ret = "take_medusa_head"
+on_start = false
+
+[node name="wingMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.713947, -0.700199, 0, 0.700199, 0.713947, 0, 0, 0, 1, 0.475913, 0.0834186, 0.323153)
+visible = false
+mesh = SubResource("PlaneMesh_srwo7")
+
+[node name="billboardComponent" parent="wingMesh" instance=ExtResource("4_cwfr4")]
+
+[node name="deadMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.118898, 0)
+visible = false
+mesh = SubResource("PlaneMesh_2h004")
+
+[node name="billboardComponent" parent="deadMesh" instance=ExtResource("4_cwfr4")]
+
+[node name="navAgent" type="NavigationAgent3D" parent="."]
+path_height_offset = -1.5
+debug_enabled = true
+debug_path_custom_color = Color(0.431373, 1, 0.262745, 1)
+
+[node name="attackRadius" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="attackCol" type="CollisionShape3D" parent="attackRadius"]
+shape = SubResource("SphereShape3D_dwgfn")
+disabled = true
+
+[node name="attackTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="grabPos" type="Node3D" parent="."]
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 0, 1, -1.25)

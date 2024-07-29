@@ -8,11 +8,13 @@ extends Control
 @onready var is_open := false
 @onready var current_inventory := ["bag", "note", "sword"]
 @onready var inventory_index := 0
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	visible = is_open
 
+func _ready():
+	pass
+	
 func openInventory(item = null):
+	PauseMenu.toggled_on.connect(hideInventory)
+	PauseMenu.toggled_off.connect(showInventory)
 	is_open = true
 	visible = true
 	if item:
@@ -24,9 +26,9 @@ func loadItem(item):
 	itemImage.texture = item_resource.image
 	itemName.text = item_resource.name
 	itemDesc.text = item_resource.description
-	itemTip.text = item_resource.tooltip
-	var left_text = "<-A"
-	var right_text = "D->"
+	itemTip.text = DataHandler.translate(item_resource.tooltip)
+	var left_text = DataHandler.translate("<- [LEFT]")
+	var right_text = DataHandler.translate("[RIGHT] ->")
 	if inventory_index == 0:
 		controlText.text = "[center]%s|%s[/center]" % ["[color=#ffffff80]"+left_text+"[/color]", right_text]
 	elif inventory_index == len(current_inventory)-1:
@@ -35,6 +37,8 @@ func loadItem(item):
 		controlText.text = "[center]%s|%s[/center]" % [left_text, right_text]
 
 func closeInventory():
+	PauseMenu.toggled_on.disconnect(hideInventory)
+	PauseMenu.toggled_off.disconnect(showInventory)
 	is_open = false
 	visible = false
 
@@ -46,3 +50,9 @@ func nextItem(right := true):
 func acquireItem(item):
 	current_inventory.append(item)
 	inventory_index = current_inventory.find(item)
+
+func showInventory():
+	visible = true
+
+func hideInventory():
+	visible = false

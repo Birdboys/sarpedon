@@ -34,7 +34,7 @@ func firstSummon(body):
 	Dialogic.start("phorkysIntro")
 	var ocean_pos
 	#if body.boat:
-	ocean_pos = body.boat.global_position + body.boat.global_basis.z * 4 - Vector3.UP * 3
+	ocean_pos = body.boat.global_position + body.boat.global_basis.z * 5 - Vector3.UP * 3
 	#else:
 		#ocean_pos = body.global_position - body.global_basis.z * 4 - Vector3.UP * 3
 	var surface_pos = ocean_pos + Vector3.UP * 4

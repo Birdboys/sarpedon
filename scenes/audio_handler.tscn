@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqyhbhhkmpgxl"]
+[gd_scene load_steps=3 format=3 uid="uid://bqyhbhhkmpgxl"]
 
 [ext_resource type="Script" path="res://scripts/audio_handler.gd" id="1_vxhrs"]
+[ext_resource type="AudioStream" uid="uid://dld0ryqf7xasf" path="res://assets/sounds/ui_click/0.wav" id="2_u8eud"]
 
 [node name="audioHandler" type="Node"]
 script = ExtResource("1_vxhrs")
+
+[node name="bgMusicPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"bgMusic"
+
+[node name="soundEffectQueue" type="Node" parent="."]
+
+[node name="soundEffectQueue3D" type="Node" parent="."]
+
+[node name="tester" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_u8eud")

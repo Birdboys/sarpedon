@@ -78,7 +78,7 @@ theme_override_constants/margin_bottom = 16
 
 [node name="quoteVBox" type="VBoxContainer" parent="screenMargin/quoteBorder/quoteMargin"]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 12
 alignment = 1
 
 [node name="line1" type="Label" parent="screenMargin/quoteBorder/quoteMargin/quoteVBox"]

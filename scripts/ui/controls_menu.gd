@@ -1,7 +1,7 @@
 extends Control
 @onready var remapArea := $controlsVbox/remapScroll/remapVbox
 @onready var controlRemapper := preload("res://scenes/ui/control_remapper.tscn")
-@onready var actions := {"forward": "Forward", "back": "Back", "left": "Left", "right": "Right", "jump": "Jump", "inventory": "Inventory", "sword_equip": "Equip Sword", "shield_equip": "Equip Shield", "sword_attack": "Use Sword", "shield_hold": "Use Shield", "sneak": "Use Helmet"}
+@onready var actions := {"forward": "Forward", "back": "Back", "left": "Left", "right": "Right", "jump": "Jump", "interact": "Interact", "inventory": "Inventory", "equip_sword": "Equip Sword", "equip_shield": "Equip Shield", "use_sword": "Use Sword", "use_shield": "Use Shield", "use_helmet": "Use Helmet"}
 # Called when the node enters the scene tree for the first time.
 
 func _ready():

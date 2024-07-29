@@ -59,6 +59,7 @@ func handleTextSignal(type):
 		_: pass
 
 func playerEnteredCave(body):
+	if body.is_invis: return
 	player = body
 	match current_phase:
 		"idle":
@@ -75,6 +76,13 @@ func playerEnteredCave(body):
 			current_phase = "gorgon"
 			stheno.changeToGorgon()
 			euryale.changeToGorgon()
+
+func lament():
+	current_phase = "gorgon"
+	stheno.trigger1.deactivate()
+	euryale.trigger1.deactivate()
+	stheno.changeToGorgon()
+	euryale.changeToGorgon()
 
 func transitionCamera(initial_camera: Camera3D):
 	sisterTalkCam.global_transform = initial_camera.global_transform

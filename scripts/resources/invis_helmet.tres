@@ -9,4 +9,4 @@ item_id = "invis_helmet"
 name = "Ἅϊδος κυνέη"
 image = ExtResource("1_tdr7a")
 description = "The cap fits snugly, secure. At first, you don’t notice a difference, but if you concentrate, you can feel yourself become detached. Slipping from one plane to another"
-tooltip = "Hold [ctrl] while walking to use invisibility helmet, going invisible."
+tooltip = "Hold [USE_HELMET] while walking to use invisibility helmet."

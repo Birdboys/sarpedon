@@ -1,12 +1,13 @@
 extends State
 
 @export var move_speed := 7.5
-@export var hover_dist := 0.5
+@export var hover_dist := 0.75
 @export var hover_strength := 10.0
 
 
 func enter():
 	parent.hoverRay.enabled = true
+	parent.camAnim.play("hover")
 	
 func exit():
 	parent.hoverRay.enabled = false

@@ -9,4 +9,4 @@ item_id = "winged_sandals"
 name = "πτερόεντα πέδιλα"
 image = ExtResource("1_1ecxh")
 description = "They are the most comfortable sandals you’ve ever worn. Even as the wings flanking your ankles lay still, each step feels weightless, like walking on a dream, like infinite possibilities. You can only manage to float a few inches off the ground, but you can tell that the wings can do more, that they want to go higher. "
-tooltip = "Hold [space] after jumping to float."
+tooltip = "Hold [JUMP] after jumping to float."

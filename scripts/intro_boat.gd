@@ -25,7 +25,7 @@ func _process(delta):
 				current_phase = "tweening"
 				var open_tween = get_tree().create_tween()
 				open_tween.tween_property(tutorialPrompts, "modulate", Color.TRANSPARENT, 0.5)
-				open_tween.tween_property(tutorialPrompts, "text", "PRESS [e] TO OPEN", 0)
+				open_tween.tween_property(tutorialPrompts, "text", DataHandler.translate("OPEN [INTERACT]"), 0)
 				open_tween.tween_property(tutorialPrompts, "modulate", Color.WHITE, 0.5)
 				await open_tween.finished
 				current_phase = "opening"
@@ -36,7 +36,7 @@ func _process(delta):
 				boatAnim.play("boat_open")
 				await boatAnim.animation_finished
 				current_phase = "exiting"
-				tutorialPrompts.text = "PRESS [e] TO EXIT"
+				tutorialPrompts.text = DataHandler.translate("EXIT [INTERACT]")
 		"exiting":
 			if Input.is_action_just_pressed("interact"):
 				tutorialPrompts.text = ""

@@ -1,6 +1,8 @@
 extends State
 
 func enter():
+	parent.collision_layer = 0
+	parent.collision_mask = 0
 	parent.velocity.x = 0
 	parent.velocity.z = 0
 	parent.interactPrompt.text = ""

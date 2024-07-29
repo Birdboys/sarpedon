@@ -11,6 +11,7 @@ func _ready():
 	resumeButton.pressed.connect(resume)
 	controlsButton.pressed.connect(controls)
 	settingsButton.pressed.connect(settings)
+	creditsButton.pressed.connect(credits)
 	quitButton.pressed.connect(quit)
 
 func open():
@@ -20,15 +21,19 @@ func close():
 	visible = false
 	
 func resume():
+	AudioHandler.playSound("ui_click")
 	emit_signal("button", "resume")
 
 func settings():
+	AudioHandler.playSound("ui_click")
 	emit_signal("button", "settings")
 	
 func credits():
-	pass
+	AudioHandler.playSound("ui_click")
+	emit_signal("button", "credits")
 	
 func controls():
+	AudioHandler.playSound("ui_click")
 	emit_signal("button", "controls")
 	
 func quit():

@@ -21,5 +21,5 @@ void fragment() {
 	float noise_val = getNoise(UV);
 	vec2 noise_offset = vec2(distortion_strength * noise_val);
 	vec3 screen_color = texture(screen_texture, SCREEN_UV + noise_offset).rgb;
-	COLOR.rgb = mix(screen_color, invis_color, (1.0-noise_val)/4.0 + 0.25);
+	COLOR.rgb = mix(screen_color, invis_color, (1.0-noise_val)/4.0+0.1);
 }

@@ -86,7 +86,8 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 visible = false
 size = Vector3(3, 1.5, 1.5)
 object_name = "boat"
-object_prompt = "take bag [e]"
+object_prompt = "TAKE SUPPLIES 
+[INTERACT]"
 interact_ret = "boat_take_supplies"
 interactable = false
 
@@ -95,7 +96,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 visible = false
 size = Vector3(3, 1.5, 1.5)
 object_name = "boat"
-object_prompt = "enter [e]"
+object_prompt = "ENTER [INTERACT]"
 interact_ret = "boat_enter"
 interactable = false
 on_start = false
@@ -106,7 +107,7 @@ visible = false
 use_collision = false
 size = Vector3(3, 1.5, 1.5)
 object_name = "boat"
-object_prompt = "exit [e]"
+object_prompt = "EXIT [INTERACT]"
 interact_ret = "boat_exit"
 interactable = false
 on_start = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cflsdjfbphex"]
+[gd_scene load_steps=15 format=3 uid="uid://cflsdjfbphex"]
 
 [ext_resource type="Script" path="res://scripts/athena.gd" id="1_w4e46"]
 [ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="2_mm605"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bv6bpo0invpxp" path="res://assets/sprites/athena3.png" id="5_vvv0r"]
 [ext_resource type="PackedScene" uid="uid://dt6bxmw7stlh8" path="res://scenes/components/interact_box.tscn" id="7_usl54"]
 [ext_resource type="PackedScene" uid="uid://c5p6m7smmwm2n" path="res://scenes/weave_game.tscn" id="8_0yfds"]
+[ext_resource type="PackedScene" uid="uid://beabw8ir817ar" path="res://scenes/components/action_label.tscn" id="8_o1c63"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kx3nv"]
 render_priority = 0
@@ -57,13 +58,13 @@ mesh = SubResource("PlaneMesh_5l8fo")
 [node name="trigger1" parent="." instance=ExtResource("7_usl54")]
 size = Vector3(1, 2, 1)
 object_name = "athena_trigger"
-object_prompt = "talk [e]"
+object_prompt = "TALK [INTERACT]"
 interact_ret = "athena_talk"
 
 [node name="trigger2" parent="." instance=ExtResource("7_usl54")]
 size = Vector3(1, 2, 1)
 object_name = "athena_trigger2"
-object_prompt = "talk [e]"
+object_prompt = "TALK [INTERACT]"
 interact_ret = "athena_weave"
 interactable = false
 on_start = false
@@ -71,8 +72,8 @@ on_start = false
 [node name="trigger3" parent="." instance=ExtResource("7_usl54")]
 size = Vector3(1, 2, 1)
 object_name = "athena_trigger3"
-object_prompt = "take ἀσπίς
-[e]"
+object_prompt = "TAKE ἀσπίς 
+[INTERACT]"
 interact_ret = "athena_take_shield"
 interactable = false
 on_start = false
@@ -102,25 +103,21 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="weaveText" type="Label" parent="weaveCam/weaveUI/uiMargin"]
+[node name="actionLabel" parent="weaveCam/weaveUI/uiMargin" instance=ExtResource("8_o1c63")]
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-text = "MOVE CURSOR
-[W, A, S, D]"
 horizontal_alignment = 1
 vertical_alignment = 1
+original_text = "MOVE CURSOR
+[FORWARD] [BACK] [LEFT] [RIGHT]"
 
-[node name="weaveText2" type="Label" parent="weaveCam/weaveUI/uiMargin"]
+[node name="actionLabel2" parent="weaveCam/weaveUI/uiMargin" instance=ExtResource("8_o1c63")]
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-text = "ROTATE TILE
-[E]"
 horizontal_alignment = 1
 vertical_alignment = 1
+original_text = "ROTATE TILE
+[INTERACT]"
 
 [node name="loom" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.985592, 0.169143, 0, -0.169143, 0.985592, 0, 0, -1)

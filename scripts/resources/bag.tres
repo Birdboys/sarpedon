@@ -9,5 +9,5 @@ item_id = "bag"
 name = "κίβῐσῐς"
 image = ExtResource("1_1r72c")
 description = "A leather bag with a drawstring and enough extra rope to secure it to your back. Simple, but yielding enough room to carry everything you need: the items you came with, and what you’ll find on the island. "
-tooltip = "Press [tab] to open bag and view inventory.
-Press [a|d] to move to other items."
+tooltip = "Press [INVENTORY] to open bag and view inventory.
+Press [LEFT] | [RIGHT] to move to other items."

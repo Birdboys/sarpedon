@@ -12,30 +12,42 @@ signal input_captured(input)
 func _ready():
 	actionText.text = action_text
 	remapButton.pressed.connect(remapPressed)
-	setButtonText(InputMap.action_get_events(action_name)[0].as_text())
-
+	remapButton.text = DataHandler.translate("[%s]" % action_name.to_upper())
+	
 func remapPressed():
 	if listening: return
+	AudioHandler.playSound("ui_click")
 	emit_signal("capturing")
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	listening = true
 	setButtonText("listening...")
 	var input = await input_captured
+	AudioHandler.playSound("ui_click")
+	var cleaned_input_text = cleanInput(input)
 	listening = false
-	rebindToInput(input)
-	
-func rebindToInput(input):
+	rebindToInput(input, cleaned_input_text)
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+func cleanInput(input):
+	var text = ""
 	if input is InputEventKey:
-		setButtonText(input.as_text_key_label())
+		text = input.as_text_key_label().replace("(Physical)", "")
 	else:
 		match input.button_index:
-			1: setButtonText("LMB")
-			2: setButtonText("RMB")
-			3: setButtonText("MMB")
-			4: setButtonText("MWU")
-			5: setButtonText("MWD")
-			 
+			1: text = "LMB"
+			2: text = "RMB"
+			3: text = "MMB"
+			4: text = "MWU"
+			5: text = "MWD"
+			
+	return text.strip_edges()
+		
+func rebindToInput(input, clean_text):
 	InputMap.action_erase_event(action_name, InputMap.action_get_events(action_name)[0])
 	InputMap.action_add_event(action_name, input)
+	DataHandler.translation[action_name.to_upper()] = clean_text
+	DataHandler.translationUpdated()
+	remapButton.text = DataHandler.translate("[%s]" % action_name.to_upper())
 
 func clear():
 	listening = false

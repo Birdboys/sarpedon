@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://beabw8ir817ar"]
+
+[ext_resource type="Script" path="res://scripts/action_label.gd" id="1_27y5v"]
+
+[node name="actionLabel" type="Label"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+script = ExtResource("1_27y5v")

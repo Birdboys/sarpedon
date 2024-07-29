@@ -5,6 +5,8 @@ func enter():
 	parent.velocity.x = 0
 	parent.velocity.z = 0
 	parent.interactPrompt.text = ""
+	parent.camAnim.stop()
+	
 
 func update(delta):
 	if Input.is_action_just_pressed("inventory"):

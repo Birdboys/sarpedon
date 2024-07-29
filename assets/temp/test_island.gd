@@ -2,10 +2,11 @@ extends Node3D
 
 @onready var player := $playerCharacter
 @onready var gorgons := $gorgons
+@onready var medusaLairTrigger := $medusaLairTrigger
+@onready var sarpedonArea := $sarpedonArea
 @onready var worldEnvironment := $worldEnvironment
 @onready var deathRect := $deathRect
-@onready var islandTrigger := $enterIslandTrigger
-@onready var caveTrigger := $enterCaveTrigger
+@onready var winRect := $winRect
 @onready var shallowWater := $shallowWater
 @onready var deepWater := $deepWater
 @onready var environAnim := $environAnim
@@ -16,21 +17,26 @@ extends Node3D
 @onready var athena := $athena
 @onready var hermes := $hermes
 @onready var graeae := $graeae
+@onready var medusa := $medusa
 @onready var island_env := preload("res://assets/island_environment.tres")
 @onready var cave_env := preload("res://assets/cave_environment.tres")
 @onready var player_in_cave := false
+@onready var medusa_dead := false
 @onready var current_time := 0.0
 
 func _ready():
-	islandTrigger.body_entered.connect(playerExitCave)
-	caveTrigger.body_entered.connect(playerEnterCave)
 	maiden.maiden_left.connect(activateBoat)
+	medusa.medusa_slain.connect(medusaSlain)
 	player.player_died.connect(playerDied)
-	shallowWater.body_exited.connect(player.exitingShallows)#(playerExitShallow)
+	shallowWater.body_exited.connect(player.exitingShallows)
 	deepWater.body_exited.connect(player.enteringDeep)
+	sarpedonArea.body_exited.connect(gameWin)
+	medusaLairTrigger.body_entered.connect(playerCave.bind(true))
+	medusaLairTrigger.body_exited.connect(playerCave.bind(false))
 	worldEnvironment.environment = island_env
 	player.camera.current = true
-	#player.startActivity(introBoat)
+	player.startActivity(introBoat)
+	PauseMenu.setTheme("black")
 	
 	
 	if DataHandler.hermes_done: hermes.alreadyFinished()
@@ -46,20 +52,9 @@ func _process(delta):
 	
 func _physics_process(delta):
 	for node in get_tree().get_nodes_in_group("needs_player_ground"):
-		node.setTargetPos(player.getGroundPos())
+		if not player.is_invis: node.setTargetPos(player.getGroundPos())
 	for node in get_tree().get_nodes_in_group("needs_player_eyes"):
 		node.setTargetPos(player.camera.global_position)
-	
-func playerEnterCave(_body):
-	if worldEnvironment.environment.fog_density != 0:
-		player_in_cave = true
-		environAnim.play("island_to_cave")
-	
-func playerExitCave(_body):
-	if worldEnvironment.environment.fog_density == 0:
-		environAnim.play("island_to_cave", -1, -1)
-		await environAnim.animation_finished
-		player_in_cave = false
 
 func activateBoat():
 	boat.enterBox.activate()
@@ -68,9 +63,29 @@ func playerDied(death_type):
 	var end_tween = get_tree().create_tween()
 	end_tween.tween_property(deathRect, "color", Color.BLACK, 2.5)
 	await end_tween.finished
+	PauseMenu.setTheme("white")
 	queue_free()
 	DeathScreen.loadDeathScreen(death_type)
 	
+func playerCave(_body, entered):
+	print("PLAYER ENTER CAVE, ", entered)
 
-func playerExitShallow():
-	player.exitingShallows()
+func gameWin(_body):
+	if medusa_dead:
+		var end_tween = get_tree().create_tween()
+		end_tween.tween_property(deathRect, "color", Color.BLACK, 2.5)
+		await end_tween.finished
+		PauseMenu.setTheme("white")
+		queue_free()
+		DeathScreen.loadDeathScreen("medusa_slain")
+	else:
+		var end_tween = get_tree().create_tween()
+		end_tween.tween_property(winRect, "modulate", Color.WHITE, 2.5)
+		await end_tween.finished
+		queue_free()
+		WinScreen.showMenu()
+
+func medusaSlain():
+	medusa_dead = true
+	gorgons.lament()
+

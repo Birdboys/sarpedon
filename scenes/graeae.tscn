@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://gbl1q3e8sop0"]
+[gd_scene load_steps=23 format=3 uid="uid://gbl1q3e8sop0"]
 
 [ext_resource type="Script" path="res://scripts/graeae.gd" id="1_diuei"]
 [ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="2_n178q"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d557kilnx4qe" path="res://scenes/components/billboard_component.tscn" id="4_snmrf"]
 [ext_resource type="PackedScene" uid="uid://dt6bxmw7stlh8" path="res://scenes/components/interact_box.tscn" id="5_lyowc"]
 [ext_resource type="Script" path="res://scripts/monteHandler.gd" id="6_iba7j"]
+[ext_resource type="PackedScene" uid="uid://beabw8ir817ar" path="res://scenes/components/action_label.tscn" id="6_yv6ta"]
 [ext_resource type="PackedScene" uid="uid://b3olvk0uaabxt" path="res://scenes/cup.tscn" id="7_6con7"]
 [ext_resource type="Texture2D" uid="uid://4awym5lfpoaw" path="res://assets/temp/eyeball.png" id="8_wj4ev"]
 [ext_resource type="Texture2D" uid="uid://0o2dmpxsjwxe" path="res://assets/sprites/invis_helmet.png" id="9_yqlps"]
@@ -109,21 +110,21 @@ mesh = SubResource("PlaneMesh_b64vp")
 [node name="trigger1" parent="." instance=ExtResource("5_lyowc")]
 size = Vector3(1, 2, 1)
 object_name = "graeae"
-object_prompt = "talk [e]"
+object_prompt = "TALK [INTERACT]"
 interact_ret = "graeae_talk"
 
 [node name="trigger2" parent="." instance=ExtResource("5_lyowc")]
 object_name = "graeae"
-object_prompt = "talk [e]"
+object_prompt = "TALK [INTERACT]"
 interact_ret = "graeae_explanation"
 interactable = false
 on_start = false
 
 [node name="trigger3" parent="." instance=ExtResource("5_lyowc")]
 object_name = "graeae"
-object_prompt = "take 
+object_prompt = "TAKE
 Ἅϊδος κυνέη 
-[e]"
+[INTERACT]"
 interact_ret = "graeae_take_helmet"
 interactable = false
 on_start = false
@@ -153,26 +154,21 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="monteCam/monteUI"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -59.5
-offset_top = -21.5
-offset_right = 59.5
-offset_bottom = 21.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "SELECT CUP: A-D
-CHOOSE CUP: E
+[node name="actionLabel" parent="monteCam/monteUI" instance=ExtResource("6_yv6ta")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1.0
+offset_bottom = 20.0
+grow_horizontal = 1
+grow_vertical = 1
+original_text = "SELECT CUP: [LEFT] - [RIGHT] 
+CHOOSE CUP: [INTERACT]
 
 
 
 "
-horizontal_alignment = 1
 
 [node name="monteHandler" type="Node3D" parent="."]
 script = ExtResource("6_iba7j")

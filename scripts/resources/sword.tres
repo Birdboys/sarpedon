@@ -9,5 +9,5 @@ item_id = "sword"
 name = "ἅρπη"
 image = ExtResource("1_lehlp")
 description = "From the wooden handle juts a curved blade. Its dark adamantine edge forms an arc, ending in a ruthlessly fine point. An odd shape, but as you swing it, the weight shifting violently in your hand, you can tell it’s an effective one. "
-tooltip = "Press [r] to equip/unequip sword.
-Press [lmb] to swing sword."
+tooltip = "Press [EQUIP_SWORD] to equip/unequip sword.
+Press [USE_SWORD] to swing sword."

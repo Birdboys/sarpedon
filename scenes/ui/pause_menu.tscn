@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://drcm6lc2w37br"]
+[gd_scene load_steps=13 format=3 uid="uid://drcm6lc2w37br"]
 
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_573p5"]
 [ext_resource type="Texture2D" uid="uid://byubok773wow" path="res://assets/temp/uiborders.png" id="1_lo72j"]
@@ -6,19 +6,20 @@
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="3_mre7y"]
 [ext_resource type="Script" path="res://scripts/ui/controls_menu.gd" id="4_46yd0"]
 [ext_resource type="Script" path="res://scripts/ui/settings_menu.gd" id="6_x0hft"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jyxlk"]
-content_margin_top = 16.0
-content_margin_bottom = 16.0
-texture = ExtResource("1_lo72j")
-texture_margin_bottom = 16.0
-axis_stretch_horizontal = 1
-modulate_color = Color(0, 0, 0, 0.901961)
+[ext_resource type="Script" path="res://scripts/ui/credits_menu.gd" id="7_ho5ee"]
+[ext_resource type="FontFile" uid="uid://bguvi2je1ofym" path="res://assets/fonts/FiraSans-Bold.ttf" id="7_ow5pn"]
+[ext_resource type="Texture2D" uid="uid://djgqubuago2i1" path="res://assets/temp/athena_art_1.png" id="7_qtdip"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h8b51"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fhv12"]
 bg_color = Color(0, 0, 0, 0.901961)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nkbwf"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
 
 [node name="pauseMenu" type="CanvasLayer"]
 process_mode = 3
@@ -35,6 +36,15 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("2_cq5vu")
+
+[node name="pauseBg" type="Panel" parent="pauseUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"pauseBg"
 
 [node name="pauseMargin" type="MarginContainer" parent="pauseUI"]
 layout_mode = 1
@@ -71,7 +81,7 @@ theme_override_constants/separation = 0
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_jyxlk")
+theme_type_variation = &"botPanel"
 
 [node name="topRowMargin" type="MarginContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/topRow"]
 layout_mode = 1
@@ -91,6 +101,18 @@ theme_override_font_sizes/font_size = 32
 text = "Σαρπηδών"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="whiteBorder" type="TextureRect" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/topRow"]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_lo72j")
+stretch_mode = 1
 
 [node name="menuPanel" type="Panel" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer"]
 layout_mode = 2
@@ -323,3 +345,84 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+
+[node name="creditsMenu" type="Control" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_ho5ee")
+
+[node name="creditsBg" type="ColorRect" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.901961)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("7_ow5pn")
+theme_override_font_sizes/normal_font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nkbwf")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nkbwf")
+text = "Programming: Colby Bird
+
+Writing: Colby Bird
+
+UI/UX: Colby Bird"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+
+[node name="TextureRect" type="TextureRect" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("7_qtdip")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="leftButton" type="Button" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+flat = true
+
+[node name="artLabel" type="Label" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 4.0
+text = "NAME OF THE ART"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="rightButton" type="Button" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+flat = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://vwucnpm7rl8o"]
+[gd_scene load_steps=15 format=3 uid="uid://vwucnpm7rl8o"]
 
 [ext_resource type="Script" path="res://scripts/hermes.gd" id="1_s4wmc"]
 [ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="2_eiw8f"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dymhqgriaflra" path="res://assets/temp/discusbg_blank.png" id="8_nepbv"]
 [ext_resource type="Texture2D" uid="uid://df6ynljmpqpp0" path="res://assets/temp/discusindi.png" id="9_cj6ip"]
 [ext_resource type="Texture2D" uid="uid://c2224nusrwyr2" path="res://assets/temp/discusbg.png" id="10_oym8d"]
+[ext_resource type="PackedScene" uid="uid://beabw8ir817ar" path="res://scenes/components/action_label.tscn" id="12_hpvec"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p27bl"]
 render_priority = 0
@@ -46,14 +47,14 @@ mesh = SubResource("PlaneMesh_j84vj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.999075, 0)
 size = Vector3(1, 2, 1)
 object_name = "hermes_trig1"
-object_prompt = "talk [e]"
+object_prompt = "TALK [INTERACT]"
 interact_ret = "hermes_intro"
 
 [node name="trigger2" parent="." instance=ExtResource("7_ejpgu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.999075, 0)
 size = Vector3(1, 2, 1)
 object_name = "hermes_trig2"
-object_prompt = "talk [e]"
+object_prompt = "TALK [INTERACT]"
 interact_ret = "hermes_discus"
 interactable = false
 on_start = false
@@ -62,9 +63,9 @@ on_start = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.999075, 0)
 size = Vector3(1, 2, 1)
 object_name = "hermes_trig2"
-object_prompt = "take
-πτερόεντα πέδιλα
-[e]"
+object_prompt = "TAKE
+πτερόεντα πέδιλα 
+[INTERACT]"
 interact_ret = "hermes_take_sandals"
 interactable = false
 on_start = false
@@ -153,13 +154,11 @@ rotation = 6.28319
 pivot_offset = Vector2(32, 32)
 texture = ExtResource("9_cj6ip")
 
-[node name="tutorialText" type="Label" parent="discusHandler/discusCam/discusUI/margin"]
-visible = false
+[node name="tutorialText" parent="discusHandler/discusCam/discusUI/margin" instance=ExtResource("12_hpvec")]
 layout_mode = 2
-text = "PRESS [e] WHEN CIRCLES OVERLAP
-"
 horizontal_alignment = 1
 vertical_alignment = 1
+original_text = "PRESS [INTERACT] WHEN CIRCLES OVERLAP"
 
 [node name="pathFollow" type="PathFollow3D" parent="."]
 

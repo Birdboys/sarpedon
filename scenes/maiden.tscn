@@ -18,7 +18,7 @@ orientation = 2
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n7t44"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tefjd"]
-radius = 1.5
+radius = 0.75
 
 [node name="maiden" type="CharacterBody3D"]
 script = ExtResource("1_i0koe")

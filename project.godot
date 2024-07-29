@@ -17,11 +17,13 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+DataHandler="*res://scripts/dataHandler.gd"
+LoadHandler="*res://scripts/loadHandler.gd"
+AudioHandler="*res://scenes/audio_handler.tscn"
 PauseMenu="*res://scenes/ui/pause_menu.tscn"
 DeathScreen="*res://scenes/ui/death_screen.tscn"
-DataHandler="*res://scripts/dataHandler.gd"
+WinScreen="*res://scenes/ui/win_screen.tscn"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
-LoadHandler="*res://scripts/loadHandler.gd"
 
 [dialogic]
 
@@ -31,6 +33,7 @@ directories/dch_directory={
 "graeae": "res://assets/characters/graeae.dch",
 "hermes": "res://assets/characters/hermes.dch",
 "maiden": "res://assets/characters/maiden.dch",
+"medusa": "res://assets/characters/medusa.dch",
 "phorkys": "res://assets/characters/phorkys.dch",
 "siren": "res://assets/characters/siren.dch",
 "stheno": "res://assets/characters/stheno.dch"
@@ -64,6 +67,9 @@ directories/dtl_directory={
 "introMaiden": "res://assets/timelines/introMaiden.dtl",
 "maidenInterject": "res://assets/timelines/maidenInterject.dtl",
 "maidenIntro": "res://assets/timelines/maidenIntro.dtl",
+"medusaWaking1": "res://assets/timelines/medusaWaking1.dtl",
+"medusaWaking2": "res://assets/timelines/medusaWaking2.dtl",
+"medusaWaking3": "res://assets/timelines/medusaWaking3.dtl",
 "nearingDeepWater": "res://assets/timelines/nearingDeepWater.dtl",
 "phorkysIntro": "res://assets/timelines/phorkysIntro.dtl",
 "sirenLures": "res://assets/timelines/sirenLures.dtl",
@@ -154,27 +160,27 @@ inventory={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194306,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
-sword_equip={
+equip_sword={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":82,"key_label":0,"unicode":114,"echo":false,"script":null)
 ]
 }
-shield_equip={
+equip_shield={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":81,"key_label":0,"unicode":113,"echo":false,"script":null)
 ]
 }
-sword_attack={
+use_sword={
 "deadzone": 0.5,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(169, 14),"global_position":Vector2(173, 55),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
-shield_hold={
+use_shield={
 "deadzone": 0.5,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(100, 9),"global_position":Vector2(104, 50),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
-sneak={
+use_helmet={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194326,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
@@ -184,6 +190,10 @@ escape={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://assets/input_translation.en.translation")
 
 [layer_names]
 
@@ -196,6 +206,9 @@ escape={
 3d_physics/layer_3="player"
 3d_physics/layer_4="trigger"
 3d_physics/layer_5="ocean_floor"
+3d_physics/layer_6="footstep_water"
+3d_physics/layer_7="medusa_head"
+3d_physics/layer_8="sword"
 
 [rendering]
 

@@ -53,6 +53,7 @@ func unTransitionCamera(initial_camera: Camera3D):
 
 func goAway(_body):
 	print("WENT AAWAY")
+	emit_signal("maiden_left")
 	leaveTrigger.set_deferred("monitoring", false)
 	var leave_pos = global_position + (global_position - player.global_position).normalized() * 5
 	var leave_tween = get_tree().create_tween().set_parallel(true).set_ease(Tween.EASE_IN)
@@ -60,7 +61,6 @@ func goAway(_body):
 	leave_tween.tween_property(maidenMesh, "transparency", 1.0, 1.5)
 	await leave_tween.finished
 	player = null
-	emit_signal("maiden_left")
 	queue_free()
 	
 func rotatePlayer():
