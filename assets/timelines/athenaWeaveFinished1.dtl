@@ -1,0 +1,12 @@
+[wait time="1.0"]
+[signal arg="showTapestry"]
+athena: You make short work of a difficult task.
+athena: Not all people are equipped with such knowledge.
+athena: But you, you can see it. Can’t you?
+athena: You can see the image, the proper place for every thread, the truth.
+athena: Yarn can be tangled, tellings can be contradictory, information can be muddled…
+athena: …but as long as you know your truth, you can rewire the threads to match.
+[wait time="1.0"]
+[signal arg="hideTapestry"]
+athena: Go on, you're almost there.
+[signal arg="startWeave"]

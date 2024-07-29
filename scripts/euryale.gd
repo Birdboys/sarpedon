@@ -48,6 +48,7 @@ func setTargetPos(pos):
 	player_target_pos = pos
 
 func changeToGorgon():
+	if current_phase == "gorgon": return
 	attackCol.set_deferred("disabled", false)
 	trigger1.deactivate()
 	maidenMesh.visible = false

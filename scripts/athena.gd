@@ -34,7 +34,7 @@ func startWeave():
 
 func finishWeave():
 	weaveUI.visible = false 
-	weaveHandler.showTapestry()
+	#weaveHandler.showTapestry()
 	trigger3.activate()
 	current_phase = "idle"
 	emit_signal("activity_finished")
@@ -56,7 +56,7 @@ func handleDialogue(type):
 			weaveHandler.y_dim = 8
 			playArea.size.x = weaveHandler.x_dim * weaveHandler.tile_size + 32
 			playArea.size.y = weaveHandler.y_dim * weaveHandler.tile_size
-		"finishDone":
+		"weaveDone":
 			finishWeave()
 			
 func weaveFinished():
@@ -67,12 +67,25 @@ func weaveFinished():
 			current_phase = "weave_explanation_2"
 		"weave_explanation_2":
 			await weaveHandler.revealThread()
-			Dialogic.start("athenaWeave1")
+			Dialogic.start("athenaWeaveExplanation3")
+			current_phase = "weave_explanation_3"
+		"weave_explanation_3":
+			await weaveHandler.revealThread(true)
+			Dialogic.start("athenaUntangleFinished1")
+			current_phase = "untangle_1"
+		"untangle_1":
+			await weaveHandler.revealThread()
+			Dialogic.start("athenaWeaveFinished1")
 			current_phase = "weave_1"
 		"weave_1":
+			await weaveHandler.revealThread(true)
+			Dialogic.start("athenaUntangleFinished2")
+			current_phase = "untangle_2"
+		"untangle_2":
 			await weaveHandler.revealThread()
-			Dialogic.start("athenaWeave1Cont")
-
+			Dialogic.start("athenaWeaveFinished2")
+			current_phase = "weave_2"
+			
 func transitionCamera(initial_camera: Camera3D):
 	var original_transform = weaveCam.global_transform
 	var original_fov = weaveCam.fov

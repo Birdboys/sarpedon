@@ -14,14 +14,9 @@ func open():
 		new_remap.action_text = actions[action]
 		new_remap.action_name = action
 		remapArea.add_child(new_remap)
-		new_remap.capturing.connect(oneCapturing)
 
 func close():
 	visible = false
 	for child in remapArea.get_children():
 		child.queue_free()
-		
-func oneCapturing(name):
-	for child in remapArea.get_children():
-		if child.action_name != name:
-			child.clear()
+

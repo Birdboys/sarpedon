@@ -1,0 +1,8 @@
+athena: Another untangling… you have prowess, I must admit…
+athena: Don’t get ahead of yourself. I needn’t speak of my opposition to boasting.
+athena: The spiders do that enough.
+athena: Though, like them, you are skilled with the threads.
+athena: I sense strength in your hands, ability. 
+athena: Continue.
+[wait time="1.0"]
+[signal arg="continueWeave"]

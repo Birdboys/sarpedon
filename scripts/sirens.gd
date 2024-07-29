@@ -5,10 +5,10 @@ extends Node3D
 @onready var player_in_sing_range := false
 @onready var player_in_pull_range := false
 @onready var player_attacked := false
-@onready var num_sing_texts := 6
+@onready var num_sing_texts := 22
 @onready var attack_timeout := 10.0
 @onready var capsize_distance := 15.0
-#@onready var min_boat_pull_force := 3
+
 @onready var max_boat_pull_force := 7
 @export var boatFinder : Area3D
 @export var boatPuller : Area3D

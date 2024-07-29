@@ -108,7 +108,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 horizontal_alignment = 1
 vertical_alignment = 1
-original_text = "MOVE CURSOR
+original_text = "MOVE CURSOR 
 [FORWARD] [BACK] [LEFT] [RIGHT]"
 
 [node name="actionLabel2" parent="weaveCam/weaveUI/uiMargin" instance=ExtResource("8_o1c63")]

@@ -21,7 +21,7 @@ func playerExited(body):
 
 func handleDialogue(type):
 	match type:
-		"phorkys_leave":
+		"phorkysLeave":
 			current_phase = "after_summon"
 			var ocean_pos = phorkysMesh.global_position - Vector3.UP * 4
 			if summon_tween is Tween: summon_tween.kill()

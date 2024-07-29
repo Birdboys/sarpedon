@@ -40,10 +40,14 @@ directories/dch_directory={
 }
 directories/dtl_directory={
 "athenaIntro": "res://assets/timelines/athenaIntro.dtl",
+"athenaUntangleFinished1": "res://assets/timelines/athenaUntangleFinished1.dtl",
+"athenaUntangleFinished2": "res://assets/timelines/athenaUntangleFinished2.dtl",
 "athenaWeave1": "res://assets/timelines/athenaWeave1.dtl",
-"athenaWeave1Cont": "res://assets/timelines/athenaWeave1Cont.dtl",
 "athenaWeaveExplanation": "res://assets/timelines/athenaWeaveExplanation.dtl",
 "athenaWeaveExplanation2": "res://assets/timelines/athenaWeaveExplanation2.dtl",
+"athenaWeaveExplanation3": "res://assets/timelines/athenaWeaveExplanation3.dtl",
+"athenaWeaveFinished1": "res://assets/timelines/athenaWeaveFinished1.dtl",
+"athenaWeaveFinished2": "res://assets/timelines/athenaWeaveFinished2.dtl",
 "graeaeExplanation": "res://assets/timelines/graeaeExplanation.dtl",
 "graeaeExplanationFail": "res://assets/timelines/graeaeExplanationFail.dtl",
 "graeaeExplanationSuccess": "res://assets/timelines/graeaeExplanationSuccess.dtl",
@@ -73,6 +77,7 @@ directories/dtl_directory={
 "nearingDeepWater": "res://assets/timelines/nearingDeepWater.dtl",
 "phorkysIntro": "res://assets/timelines/phorkysIntro.dtl",
 "sirenLures": "res://assets/timelines/sirenLures.dtl",
+"sistersGorgonRetaliation": "res://assets/timelines/sistersGorgonRetaliation.dtl",
 "sistersMaidenInterruption": "res://assets/timelines/sistersMaidenInterruption.dtl",
 "sistersMaidenIntro": "res://assets/timelines/sistersMaidenIntro.dtl",
 "sistersMaidenWarning": "res://assets/timelines/sistersMaidenWarning.dtl"

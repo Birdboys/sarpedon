@@ -6,7 +6,6 @@ extends HBoxContainer
 @export var action_text : String
 @export var action_name : String
 
-signal capturing
 signal input_captured(input)
 
 func _ready():
@@ -17,7 +16,6 @@ func _ready():
 func remapPressed():
 	if listening: return
 	AudioHandler.playSound("ui_click")
-	emit_signal("capturing")
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	listening = true
 	setButtonText("listening...")

@@ -83,6 +83,7 @@ func lament():
 	euryale.trigger1.deactivate()
 	stheno.changeToGorgon()
 	euryale.changeToGorgon()
+	Dialogic.start("sistersGorgonLament")
 
 func transitionCamera(initial_camera: Camera3D):
 	sisterTalkCam.global_transform = initial_camera.global_transform
