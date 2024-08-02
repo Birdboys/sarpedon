@@ -53,6 +53,7 @@ func _ready():
 	stateMachine.initialize(self) 
 	Dialogic.signal_event.connect(handleDialogue)
 	petrifyTimer.timeout.connect(deathByPetrify)
+	PauseMenu.settingsMenu.sens_changed.connect(sensChanged)
 	
 func _process(delta):
 	$UI/UIBase/fpsCounter.text = "FPS:%s" % Engine.get_frames_per_second()
@@ -306,3 +307,6 @@ func swordAttack():
 	if medusa.interact() != "medusa_slain": return
 	medusa.get_parent().get_parent().slain()
 	AudioHandler.playSound("sword_swing")
+
+func sensChanged(val):
+	sensitivity = remap(val, 0.0, 100.0, 0.005, 0.015)

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArtDetails" load_steps=3 format=3 uid="uid://4rr42syuux6g"]
+
+[ext_resource type="Script" path="res://scripts/resources/art_details/art_details.gd" id="1_lymwl"]
+[ext_resource type="Texture2D" uid="uid://nefvp12fi4h1" path="res://assets/originals/ogathena2.jpg" id="1_nvnmo"]
+
+[resource]
+script = ExtResource("1_lymwl")
+art_id = "athena3"
+art_name = "INSIGNIS GALEA ATOS INSIGNIS GORGOM PALAS"
+art_link = "https://www.britishmuseum.org/collection/object/P_1853-0709-121"
+art_image = ExtResource("1_nvnmo")

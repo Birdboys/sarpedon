@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArtDetails" load_steps=3 format=3 uid="uid://cffjooqkg3irj"]
+
+[ext_resource type="Script" path="res://scripts/resources/art_details/art_details.gd" id="1_bfwxi"]
+[ext_resource type="Texture2D" uid="uid://dqlv61vio6da4" path="res://assets/originals/ogsirens1.jpg" id="1_eabto"]
+
+[resource]
+script = ExtResource("1_bfwxi")
+art_id = "sirens1"
+art_name = "ODYSSEUS AND THE SIRENS"
+art_link = "https://media.britishmuseum.org/media/Repository/Documents/2014_9/30_12/70bfbe5c_3265_4ed6_ba40_a3b600d02ee4/mid_00007497_001.jpg"
+art_image = ExtResource("1_eabto")

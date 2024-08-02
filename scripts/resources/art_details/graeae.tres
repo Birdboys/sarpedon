@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArtDetails" load_steps=3 format=3 uid="uid://dsaib5gtkujhy"]
+
+[ext_resource type="Script" path="res://scripts/resources/art_details/art_details.gd" id="1_dqd5u"]
+[ext_resource type="Texture2D" uid="uid://bd2dn8wmjfrr0" path="res://assets/originals/oggraeae.jpg" id="1_tv241"]
+
+[resource]
+script = ExtResource("1_dqd5u")
+art_id = "graeae"
+art_name = "Perseus and Graea"
+art_link = "https://www.theoi.com/Pontios/Graiai.html"
+art_image = ExtResource("1_tv241")

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArtDetails" load_steps=3 format=3 uid="uid://ct3plv227qiky"]
+
+[ext_resource type="Texture2D" uid="uid://cy63hatcci0by" path="res://assets/originals/ogstheno.jpeg" id="1_427kq"]
+[ext_resource type="Script" path="res://scripts/resources/art_details/art_details.gd" id="1_o117j"]
+
+[resource]
+script = ExtResource("1_o117j")
+art_id = "stheno"
+art_name = "Terracotta kylix"
+art_link = "https://www.metmuseum.org/art/collection/search/246931"
+art_image = ExtResource("1_427kq")

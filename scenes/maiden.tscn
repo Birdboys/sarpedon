@@ -18,7 +18,7 @@ orientation = 2
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n7t44"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tefjd"]
-radius = 0.75
+radius = 0.25
 
 [node name="maiden" type="CharacterBody3D"]
 script = ExtResource("1_i0koe")
@@ -29,6 +29,7 @@ mesh = SubResource("PlaneMesh_o65nr")
 
 [node name="maidenCol" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_n7t44")
+disabled = true
 
 [node name="maidenCam" type="Camera3D" parent="."]
 top_level = true

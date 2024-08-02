@@ -6,18 +6,14 @@ extends Node3D
 @export var spawnArea : Area3D
 
 func _ready():
-	spawnArea.body_entered.connect(playerEntered)
 	spawnArea.body_exited.connect(playerExited)
 	Dialogic.signal_event.connect(handleDialogue)
 	phorkysMesh.visible = false
 	
-func playerEntered(body):
-	pass
-	
 func playerExited(body):
 	if body.name != "playerCharacter": return
 	match current_phase:
-		"idle": firstSummon(body)
+		"ready": firstSummon(body)
 
 func handleDialogue(type):
 	match type:

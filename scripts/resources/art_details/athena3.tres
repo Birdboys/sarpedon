@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArtDetails" load_steps=3 format=3 uid="uid://cp82m1ytopyat"]
+
+[ext_resource type="Texture2D" uid="uid://eq1qp7en4uk4" path="res://assets/originals/ogathena3.jpeg" id="1_0vss0"]
+[ext_resource type="Script" path="res://scripts/resources/art_details/art_details.gd" id="1_ddtii"]
+
+[resource]
+script = ExtResource("1_ddtii")
+art_id = "athena3"
+art_name = "Mercury presenting a panpipe to Minerva"
+art_link = "https://www.metmuseum.org/art/collection/search/392851"
+art_image = ExtResource("1_0vss0")

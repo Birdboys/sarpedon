@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArtDetails" load_steps=3 format=3 uid="uid://bym2q7tfqktop"]
+
+[ext_resource type="Script" path="res://scripts/resources/art_details/art_details.gd" id="1_37og1"]
+[ext_resource type="Texture2D" uid="uid://bcht5s3p3vnvc" path="res://assets/originals/ogmedusa2.jpg" id="1_rd4is"]
+
+[resource]
+script = ExtResource("1_37og1")
+art_id = "medusa1"
+art_name = "Dinos of the Gorgon Painter"
+art_link = "https://en.wikipedia.org/wiki/Dinos_of_the_Gorgon_Painter"
+art_image = ExtResource("1_rd4is")

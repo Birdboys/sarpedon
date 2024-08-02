@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArtDetails" load_steps=3 format=3 uid="uid://b1h8yewjko5x2"]
+
+[ext_resource type="Script" path="res://scripts/resources/art_details/art_details.gd" id="1_1juqt"]
+[ext_resource type="Texture2D" uid="uid://duqvwnrxqjk0b" path="res://assets/originals/ogmedusa1.jpeg" id="1_fuegg"]
+
+[resource]
+script = ExtResource("1_1juqt")
+art_id = "medusa1"
+art_name = "Perseus beheading the sleeping Medusa"
+art_link = "https://www.metmuseum.org/art/collection/search/254523"
+art_image = ExtResource("1_fuegg")

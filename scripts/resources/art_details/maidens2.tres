@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArtDetails" load_steps=3 format=3 uid="uid://dikxowv8fdxpc"]
+
+[ext_resource type="Script" path="res://scripts/resources/art_details/art_details.gd" id="1_a8mxj"]
+[ext_resource type="Texture2D" uid="uid://dfqcp3pke0po4" path="res://assets/originals/ogmaidens2.jpeg" id="1_y0pff"]
+
+[resource]
+script = ExtResource("1_a8mxj")
+art_id = "maidens2"
+art_name = "Women at fountain house"
+art_link = "https://www.metmuseum.org/art/collection/search/247244"
+art_image = ExtResource("1_y0pff")

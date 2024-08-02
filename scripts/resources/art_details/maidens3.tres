@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArtDetails" load_steps=3 format=3 uid="uid://cbqcbn5qyw3dw"]
+
+[ext_resource type="Texture2D" uid="uid://bde771nw3murl" path="res://assets/originals/ogmaidens3.jpg" id="1_1mvj0"]
+[ext_resource type="Script" path="res://scripts/resources/art_details/art_details.gd" id="1_8pp6h"]
+
+[resource]
+script = ExtResource("1_8pp6h")
+art_id = "maidens3"
+art_name = "woman making a libation"
+art_link = "https://collections.mfa.org/objects/153630/water-jar-hydria-depicting-a-warrior-and-a-woman-making-a?ctx=b69c387b-975e-44c9-b096-63be33ee2586&idx=38"
+art_image = ExtResource("1_1mvj0")

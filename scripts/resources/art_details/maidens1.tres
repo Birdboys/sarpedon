@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArtDetails" load_steps=3 format=3 uid="uid://0gae6bqccmoq"]
+
+[ext_resource type="Texture2D" uid="uid://c1l0dwtdiitt2" path="res://assets/originals/ogmaidens1.jpeg" id="1_ijvml"]
+[ext_resource type="Script" path="res://scripts/resources/art_details/art_details.gd" id="1_pxruk"]
+
+[resource]
+script = ExtResource("1_pxruk")
+art_id = "maidens1"
+art_name = "Terracotta lekythos"
+art_link = "https://www.metmuseum.org/art/collection/search/253348"
+art_image = ExtResource("1_ijvml")

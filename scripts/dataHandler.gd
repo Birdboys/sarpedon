@@ -17,7 +17,13 @@ extends Node
 	"USE_SHIELD": "RMB",
 	"USE_HELMET": "CTRL"
 }
-	
+
+@onready var settings := {
+	"sensitivity" : 50.0,
+	"audio_volume": 100.0,
+	"music_volume": 100.0
+}
+
 signal translation_updated
 
 func _ready():

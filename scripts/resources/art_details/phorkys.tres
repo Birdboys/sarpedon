@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArtDetails" load_steps=3 format=3 uid="uid://dg5q8ynculn5a"]
+
+[ext_resource type="Texture2D" uid="uid://cj025gyyrnfa4" path="res://assets/originals/ogphorkys.jpg" id="1_6okec"]
+[ext_resource type="Script" path="res://scripts/resources/art_details/art_details.gd" id="2_hinsu"]
+
+[resource]
+script = ExtResource("2_hinsu")
+art_id = "phorkys"
+art_name = "Phorkys Mosaic"
+art_link = "https://en.wikipedia.org/wiki/File:Phorkys_Mosaic_Bardo.jpg"
+art_image = ExtResource("1_6okec")

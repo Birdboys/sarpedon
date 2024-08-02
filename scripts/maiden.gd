@@ -20,7 +20,9 @@ func _ready():
 
 func startInteraction(body):
 	var player_pos = body.global_position
-	var new_pos = player_pos + body.global_basis.z * spawn_radius
+	var target_offset = Vector3(body.camera.global_basis.z.x, 0, body.camera.global_basis.z.z).normalized() * spawn_radius
+	var new_pos = player_pos + target_offset
+	#var new
 	current_phase = "interject"
 	player = body
 	maidenMesh.visible = true
@@ -55,7 +57,7 @@ func goAway(_body):
 	print("WENT AAWAY")
 	emit_signal("maiden_left")
 	leaveTrigger.set_deferred("monitoring", false)
-	var leave_pos = global_position + (global_position - player.global_position).normalized() * 5
+	var leave_pos = global_position + Vector3(Vector3(global_position - player.global_position).x, 0, Vector3(global_position - player.global_position).z).normalized() * 20
 	var leave_tween = get_tree().create_tween().set_parallel(true).set_ease(Tween.EASE_IN)
 	leave_tween.tween_property(self, "global_position", leave_pos, 1.5)
 	leave_tween.tween_property(maidenMesh, "transparency", 1.0, 1.5)

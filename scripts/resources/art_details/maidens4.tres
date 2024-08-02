@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArtDetails" load_steps=3 format=3 uid="uid://bkde5cppviami"]
+
+[ext_resource type="Texture2D" uid="uid://ciapbea5axlx3" path="res://assets/originals/ogmaidens4.jpg" id="1_5270d"]
+[ext_resource type="Script" path="res://scripts/resources/art_details/art_details.gd" id="1_w6xgv"]
+
+[resource]
+script = ExtResource("1_w6xgv")
+art_id = "maidens4"
+art_name = "Greek Vase Depicting Wedding Preparations"
+art_link = "https://www.worldhistory.org/image/13701/greek-vase-depicting-wedding-preparations/"
+art_image = ExtResource("1_5270d")

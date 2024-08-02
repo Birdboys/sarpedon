@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArtDetails" load_steps=3 format=3 uid="uid://c0lapwyisyink"]
+
+[ext_resource type="Texture2D" uid="uid://begc36oac5q82" path="res://assets/originals/oghermes3.jpeg" id="1_klyth"]
+[ext_resource type="Script" path="res://scripts/resources/art_details/art_details.gd" id="2_bvsi8"]
+
+[resource]
+script = ExtResource("2_bvsi8")
+art_id = "hermes3"
+art_name = "Mercury standing holding a cadecus"
+art_link = "https://www.metmuseum.org/art/collection/search/396473"
+art_image = ExtResource("1_klyth")

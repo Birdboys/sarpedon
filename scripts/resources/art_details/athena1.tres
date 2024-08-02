@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArtDetails" load_steps=3 format=3 uid="uid://du144b2dgrl5l"]
+
+[ext_resource type="Texture2D" uid="uid://b8udo7jxqy3vi" path="res://assets/originals/ogathena1.jpeg" id="1_k80dc"]
+[ext_resource type="Script" path="res://scripts/resources/art_details/art_details.gd" id="1_xd4pq"]
+
+[resource]
+script = ExtResource("1_xd4pq")
+art_id = "athena1"
+art_name = "Terracotta lekythos (oil flask)"
+art_link = "https://www.metmuseum.org/art/collection/search/252921"
+art_image = ExtResource("1_k80dc")

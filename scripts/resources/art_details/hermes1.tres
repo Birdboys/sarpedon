@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArtDetails" load_steps=3 format=3 uid="uid://clgibl8dilr7f"]
+
+[ext_resource type="Texture2D" uid="uid://rwcoc0gcvlo" path="res://assets/originals/oghermes1.jpeg" id="1_o4mfv"]
+[ext_resource type="Script" path="res://scripts/resources/art_details/art_details.gd" id="1_ybyhl"]
+
+[resource]
+script = ExtResource("1_ybyhl")
+art_id = "hermes1"
+art_name = "Mercury"
+art_link = "https://www.metmuseum.org/art/collection/search/386163"
+art_image = ExtResource("1_o4mfv")

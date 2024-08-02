@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://drcm6lc2w37br"]
+[gd_scene load_steps=17 format=3 uid="uid://drcm6lc2w37br"]
 
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_573p5"]
 [ext_resource type="Texture2D" uid="uid://byubok773wow" path="res://assets/temp/uiborders.png" id="1_lo72j"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://scripts/ui/credits_menu.gd" id="7_ho5ee"]
 [ext_resource type="FontFile" uid="uid://bguvi2je1ofym" path="res://assets/fonts/FiraSans-Bold.ttf" id="7_ow5pn"]
 [ext_resource type="Texture2D" uid="uid://djgqubuago2i1" path="res://assets/temp/athena_art_1.png" id="7_qtdip"]
+[ext_resource type="Texture2D" uid="uid://bh8n2amxfxwrl" path="res://assets/ui/left_arrow.png" id="10_5rvr4"]
+[ext_resource type="Texture2D" uid="uid://bl74crcgta3ih" path="res://assets/ui/right_arrow.png" id="11_cmifa"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h8b51"]
 
@@ -20,6 +22,10 @@ content_margin_left = 12.0
 content_margin_top = 12.0
 content_margin_right = 12.0
 content_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_chpcr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_veihl"]
 
 [node name="pauseMenu" type="CanvasLayer"]
 process_mode = 3
@@ -253,21 +259,26 @@ custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="HBoxContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/sensitivitySlider"]
+[node name="MarginContainer2" type="MarginContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/sensitivitySlider"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
 
-[node name="Label" type="Label" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/sensitivitySlider/VBoxContainer"]
+[node name="VBoxContainer" type="HBoxContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/sensitivitySlider/MarginContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/sensitivitySlider/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"clearUILabel"
 text = "Sensitivity"
 
-[node name="MarginContainer" type="MarginContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/sensitivitySlider/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/sensitivitySlider/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 16
@@ -275,10 +286,11 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 8
 
-[node name="HSlider" type="HSlider" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/sensitivitySlider/VBoxContainer/MarginContainer"]
+[node name="sensSlider" type="HSlider" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/sensitivitySlider/MarginContainer2/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+value = 50.0
 
 [node name="audioSlider" type="Panel" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox"]
 clip_contents = true
@@ -286,21 +298,27 @@ custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="HBoxContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/audioSlider"]
+[node name="MarginContainer2" type="MarginContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/audioSlider"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
 
-[node name="Label" type="Label" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/audioSlider/VBoxContainer"]
+[node name="VBoxContainer" type="HBoxContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/audioSlider/MarginContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/audioSlider/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"clearUILabel"
-text = "Audio Volume"
+text = "Sound Volume
+"
 
-[node name="MarginContainer" type="MarginContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/audioSlider/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/audioSlider/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 16
@@ -308,32 +326,37 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 8
 
-[node name="HSlider" type="HSlider" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/audioSlider/VBoxContainer/MarginContainer"]
+[node name="audio" type="HSlider" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/audioSlider/MarginContainer2/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
-[node name="musicSlider2" type="Panel" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox"]
+[node name="musicSlider" type="Panel" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox"]
 clip_contents = true
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="HBoxContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/musicSlider2"]
+[node name="MarginContainer2" type="MarginContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/musicSlider"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
 
-[node name="Label" type="Label" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/musicSlider2/VBoxContainer"]
+[node name="VBoxContainer" type="HBoxContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/musicSlider/MarginContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/musicSlider/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"clearUILabel"
 text = "Music Volume"
 
-[node name="MarginContainer" type="MarginContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/musicSlider2/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/musicSlider/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 16
@@ -341,7 +364,7 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 8
 
-[node name="HSlider" type="HSlider" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/musicSlider2/VBoxContainer/MarginContainer"]
+[node name="music" type="HSlider" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/musicSlider/MarginContainer2/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -386,11 +409,17 @@ Writing: Colby Bird
 
 UI/UX: Colby Bird"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer"]
+[node name="artDetails" type="Control" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer"]
 layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails"]
+layout_mode = 2
+offset_left = 258.0
+offset_right = 512.0
+offset_bottom = 237.0
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/VBoxContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 5.0
@@ -398,31 +427,51 @@ theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 
-[node name="TextureRect" type="TextureRect" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/VBoxContainer2/MarginContainer"]
+[node name="artImage" type="TextureRect" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails/VBoxContainer2/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("7_qtdip")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/VBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="leftButton" type="Button" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="leftButton" type="Button" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxEmpty_chpcr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_chpcr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_chpcr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_chpcr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_chpcr")
+icon = ExtResource("10_5rvr4")
 flat = true
+icon_alignment = 1
 
-[node name="artLabel" type="Label" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="artLabel" type="Button" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
 size_flags_stretch_ratio = 4.0
-text = "NAME OF THE ART"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 12
+flat = true
+text_overrun_behavior = 3
+clip_text = true
 
-[node name="rightButton" type="Button" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="rightButton" type="Button" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxEmpty_veihl")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_veihl")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_veihl")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_veihl")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_veihl")
+icon = ExtResource("11_cmifa")
 flat = true
+icon_alignment = 1

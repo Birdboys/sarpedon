@@ -1,10 +1,15 @@
-[gd_resource type="Theme" load_steps=13 format=3 uid="uid://dplwrcgvyhpcw"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://dplwrcgvyhpcw"]
 
 [ext_resource type="FontFile" uid="uid://bguvi2je1ofym" path="res://assets/fonts/FiraSans-Bold.ttf" id="1_c2fos"]
+[ext_resource type="Texture2D" uid="uid://qb2yhowox0qk" path="res://assets/ui/slider_grabber.png" id="2_85c51"]
 [ext_resource type="Texture2D" uid="uid://byubok773wow" path="res://assets/temp/uiborders.png" id="2_aoq5i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tojrn"]
 bg_color = Color(0, 0, 0, 0.901961)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sjmok"]
+texture = ExtResource("2_aoq5i")
+axis_stretch_horizontal = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ts2ka"]
 content_margin_left = 8.0
@@ -74,6 +79,13 @@ Button/styles/focus = SubResource("StyleBoxFlat_tojrn")
 Button/styles/hover = SubResource("StyleBoxFlat_tojrn")
 Button/styles/normal = SubResource("StyleBoxFlat_tojrn")
 Button/styles/pressed = SubResource("StyleBoxFlat_tojrn")
+HSlider/constants/center_grabber = 0
+HSlider/constants/grabber_offset = 0
+HSlider/icons/grabber = ExtResource("2_85c51")
+HSlider/icons/grabber_disabled = ExtResource("2_85c51")
+HSlider/icons/grabber_highlight = ExtResource("2_85c51")
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_sjmok")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_sjmok")
 Panel/styles/panel = SubResource("StyleBoxFlat_ts2ka")
 botPanel/base_type = &"Panel"
 botPanel/styles/panel = SubResource("StyleBoxTexture_jyxlk")
