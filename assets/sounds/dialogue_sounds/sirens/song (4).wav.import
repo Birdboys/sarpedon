@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://coueoj5g0iygb"
+path="res://.godot/imported/song (4).wav-e4d50633ee8536f5e3e7e028f29b91d5.sample"
+
+[deps]
+
+source_file="res://assets/sounds/dialogue_sounds/sirens/song (4).wav"
+dest_files=["res://.godot/imported/song (4).wav-e4d50633ee8536f5e3e7e028f29b91d5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

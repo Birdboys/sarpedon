@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bd3e4j54l45h0"
+path="res://.godot/imported/song (2).wav-186b1c65c0e8058d879b9f04d5b428bc.sample"
+
+[deps]
+
+source_file="res://assets/sounds/dialogue_sounds/graeae/song (2).wav"
+dest_files=["res://.godot/imported/song (2).wav-186b1c65c0e8058d879b9f04d5b428bc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

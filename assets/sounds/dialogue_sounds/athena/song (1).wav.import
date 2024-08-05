@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bijyx17mc78y7"
+path="res://.godot/imported/song (1).wav-63c3c842457e95b18ed628f08262cda1.sample"
+
+[deps]
+
+source_file="res://assets/sounds/dialogue_sounds/athena/song (1).wav"
+dest_files=["res://.godot/imported/song (1).wav-63c3c842457e95b18ed628f08262cda1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

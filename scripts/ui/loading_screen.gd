@@ -32,26 +32,32 @@ func handleInteract():
 			var text_tween = get_tree().create_tween()
 			text_tween.tween_property(border, "self_modulate", Color.WHITE, 1.0)
 			text_tween.tween_property(self, "current_phase", "line1", 0.0)
+			AudioHandler.togglePlayer("ocean", true)
+			AudioHandler.setPlayer("ocean", -60)
 		"line1":
 			current_phase = "tweening1"
 			var text_tween = get_tree().create_tween()
 			text_tween.tween_property(line1, "modulate", Color.WHITE, 1.0)
 			text_tween.tween_property(self, "current_phase", "line2", 0.0)
+			AudioHandler.tweenPlayer("ocean", -45)
 		"line2":
 			current_phase = "tweening2"
 			var text_tween = get_tree().create_tween()
 			text_tween.tween_property(line2, "modulate", Color.WHITE, 1.0)
 			text_tween.tween_property(self, "current_phase", "line3", 0.0)
+			AudioHandler.tweenPlayer("ocean", -30)
 		"line3":
 			current_phase = "tweening3"
 			var text_tween = get_tree().create_tween()
 			text_tween.tween_property(line3, "modulate", Color.WHITE, 1.0)
 			text_tween.tween_property(self, "current_phase", "line4", 0.0)
+			AudioHandler.tweenPlayer("ocean", -15)
 		"line4":
 			current_phase = "tweening4"
 			var text_tween = get_tree().create_tween()
 			text_tween.tween_property(line4, "modulate", Color.WHITE, 1.0)
 			text_tween.tween_property(self, "current_phase", "finished", 0.1)
+			AudioHandler.tweenPlayer("ocean", 0)
 		"finished":
 			if game_loaded: quoteFinished()
 		_:

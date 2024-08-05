@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://ev5ihdel24io"]
+[gd_scene load_steps=65 format=3 uid="uid://ev5ihdel24io"]
 
 [ext_resource type="Script" path="res://scripts/player/player_character.gd" id="1_y87bo"]
 [ext_resource type="Texture2D" uid="uid://djldtb4845f38" path="res://assets/sprites/sword.png" id="2_0ap74"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" path="res://scripts/player/player_intro.gd" id="16_5u45x"]
 [ext_resource type="Shader" path="res://scripts/shaders/petrify_shader.gdshader" id="18_gxkx7"]
 [ext_resource type="Script" path="res://scripts/player/player_died.gd" id="19_4cfed"]
+[ext_resource type="AudioStream" uid="uid://c03v45dx8a3py" path="res://assets/sounds/petrify_crack.wav" id="26_xd6u5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2a5dh"]
 
@@ -190,7 +191,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.4, 0.9),
+"times": PackedFloat32Array(0.35, 0.85),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -563,7 +564,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 
 [node name="playerCam" type="Camera3D" parent="neck"]
 cull_mask = 1047565
-h_offset = 0.02
 current = true
 fov = 90.0
 script = ExtResource("2_7dfx5")
@@ -931,7 +931,10 @@ spring_length = 5.0
 
 [node name="groundPoint" type="Node3D" parent="groundArm"]
 
+[node name="footstepPoint" type="Node3D" parent="."]
+
 [node name="petrifyTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="petrifyPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_xd6u5")

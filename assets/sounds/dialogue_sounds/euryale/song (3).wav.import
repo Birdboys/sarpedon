@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://crpsk1rsrsx22"
+path="res://.godot/imported/song (3).wav-8f645adf0b51751e89751fdcf06d670c.sample"
+
+[deps]
+
+source_file="res://assets/sounds/dialogue_sounds/euryale/song (3).wav"
+dest_files=["res://.godot/imported/song (3).wav-8f645adf0b51751e89751fdcf06d670c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

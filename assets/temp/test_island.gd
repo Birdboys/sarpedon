@@ -30,8 +30,10 @@ extends Node3D
 var fog_tween
 
 func _ready():
+	AudioHandler.playSound("boat_hit")
 	maiden.maiden_left.connect(activateBoat)
 	medusa.medusa_slain.connect(medusaSlain)
+	medusa.medusa_awake.connect(gorgons.sisterAwake)
 	player.player_died.connect(playerDied)
 	shallowWater.body_exited.connect(player.exitingShallows)
 	deepWater.body_exited.connect(player.enteringDeep)
@@ -48,6 +50,8 @@ func _ready():
 	if DataHandler.athena_done: athena.alreadyFinished()
 	if DataHandler.graeae_done: graeae.alreadyFinished()
 
+	AudioHandler.togglePlayer("ocean", true)
+	AudioHandler.togglePlayer("wind", true)
 func _process(delta):
 	if not player_in_cave:
 		var fog_val = remap(clamp(player.global_position.y, 0, 40), 0, 40, 0.05, 0.01)
@@ -61,6 +65,8 @@ func _physics_process(delta):
 		if not player.is_invis: node.setTargetPos(player.getGroundPos())
 	for node in get_tree().get_nodes_in_group("needs_player_eyes"):
 		node.setTargetPos(player.camera.global_position)
+	AudioHandler.setPlayer("ocean", remap(clamp(Vector3(player.global_position.x, 0, player.global_position.z).length(), 0, 150), 0.0, 150.0, -60, 0))
+	AudioHandler.setPlayer("wind", remap(clamp(player.global_position.y, 0, 20), 0, 20, -60, 0))
 
 func activateBoat():
 	boat.enterBox.activate()
@@ -83,6 +89,7 @@ func playerCave(_body, entered):
 		fog_tween.tween_property(worldEnvironment.environment, "fog_density", 0.05, 1.0)
 		await fog_tween.finished
 		player_in_cave = entered
+		
 func gameWin(_body):
 	if medusa_dead:
 		var end_tween = get_tree().create_tween()
@@ -92,6 +99,7 @@ func gameWin(_body):
 		queue_free()
 		DeathScreen.loadDeathScreen("medusa_slain")
 	else:
+		DataHandler.good_ending = true
 		var end_tween = get_tree().create_tween()
 		end_tween.tween_property(winRect, "modulate", Color.WHITE, 2.5)
 		await end_tween.finished

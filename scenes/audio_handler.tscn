@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqyhbhhkmpgxl"]
+[gd_scene load_steps=4 format=3 uid="uid://bqyhbhhkmpgxl"]
 
 [ext_resource type="Script" path="res://scripts/audio_handler.gd" id="1_vxhrs"]
-[ext_resource type="AudioStream" uid="uid://dld0ryqf7xasf" path="res://assets/sounds/ui_click/0.wav" id="2_u8eud"]
+[ext_resource type="AudioStream" uid="uid://buyqq448ktb3t" path="res://assets/sounds/ocean_ambience.wav" id="2_8m81f"]
+[ext_resource type="AudioStream" uid="uid://b4tbhv63ob07p" path="res://assets/sounds/wind_ambience.wav" id="3_ti6pu"]
 
 [node name="audioHandler" type="Node"]
 script = ExtResource("1_vxhrs")
@@ -9,9 +10,14 @@ script = ExtResource("1_vxhrs")
 [node name="bgMusicPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"bgMusic"
 
+[node name="oceanPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_8m81f")
+bus = &"soundEffects"
+
+[node name="windPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ti6pu")
+bus = &"soundEffects"
+
 [node name="soundEffectQueue" type="Node" parent="."]
 
 [node name="soundEffectQueue3D" type="Node" parent="."]
-
-[node name="tester" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_u8eud")

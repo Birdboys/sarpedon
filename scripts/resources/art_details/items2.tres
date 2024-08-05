@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArtDetails" load_steps=3 format=3 uid="uid://e13j1bqvfh3g"]
+
+[ext_resource type="Script" path="res://scripts/resources/art_details/art_details.gd" id="1_oea0s"]
+[ext_resource type="Texture2D" uid="uid://c5y37r61451om" path="res://assets/originals/ogitems2.jpeg" id="1_yqeii"]
+
+[resource]
+script = ExtResource("1_oea0s")
+art_id = "items2"
+art_name = "Terracotta kylix"
+art_link = "https://www.metmuseum.org/art/collection/search/248723"
+art_image = ExtResource("1_yqeii")

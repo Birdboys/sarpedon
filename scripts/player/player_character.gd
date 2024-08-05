@@ -24,7 +24,9 @@ extends CharacterBody3D
 @onready var invisEffect := $postProcess/invisEffect
 @onready var petrifyPostProcess := $neck/playerCam/petrifyPostProcess
 @onready var groundPoint := $groundArm/groundPoint
+@onready var footstepPoint := $footstepPoint
 @onready var petrifyTimer := $petrifyTimer
+@onready var petrifyPlayer := $petrifyPlayer
 @onready var petrify_val := 0.0
 @onready var petrify_rate := 0.3
 @onready var petrify_cleanse_rate := 0.1
@@ -240,9 +242,12 @@ func handlePetrify(delta):
 		petrify_val = move_toward(petrify_val, 0.0, petrify_cleanse_rate * delta)
 	if petrify_val == 0:
 		petrifyPostProcess.visible = false
+		petrifyPlayer.stop()
 	else:
 		petrifyPostProcess.mesh.material.set_shader_parameter("petrify_val", petrify_val)
 		petrifyPostProcess.visible = true
+		if not petrifyPlayer.playing: petrifyPlayer.play()
+		petrifyPlayer.volume_db = remap(clamp(petrify_val, 0, 0.5), 0, 0.5, -30, 0)
 	if petrify_val > 0.9:
 		if petrifyTimer.is_stopped():
 			petrifyTimer.start(2)
@@ -291,11 +296,17 @@ func handleFootstep(type=null):
 	if ground_surface == null: return
 	var surface_type = ground_surface.get_collision_layer()
 	match surface_type:
+		257: #cave
+			emit_signal("footstep", global_position, "normal")
+			AudioHandler.playSound3D("footstep_cave", footstepPoint.global_position)
 		33: #water
 			emit_signal("footstep", global_position, "loud")
-		_:
+			AudioHandler.playSound3D("splash", footstepPoint.global_position)
 			if type == "sneak": return
+			AudioHandler.playSound3D("footstep_cave", footstepPoint.global_position)
+		_:
 			emit_signal("footstep", global_position, "normal")
+			AudioHandler.playSound3D("footstep", footstepPoint.global_position)
 
 func swordAttack():
 	var medusa

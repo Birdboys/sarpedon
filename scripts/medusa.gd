@@ -23,6 +23,7 @@ extends CharacterBody3D
 @onready var attack_time := 3.0
 @export var caveArea : Area3D
 
+signal medusa_awake
 signal medusa_slain
 signal head_taken
 signal activity_finished
@@ -85,7 +86,6 @@ func playerFootstep(player_pos, type):
 				current_phase = "waking_2"
 		"waking_2":
 			if type == "loud":
-				Dialogic.start("medusaWaking3")
 				wakeUp()
 		"awake_idle":
 			current_phase = "awake_chasing"
@@ -94,6 +94,7 @@ func playerFootstep(player_pos, type):
 			setPlayerPos(player_pos)
 
 func wakeUp():
+	Dialogic.start("medusaMonologue")
 	current_phase = "awake_idle"
 	sleepMesh.visible = false
 	sleepPetrify.enabled = false
@@ -104,8 +105,11 @@ func wakeUp():
 	medusaPetrify.enabled = true
 	medusaPetrify.can_petrify = true
 	gorgonHeadTrigger.activate()
+	emit_signal("medusa_awake")
 
 func slain():
+	Dialogic.Inputs.auto_advance.enabled_forced = false
+	Dialogic.start("medusaDeath")
 	current_phase = "dead"
 	sleepMesh.visible = false
 	sleepPetrify.enabled = false
@@ -143,6 +147,7 @@ func attackPlayer():
 	attackTimer.stop()
 	if player.stateMachine.current_state.name == "playerActivity" or player.stateMachine.current_state.name == "playerDied": return
 	player.startActivity(self)
+	Dialogic.start("medusaKill")
 	
 func stopAttack(_body):
 	print("PLAYER EXIT")

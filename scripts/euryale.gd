@@ -69,6 +69,7 @@ func attackPlayer():
 	attackTimer.stop()
 	if player.stateMachine.current_state.name == "playerActivity" or player.stateMachine.current_state.name == "playerDied": return
 	player.startActivity(self)
+	Dialogic.start("euryaleKill")
 	
 func stopAttack(body):
 	player = null

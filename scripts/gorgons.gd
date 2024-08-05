@@ -21,7 +21,6 @@ func setGorgonTargetPos(pos):
 	stheno.setTargetPos(pos)
 	euryale.setTargetPos(pos)
 
-
 func startIntroDialogue():
 	stheno.trigger1.deactivate()
 	euryale.trigger1.deactivate()
@@ -85,6 +84,11 @@ func lament():
 	euryale.changeToGorgon()
 	Dialogic.start("sistersGorgonLament")
 
+func sisterAwake():
+	current_phase = "angry"
+	stheno.trigger1.deactivate()
+	euryale.trigger1.deactivate()
+	
 func transitionCamera(initial_camera: Camera3D):
 	sisterTalkCam.global_transform = initial_camera.global_transform
 	

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArtDetails" load_steps=3 format=3 uid="uid://hfk044kxnnci"]
+
+[ext_resource type="Texture2D" uid="uid://cb88mpr3f1esk" path="res://assets/originals/ogitems1.jpg" id="1_5u4n4"]
+[ext_resource type="Script" path="res://scripts/resources/art_details/art_details.gd" id="1_n6kst"]
+
+[resource]
+script = ExtResource("1_n6kst")
+art_id = "items1"
+art_name = "PERSEUS & ATHENA"
+art_link = "https://www.theoi.com/Gallery/P23.19B.html"
+art_image = ExtResource("1_5u4n4")

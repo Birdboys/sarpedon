@@ -3,6 +3,7 @@ extends Node
 @onready var hermes_done := false
 @onready var athena_done := false
 @onready var graeae_done := false
+@onready var good_ending := false
 @onready var translation := {
 	"FORWARD": "W",
 	"BACK": "S",
@@ -24,6 +25,7 @@ extends Node
 	"music_volume": 100.0
 }
 
+@onready var screenshot_id := 0
 signal translation_updated
 
 func _ready():
@@ -48,3 +50,11 @@ func translate(text: String):
 
 func translationUpdated():
 	emit_signal("translation_updated")
+
+func _unhandled_input(event):
+	pass
+	#if event is InputEventKey and  event.is_pressed and event.keycode == KEY_P:
+		#var screen_shot = get_viewport().get_texture().get_image()
+		#var path = "user://screenshots/sarpedon_screenshot_%s.png" % screenshot_id
+		#screenshot_id += 1
+		#screen_shot.save_jpg(path)

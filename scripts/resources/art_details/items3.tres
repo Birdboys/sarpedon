@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArtDetails" load_steps=3 format=3 uid="uid://cd1o3rbqa7fr1"]
+
+[ext_resource type="Script" path="res://scripts/resources/art_details/art_details.gd" id="1_5qun6"]
+[ext_resource type="Texture2D" uid="uid://djrc65xd2bgod" path="res://assets/originals/ogitems3.jpg" id="1_mofqc"]
+
+[resource]
+script = ExtResource("1_5qun6")
+art_id = "items3"
+art_name = "Muse reading"
+art_link = "https://en.m.wikipedia.org/wiki/File:Muse_reading_Louvre_CA2220.jpg"
+art_image = ExtResource("1_mofqc")

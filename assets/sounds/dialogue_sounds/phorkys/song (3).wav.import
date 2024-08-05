@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dr51f6anx08uv"
+path="res://.godot/imported/song (3).wav-768e4ab6558bafd451bed7b1e4a87ad3.sample"
+
+[deps]
+
+source_file="res://assets/sounds/dialogue_sounds/phorkys/song (3).wav"
+dest_files=["res://.godot/imported/song (3).wav-768e4ab6558bafd451bed7b1e4a87ad3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ctub2y2om47tr"
+path="res://.godot/imported/song (1).wav-dc841b16efc5cd1aa02fda3d6e89c31d.sample"
+
+[deps]
+
+source_file="res://assets/sounds/dialogue_sounds/maiden_medusa/song (1).wav"
+dest_files=["res://.godot/imported/song (1).wav-dc841b16efc5cd1aa02fda3d6e89c31d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

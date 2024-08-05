@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d044xs4lnj5t5"
+path="res://.godot/imported/song (2).wav-74d9164a2ae31d614a6894c5a1ecc9de.sample"
+
+[deps]
+
+source_file="res://assets/sounds/dialogue_sounds/hermes/song (2).wav"
+dest_files=["res://.godot/imported/song (2).wav-74d9164a2ae31d614a6894c5a1ecc9de.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

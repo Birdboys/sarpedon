@@ -1,0 +1,29 @@
+do Dialogic.toggleAutoload(true)
+medusa: No! Not again... Who's there! I can hear you!
+medusa: Gods, what have I done to deserve this fate?
+medusa: Hunted until I must turn upon my pursuers.
+medusa: Burdened by mortality, finitude, the allure of being claimed.
+medusa: I sought refuge, an isolated island at the edge of night, far from the realm of men.
+medusa: Abandoned any pretense of normalcy, accepted solitude as a price for existing…
+medusa: …but still… you come.
+medusa: Why?
+medusa: For what crime sewn do I reap this punishment?
+medusa: What stories must they tell of me to produce such desire, such contempt?
+medusa: Am I a prize in the games of Gods and men? I was never asked to play!
+medusa: And yet still you come.
+medusa: You come in your boats, trespass on my sands.
+medusa: I tried to warn you, turn you away…
+medusa: …but your kind never listens.
+medusa: Even your Gods fail to see the errors of their ways.
+medusa: They’ve aided adventurers far greater than you who’s bodies now decorate the island.
+medusa: Insignificant grey splotches tainting a serene landscape. You’re a disease, a miasma, a plague.
+medusa: You run to tall tales and monsters because they’re easier to slay than the ones inside.
+medusa: Look at me.
+medusa: Look at the result of your misdeeds.
+medusa: …
+medusa: You’re a coward, like all of them before and all that will come after.
+medusa: Go on! Hide behind your gifts, your blessings. Shield yourself from the truth!
+medusa: You have chosen your path! I am an inevitability!
+medusa: WHY WON'T YOU LOOK? WHAT ARE YOU AFRAID TO SEE?
+medusa: LOOK AT ME…
+do Dialogic.toggleAutoload(false)

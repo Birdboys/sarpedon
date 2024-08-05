@@ -1,8 +1,9 @@
-euryale: [signal=euryale_talk]This is your last chance. A final warning.
-euryale: You hold the same weakness as our sister, you reek of it.
-euryale: Your finality breeds urgency, a need for change in the short time available.
-euryale: We have no such perturbations.
-stheno: [signal=stheno_talk]Here… forever…
-euryale: [signal=euryale_talk]We can wait, and we will, as long as need be…
-euryale: …and when you return, here we will be still.
+maiden_euryale: [signal=euryale_talk]This is your last chance. A final warning.
+maiden_euryale: You hold the same weakness as our sister, you reek of it.
+maiden_euryale: Your finality breeds urgency, a need for change in the short time available.
+maiden_euryale: We have no such perturbations.
+maiden_stheno: [signal=stheno_talk]Here… forever…
+maiden_stheno: You die... before... we leave...
+maiden_euryale: [signal=euryale_talk]We can wait, and we will, as long as need be...
+maiden_euryale: …and when you return, here we will be still.
 [signal arg="warningOver"]

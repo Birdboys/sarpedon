@@ -128,7 +128,6 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_h8b51")
 
 [node name="mainMenu" type="Control" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -411,15 +410,18 @@ UI/UX: Colby Bird"
 
 [node name="artDetails" type="Control" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer"]
 layout_mode = 2
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails"]
-layout_mode = 2
-offset_left = 258.0
-offset_right = 512.0
-offset_bottom = 237.0
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails/VBoxContainer2"]
+[node name="gallery" type="VBoxContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails/gallery"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 5.0
@@ -427,17 +429,17 @@ theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 
-[node name="artImage" type="TextureRect" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails/VBoxContainer2/MarginContainer"]
+[node name="artImage" type="TextureRect" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails/gallery/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("7_qtdip")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails/VBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails/gallery"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="leftButton" type="Button" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails/VBoxContainer2/HBoxContainer"]
+[node name="leftButton" type="Button" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails/gallery/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxEmpty_chpcr")
@@ -449,7 +451,7 @@ icon = ExtResource("10_5rvr4")
 flat = true
 icon_alignment = 1
 
-[node name="artLabel" type="Button" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails/VBoxContainer2/HBoxContainer"]
+[node name="artLabel" type="Button" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails/gallery/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
@@ -464,7 +466,7 @@ flat = true
 text_overrun_behavior = 3
 clip_text = true
 
-[node name="rightButton" type="Button" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails/VBoxContainer2/HBoxContainer"]
+[node name="rightButton" type="Button" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails/gallery/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxEmpty_veihl")
@@ -475,3 +477,15 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_veihl")
 icon = ExtResource("11_cmifa")
 flat = true
 icon_alignment = 1
+
+[node name="openGallery" type="Button" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "OPEN SOURCED 
+ART GALLERY
+(SPOILERS)"
+flat = true
