@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b26hegrjoegv0"]
+[gd_scene load_steps=27 format=3 uid="uid://b26hegrjoegv0"]
 
 [ext_resource type="Script" path="res://scripts/medusa.gd" id="1_xwxrn"]
 [ext_resource type="Texture2D" uid="uid://hty44dgmw4qe" path="res://assets/sprites/medusa.png" id="3_muxna"]
@@ -6,9 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://jmp8x21i2x60" path="res://assets/sprites/medusa_maiden.png" id="5_dfldd"]
 [ext_resource type="PackedScene" uid="uid://0or1kfewcx3e" path="res://scenes/components/petrify_component.tscn" id="6_5vmqo"]
 [ext_resource type="PackedScene" uid="uid://dt6bxmw7stlh8" path="res://scenes/components/interact_box.tscn" id="6_rpq05"]
-[ext_resource type="Texture2D" uid="uid://cb6wuvdnw6umi" path="res://assets/sprites/medusa_maiden_head.png" id="8_8jw68"]
 [ext_resource type="Texture2D" uid="uid://dkggpifkpwmjw" path="res://assets/sprites/medusa_maiden_wings.png" id="8_qkt5s"]
 [ext_resource type="Texture2D" uid="uid://fxq32xu2mi0t" path="res://assets/sprites/medusa_maiden_decapitated.png" id="8_r6on3"]
+[ext_resource type="Texture2D" uid="uid://bkvy8o25rpy7t" path="res://assets/sprites/medusa_reverse.png" id="10_54ikv"]
+[ext_resource type="AudioStream" uid="uid://xm1ka4ro6hl5" path="res://assets/sounds/snake_hiss/0.wav" id="11_pwrx3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_66akd"]
 
@@ -38,16 +39,18 @@ flip_faces = true
 size = Vector2(2, 1.3)
 orientation = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s1omo"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6jvhb"]
+load_path = "res://.godot/imported/medusa_maiden_head.png-9283c7f1159e5700da8f611fc3e85696.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qt5g6"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
-shading_mode = 0
-albedo_texture = ExtResource("8_8jw68")
+albedo_texture = SubResource("CompressedTexture2D_6jvhb")
 texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_c8vgy"]
-material = SubResource("StandardMaterial3D_s1omo")
+material = SubResource("StandardMaterial3D_qt5g6")
 flip_faces = true
 size = Vector2(0.3, 0.3)
 orientation = 2
@@ -56,7 +59,6 @@ orientation = 2
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
-shading_mode = 0
 albedo_texture = ExtResource("8_qkt5s")
 texture_filter = 0
 
@@ -70,7 +72,6 @@ orientation = 2
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
-shading_mode = 0
 albedo_texture = ExtResource("8_r6on3")
 texture_filter = 0
 
@@ -82,6 +83,60 @@ orientation = 2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dwgfn"]
 radius = 2.0
+
+[sub_resource type="Animation" id="Animation_ehv3p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("medusaMesh:mesh:material:albedo_texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_muxna")]
+}
+
+[sub_resource type="Animation" id="Animation_bbc1t"]
+resource_name = "chase"
+length = 0.8
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"gorgonFootstep"
+}, {
+"args": [],
+"method": &"gorgonFootstep"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("medusaMesh:mesh:material:albedo_texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_muxna"), ExtResource("10_54ikv"), ExtResource("3_muxna")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kqfsn"]
+_data = {
+"RESET": SubResource("Animation_ehv3p"),
+"chase": SubResource("Animation_bbc1t")
+}
 
 [node name="medusa" type="CharacterBody3D"]
 script = ExtResource("1_xwxrn")
@@ -180,3 +235,12 @@ one_shot = true
 
 [node name="grabPos" type="Node3D" parent="."]
 transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 0, 1, -1.25)
+
+[node name="medusaAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kqfsn")
+}
+
+[node name="medusaPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("11_pwrx3")
+autoplay = true

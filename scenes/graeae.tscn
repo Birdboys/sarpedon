@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://gbl1q3e8sop0"]
+[gd_scene load_steps=25 format=3 uid="uid://gbl1q3e8sop0"]
 
 [ext_resource type="Script" path="res://scripts/graeae.gd" id="1_diuei"]
 [ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="2_n178q"]
@@ -87,6 +87,30 @@ shader_parameter/image3 = SubResource("CompressedTexture2D_5vybo")
 material = SubResource("ShaderMaterial_4ihqm")
 size = Vector2(1, 2)
 orientation = 2
+
+[sub_resource type="Animation" id="Animation_2u3rb"]
+resource_name = "cupping"
+length = 2.5
+loop_mode = 1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"cupMoveSound"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x6hg7"]
+_data = {
+"cupping": SubResource("Animation_2u3rb")
+}
 
 [node name="graeae" type="Node3D"]
 script = ExtResource("1_diuei")
@@ -213,3 +237,10 @@ texture = ExtResource("9_yqlps")
 do_billboard = false
 
 [node name="moveTimer" type="Timer" parent="monteHandler"]
+
+[node name="graeaeAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_x6hg7")
+}
+
+[node name="cupAudio" type="AudioStreamPlayer3D" parent="."]

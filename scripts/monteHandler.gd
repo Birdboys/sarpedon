@@ -108,7 +108,7 @@ func putCupInSlot(cup, slot):
 	var new_tween = get_tree().create_tween().set_trans(Tween.TRANS_BACK)
 	new_tween.tween_property(cup, "position", getHalfwayMovePos(cup.position, end_pos), 0.5).set_ease(Tween.EASE_IN)
 	new_tween.tween_property(cup, "position", end_pos, 0.5).set_ease(Tween.EASE_OUT)
-
+	AudioHandler.playSound3D("cup_slide", cup.global_position)
 func getCupBySlot(slot):
 	match slot:
 		0: return slot0

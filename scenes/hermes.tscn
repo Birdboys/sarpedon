@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://vwucnpm7rl8o"]
+[gd_scene load_steps=17 format=3 uid="uid://vwucnpm7rl8o"]
 
 [ext_resource type="Script" path="res://scripts/hermes.gd" id="1_s4wmc"]
 [ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="2_eiw8f"]
@@ -32,6 +32,34 @@ material = SubResource("ShaderMaterial_p27bl")
 flip_faces = true
 size = Vector2(1, 2)
 orientation = 2
+
+[sub_resource type="Animation" id="Animation_55nn6"]
+resource_name = "run"
+length = 0.9
+loop_mode = 1
+step = 0.05
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.45, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"footstep"
+}, {
+"args": [],
+"method": &"footstep"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hcld3"]
+_data = {
+"run": SubResource("Animation_55nn6")
+}
 
 [node name="hermes" type="Node3D"]
 script = ExtResource("1_s4wmc")
@@ -163,3 +191,10 @@ original_text = "PRESS [INTERACT] WHEN CIRCLES OVERLAP"
 [node name="pathFollow" type="PathFollow3D" parent="."]
 
 [node name="runningPoint" type="Node3D" parent="pathFollow"]
+
+[node name="footstepper" type="AudioStreamPlayer3D" parent="."]
+
+[node name="runAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hcld3")
+}

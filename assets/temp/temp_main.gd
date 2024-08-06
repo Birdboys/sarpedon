@@ -8,10 +8,10 @@ var loading_screen
 var island_scene 
 
 func _ready():
-	#$VBoxContainer/Button.pressed.connect(mainPressed)
 	loading_screen = loadingScreen.instantiate()
 
 func mainPressed():
+	AudioHandler.playSound("ui_click")
 	if goin: return
 	goin = true
 	visible = false
@@ -25,8 +25,9 @@ func startTheGame():
 	LoadHandler.load_finished.disconnect(loading_screen.gameLoaded)
 	get_tree().change_scene_to_packed(island_scene)
 
-func _unhandled_key_input(event):
-	if event.keycode not in sussy_keycodes:
+		
+func _input(event):
+	if event is InputEventKey and event.keycode not in sussy_keycodes:
 		mainPressed()
 	if event is InputEventMouseButton:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

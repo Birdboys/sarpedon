@@ -6,7 +6,7 @@ func enter():
 	parent.velocity.z = 0
 	parent.interactPrompt.text = ""
 	parent.camAnim.stop()
-	
+	AudioHandler.playSound("inventory_open")
 
 func update(delta):
 	if Input.is_action_just_pressed("inventory"):
@@ -18,3 +18,4 @@ func update(delta):
 		
 func exit():
 	parent.inventoryHandler.closeInventory()
+	AudioHandler.playSound("inventory_close")

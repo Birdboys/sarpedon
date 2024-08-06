@@ -82,7 +82,7 @@ func lament():
 	euryale.trigger1.deactivate()
 	stheno.changeToGorgon()
 	euryale.changeToGorgon()
-	Dialogic.start("sistersGorgonLament")
+	Dialogic.start("sistersGorgonRetaliation")
 
 func sisterAwake():
 	current_phase = "angry"

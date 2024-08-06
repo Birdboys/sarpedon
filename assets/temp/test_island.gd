@@ -45,7 +45,6 @@ func _ready():
 	player.startActivity(introBoat)
 	PauseMenu.setTheme("black")
 	
-	
 	if DataHandler.hermes_done: hermes.alreadyFinished()
 	if DataHandler.athena_done: athena.alreadyFinished()
 	if DataHandler.graeae_done: graeae.alreadyFinished()
@@ -77,6 +76,7 @@ func playerDied(death_type):
 	await end_tween.finished
 	PauseMenu.setTheme("white")
 	queue_free()
+	Dialogic.end_timeline()
 	DeathScreen.loadDeathScreen(death_type)
 	
 func playerCave(_body, entered):
@@ -89,7 +89,8 @@ func playerCave(_body, entered):
 		fog_tween.tween_property(worldEnvironment.environment, "fog_density", 0.05, 1.0)
 		await fog_tween.finished
 		player_in_cave = entered
-		
+	#AudioHandler.toggleReverb(entered)
+	 
 func gameWin(_body):
 	if medusa_dead:
 		var end_tween = get_tree().create_tween()
@@ -105,10 +106,12 @@ func gameWin(_body):
 		await end_tween.finished
 		queue_free()
 		WinScreen.showMenu()
+	Dialogic.end_timeline()
 
 func medusaSlain():
 	medusa_dead = true
-	await get_tree().create_timer(1.0).timeout
-	gorgons.lament()
 	phorkys.current_phase = "ready"
+	await get_tree().create_timer(8.0).timeout
+	gorgons.lament()
+	
 

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=15 format=3 uid="uid://dplwrcgvyhpcw"]
+[gd_resource type="Theme" load_steps=16 format=3 uid="uid://dplwrcgvyhpcw"]
 
 [ext_resource type="FontFile" uid="uid://bguvi2je1ofym" path="res://assets/fonts/FiraSans-Bold.ttf" id="1_c2fos"]
 [ext_resource type="Texture2D" uid="uid://qb2yhowox0qk" path="res://assets/ui/slider_grabber.png" id="2_85c51"]
@@ -10,6 +10,10 @@ bg_color = Color(0, 0, 0, 0.901961)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sjmok"]
 texture = ExtResource("2_aoq5i")
 axis_stretch_horizontal = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tpo5s"]
+content_margin_top = 8.0
+content_margin_bottom = 8.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ts2ka"]
 content_margin_left = 8.0
@@ -89,6 +93,7 @@ HSlider/icons/grabber_disabled = ExtResource("2_85c51")
 HSlider/icons/grabber_highlight = ExtResource("2_85c51")
 HSlider/styles/grabber_area = SubResource("StyleBoxTexture_sjmok")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_sjmok")
+HSlider/styles/slider = SubResource("StyleBoxEmpty_tpo5s")
 Panel/styles/panel = SubResource("StyleBoxFlat_ts2ka")
 botPanel/base_type = &"Panel"
 botPanel/styles/panel = SubResource("StyleBoxTexture_jyxlk")

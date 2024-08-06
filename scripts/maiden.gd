@@ -22,7 +22,7 @@ func startInteraction(body):
 	var player_pos = body.global_position
 	var target_offset = Vector3(body.camera.global_basis.z.x, 0, body.camera.global_basis.z.z).normalized() * spawn_radius
 	var new_pos = player_pos + target_offset
-	#var new
+	AudioHandler.playSound3D("maiden_interrupt", new_pos)
 	current_phase = "interject"
 	player = body
 	maidenMesh.visible = true
@@ -54,6 +54,7 @@ func unTransitionCamera(initial_camera: Camera3D):
 	return
 
 func goAway(_body):
+	AudioHandler.playSound3D("maiden_leave", global_position)
 	print("WENT AAWAY")
 	emit_signal("maiden_left")
 	leaveTrigger.set_deferred("monitoring", false)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://ev5ihdel24io"]
+[gd_scene load_steps=66 format=3 uid="uid://ev5ihdel24io"]
 
 [ext_resource type="Script" path="res://scripts/player/player_character.gd" id="1_y87bo"]
 [ext_resource type="Texture2D" uid="uid://djldtb4845f38" path="res://assets/sprites/sword.png" id="2_0ap74"]
@@ -26,6 +26,7 @@
 [ext_resource type="Shader" path="res://scripts/shaders/petrify_shader.gdshader" id="18_gxkx7"]
 [ext_resource type="Script" path="res://scripts/player/player_died.gd" id="19_4cfed"]
 [ext_resource type="AudioStream" uid="uid://c03v45dx8a3py" path="res://assets/sounds/petrify_crack.wav" id="26_xd6u5"]
+[ext_resource type="AudioStream" uid="uid://4yd0fbjdmm6" path="res://assets/sounds/sandal_flutter.wav" id="27_b3h32"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2a5dh"]
 
@@ -191,7 +192,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.35, 0.85),
+"times": PackedFloat32Array(0.3, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -432,9 +433,12 @@ tracks/2/path = NodePath("..")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"swordSound"
+}, {
 "args": [],
 "method": &"swordAttack"
 }]
@@ -564,6 +568,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 
 [node name="playerCam" type="Camera3D" parent="neck"]
 cull_mask = 1047565
+h_offset = -0.015
 current = true
 fov = 90.0
 script = ExtResource("2_7dfx5")
@@ -638,7 +643,8 @@ collision_mask = 33
 [node name="footstepRay" type="RayCast3D" parent="."]
 enabled = false
 target_position = Vector3(0, -2, 0)
-collision_mask = 33
+collision_mask = 289
+collide_with_areas = true
 
 [node name="backViewport" type="SubViewport" parent="."]
 size = Vector2i(128, 128)
@@ -658,6 +664,7 @@ initial_state = NodePath("playerWalk")
 
 [node name="playerWalk" type="Node" parent="stateMachine"]
 script = ExtResource("3_euxff")
+move_speed = 55.0
 
 [node name="playerJump" type="Node" parent="stateMachine"]
 script = ExtResource("4_0rupf")
@@ -938,3 +945,8 @@ one_shot = true
 
 [node name="petrifyPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("26_xd6u5")
+
+[node name="flutterPlayer" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+stream = ExtResource("27_b3h32")
+bus = &"soundEffects"

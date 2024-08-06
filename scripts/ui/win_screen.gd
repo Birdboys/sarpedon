@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 @onready var winAnim := $winAnim
-@onready var mainMenu := preload("res://assets/temp/temp_main.tscn")
+@onready var mainMenu := preload("res://scenes/ui/main_menu.tscn")
 @export var current_phase := "idle"
 # Called when the node enters the scene tree for the first time.
 func _ready():

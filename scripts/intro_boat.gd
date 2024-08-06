@@ -42,6 +42,7 @@ func _process(delta):
 				tutorialPrompts.text = ""
 				current_phase = "tweening"
 				boatAnim.play("boat_exit")
+				AudioHandler.playSound3D("boat_exit", global_position)
 				
 func _unhandled_input(event):
 	if not can_look: return
@@ -65,6 +66,7 @@ func unTransitionCamera(initial_camera: Camera3D):
 	camera_tween.tween_property(introCam, "global_transform", initial_camera.global_transform, 1.0)
 	camera_tween.tween_property(introCam, "fov", initial_camera.fov, 1.0)
 	await camera_tween.finished
+	AudioHandler.playSound3D("splash", initial_camera.get_parent().global_position)
 	introCam.current = false
 	initial_camera.current = true
 	visible = false

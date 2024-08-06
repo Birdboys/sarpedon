@@ -1,4 +1,3 @@
-do Dialogic.toggleAutoload(true)
 medusa: No! Not again... Who's there! I can hear you!
 medusa: Gods, what have I done to deserve this fate?
 medusa: Hunted until I must turn upon my pursuers.
@@ -26,4 +25,3 @@ medusa: Go on! Hide behind your gifts, your blessings. Shield yourself from the 
 medusa: You have chosen your path! I am an inevitability!
 medusa: WHY WON'T YOU LOOK? WHAT ARE YOU AFRAID TO SEE?
 medusa: LOOK AT ME…
-do Dialogic.toggleAutoload(false)

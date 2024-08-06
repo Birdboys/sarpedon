@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://5nun341wi85d"]
+[gd_scene load_steps=34 format=3 uid="uid://5nun341wi85d"]
 
 [ext_resource type="Script" path="res://scripts/gorgons.gd" id="1_471g7"]
 [ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="1_aii50"]
@@ -13,8 +13,10 @@
 [ext_resource type="Script" path="res://scripts/euryale.gd" id="6_fyby4"]
 [ext_resource type="Texture2D" uid="uid://c26bjmcf2aucv" path="res://assets/sprites/maiden5.png" id="6_m8fcc"]
 [ext_resource type="Texture2D" uid="uid://cy0tbug7l5pqf" path="res://assets/sprites/euryale.png" id="6_vu6sh"]
+[ext_resource type="Texture2D" uid="uid://bgqx3lr1judbu" path="res://assets/sprites/stheno_reverse.png" id="11_bfj6d"]
 [ext_resource type="Texture2D" uid="uid://5u0d1qq2f4ea" path="res://assets/sprites/maiden3.png" id="12_08w3s"]
 [ext_resource type="Texture2D" uid="uid://b6ljkvq5td0rk" path="res://assets/sprites/maiden6.png" id="13_bjl1w"]
+[ext_resource type="Texture2D" uid="uid://csivkve0gqv45" path="res://assets/sprites/euryale_reverse.png" id="17_2hj28"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_idrjk"]
 transparency = 2
@@ -57,6 +59,62 @@ height = 1.5
 [sub_resource type="SphereShape3D" id="SphereShape3D_hcdt0"]
 radius = 2.0
 
+[sub_resource type="Animation" id="Animation_5tkvn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("stheno/sthenoMesh:mesh:material:albedo_texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_orvfn")]
+}
+
+[sub_resource type="Animation" id="Animation_wfe6o"]
+resource_name = "run"
+length = 0.7
+loop_mode = 1
+step = 0.05
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("stheno")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.35, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"gorgonFootstep"
+}, {
+"args": [],
+"method": &"gorgonFootstep"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("stheno/sthenoMesh:mesh:material:albedo_texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.35, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("11_bfj6d"), ExtResource("4_orvfn")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ajak8"]
+_data = {
+"RESET": SubResource("Animation_5tkvn"),
+"run": SubResource("Animation_wfe6o")
+}
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aa3qw"]
 transparency = 2
 alpha_scissor_threshold = 0.5
@@ -90,6 +148,92 @@ material = SubResource("ShaderMaterial_762i1")
 flip_faces = true
 size = Vector2(1, 2)
 orientation = 2
+
+[sub_resource type="Animation" id="Animation_cwgej"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("euryaleMesh:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("euryaleMesh:mesh:material:albedo_texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_vu6sh")]
+}
+
+[sub_resource type="Animation" id="Animation_gc73d"]
+resource_name = "fly"
+length = 3.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"gorgonWings"
+}, {
+"args": [],
+"method": &"gorgonWings"
+}, {
+"args": [],
+"method": &"gorgonWings"
+}, {
+"args": [],
+"method": &"gorgonWings"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("euryaleMesh:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.5, 1.75, 2, 2.25, 2.5),
+"transitions": PackedFloat32Array(2, 0.5, 2, 0.5, 1, 2, 0.5, 2, 0.5, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("euryaleMesh:mesh:material:albedo_texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("6_vu6sh"), ExtResource("17_2hj28"), ExtResource("6_vu6sh")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ruiyh"]
+_data = {
+"RESET": SubResource("Animation_cwgej"),
+"fly": SubResource("Animation_gc73d")
+}
 
 [node name="gorgons" type="Node3D"]
 script = ExtResource("1_471g7")
@@ -147,7 +291,13 @@ disabled = true
 one_shot = true
 
 [node name="grabPos" type="Node3D" parent="stheno"]
-transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 0, 1, -1.25)
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965925, 0.258819, -8.74228e-08, 0.258819, -0.965925, 0, 1, -1.25)
+
+[node name="sthenoAnim" type="AnimationPlayer" parent="stheno"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_ajak8")
+}
 
 [node name="euryale" type="CharacterBody3D" parent="." groups=["needs_player_ground"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0)
@@ -202,6 +352,11 @@ one_shot = true
 
 [node name="grabPos" type="Node3D" parent="euryale"]
 transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 0, 1, -1.25)
+
+[node name="euryaleAnim" type="AnimationPlayer" parent="euryale"]
+libraries = {
+"": SubResource("AnimationLibrary_ruiyh")
+}
 
 [node name="sisterTalkCam" type="Camera3D" parent="."]
 fov = 90.0

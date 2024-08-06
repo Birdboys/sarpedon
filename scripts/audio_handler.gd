@@ -9,7 +9,9 @@ extends Node
 @onready var queue_length := 5
 @onready var queue_index := 0
 @onready var queue_3d_index := 0
-@onready var audio_num_vars = {"ui_click":3, "footstep":5,"footstep_cave":5,"splash":3}
+@onready var audio_num_vars = {"ui_click":3, "footstep":5,"footstep_grass":5,"footstep_cave":5,"splash":3,"cup_slide":4,"weave_tile":5,
+"discus_hit":4, "footstep_gorgon": 5, "gorgon_wings": 3, "boat_creak":10, "throw":3
+}
 
 var ocean_tween
 var music_tween
@@ -83,3 +85,9 @@ func togglePlayer(player, on):
 
 func reset3DPlayer(index):
 	players_3d[index].global_position = Vector3.ZERO
+
+func toggleReverb(on:= false):
+	AudioServer.set_bus_effect_enabled(1, 0, on)
+
+func toggleDistortion(on:= false):
+	AudioServer.set_bus_effect_enabled(1, 1, on)

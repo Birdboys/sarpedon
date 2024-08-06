@@ -6,11 +6,17 @@ extends State
 
 
 func enter():
+	parent.flutterPlayer.play()
+	#parent.flutterPlayer.finished.connect(startFlutterSound)
 	parent.hoverRay.enabled = true
 	parent.camAnim.play("hover")
 	
 func exit():
 	parent.hoverRay.enabled = false
+	parent.flutterPlayer.stop()
+	
+func startFlutterSound():
+	parent.flutterPlayer.play()
 	
 func update(delta):
 	parent.handleMovementInput(delta, move_speed)
@@ -31,3 +37,4 @@ func update(delta):
 		emit_signal("transitioned", self, "playerWalk")
 		
 	parent.syncCameras()
+

@@ -27,6 +27,7 @@ extends CharacterBody3D
 @onready var footstepPoint := $footstepPoint
 @onready var petrifyTimer := $petrifyTimer
 @onready var petrifyPlayer := $petrifyPlayer
+@onready var flutterPlayer := $flutterPlayer
 @onready var petrify_val := 0.0
 @onready var petrify_rate := 0.3
 @onready var petrify_cleanse_rate := 0.1
@@ -197,16 +198,20 @@ func setShield(on := true):
 func toggleSword():
 	if sword_up:
 		swordAnim.play_backwards("sword_equip")
+		AudioHandler.playSound("sword_unequip")
 	else:
 		swordAnim.play("sword_equip")
+		AudioHandler.playSound("sword_equip")
 	sword_up = not sword_up
 	
 func toggleShield():
 	if shield_up:
 		shieldAnim.play_backwards("shield_equip")
+		AudioHandler.playSound("shield_unequip")
 		print("EQUIPPING SHIELD")
 	else:
 		shieldAnim.play("shield_equip")
+		AudioHandler.playSound("shield_equip")
 		print("HOLSTERING SHIELD")
 	shield_up = not shield_up
 	shield_hold = false
@@ -214,9 +219,11 @@ func toggleShield():
 func setShieldHold(raising):
 	if raising:
 		shieldAnim.play("shield_hold")
+		AudioHandler.playSound("shield_hold")
 	else:
 		shieldAnim.play_backwards("shield_hold")
-
+		AudioHandler.playSound("shield_hold_reverse")
+		
 func syncCameras():
 	uiCamera.global_transform = camera.global_transform
 	backCamera.global_transform = camera.global_transform
@@ -295,18 +302,22 @@ func handleFootstep(type=null):
 	var ground_surface = footstepRay.get_collider()
 	if ground_surface == null: return
 	var surface_type = ground_surface.get_collision_layer()
+	var footstep_pos = footstepPoint.global_position + velocity.normalized() * 0.1
 	match surface_type:
 		257: #cave
-			emit_signal("footstep", global_position, "normal")
-			AudioHandler.playSound3D("footstep_cave", footstepPoint.global_position)
+			AudioHandler.playSound3D("footstep_cave", footstep_pos)
+		256: #grass
+			AudioHandler.playSound3D("footstep_grass", footstep_pos)
 		33: #water
+			AudioHandler.playSound3D("splash", footstep_pos)
+			AudioHandler.playSound3D("footstep_cave", footstep_pos)
 			emit_signal("footstep", global_position, "loud")
-			AudioHandler.playSound3D("splash", footstepPoint.global_position)
-			if type == "sneak": return
-			AudioHandler.playSound3D("footstep_cave", footstepPoint.global_position)
 		_:
-			emit_signal("footstep", global_position, "normal")
-			AudioHandler.playSound3D("footstep", footstepPoint.global_position)
+			AudioHandler.playSound3D("footstep", footstep_pos)
+	if stateMachine.current_state.name == "playerSneak":
+		emit_signal("footstep", global_position, "sneak")
+	else:
+		emit_signal("footstep", global_position, "normal")
 
 func swordAttack():
 	var medusa
@@ -317,7 +328,9 @@ func swordAttack():
 	else: return
 	if medusa.interact() != "medusa_slain": return
 	medusa.get_parent().get_parent().slain()
-	AudioHandler.playSound("sword_swing")
 
+func swordSound():
+	AudioHandler.playSound("sword_swing")
+	
 func sensChanged(val):
 	sensitivity = remap(val, 0.0, 100.0, 0.005, 0.015)

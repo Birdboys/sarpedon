@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfkelu4ti2e55"]
+
+[ext_resource type="Script" path="res://scripts/discus_land_part.gd" id="1_7a0vk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a2ihk"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ol0ap"]
+material = SubResource("StandardMaterial3D_a2ihk")
+size = Vector2(0.25, 0.25)
+orientation = 2
+
+[sub_resource type="Gradient" id="Gradient_f8niy"]
+offsets = PackedFloat32Array(0, 0.625, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.478431, 0.47451, 0.392157, 1, 0.478431, 0.47451, 0.392157, 1)
+
+[sub_resource type="Gradient" id="Gradient_sqv2x"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.34375, 0.604167, 0.875)
+colors = PackedColorArray(0.701961, 0.694118, 0.627451, 1, 0.682353, 0.678431, 0.611765, 1, 0.709804, 0.705882, 0.647059, 1, 0.478431, 0.47451, 0.392157, 1)
+
+[node name="discusLandPart" type="CPUParticles3D"]
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 0.9
+mesh = SubResource("PlaneMesh_ol0ap")
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, -10, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_f8niy")
+color_initial_ramp = SubResource("Gradient_sqv2x")
+script = ExtResource("1_7a0vk")

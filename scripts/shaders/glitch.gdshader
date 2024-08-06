@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode depth_draw_opaque;
+render_mode depth_draw_opaque, cull_disabled;
 uniform sampler2D image1 : filter_nearest, source_color;
 uniform sampler2D image2 : filter_nearest, source_color;
 uniform sampler2D image3 : filter_nearest, source_color;

@@ -40,8 +40,10 @@ func _process(_delta):
 			if Input.is_action_just_pressed("right"):
 				input_dir += Vector2.RIGHT
 			if Input.is_action_just_pressed("interact"):
+				AudioHandler.playSound("weave_tile")
 				rotateTile(cursor_pos)
 			if input_dir != Vector2.ZERO:
+				AudioHandler.playSound("ui_click")
 				moveCursor(input_dir)
 
 func rotateTile(pos):

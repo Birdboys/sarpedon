@@ -43,9 +43,12 @@ func closeInventory():
 	visible = false
 
 func nextItem(right := true):
+	var prev_index = inventory_index
 	inventory_index += 1 if right else -1
 	inventory_index = clampi(inventory_index, 0, len(current_inventory)-1)
-	loadItem(current_inventory[inventory_index])
+	if inventory_index != prev_index: 
+		AudioHandler.playSound("ui_click")
+		loadItem(current_inventory[inventory_index])
 
 func acquireItem(item):
 	current_inventory.append(item)

@@ -9,6 +9,7 @@ func enter():
 	cam_tween = get_tree().create_tween().set_parallel(true)
 	cam_tween.tween_property(parent.camera, "v_offset", parent.camera.v_offset - 0.05, 0.5)
 	parent.postProcessAnim.play("start_sneak")
+	AudioHandler.toggleDistortion(true)
 	
 func update(delta):
 	if Input.is_action_just_pressed("inventory"):
@@ -40,3 +41,4 @@ func exit():
 	cam_tween.tween_property(parent.camera, "v_offset", parent.camera.v_offset + 0.05, 0.5)
 	parent.postProcessAnim.play_backwards("start_sneak")
 	parent.camAnim.stop()
+	AudioHandler.toggleDistortion(false)

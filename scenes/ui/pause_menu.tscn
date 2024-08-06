@@ -128,6 +128,7 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_h8b51")
 
 [node name="mainMenu" type="Control" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -288,7 +289,7 @@ theme_override_constants/margin_bottom = 8
 [node name="sensSlider" type="HSlider" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox/sensitivitySlider/MarginContainer2/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
+size_flags_vertical = 1
 value = 50.0
 
 [node name="audioSlider" type="Panel" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/settingsMenu/ScrollContainer/settingsVbox"]

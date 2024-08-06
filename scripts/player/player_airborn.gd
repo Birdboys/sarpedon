@@ -11,6 +11,7 @@ func update(delta):
 		return
 		
 	if parent.is_on_floor():
+		parent.handleFootstep()
 		emit_signal("transitioned", self, "playerWalk")
 		return
 	

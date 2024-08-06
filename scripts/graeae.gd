@@ -9,6 +9,8 @@ extends Node3D
 @onready var monteHandler := $monteHandler
 @onready var monteUI := $monteCam/monteUI
 @onready var sisterMeshes := [$sisterMesh1, $sisterMesh2]
+@onready var cupAudio := $cupAudio
+@onready var graeaeAnim := $graeaeAnim
 @onready var show_sisters := false
 @onready var sister_noise := FastNoiseLite.new()
 @onready var current_phase := "idle"
@@ -23,6 +25,7 @@ func _ready():
 	monteHandler.choice_made.connect(handleChoiceMade)
 	monteUI.visible = false
 	monteHandler.visible = false
+	graeaeAnim.play("cupping")
 	
 func _process(delta):
 	if show_sisters:
@@ -86,6 +89,7 @@ func handleDialogue(type):
 		_: pass
 	
 func introDialogue():
+	graeaeAnim.stop()
 	current_phase = "intro"
 	Dialogic.start("graeaeIntro")
 	trigger1.deactivate()
@@ -111,6 +115,7 @@ func giveInvisHelmet():
 	monteHandler.visible = false
 	monteHandler.setUpCups()
 	DataHandler.graeae_done = true
+	graeaeAnim.play("cupping")
 	
 func handleChoiceMade(correct: bool):
 	monteUI.visible = false
@@ -143,3 +148,8 @@ func alreadyFinished():
 	trigger1.deactivate()
 	trigger2.deactivate()
 	trigger3.activate()
+
+func cupMoveSound():
+	if cupAudio.playing: cupAudio.stop()
+	cupAudio.stream = AudioHandler.getAudio("cup_slide")
+	cupAudio.play()

@@ -5,6 +5,7 @@ extends CharacterBody3D
 @onready var takeSupplyBox := $takeSupplyBox
 @onready var enterBox := $enterBox
 @onready var exitBox := $exitBox
+@onready var creakTimer := $creakTimer
 @onready var boat_angular_velocity := 0.0
 @onready var intro_phase := "idle"
 @export var boat_force := 5
@@ -20,6 +21,7 @@ func _ready():
 	takeSupplyBox.interacted.connect(playerTakeSupplies)
 	enterBox.interacted.connect(playerEnter)
 	exitBox.interacted.connect(playerExit)
+	creakTimer.timeout.connect(playCreakSound)
 	
 func _process(delta):
 	rotate(Vector3.UP, boat_angular_velocity * delta)
@@ -55,6 +57,8 @@ func playerEnter():
 	exitBox.activate()
 	set_collision_layer_value(1, false)
 	boatMesh.mesh.surface_get_material(0).no_depth_test = true
+	creakTimer.start(randf_range(2.0,5.0))
+	
 
 func playerExit():
 	in_boat = false
@@ -64,6 +68,12 @@ func playerExit():
 	velocity = Vector3.ZERO
 	boat_angular_velocity = 0
 	boatMesh.mesh.surface_get_material(0).no_depth_test = false
+	creakTimer.stop()
 
 func playerTakeSupplies():
 	takeSupplyBox.deactivate()
+
+func playCreakSound():
+	if velocity.length() > 1.5: 
+		AudioHandler.playSound("boat_creak")
+	creakTimer.start(randf_range(3.0,6.0))

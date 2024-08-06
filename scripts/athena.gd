@@ -6,6 +6,7 @@ extends Node3D
 @onready var weaveCam := $weaveCam
 @onready var weaveUI := $weaveCam/weaveUI
 @onready var playArea := $playArea
+@onready var athenaPlayer := $athenaPlayer
 @onready var current_phase := "idle"
 
 signal activity_finished
@@ -26,7 +27,8 @@ func introDialogue():
 	Dialogic.start("athenaIntro")
 	trigger1.deactivate()
 	trigger2.activate()
-
+	athenaPlayer.stop()
+	
 func startWeave():
 	current_phase = "weave_explanation"
 	trigger2.deactivate()
@@ -111,6 +113,7 @@ func unTransitionCamera(initial_camera: Camera3D):
 func giveShield():
 	DataHandler.athena_done = true
 	trigger3.deactivate()
+	athenaPlayer.play()
 
 func alreadyFinished():
 	current_phase = "finished"

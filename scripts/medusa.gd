@@ -16,8 +16,10 @@ extends CharacterBody3D
 @onready var deadHeadTrigger := $headMesh/interactBox
 @onready var sleepHeadTrigger := $sleepMesh/interactBox
 @onready var gorgonHeadTrigger := $medusaMesh/interactBox
+@onready var anim := $medusaAnim
 @onready var grabPos := $grabPos
 @onready var navAgent := $navAgent
+@onready var medusaPlayer := $medusaPlayer
 @onready var home_pos := Vector3(-51, -3.63, -15)
 @onready var speed := 2.0
 @onready var attack_time := 3.0
@@ -54,8 +56,10 @@ func _physics_process(delta):
 				current_phase = "awake_chasing"
 				return
 		"awake_chasing":
+			anim.play("chase")
 			if navAgent.is_target_reached():
 				current_phase = "awake_idle"
+				anim.stop()
 				return
 			if medusaPetrify.can_see_player and player:
 				setPlayerPos(player.global_position)
@@ -75,6 +79,7 @@ func playerExitedCave(body):
 	player = null
 	
 func playerFootstep(player_pos, type):
+	if type == "sneak": return
 	match current_phase:
 		"sleeping":
 			if type == "loud":
@@ -94,6 +99,7 @@ func playerFootstep(player_pos, type):
 			setPlayerPos(player_pos)
 
 func wakeUp():
+	Dialogic.toggleAutoload(true)
 	Dialogic.start("medusaMonologue")
 	current_phase = "awake_idle"
 	sleepMesh.visible = false
@@ -106,10 +112,15 @@ func wakeUp():
 	medusaPetrify.can_petrify = true
 	gorgonHeadTrigger.activate()
 	emit_signal("medusa_awake")
-
+	Dialogic.timeline_started.connect(handleAutoDialogue)
+	
 func slain():
-	Dialogic.Inputs.auto_advance.enabled_forced = false
-	Dialogic.start("medusaDeath")
+	Dialogic.start("medusaLastWords")
+	attackCol.set_deferred("disabled", true)
+	attackTimer.stop()
+	print("MEDUSA DEAD")
+	if "awake" in current_phase:
+		global_position = global_position - Vector3.UP * 1.3
 	current_phase = "dead"
 	sleepMesh.visible = false
 	sleepPetrify.enabled = false
@@ -126,7 +137,11 @@ func slain():
 	headPetrify.enabled = true
 	headPetrify.can_petrify = true
 	deadHeadTrigger.activate()
+	medusaPlayer.stop()
+	medusaPlayer.stream = AudioHandler.getAudio("decapitation")
+	medusaPlayer.play()
 	emit_signal("medusa_slain")
+	
 	
 func setPlayerPos(pos):
 	target_pos = pos
@@ -167,3 +182,12 @@ func grabPlayer():
 	player_tween.tween_callback(player.gorgonAttack)
 	await player_tween.finished
 	current_phase = "idle"
+
+func gorgonFootstep():
+	AudioHandler.playSound3D("footstep_cave", global_position)
+
+func handleAutoDialogue():
+	#print("HANDLING AUTO DIALOG")
+	Dialogic.timeline_started.disconnect(handleAutoDialogue)
+	Dialogic.toggleAutoload(false)
+	#print("HANDLING AUTO DIALOG, ", Dialogic.Inputs.auto_advance.enabled_forced)

@@ -79,19 +79,17 @@ func handleEscape():
 			controlsMenu.close()
 			mainMenu.open()
 			current_menu = "main"
-			AudioHandler.playSound("ui_click")
 		"settings":
 			settingsMenu.close()
 			mainMenu.open()
 			current_menu = "main"
-			AudioHandler.playSound("ui_click")
 		"credits":
 			creditsMenu.close()
 			mainMenu.open()
 			current_menu = "main"
-			AudioHandler.playSound("ui_click")
 		"closed":
 			showMenu()
+	AudioHandler.playSound("ui_click")
 	
 func _unhandled_input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:

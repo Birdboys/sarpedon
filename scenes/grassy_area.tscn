@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://xmonpy84t7jm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_515h2"]
+size = Vector3(2.5, 0.1, 2.5)
+
+[node name="grassyArea" type="Area3D"]
+collision_layer = 256
+collision_mask = 0
+
+[node name="grassyShape" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_515h2")

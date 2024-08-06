@@ -9,5 +9,6 @@ script = ExtResource("1_ltyqu")
 [node name="cupSprite" type="Sprite3D" parent="."]
 flip_v = true
 pixel_size = 0.005
+shaded = true
 texture_filter = 0
 texture = ExtResource("1_d7igc")

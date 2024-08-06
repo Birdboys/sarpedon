@@ -113,6 +113,7 @@ func throwHermesDiscus():
 	var throw_force = (-discusCam.global_basis.z).rotated(discusCam.global_basis.x, deg_to_rad(45))
 	throw_force = throw_force.normalized() * MAX_DISCUS_STRENGTH * 5
 	throwDiscus(throw_force)
+	AudioHandler.playSound("hermes_throw")
 	
 func getRandomRot():
 	#iconTarget.rotation = deg_to_rad(randi_range(-90, 90))
@@ -135,5 +136,6 @@ func handleInteract():
 			throw_rot_val = remap(target_diff, 1, -1, deg_to_rad(-45), deg_to_rad(45))
 			var throw_force = getThrowForce()
 			throwDiscus(throw_force)
+			AudioHandler.playSound("throw")
 		_:
 			pass

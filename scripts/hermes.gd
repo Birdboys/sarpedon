@@ -7,6 +7,8 @@ extends Node3D
 @onready var discusHandler := $discusHandler
 @onready var pathFollow := $pathFollow
 @onready var runningPoint := $pathFollow/runningPoint
+@onready var footstepper := $footstepper
+@onready var runAnim := $runAnim
 @onready var current_phase := "running"
 @onready var path_progress := 0.0
 @onready var running_speed := 4.5
@@ -23,6 +25,7 @@ func _ready():
 	trigger3.interacted.connect(giveWingedSandals)
 	discusHandler.discus_landed.connect(discusLanded)
 	pathFollow.reparent(runningPath)
+	runAnim.play("run")
 	
 func _process(delta):
 	match current_phase:
@@ -45,14 +48,17 @@ func handleDialogue(type):
 	pass
 
 func introDialogue():
+	runAnim.stop()
 	trigger1.deactivate()
 	current_phase = "setting_up"
 	Dialogic.start("hermesIntro")
 
 func goToDiscusPos():
+	runAnim.play("run")
 	var setup_tween = get_tree().create_tween()
 	setup_tween.tween_property(self, "global_transform", discusPos.global_transform, global_position.distance_to(discusPos.global_position)/7.0)
 	await setup_tween.finished
+	runAnim.stop()
 	trigger2.activate()
 	
 func startDiscus():
@@ -102,6 +108,7 @@ func discusLanded():
 func giveWingedSandals():
 	trigger3.deactivate()
 	current_phase = "running"
+	runAnim.play("run")
 	DataHandler.hermes_done = true
 
 func alreadyFinished():
@@ -109,3 +116,9 @@ func alreadyFinished():
 	trigger1.deactivate()
 	trigger2.deactivate()
 	trigger3.activate()
+
+func footstep():
+	var step = load("res://assets/sounds/footstep/%s.wav" % randi_range(0, 4))
+	if footstepper.playing: footstepper.stop()
+	footstepper.stream = step
+	footstepper.play()

@@ -9,6 +9,7 @@ extends CharacterBody3D
 @onready var attackCol := $attackRadius/attackCol
 @onready var attackTimer := $attackTimer
 @onready var grabPos := $grabPos
+@onready var anim := $euryaleAnim
 @onready var current_phase := "idle"
 @onready var speed := 4.75
 @onready var attack_time := 3.5
@@ -41,6 +42,10 @@ func _physics_process(delta):
 				var next_path_position: Vector3 = navAgent.get_next_path_position()
 				velocity = current_agent_position.direction_to(next_path_position) * speed
 			move_and_slide()
+			if velocity.length() > 0:
+				anim.play("fly")
+			else:
+				anim.stop()
 		_:
 			pass
 
@@ -91,3 +96,5 @@ func grabPlayer():
 	await player_tween.finished
 	current_phase = "attacking"
 
+func gorgonWings():
+	AudioHandler.playSound3D("gorgon_wings", global_position)
