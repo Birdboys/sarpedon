@@ -16,10 +16,6 @@ func _ready():
 	galleryButton.pressed.connect(openGallery)
 	loadArt(art_list[index])
 	
-func _process(delta):
-	#print(index)
-	pass 
-	
 func open():
 	visible = true
 	gallery.visible = false

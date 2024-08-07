@@ -8,7 +8,9 @@ func enter():
 		emit_signal("transitioned", self, "playerSneak")
 
 func update(delta):
-	if not movement_control: return
+	if not movement_control: 
+		parent.camAnim.stop()
+		return
 	if parent.has_bag and Input.is_action_just_pressed("inventory"):
 		parent.camAnim.stop()
 		emit_signal("transitioned", self, "playerInventory")

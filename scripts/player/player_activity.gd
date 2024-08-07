@@ -3,6 +3,7 @@ extends State
 func enter():
 	parent.interactPrompt.text = ""
 	#parent.uiCamera.current = false
+	parent.UI.visible = false
 	parent.activityHandler.activity_finished.connect(activityFinished)
 	parent.setSword(false)
 	parent.setShield(false)
@@ -24,4 +25,5 @@ func exit():
 	parent.setShield(true)
 
 func activityFinished():
+	parent.UI.visible = true
 	emit_signal("transitioned", self, "playerWalk")

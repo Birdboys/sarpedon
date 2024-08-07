@@ -6,6 +6,7 @@ func enter():
 	parent.velocity.z = 0
 	parent.interactPrompt.text = ""
 	parent.camAnim.stop()
+	parent.compass.visible = false
 	AudioHandler.playSound("inventory_open")
 
 func update(delta):
@@ -18,4 +19,5 @@ func update(delta):
 		
 func exit():
 	parent.inventoryHandler.closeInventory()
+	parent.compass.visible = true
 	AudioHandler.playSound("inventory_close")

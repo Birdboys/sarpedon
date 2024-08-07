@@ -1,4 +1,4 @@
-athena: Well done. Now that weave untangled the thread, we must reweave it into the correct spot.
+athena: Well done. Now that we've untangled the thread, we must reweave it into the correct spot.
 athena: Begin.
 [wait time="1.0"]
 [signal arg="continueWeave"]

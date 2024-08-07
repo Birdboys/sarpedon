@@ -28,6 +28,9 @@ extends CharacterBody3D
 @onready var petrifyTimer := $petrifyTimer
 @onready var petrifyPlayer := $petrifyPlayer
 @onready var flutterPlayer := $flutterPlayer
+@onready var compassNeedle := $UI/UIBase/compass/needle
+@onready var UI := $UI/UIBase
+@onready var compass := $UI/UIBase/compass
 @onready var petrify_val := 0.0
 @onready var petrify_rate := 0.3
 @onready var petrify_cleanse_rate := 0.1
@@ -61,6 +64,7 @@ func _ready():
 func _process(delta):
 	$UI/UIBase/fpsCounter.text = "FPS:%s" % Engine.get_frames_per_second()
 	uiCamera.global_transform = camera.global_transform
+	compassNeedle.rotation = -rotation.y + PI/2
 	
 func _physics_process(delta):
 	petrified = false

@@ -56,7 +56,7 @@ func introDialogue():
 func goToDiscusPos():
 	runAnim.play("run")
 	var setup_tween = get_tree().create_tween()
-	setup_tween.tween_property(self, "global_transform", discusPos.global_transform, global_position.distance_to(discusPos.global_position)/7.0)
+	setup_tween.tween_property(self, "global_transform", discusPos.global_transform, global_position.distance_to(discusPos.global_position)/5.0)
 	await setup_tween.finished
 	runAnim.stop()
 	trigger2.activate()

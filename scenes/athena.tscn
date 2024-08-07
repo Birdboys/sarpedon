@@ -137,7 +137,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 horizontal_alignment = 1
 vertical_alignment = 1
-original_text = "ROTATE TILE
+original_text = "ROTATE TILE 
 [INTERACT]"
 
 [node name="loom" type="Node3D" parent="."]
