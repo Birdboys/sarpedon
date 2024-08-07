@@ -26,4 +26,5 @@ fog_enabled = true
 fog_light_color = Color(0.626455, 0.670486, 0.878558, 1)
 fog_light_energy = 1.2
 fog_sun_scatter = 0.02
+fog_density = 0.05
 fog_aerial_perspective = 0.05

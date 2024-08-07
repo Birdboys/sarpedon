@@ -70,6 +70,7 @@ axis_lock_angular_z = true
 floor_stop_on_slope = false
 floor_max_angle = 0.0
 script = ExtResource("1_8uxof")
+max_boat_velocity = 55.0
 
 [node name="boatMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(-5.81361e-08, 0, 1.33, 0, 1.33, 0, -1.33, 0, -5.81361e-08, 0, -0.192599, 0)

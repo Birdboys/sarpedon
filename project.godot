@@ -19,11 +19,11 @@ config/icon="res://icon.svg"
 
 DataHandler="*res://scripts/dataHandler.gd"
 LoadHandler="*res://scripts/loadHandler.gd"
+Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 AudioHandler="*res://scenes/audio_handler.tscn"
 PauseMenu="*res://scenes/ui/pause_menu.tscn"
 DeathScreen="*res://scenes/ui/death_screen.tscn"
 WinScreen="*res://scenes/ui/win_screen.tscn"
-Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [dialogic]
 

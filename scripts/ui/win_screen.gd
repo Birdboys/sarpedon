@@ -11,10 +11,13 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("interact"):
 		if current_phase == "quote_done":
+			AudioHandler.playSound("ui_click")
 			current_phase == "thanking"
 			winAnim.play("load_thanks")
 		elif current_phase == "thanks_done":
+			AudioHandler.playSound("ui_click")
 			get_tree().change_scene_to_packed(mainMenu)
+			DataHandler.resetGame()
 			hideMenu()
 		
 

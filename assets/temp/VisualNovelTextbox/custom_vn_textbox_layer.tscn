@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ddg8ypyfl0ygc"]
+[gd_scene load_steps=19 format=3 uid="uid://ddg8ypyfl0ygc"]
 
 [ext_resource type="Script" path="res://assets/temp/VisualNovelTextbox/vn_textbox_layer.gd" id="1_bpydr"]
 [ext_resource type="Script" path="res://assets/temp/VisualNovelTextbox/animations.gd" id="2_xy7a2"]
@@ -200,6 +200,10 @@ _data = {
 "textbox_pop": SubResource("Animation_htbgc")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c11om"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uogxa"]
+
 [sub_resource type="FontVariation" id="FontVariation_v8y64"]
 
 [node name="VN_TextboxLayer" type="Control"]
@@ -291,6 +295,7 @@ textbox_root = NodePath("..")
 
 [node name="DialogicNode_TypeSounds" type="AudioStreamPlayer" parent="Anchor/AnimationParent/Sizer/DialogTextPanel/DialogicNode_DialogText"]
 unique_name_in_owner = true
+bus = &"soundEffects"
 script = ExtResource("4_ma5mw")
 play_every_character = 0
 
@@ -312,6 +317,8 @@ custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_vertical = 8
 mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_c11om")
+theme_override_styles/fill = SubResource("StyleBoxEmpty_uogxa")
 max_value = 1.0
 step = 0.001
 value = 0.5

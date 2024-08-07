@@ -99,8 +99,6 @@ func playerFootstep(player_pos, type):
 			setPlayerPos(player_pos)
 
 func wakeUp():
-	Dialogic.toggleAutoload(true)
-	Dialogic.start("medusaMonologue")
 	current_phase = "awake_idle"
 	sleepMesh.visible = false
 	sleepPetrify.enabled = false
@@ -112,13 +110,16 @@ func wakeUp():
 	medusaPetrify.can_petrify = true
 	gorgonHeadTrigger.activate()
 	emit_signal("medusa_awake")
+	AudioHandler.playSound3D("medusa_awake", global_position)
+	Dialogic.toggleAutoload(true)
+	Dialogic.start("medusaMonologue")
+	await Dialogic.timeline_started
 	Dialogic.timeline_started.connect(handleAutoDialogue)
 	
 func slain():
 	Dialogic.start("medusaLastWords")
 	attackCol.set_deferred("disabled", true)
 	attackTimer.stop()
-	print("MEDUSA DEAD")
 	if "awake" in current_phase:
 		global_position = global_position - Vector3.UP * 1.3
 	current_phase = "dead"
@@ -140,6 +141,7 @@ func slain():
 	medusaPlayer.stop()
 	medusaPlayer.stream = AudioHandler.getAudio("decapitation")
 	medusaPlayer.play()
+	AudioHandler.playSound3D("medusa_gasp", global_position)
 	emit_signal("medusa_slain")
 	
 	
@@ -187,7 +189,7 @@ func gorgonFootstep():
 	AudioHandler.playSound3D("footstep_cave", global_position)
 
 func handleAutoDialogue():
-	#print("HANDLING AUTO DIALOG")
+	print("HANDLING AUTO DIALOG")
 	Dialogic.timeline_started.disconnect(handleAutoDialogue)
 	Dialogic.toggleAutoload(false)
 	#print("HANDLING AUTO DIALOG, ", Dialogic.Inputs.auto_advance.enabled_forced)

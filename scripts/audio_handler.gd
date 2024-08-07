@@ -6,7 +6,7 @@ extends Node
 @onready var windPlayer := $windPlayer
 @onready var players := []
 @onready var players_3d := []
-@onready var queue_length := 5
+@onready var queue_length := 10
 @onready var queue_index := 0
 @onready var queue_3d_index := 0
 @onready var audio_num_vars = {"ui_click":3, "footstep":5,"footstep_grass":5,"footstep_cave":5,"splash":3,"cup_slide":4,"weave_tile":5,
@@ -19,8 +19,10 @@ var wind_tween
 
 func _ready():
 	populateQueues()
-
+	Dialogic.Voice.voice_player.bus = "soundEffects"
+	
 func _process(delta):
+	
 	pass
 
 func populateQueues():
@@ -91,3 +93,6 @@ func toggleReverb(on:= false):
 
 func toggleDistortion(on:= false):
 	AudioServer.set_bus_effect_enabled(1, 1, on)
+
+func temp(dict):
+	print(dict)

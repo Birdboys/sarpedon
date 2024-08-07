@@ -191,10 +191,12 @@ func randomizeNonPathMap():
 					tileMap.set_cell(0, Vector2(x, y), 0, Vector2(2, 0), randi_range(0, 1))
 
 func hideTapestry():
+	AudioHandler.playSound("weave_tile")
 	var tap_tween = get_tree().create_tween()
 	tap_tween.tween_property(tapestryImage, "modulate", Color.TRANSPARENT, 1.0)
 
 func showTapestry():
+	AudioHandler.playSound("weave_tile")
 	var tap_tween = get_tree().create_tween()
 	tap_tween.tween_property(tapestryImage, "modulate", Color.WHITE, 1.0)
 	
@@ -225,6 +227,7 @@ func getLine(points):
 	threadLine.clear_points()
 	points.insert(0, points[0] + Vector2.LEFT)
 	points.append(points[-1] + Vector2.RIGHT)
+	AudioHandler.playSound("weave_tighten")
 	for x in range(0, len(points)):
 		var curr_point = points[x]
 		var prev_point = points[x-1] if x != 0 else points[x] - Vector2(1, 0)
@@ -238,6 +241,7 @@ func getLine(points):
 			threadLine.add_point(prev_position)
 			threadLine.add_point(tile_center)
 		await get_tree().create_timer(0.1).timeout
+		
 
 func getLineBackwards(points):
 	var thread_tween = get_tree().create_tween()
@@ -246,6 +250,7 @@ func getLineBackwards(points):
 	points.insert(0, points[0] + Vector2.LEFT)
 	points.append(points[-1] + Vector2.RIGHT)
 	threadLine.points = points.map(func(x): return x * tile_size + Vector2.ONE * tile_size/2)
+	AudioHandler.playSound("weave_loosen")
 	thread_tween.tween_property(threadLine, "modulate", Color.WHITE, 1.0)
 	await thread_tween.finished
 	for x in range(len(threadLine.points)-1, -1, -1):

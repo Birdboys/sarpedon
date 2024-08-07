@@ -5,11 +5,10 @@ extends Node3D
 @onready var medusaLairTrigger := $medusaLairTrigger
 @onready var sarpedonArea := $sarpedonArea
 @onready var worldEnvironment := $worldEnvironment
-@onready var deathRect := $deathRect
-@onready var winRect := $winRect
+@onready var deathRect := $deathRect/rect
+@onready var winRect := $winRect/rect
 @onready var shallowWater := $shallowWater
 @onready var deepWater := $deepWater
-@onready var environAnim := $environAnim
 @onready var oceanPanels := $oceanPanels
 @onready var boat := $boat
 @onready var introBoat := $introBoat
@@ -19,6 +18,7 @@ extends Node3D
 @onready var graeae := $graeae
 @onready var medusa := $medusa
 @onready var phorkys := $phorkys
+@onready var sirens := $sirens
 @onready var island_env := preload("res://assets/island_environment.tres")
 @onready var cave_env := preload("res://assets/cave_environment.tres")
 @onready var player_in_cave := false
@@ -41,6 +41,10 @@ func _ready():
 	medusaLairTrigger.body_entered.connect(playerCave.bind(true))
 	medusaLairTrigger.body_exited.connect(playerCave.bind(false))
 	worldEnvironment.environment = island_env
+	deathRect.visible = false
+	winRect.visible = false
+	deathRect.modulate = Color.TRANSPARENT
+	winRect.modulate = Color.TRANSPARENT
 	player.camera.current = true
 	player.startActivity(introBoat)
 	PauseMenu.setTheme("black")
@@ -51,6 +55,7 @@ func _ready():
 
 	AudioHandler.togglePlayer("ocean", true)
 	AudioHandler.togglePlayer("wind", true)
+	
 func _process(delta):
 	if not player_in_cave:
 		var fog_val = remap(clamp(player.global_position.y, 0, 40), 0, 40, 0.05, 0.01)
@@ -71,8 +76,10 @@ func activateBoat():
 	boat.enterBox.activate()
 
 func playerDied(death_type):
+	print("PLAYER DIED", death_type)
+	deathRect.visible = true
 	var end_tween = get_tree().create_tween()
-	end_tween.tween_property(deathRect, "color", Color.BLACK, 2.5)
+	end_tween.tween_property(deathRect, "modulate", Color.WHITE, 2.5)
 	await end_tween.finished
 	PauseMenu.setTheme("white")
 	queue_free()
@@ -89,17 +96,19 @@ func playerCave(_body, entered):
 		fog_tween.tween_property(worldEnvironment.environment, "fog_density", 0.05, 1.0)
 		await fog_tween.finished
 		player_in_cave = entered
-	#AudioHandler.toggleReverb(entered)
+	AudioHandler.toggleReverb(entered)
 	 
 func gameWin(_body):
 	if medusa_dead:
+		deathRect.visible = true
 		var end_tween = get_tree().create_tween()
-		end_tween.tween_property(deathRect, "color", Color.BLACK, 2.5)
+		end_tween.tween_property(deathRect, "modulate", Color.WHITE, 2.5)
 		await end_tween.finished
 		PauseMenu.setTheme("white")
 		queue_free()
 		DeathScreen.loadDeathScreen("medusa_slain")
 	else:
+		winRect.visible = true
 		DataHandler.good_ending = true
 		var end_tween = get_tree().create_tween()
 		end_tween.tween_property(winRect, "modulate", Color.WHITE, 2.5)

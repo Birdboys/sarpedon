@@ -52,9 +52,15 @@ func translationUpdated():
 	emit_signal("translation_updated")
 
 func _unhandled_input(event):
-	pass
-	#if event is InputEventKey and  event.is_pressed and event.keycode == KEY_P:
-		#var screen_shot = get_viewport().get_texture().get_image()
-		#var path = "user://screenshots/sarpedon_screenshot_%s.png" % screenshot_id
-		#screenshot_id += 1
-		#screen_shot.save_jpg(path)
+	return
+	if event is InputEventKey and  event.is_pressed and event.keycode == KEY_P:
+		var screen_shot = get_viewport().get_texture().get_image()
+		var path = "user://sarpedon_screenshot_%s.png" % screenshot_id
+		screenshot_id += 1
+		screen_shot.save_jpg(path)
+
+func resetGame():
+	var hermes_done := false
+	var athena_done := false
+	var graeae_done := false
+	var good_ending := false

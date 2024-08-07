@@ -64,6 +64,7 @@ func changeToGorgon():
 	petrifyComp.can_petrify = true
 	trigger1.deactivate()
 	current_phase = "gorgon"
+	AudioHandler.playSound3D("stheno_cry", global_position)
 
 func startAttack(body):
 	player = body
@@ -76,6 +77,7 @@ func attackPlayer():
 	attackTimer.stop()
 	if player.stateMachine.current_state.name == "playerActivity" or player.stateMachine.current_state.name == "playerDied": return
 	player.startActivity(self)
+	AudioHandler.playSound3D("stheno_cry", global_position)
 	Dialogic.start("sthenoKill")
 	
 func stopAttack(body):

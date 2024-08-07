@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://ds5vh4yxvjpn3"]
+[gd_scene load_steps=13 format=3 uid="uid://ds5vh4yxvjpn3"]
 
 [ext_resource type="Script" path="res://scripts/sirens.gd" id="1_sm0u3"]
 [ext_resource type="Texture2D" uid="uid://bphtf1wm5xpab" path="res://assets/temp/halfy.png" id="2_dnkr1"]
 [ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="2_yejcj"]
 [ext_resource type="Texture2D" uid="uid://dnko8uw84nij6" path="res://assets/sprites/siren1.png" id="3_5030n"]
 [ext_resource type="PackedScene" uid="uid://d557kilnx4qe" path="res://scenes/components/billboard_component.tscn" id="4_8pg7a"]
+[ext_resource type="AudioStream" uid="uid://b3k3jpaneiowh" path="res://assets/sounds/siren_song.wav" id="6_b1h34"]
+[ext_resource type="AudioStream" uid="uid://bcf8fmee1co6n" path="res://assets/sounds/siren_cry1.wav" id="6_hjjvd"]
+[ext_resource type="AudioStream" uid="uid://ucf7xxsgqfob" path="res://assets/sounds/siren_cry2.wav" id="7_rvryl"]
+[ext_resource type="AudioStream" uid="uid://1b8qk524puoe" path="res://assets/sounds/siren_cry3.wav" id="8_5vdgd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65o6o"]
 albedo_texture = ExtResource("2_dnkr1")
@@ -60,6 +64,9 @@ skeleton = NodePath("../tempRock")
 
 [node name="billboardComponent" parent="siren1" instance=ExtResource("4_8pg7a")]
 
+[node name="sirenPlayer" type="AudioStreamPlayer3D" parent="siren1"]
+stream = ExtResource("6_hjjvd")
+
 [node name="siren2" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.935067, 0, 0.35447, 0, 1, 0, -0.35447, 0, -0.935067, -3.05848, 3.01265, 0.746872)
 layers = 4
@@ -67,6 +74,10 @@ mesh = SubResource("PlaneMesh_d564g")
 skeleton = NodePath("../tempRock")
 
 [node name="billboardComponent" parent="siren2" instance=ExtResource("4_8pg7a")]
+
+[node name="sirenPlayer" type="AudioStreamPlayer3D" parent="siren2"]
+transform = Transform3D(0.811462, 0, 0.584405, 0, 1, 0, -0.584405, 0, 0.811462, -0.252346, 0.38012, 2.96626)
+stream = ExtResource("7_rvryl")
 
 [node name="siren3" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.935067, 0, 0.35447, 0, 1, 0, -0.35447, 0, -0.935067, 1.17117, 2.20686, 0.861193)
@@ -76,10 +87,19 @@ skeleton = NodePath("../tempRock")
 
 [node name="billboardComponent" parent="siren3" instance=ExtResource("4_8pg7a")]
 
+[node name="sirenPlayer" type="AudioStreamPlayer3D" parent="siren3"]
+transform = Transform3D(0.811462, 0, 0.584405, 0, 1, 0, -0.584405, 0, 0.811462, 3.74319, 1.18591, 1.57387)
+stream = ExtResource("8_5vdgd")
+
 [node name="singTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="attackTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="sirenPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_b1h34")
+autoplay = true
+max_distance = 500.0
 
 [connection signal="timeout" from="singTimer" to="." method="_on_sing_timer_timeout"]

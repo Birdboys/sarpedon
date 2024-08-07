@@ -254,7 +254,7 @@ func handlePetrify(delta):
 		petrifyPostProcess.mesh.material.set_shader_parameter("petrify_val", petrify_val)
 		petrifyPostProcess.visible = true
 		if not petrifyPlayer.playing: petrifyPlayer.play()
-		petrifyPlayer.volume_db = remap(clamp(petrify_val, 0, 0.5), 0, 0.5, -30, 0)
+		petrifyPlayer.volume_db = remap(clamp(petrify_val, 0, 0.5), 0, 0.5, -25, 0)
 	if petrify_val > 0.9:
 		if petrifyTimer.is_stopped():
 			petrifyTimer.start(2)

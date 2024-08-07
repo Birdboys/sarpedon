@@ -16,6 +16,7 @@ signal activity_finished
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	boatMesh.mesh.surface_get_material(0).no_depth_test = true
 	
 func _process(delta):
 	match current_phase:

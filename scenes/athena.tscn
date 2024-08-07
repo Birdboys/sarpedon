@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cflsdjfbphex"]
+[gd_scene load_steps=21 format=3 uid="uid://cflsdjfbphex"]
 
 [ext_resource type="Script" path="res://scripts/athena.gd" id="1_w4e46"]
 [ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="2_mm605"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dt6bxmw7stlh8" path="res://scenes/components/interact_box.tscn" id="7_usl54"]
 [ext_resource type="PackedScene" uid="uid://c5p6m7smmwm2n" path="res://scenes/weave_game.tscn" id="8_0yfds"]
 [ext_resource type="PackedScene" uid="uid://beabw8ir817ar" path="res://scenes/components/action_label.tscn" id="8_o1c63"]
+[ext_resource type="Texture2D" uid="uid://dsdwtjfqtxaw4" path="res://assets/textures/woody.png" id="9_7rsic"]
 [ext_resource type="AudioStream" uid="uid://bpbvmhftxcb6" path="res://assets/sounds/weave_ambience.wav" id="10_3jn21"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kx3nv"]
@@ -31,13 +32,32 @@ flip_faces = true
 size = Vector2(1, 2)
 orientation = 2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3nleu"]
+albedo_texture = ExtResource("9_7rsic")
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kjmq7"]
+albedo_texture = ExtResource("9_7rsic")
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j7cxl"]
+albedo_texture = ExtResource("9_7rsic")
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7thox"]
+albedo_texture = ExtResource("9_7rsic")
+uv1_triplanar = true
+texture_filter = 0
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_37d67"]
 viewport_path = NodePath("playArea")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vl2fa"]
 resource_local_to_scene = true
 transparency = 1
-shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_37d67")
 texture_filter = 0
 
@@ -126,20 +146,24 @@ transform = Transform3D(1, 0, 0, 0, 0.985592, 0.169143, 0, -0.169143, 0.985592, 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="loom"]
 
 [node name="loomPoleL" type="CSGBox3D" parent="loom/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.41, 0, 0)
 size = Vector3(0.1, 1.5, 0.1)
+material = SubResource("StandardMaterial3D_3nleu")
 
 [node name="loomPoleR" type="CSGBox3D" parent="loom/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.414, 0, 0)
 size = Vector3(0.1, 1.5, 0.1)
+material = SubResource("StandardMaterial3D_kjmq7")
 
 [node name="loomPoleL2" type="CSGBox3D" parent="loom/CSGCombiner3D"]
-transform = Transform3D(-1, -1.4787e-08, 8.61631e-08, 1.4787e-08, 0.942782, 0.333412, -8.61631e-08, 0.333412, -0.942782, 1, -0.21225, -0.166887)
+transform = Transform3D(-1, -1.4787e-08, 8.61631e-08, 1.4787e-08, 0.942782, 0.333412, -8.61631e-08, 0.333412, -0.942782, 0.414, -0.21225, -0.166887)
 size = Vector3(0.1, 1, 0.1)
+material = SubResource("StandardMaterial3D_j7cxl")
 
 [node name="loomPoleR2" type="CSGBox3D" parent="loom/CSGCombiner3D"]
-transform = Transform3D(-1, -1.4787e-08, 8.61631e-08, 1.4787e-08, 0.942782, 0.333412, -8.61631e-08, 0.333412, -0.942782, -1, -0.21225, -0.166887)
+transform = Transform3D(-1, -1.4787e-08, 8.61631e-08, 1.4787e-08, 0.942782, 0.333412, -8.61631e-08, 0.333412, -0.942782, -0.41, -0.21225, -0.166887)
 size = Vector3(0.1, 1, 0.1)
+material = SubResource("StandardMaterial3D_7thox")
 
 [node name="loom" type="MeshInstance3D" parent="loom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.102, 0)

@@ -2,8 +2,8 @@
 
 [ext_resource type="TileSet" uid="uid://bqpsdl6mjaxgw" path="res://assets/temp/tiles.tres" id="1_8enbr"]
 [ext_resource type="Script" path="res://scripts/weave_game.gd" id="1_yia7r"]
+[ext_resource type="Texture2D" uid="uid://cpf81txnwmgm" path="res://assets/temp/weave_texture_low.jpg" id="4_n3bfp"]
 [ext_resource type="Texture2D" uid="uid://xp7tbwya5ngt" path="res://assets/temp/perseuspainting.jpeg" id="4_v0ytq"]
-[ext_resource type="Texture2D" uid="uid://ugglwrl3dkbe" path="res://assets/temp/weave_texture_2.jpg" id="5_ydmbc"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ms6pd"]
 blend_mode = 3
@@ -55,8 +55,7 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="tapestryTexture" type="TextureRect" parent="tapestryLayer"]
-visible = false
-modulate = Color(1, 1, 1, 0.254902)
+modulate = Color(1, 1, 1, 0.239216)
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_ms6pd")
 anchors_preset = 15
@@ -66,8 +65,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("5_ydmbc")
-expand_mode = 5
+texture = ExtResource("4_n3bfp")
+expand_mode = 3
 
 [node name="threadLine" type="Line2D" parent="."]
 width = 18.0

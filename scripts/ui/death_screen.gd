@@ -46,6 +46,8 @@ func gameLoaded():
 
 func startGameAgain():
 	new_game_loaded = false
+	deathAnim.play("hide_screen")
+	await deathAnim.animation_finished
 	var game = LoadHandler.retrieveLoad()
 	get_tree().change_scene_to_packed(game)
 	hideMenu()

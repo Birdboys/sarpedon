@@ -23,7 +23,7 @@ void fragment() {
 	float linear_depth = -view.z / depth_range;
 	
 	
-	if (linear_depth > (1.0 - petrify_val)) {
+	if (linear_depth > (1.0 - pow(petrify_val, 2.0))) {
 		float to_grey = colorToGrey(screen_color.r, screen_color.g, screen_color.b);
 		ALBEDO.rgb = vec3(to_grey, to_grey, to_grey);
 	} else {

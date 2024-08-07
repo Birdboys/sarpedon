@@ -30,9 +30,6 @@ func _ready():
 	boatAttacker.body_exited.connect(boatAttackerExited)
 	attackTimer.timeout.connect(attackPlayer)
 	
-func _process(delta):
-	pass
-	
 func _physics_process(delta):
 	if player_in_pull_range and boat:
 		var distance_scale = getBoatDistance()/pull_radius
@@ -100,6 +97,7 @@ func attackPlayer():
 	if player_attacked: return
 	player_attacked = true
 	var siren_tween = get_tree().create_tween().set_parallel().set_ease(Tween.EASE_IN)
-	for siren in sirens:
-		siren_tween.tween_property(siren, "global_position", player.camera.global_position, 1.5)
+	for x in range(len(sirens)):
+		siren_tween.tween_property(sirens[x], "global_position", player.camera.global_position + Vector3.ONE * randf_range(-1, 1), 0.75)
+		sirens[x].get_node("sirenPlayer").play()
 	player.sirenAttack()

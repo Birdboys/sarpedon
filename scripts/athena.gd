@@ -7,6 +7,7 @@ extends Node3D
 @onready var weaveUI := $weaveCam/weaveUI
 @onready var playArea := $playArea
 @onready var athenaPlayer := $athenaPlayer
+@onready var athenaMesh := $athenaMesh
 @onready var current_phase := "idle"
 
 signal activity_finished
@@ -99,9 +100,11 @@ func transitionCamera(initial_camera: Camera3D):
 	camera_tween.tween_property(weaveCam, "global_transform", original_transform, 2.0)
 	camera_tween.tween_property(weaveCam, "fov", original_fov, 2.0)
 	await camera_tween.finished
+	athenaMesh.visible = false
 	return
 	
 func unTransitionCamera(initial_camera: Camera3D):
+	athenaMesh.visible = true
 	var camera_tween = get_tree().create_tween().set_parallel(true)
 	camera_tween.tween_property(weaveCam, "global_transform", initial_camera.global_transform, 1.0)
 	camera_tween.tween_property(weaveCam, "fov", initial_camera.fov, 1.0)
