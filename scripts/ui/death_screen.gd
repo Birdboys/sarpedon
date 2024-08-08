@@ -24,9 +24,9 @@ func loadDeathScreen(type):
 	visible = true
 	match type:
 		"drowned":
-			deathLine.text = "YOU SUCCUMBED TO DEEP WATERS"
+			deathLine.text = "YOU DROWNED IN DEEP WATERS"
 		"phorkys":
-			pass
+			deathLine.text = "YOU SUBMITTED TO THE ABYSS"
 		"petrify":
 			deathLine.text = "YOU WERE PETRIFIED BY THE GORGONS"
 		"siren":

@@ -11,7 +11,7 @@ extends Node3D
 @onready var runAnim := $runAnim
 @onready var current_phase := "running"
 @onready var path_progress := 0.0
-@onready var running_speed := 4.5
+@onready var running_speed := 3.5
 @export var runningPath : Path3D
 @export var discusPos : Node3D
 

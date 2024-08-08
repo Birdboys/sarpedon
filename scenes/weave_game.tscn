@@ -55,7 +55,6 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="tapestryTexture" type="TextureRect" parent="tapestryLayer"]
-modulate = Color(1, 1, 1, 0.239216)
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_ms6pd")
 anchors_preset = 15

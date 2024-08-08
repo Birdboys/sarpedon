@@ -19,7 +19,6 @@ var wind_tween
 
 func _ready():
 	populateQueues()
-	Dialogic.Voice.voice_player.bus = "soundEffects"
 	
 func _process(delta):
 	

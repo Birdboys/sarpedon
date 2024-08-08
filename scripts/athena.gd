@@ -59,6 +59,7 @@ func handleDialogue(type):
 			weaveHandler.y_dim = 8
 			playArea.size.x = weaveHandler.x_dim * weaveHandler.tile_size + 32
 			playArea.size.y = weaveHandler.y_dim * weaveHandler.tile_size
+			weaveHandler.num_blockers = 12
 		"weaveDone":
 			finishWeave()
 			

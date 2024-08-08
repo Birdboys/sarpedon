@@ -54,8 +54,7 @@ func throwDiscus(force):
 	new_discus.landed.connect(discusLanded)
 	new_discus.thrown()
 	current_discus = new_discus
-	current_state = "throwing"
-	tutText.visible = true
+	current_state = "throwing" 
 	
 func discusLanded():
 	current_state = "idle"
@@ -81,7 +80,7 @@ func startAutoThrow():
 	throw_height_val = 0.0
 	throw_strength_val = 0.0
 	discusUI.visible = true
-	tutText.visible = true
+	#tutText.visible = true
 	resetIcons()
 	getRandomRot()
 	var auto_tween = get_tree().create_tween()

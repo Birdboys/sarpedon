@@ -16,7 +16,7 @@ extends Node2D
 @onready var current_phase := "idle"
 @export var x_dim := 6
 @export var y_dim := 12
-@export var num_blockers := 12
+@export var num_blockers := 4
 @export var gradient_interp := 0.0
 
 signal weave_finished
@@ -146,7 +146,7 @@ func getPathPoints(beginning = null):
 	
 	beginSpot = beginning if beginning else Vector2(-1, randi_range(0, x_dim-1))
 	endSpot = Vector2(x_dim, randi_range(0, y_dim-1))
-	while endSpot == beginSpot:
+	while endSpot.y == beginSpot.y:
 		endSpot = Vector2(x_dim, randi_range(0, y_dim-1))
 
 	for x in [-1, x_dim]:
@@ -154,14 +154,9 @@ func getPathPoints(beginning = null):
 			if Vector2(x, y) != beginSpot and Vector2(x, y) != endSpot:
 				aGrid.set_point_solid(Vector2(x, y))
 
-	var blockers = []
-	for x in range(num_blockers):
-		var new_blocker = Vector2(randi_range(0,x_dim-1),randi_range(0,y_dim-1))
-		while new_blocker in blockers:
-			new_blocker = Vector2(randi_range(0,x_dim-1),randi_range(0,y_dim-1))
-			blockers.append(new_blocker)
-			aGrid.set_point_solid(new_blocker)
-	
+	var blockers = getBlockers(aGrid)
+	while len(aGrid.get_id_path(beginSpot, endSpot)) == 0:
+		blockers = getBlockers(aGrid, blockers)
 	startPoint.position = tileMap.tile_set.tile_size.x * beginSpot + Vector2(tileMap.tile_set.tile_size)/2 
 	endPoint.position = tileMap.tile_set.tile_size.x * endSpot + Vector2(tileMap.tile_set.tile_size)/2 
 	navAgent.target_position = endPoint.position
@@ -257,3 +252,17 @@ func getLineBackwards(points):
 		threadLine.remove_point(x)
 		await get_tree().create_timer(0.1).timeout
 	return
+
+func getBlockers(aGrid, og_blockers=null):
+	if og_blockers:
+		for blocker in og_blockers:
+			aGrid.set_point_solid(blocker, false)
+			
+	var blockers = []
+	for x in range(num_blockers):
+		var new_blocker = Vector2(randi_range(0,x_dim-1),randi_range(0,y_dim-1))
+		while new_blocker in blockers:
+			new_blocker = Vector2(randi_range(0,x_dim-1),randi_range(0,y_dim-1))
+		blockers.append(new_blocker)
+		aGrid.set_point_solid(new_blocker, true)
+	return blockers

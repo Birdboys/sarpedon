@@ -330,7 +330,7 @@ func swordAttack():
 	elif backLookRay.is_colliding():
 		medusa = backLookRay.get_collider()
 	else: return
-	if medusa.interact() != "medusa_slain": return
+	if medusa.interact_ret != "medusa_slain": return
 	medusa.get_parent().get_parent().slain()
 
 func swordSound():
@@ -338,3 +338,8 @@ func swordSound():
 	
 func sensChanged(val):
 	sensitivity = remap(val, 0.0, 100.0, 0.005, 0.015)
+
+func deathByPhorkys():
+	death_type = "phorkys"
+	if stateMachine.current_state.name == "playerBoat": stateMachine.current_state.boat_death = true
+	stateMachine.on_state_transition(stateMachine.current_state, "playerDied")

@@ -10,6 +10,7 @@ extends Node3D
 @onready var shallowWater := $shallowWater
 @onready var deepWater := $deepWater
 @onready var oceanPanels := $oceanPanels
+@onready var oceanAnim := $oceanAnim
 @onready var boat := $boat
 @onready var introBoat := $introBoat
 @onready var maiden := $maiden
@@ -40,6 +41,8 @@ func _ready():
 	sarpedonArea.body_exited.connect(gameWin)
 	medusaLairTrigger.body_entered.connect(playerCave.bind(true))
 	medusaLairTrigger.body_exited.connect(playerCave.bind(false))
+	phorkys.phorkys_summon.connect(animateWaters.bind("calm"))
+	phorkys.death_area_exit.connect(animateWaters.bind("normal"))
 	worldEnvironment.environment = island_env
 	deathRect.visible = false
 	winRect.visible = false
@@ -69,7 +72,8 @@ func _physics_process(delta):
 		if not player.is_invis: node.setTargetPos(player.getGroundPos())
 	for node in get_tree().get_nodes_in_group("needs_player_eyes"):
 		node.setTargetPos(player.camera.global_position)
-	AudioHandler.setPlayer("ocean", remap(clamp(Vector3(player.global_position.x, 0, player.global_position.z).length(), 0, 150), 0.0, 150.0, -60, 0))
+	if Vector3(player.global_position.x, 0, player.global_position.z).length() < 150:
+		AudioHandler.setPlayer("ocean", remap(clamp(Vector3(player.global_position.x, 0, player.global_position.z).length(), 0, 150), 0.0, 150.0, -60, 0))
 	AudioHandler.setPlayer("wind", remap(clamp(player.global_position.y, 0, 20), 0, 20, -60, 0))
 
 func activateBoat():
@@ -123,4 +127,9 @@ func medusaSlain():
 	await get_tree().create_timer(8.0).timeout
 	gorgons.lament()
 	
-
+func animateWaters(type):
+	print("ANIMATE WATERS")
+	match type:
+		"calm": oceanAnim.play("calm_ocean")
+		"normal": oceanAnim.play_backwards("calm_ocean")
+	

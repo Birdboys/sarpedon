@@ -10,6 +10,7 @@ extends CharacterBody3D
 @onready var attackTimer := $attackTimer
 @onready var grabPos := $grabPos
 @onready var anim := $euryaleAnim
+@onready var hisser := $hisser
 @onready var current_phase := "idle"
 @onready var speed := 4.75
 @onready var attack_time := 3.5
@@ -25,7 +26,7 @@ func _ready():
 	attackRadius.body_exited.connect(stopAttack)
 	attackTimer.timeout.connect(attackPlayer)
 	attackCol.disabled = true
-
+	hisser.play(0.0)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	match current_phase:

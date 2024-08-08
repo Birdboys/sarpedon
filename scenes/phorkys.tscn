@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://gikumaarap7w"]
+[gd_scene load_steps=8 format=3 uid="uid://gikumaarap7w"]
 
 [ext_resource type="Script" path="res://scripts/phorkys.gd" id="1_3ffxg"]
 [ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="2_l5v68"]
@@ -25,6 +25,9 @@ flip_faces = true
 size = Vector2(4, 4)
 orientation = 2
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_66aud"]
+radius = 12.0
+
 [node name="phorkys" type="Node3D"]
 script = ExtResource("1_3ffxg")
 
@@ -32,3 +35,13 @@ script = ExtResource("1_3ffxg")
 mesh = SubResource("PlaneMesh_hylr1")
 
 [node name="billboardComponent" parent="phorkysMesh" instance=ExtResource("3_70pob")]
+
+[node name="deathArea" type="Area3D" parent="phorkysMesh"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="phorkysMesh/deathArea"]
+shape = SubResource("SphereShape3D_66aud")
+disabled = true
+
+[node name="deathTimer" type="Timer" parent="."]

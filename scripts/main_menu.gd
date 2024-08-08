@@ -24,6 +24,7 @@ func _ready():
 	get_tree().create_timer(5.0).timeout.connect(readyToPlay)
 
 func mainPressed():
+	return
 	if goin: return
 	AudioHandler.playSound("ui_click")
 	goin = true

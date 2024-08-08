@@ -577,7 +577,7 @@ script = ExtResource("2_7dfx5")
 trauma_noise = SubResource("FastNoiseLite_73vgs")
 
 [node name="lookRay" type="RayCast3D" parent="neck/playerCam"]
-target_position = Vector3(0, 0, -2.5)
+target_position = Vector3(0, 0, -3)
 collision_mask = 2
 
 [node name="hudViewportContainer" type="SubViewportContainer" parent="neck/playerCam"]
@@ -676,7 +676,7 @@ script = ExtResource("5_fv6td")
 
 [node name="playerHover" type="Node" parent="stateMachine"]
 script = ExtResource("6_0tkkq")
-move_speed = 10.0
+move_speed = 8.0
 
 [node name="playerTalk" type="Node" parent="stateMachine"]
 script = ExtResource("7_n0ojd")
@@ -769,7 +769,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="fpsCounter" type="Label" parent="UI/UIBase"]
-visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
