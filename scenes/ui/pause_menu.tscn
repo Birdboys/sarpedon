@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://drcm6lc2w37br"]
+[gd_scene load_steps=22 format=3 uid="uid://drcm6lc2w37br"]
 
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_573p5"]
 [ext_resource type="Texture2D" uid="uid://byubok773wow" path="res://assets/temp/uiborders.png" id="1_lo72j"]
@@ -24,6 +24,16 @@ content_margin_right = 12.0
 content_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_chpcr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mibgy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ugvq2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e0751"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a2ch4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6joks"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_veihl"]
 
@@ -403,11 +413,16 @@ theme_override_fonts/normal_font = ExtResource("7_ow5pn")
 theme_override_font_sizes/normal_font_size = 18
 theme_override_styles/focus = SubResource("StyleBoxEmpty_nkbwf")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_nkbwf")
-text = "Programming: Colby Bird
+text = "Game Design, Programming, Story, Writing- 
+Colby Bird
 
-Writing: Colby Bird
+Music - Someone
 
-UI/UX: Colby Bird"
+Sounds - Pixabay et al.
+
+Testers - Family and Friends
+
+"
 
 [node name="artDetails" type="Control" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer"]
 layout_mode = 2
@@ -458,11 +473,15 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 0.901961)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mibgy")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ugvq2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_e0751")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_a2ch4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6joks")
 flat = true
 text_overrun_behavior = 3
 clip_text = true

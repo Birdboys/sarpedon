@@ -9,6 +9,7 @@ extends Node3D
 @onready var sarpedonTitle := $sarpedonTitle
 @onready var ui := $Camera3D/screenMargin
 @onready var transitionRect := $Camera3D/transitionRect
+@onready var medusaMesh := $medusaMesh
 @onready var loadingScreen := preload("res://scenes/ui/loading_screen.tscn")
 
 var loading_screen
@@ -21,12 +22,21 @@ func _ready():
 	anim.play("idle")
 	PauseMenu.toggled_on.connect(hideUI.bind(true))
 	PauseMenu.toggled_off.connect(hideUI.bind(false))
-	get_tree().create_timer(5.0).timeout.connect(readyToPlay)
+	get_tree().create_timer(3.0).timeout.connect(readyToPlay)
+	AudioHandler.togglePlayer("wind", true)
+	AudioHandler.setPlayer("wind", -60.0)
+	AudioHandler.tweenPlayer("wind", 0, 3.0)
+	if DataHandler.good_ending:
+		DataHandler.resetGame()
+		medusaMesh.visible = true
+	else:
+		medusaMesh.visible = false
 
 func mainPressed():
-	return
 	if goin: return
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	AudioHandler.playSound("ui_click")
+	AudioHandler.tweenPlayer("wind", -60, 2.5)
 	goin = true
 	var transition_tween = get_tree().create_tween()
 	transition_tween.tween_property(transitionRect, "modulate", Color.WHITE, 2.5)
@@ -34,6 +44,7 @@ func mainPressed():
 	visible = false
 	get_tree().root.add_child(loading_screen)
 	loading_screen.ready_to_play.connect(startTheGame)
+	AudioHandler.togglePlayer("wind", false)
 	LoadHandler.load_finished.connect(loading_screen.gameLoaded)
 	LoadHandler.startLoad()
 	PauseMenu.setTheme("white")

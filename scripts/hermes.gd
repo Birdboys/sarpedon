@@ -101,17 +101,20 @@ func discusLanded():
 			Dialogic.start("hermesDiscusAfter2")
 		"player_throw_3":
 			current_phase = "discus_done"
+			emit_signal("activity_finished")
 			Dialogic.start("hermesDiscusAfter3")
 		_: 
 			pass
 
 func giveWingedSandals():
+	print("GIVING SANDALS")
 	trigger3.deactivate()
 	current_phase = "running"
 	runAnim.play("run")
 	DataHandler.hermes_done = true
 
 func alreadyFinished():
+	footstepper.stop()
 	current_phase = "discus_done"
 	trigger1.deactivate()
 	trigger2.deactivate()

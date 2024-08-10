@@ -8,4 +8,8 @@ func _ready():
 
 func updateTranslation():
 	print("translating")
-	text = DataHandler.translate(original_text)
+	text = DataHandler.translate(original_text) 
+
+func clear():
+	original_text = ""
+	text = ""

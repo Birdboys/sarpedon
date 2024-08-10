@@ -20,7 +20,6 @@ func _process(delta):
 			DataHandler.resetGame()
 			hideMenu()
 		
-
 func showMenu():
 	PauseMenu.toggled_on.connect(toggleVis.bind(false))
 	PauseMenu.toggled_off.connect(toggleVis.bind(true))

@@ -36,16 +36,12 @@ func _process(delta):
 	if "spinning" in current_state and Input.is_action_just_pressed("interact"):
 		handleInteract()
 	
-	if Input.is_action_just_pressed("jump"):
-		discusUI.visible= false
-		get_parent().emit_signal("activity_finished")
-	#print(iconIndicator.rotation)
-	
 func resetIcons():
 	iconTarget.rotation = 0
 	iconIndicator.rotation = 0
 
 func throwDiscus(force):
+	tutText.visible = false
 	var new_discus := discus.instantiate()
 	add_child(new_discus)
 	new_discus.global_position = discusCam.global_position - Vector3.UP * 0.25
@@ -80,7 +76,7 @@ func startAutoThrow():
 	throw_height_val = 0.0
 	throw_strength_val = 0.0
 	discusUI.visible = true
-	#tutText.visible = true
+	tutText.visible = false
 	resetIcons()
 	getRandomRot()
 	var auto_tween = get_tree().create_tween()
@@ -119,6 +115,7 @@ func getRandomRot():
 	iconIndicator.rotation = wrapf(iconTarget.rotation + deg_to_rad(180), 0, 2*PI)
 
 func handleInteract():
+	AudioHandler.playSound("ui_click")
 	var icon_tween = get_tree().create_tween()
 	icon_tween.tween_property(iconIndicator, "modulate", Color(0.2, 0.2, 0.2), 0.0)
 	icon_tween.tween_interval(0.1)

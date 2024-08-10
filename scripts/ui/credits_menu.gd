@@ -2,7 +2,7 @@ extends Control
 @onready var leftButton := $HBoxContainer/artDetails/gallery/HBoxContainer/leftButton
 @onready var rightButton := $HBoxContainer/artDetails/gallery/HBoxContainer/rightButton
 @onready var index = 0
-@onready var art_list := ['medusa1','medusa2','stheno','euryale','athena1','athena2','athena3','hermes1','hermes2','hermes3','graeae','phorkys','sirens1','maidens1','maidens2','maidens3','maidens4','items1','items2','items3']
+@onready var art_list := ['tapestry','medusa1','medusa2','stheno','euryale','athena1','athena2','athena3','hermes1','hermes2','hermes3','graeae','phorkys','sirens1','maidens1','maidens2','maidens3','maidens4','items1','items2','items3']
 @onready var artLabel := $HBoxContainer/artDetails/gallery/HBoxContainer/artLabel
 @onready var artImage := $HBoxContainer/artDetails/gallery/MarginContainer/artImage
 @onready var current_art : ArtDetails

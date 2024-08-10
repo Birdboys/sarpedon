@@ -1,9 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5p6m7smmwm2n"]
+[gd_scene load_steps=8 format=3 uid="uid://c5p6m7smmwm2n"]
 
 [ext_resource type="TileSet" uid="uid://bqpsdl6mjaxgw" path="res://assets/temp/tiles.tres" id="1_8enbr"]
 [ext_resource type="Script" path="res://scripts/weave_game.gd" id="1_yia7r"]
+[ext_resource type="Shader" path="res://scripts/shaders/weave_glitch.gdshader" id="3_yu6fa"]
+[ext_resource type="Texture2D" uid="uid://7slncp5kpf8u" path="res://assets/sprites/tapestry.png" id="4_aao1g"]
 [ext_resource type="Texture2D" uid="uid://cpf81txnwmgm" path="res://assets/temp/weave_texture_low.jpg" id="4_n3bfp"]
-[ext_resource type="Texture2D" uid="uid://xp7tbwya5ngt" path="res://assets/temp/perseuspainting.jpeg" id="4_v0ytq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s7uym"]
+shader = ExtResource("3_yu6fa")
+shader_parameter/num_sections = 48.0
+shader_parameter/max_section_offset = 0.1
+shader_parameter/image_speed = null
+shader_parameter/offset_speed = 2.0
+shader_parameter/image_seed = 0.0
+shader_parameter/offset_seed = 0.0
+shader_parameter/transparency = 1.0
+shader_parameter/image1 = ExtResource("4_aao1g")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ms6pd"]
 blend_mode = 3
@@ -43,6 +55,7 @@ color = Color(0.996078, 0.952941, 0.752941, 1)
 
 [node name="tapestryImage" type="TextureRect" parent="tapestryLayer"]
 texture_filter = 1
+material = SubResource("ShaderMaterial_s7uym")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -50,7 +63,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("4_v0ytq")
+texture = ExtResource("4_aao1g")
 expand_mode = 1
 stretch_mode = 6
 

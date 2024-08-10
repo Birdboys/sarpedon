@@ -266,7 +266,6 @@ path_desired_distance = 2.0
 path_height_offset = -1.5
 avoidance_enabled = true
 radius = 1.0
-debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0.619608, 1, 1)
 
@@ -302,6 +301,7 @@ libraries = {
 
 [node name="hisser" type="AudioStreamPlayer3D" parent="stheno"]
 stream = ExtResource("12_mke4l")
+max_distance = 50.0
 
 [node name="euryale" type="CharacterBody3D" parent="." groups=["needs_player_ground"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0)
@@ -330,7 +330,6 @@ path_desired_distance = 2.0
 path_height_offset = -2.5
 avoidance_enabled = true
 radius = 1.0
-debug_enabled = true
 debug_path_custom_color = Color(0.223529, 1, 1, 1)
 
 [node name="trigger1" parent="euryale" instance=ExtResource("5_574f0")]
@@ -364,6 +363,7 @@ libraries = {
 
 [node name="hisser" type="AudioStreamPlayer3D" parent="euryale"]
 stream = ExtResource("12_mke4l")
+max_distance = 50.0
 
 [node name="sisterTalkCam" type="Camera3D" parent="."]
 fov = 90.0

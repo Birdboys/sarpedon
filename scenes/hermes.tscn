@@ -193,6 +193,8 @@ original_text = "PRESS [INTERACT] WHEN CIRCLES OVERLAP"
 [node name="runningPoint" type="Node3D" parent="pathFollow"]
 
 [node name="footstepper" type="AudioStreamPlayer3D" parent="."]
+unit_size = 30.0
+max_distance = 75.0
 
 [node name="runAnim" type="AnimationPlayer" parent="."]
 libraries = {

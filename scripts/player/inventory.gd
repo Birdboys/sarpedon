@@ -9,10 +9,14 @@ extends Control
 @onready var current_inventory := ["bag", "note", "sword"]
 @onready var inventory_index := 0
 
+signal inventory_opened
+signal inventory_closed
+
 func _ready():
 	pass
 	
 func openInventory(item = null):
+	emit_signal("inventory_opened")
 	PauseMenu.toggled_on.connect(hideInventory)
 	PauseMenu.toggled_off.connect(showInventory)
 	is_open = true
@@ -37,6 +41,7 @@ func loadItem(item):
 		controlText.text = "[center]%s|%s[/center]" % [left_text, right_text]
 
 func closeInventory():
+	emit_signal("inventory_closed")
 	PauseMenu.toggled_on.disconnect(hideInventory)
 	PauseMenu.toggled_off.disconnect(showInventory)
 	is_open = false

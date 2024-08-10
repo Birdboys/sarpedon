@@ -35,6 +35,7 @@ func _ready():
 	maiden.maiden_left.connect(activateBoat)
 	medusa.medusa_slain.connect(medusaSlain)
 	medusa.medusa_awake.connect(gorgons.sisterAwake)
+	medusa.head_taken.connect(headTaken)
 	player.player_died.connect(playerDied)
 	shallowWater.body_exited.connect(player.exitingShallows)
 	deepWater.body_exited.connect(player.enteringDeep)
@@ -44,6 +45,7 @@ func _ready():
 	phorkys.phorkys_summon.connect(animateWaters.bind("calm"))
 	phorkys.death_area_exit.connect(animateWaters.bind("normal"))
 	worldEnvironment.environment = island_env
+	boat.visible = true
 	deathRect.visible = false
 	winRect.visible = false
 	deathRect.modulate = Color.TRANSPARENT
@@ -74,7 +76,7 @@ func _physics_process(delta):
 		node.setTargetPos(player.camera.global_position)
 	if Vector3(player.global_position.x, 0, player.global_position.z).length() < 150:
 		AudioHandler.setPlayer("ocean", remap(clamp(Vector3(player.global_position.x, 0, player.global_position.z).length(), 0, 150), 0.0, 150.0, -60, 0))
-	AudioHandler.setPlayer("wind", remap(clamp(player.global_position.y, 0, 20), 0, 20, -60, 0))
+	AudioHandler.setPlayer("wind", remap(clamp(player.global_position.y, 0, 30), 0, 30, -60, 0))
 
 func activateBoat():
 	boat.enterBox.activate()
@@ -124,6 +126,8 @@ func gameWin(_body):
 func medusaSlain():
 	medusa_dead = true
 	phorkys.current_phase = "ready"
+	
+func headTaken():
 	await get_tree().create_timer(8.0).timeout
 	gorgons.lament()
 	

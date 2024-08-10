@@ -9,6 +9,10 @@ func _ready():
 	sensSlider.value_changed.connect(sensUpdated)
 	audioSlider.value_changed.connect(audioUpdated)
 	musicSlider.value_changed.connect(musicUpdated)
+	
+	sensSlider.drag_ended.connect(AudioHandler.playSound.bind("ui_click").unbind(1))
+	audioSlider.drag_ended.connect(AudioHandler.playSound.bind("ui_click").unbind(1))
+	musicSlider.drag_ended.connect(AudioHandler.playSound.bind("ui_click").unbind(1))
 
 func open():
 	visible = true
@@ -25,14 +29,11 @@ func loadSettings():
 func sensUpdated(val):
 	DataHandler.settings['sensitivity'] = val
 	emit_signal("sens_changed", val)
-	AudioHandler.playSound("ui_click")
 
 func audioUpdated(val):
 	DataHandler.settings['audio_volume'] = val
 	AudioServer.set_bus_volume_db(1, remap(val, 0.0, 100.0, -60.0, 0.0))
-	AudioHandler.playSound("ui_click")
 	
 func musicUpdated(val):
 	DataHandler.settings['music_volume'] = val
 	AudioServer.set_bus_volume_db(2, remap(val, 0.0, 100.0, -60.0, 0.0))
-	AudioHandler.playSound("ui_click")

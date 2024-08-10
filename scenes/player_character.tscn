@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://ev5ihdel24io"]
+[gd_scene load_steps=69 format=3 uid="uid://ev5ihdel24io"]
 
 [ext_resource type="Script" path="res://scripts/player/player_character.gd" id="1_y87bo"]
 [ext_resource type="Texture2D" uid="uid://djldtb4845f38" path="res://assets/sprites/sword.png" id="2_0ap74"]
@@ -26,6 +26,7 @@
 [ext_resource type="Shader" path="res://scripts/shaders/petrify_shader.gdshader" id="18_gxkx7"]
 [ext_resource type="Script" path="res://scripts/player/player_died.gd" id="19_4cfed"]
 [ext_resource type="Texture2D" uid="uid://b5ogre4x6qso3" path="res://assets/ui/compass.png" id="23_kidmo"]
+[ext_resource type="Script" path="res://scripts/action_label.gd" id="23_uqyhl"]
 [ext_resource type="Texture2D" uid="uid://dixjl3harvcvb" path="res://assets/ui/compass_needle.png" id="24_5wryo"]
 [ext_resource type="AudioStream" uid="uid://c03v45dx8a3py" path="res://assets/sounds/petrify_crack.wav" id="26_xd6u5"]
 [ext_resource type="AudioStream" uid="uid://4yd0fbjdmm6" path="res://assets/sounds/sandal_flutter.wav" id="27_b3h32"]
@@ -560,7 +561,6 @@ collision_mask = 25
 script = ExtResource("1_y87bo")
 has_invis_helmet = false
 has_winged_sandals = false
-has_shield = true
 
 [node name="playerCol" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_2a5dh")
@@ -569,6 +569,7 @@ shape = SubResource("CapsuleShape3D_2a5dh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 
 [node name="playerCam" type="Camera3D" parent="neck"]
+transform = Transform3D(1, 0, 0, 0, 0.991445, 0.130526, 0, -0.130526, 0.991445, 0, 0, 0)
 cull_mask = 1047565
 h_offset = -0.015
 current = true
@@ -768,6 +769,30 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_rjoti")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="tutorialPrompt" type="Label" parent="UI/UIBase"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("11_cct0y")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rjoti")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("23_uqyhl")
+
 [node name="fpsCounter" type="Label" parent="UI/UIBase"]
 layout_mode = 1
 anchors_preset = 2
@@ -962,6 +987,8 @@ spring_length = 5.0
 
 [node name="petrifyTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="tutorialTimer" type="Timer" parent="."]
 
 [node name="petrifyPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("26_xd6u5")

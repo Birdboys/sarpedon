@@ -16,8 +16,6 @@ func update(delta):
 		parent.move_and_slide()
 		
 func exit():
-	await parent.activityHandler.unTransitionCamera(parent.camera)
-	parent.activityHandler.activity_finished.disconnect(activityFinished)
 	parent.activityHandler = null
 	parent.uiCamera.current = true
 	parent.camera.current = true
@@ -25,5 +23,7 @@ func exit():
 	parent.setShield(true)
 
 func activityFinished():
+	parent.activityHandler.activity_finished.disconnect(activityFinished)
+	await parent.activityHandler.unTransitionCamera(parent.camera)
 	parent.UI.visible = true
 	emit_signal("transitioned", self, "playerWalk")

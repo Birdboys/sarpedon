@@ -25,7 +25,7 @@ func _ready():
 	cursor_pos.x = x_dim/2 
 	cursor_pos.y = y_dim/2
 	prev_cursor_pos = cursor_pos
-	
+	setTapestryOffset(48)
 	
 func _process(_delta):
 	match current_phase:
@@ -91,6 +91,9 @@ func moveCursor(move_dir):
 func setPath(path_points):
 	for x in range(len(path_points)):
 		var current_point = path_points[x]
+		if x==0 or x==len(path_points)-1:
+			tileMap.set_cell(0, current_point, 2, Vector2(0,0))
+			continue
 		var prev_point = path_points[x-1] if x>0 else Vector2i(current_point.x-1, current_point.y)
 		var next_point = path_points[x+1] if x<len(path_points)-1 else Vector2i(current_point.x+1, current_point.y)
 		var tile_info = getTileFromPath(current_point, prev_point, next_point)
@@ -188,12 +191,14 @@ func randomizeNonPathMap():
 func hideTapestry():
 	AudioHandler.playSound("weave_tile")
 	var tap_tween = get_tree().create_tween()
-	tap_tween.tween_property(tapestryImage, "modulate", Color.TRANSPARENT, 1.0)
+	tap_tween.tween_property(tileMap, "visible", true, 0.0)
+	tap_tween.tween_property(tapestryImage, "material:shader_parameter/transparency", 0.0, 1.0)
 
 func showTapestry():
 	AudioHandler.playSound("weave_tile")
 	var tap_tween = get_tree().create_tween()
-	tap_tween.tween_property(tapestryImage, "modulate", Color.WHITE, 1.0)
+	tap_tween.tween_property(tapestryImage, "material:shader_parameter/transparency", 1.0, 1.0)
+	tap_tween.tween_property(tileMap, "visible", false, 0.0)
 	
 func revealThread(backward=false):
 	current_phase = "threading"
@@ -215,7 +220,6 @@ func clearNonPath(points):
 				tileMap.set_cell(0, Vector2(x, y), 0, Vector2(0,0))
 				
 		await get_tree().create_timer(0.1).timeout
-	#continueProblem()
 
 func getLine(points):
 	#var line_tween = get_tree().create_tween()
@@ -249,6 +253,7 @@ func getLineBackwards(points):
 	thread_tween.tween_property(threadLine, "modulate", Color.WHITE, 1.0)
 	await thread_tween.finished
 	for x in range(len(threadLine.points)-1, -1, -1):
+		tileMap.set_cell(0, (threadLine.points[x]-Vector2.ONE * tile_size/2)/tile_size, 0, Vector2(0, 0))
 		threadLine.remove_point(x)
 		await get_tree().create_timer(0.1).timeout
 	return
@@ -266,3 +271,7 @@ func getBlockers(aGrid, og_blockers=null):
 		blockers.append(new_blocker)
 		aGrid.set_point_solid(new_blocker, true)
 	return blockers
+
+func setTapestryOffset(val, max_offset=0.1):
+	tapestryImage.material.set_shader_parameter("num_sections", val)
+	tapestryImage.material.set_shader_parameter("max_section_offset", max_offset)

@@ -29,6 +29,8 @@ extends CharacterBody3D
 @onready var petrifyPlayer := $petrifyPlayer
 @onready var flutterPlayer := $flutterPlayer
 @onready var compassNeedle := $UI/UIBase/compass/needle
+@onready var tutorialPrompt := $UI/UIBase/tutorialPrompt
+@onready var tutorialTimer := $tutorialTimer
 @onready var UI := $UI/UIBase
 @onready var compass := $UI/UIBase/compass
 @onready var petrify_val := 0.0
@@ -60,6 +62,7 @@ func _ready():
 	Dialogic.signal_event.connect(handleDialogue)
 	petrifyTimer.timeout.connect(deathByPetrify)
 	PauseMenu.settingsMenu.sens_changed.connect(sensChanged)
+	resetData()
 	
 func _process(delta):
 	$UI/UIBase/fpsCounter.text = "FPS:%s" % Engine.get_frames_per_second()
@@ -142,7 +145,8 @@ func handleInteract():
 			has_sword = true
 			walkState.movement_control = true
 			stateMachine.on_state_transition(stateMachine.current_state, "playerInventory")
-			
+			await inventoryHandler.inventory_closed
+			setTutorialPrompt("[FORWARD] [LEFT] [BACK] [RIGHT] : WALK \n[JUMP] : JUMP")
 		"boat_enter": 
 			boat = collider.get_parent()
 			stateMachine.on_state_transition(stateMachine.current_state, "playerBoat")
@@ -178,6 +182,8 @@ func handleInteract():
 		"take_medusa_head":
 			inventoryHandler.acquireItem("gorgoneion")
 			stateMachine.on_state_transition(stateMachine.current_state, "playerInventory")
+			await inventoryHandler.inventory_closed
+			setTutorialPrompt("LEAVE ISLAND WITH HEAD")
 		_: pass
 
 func handleDialogue(type):
@@ -343,3 +349,20 @@ func deathByPhorkys():
 	death_type = "phorkys"
 	if stateMachine.current_state.name == "playerBoat": stateMachine.current_state.boat_death = true
 	stateMachine.on_state_transition(stateMachine.current_state, "playerDied")
+
+func setTutorialPrompt(t):
+	tutorialTimer.timeout.disconnect(tutorialPrompt.clear)
+	tutorialTimer.stop()
+	tutorialPrompt.original_text = t
+	tutorialPrompt.updateTranslation()
+	tutorialTimer.start(5)
+	tutorialTimer.timeout.connect(tutorialPrompt.clear)
+
+func resetData():
+	has_shield = false
+	has_sword = false
+	has_bag = false
+	has_invis_helmet = false
+	has_winged_sandals = false
+	petrified = false
+	petrified_perma = false

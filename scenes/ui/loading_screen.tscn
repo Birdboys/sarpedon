@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://chow7y3ba1gaj"]
+[gd_scene load_steps=6 format=3 uid="uid://chow7y3ba1gaj"]
 
 [ext_resource type="Theme" uid="uid://dplwrcgvyhpcw" path="res://assets/ui_theme.tres" id="1_txge8"]
 [ext_resource type="Script" path="res://scripts/ui/loading_screen.gd" id="2_7uofd"]
+[ext_resource type="PackedScene" uid="uid://beabw8ir817ar" path="res://scenes/components/action_label.tscn" id="3_6qqns"]
 
 [sub_resource type="Animation" id="Animation_5q01c"]
 resource_name = "loading"
@@ -123,14 +124,13 @@ visible_characters = 7
 visible_characters_behavior = 1
 visible_ratio = 0.636364
 
-[node name="tooltipText" type="Label" parent="screenMargin/quoteBorder/quoteMargin"]
+[node name="tooltipText" parent="screenMargin/quoteBorder/quoteMargin" instance=ExtResource("3_6qqns")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_colors/font_color = Color(1, 1, 1, 0.501961)
 theme_override_font_sizes/font_size = 16
-text = "PRESS [e]"
-horizontal_alignment = 1
+original_text = "PRESS [INTERACT] "
 
 [node name="loadingAnim" type="AnimationPlayer" parent="."]
 libraries = {

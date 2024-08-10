@@ -37,4 +37,5 @@ func controls():
 	emit_signal("button", "controls")
 	
 func quit():
+	AudioHandler.playSound("ui_click")
 	get_tree().quit()

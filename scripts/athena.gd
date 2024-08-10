@@ -23,7 +23,8 @@ func _ready():
 	weaveCam.current = false
 	playArea.size.x = weaveHandler.x_dim * weaveHandler.tile_size + 32
 	playArea.size.y = weaveHandler.y_dim * weaveHandler.tile_size
-
+	weaveHandler.setTapestryOffset(48)
+	
 func introDialogue():
 	Dialogic.start("athenaIntro")
 	trigger1.deactivate()
@@ -59,7 +60,7 @@ func handleDialogue(type):
 			weaveHandler.y_dim = 8
 			playArea.size.x = weaveHandler.x_dim * weaveHandler.tile_size + 32
 			playArea.size.y = weaveHandler.y_dim * weaveHandler.tile_size
-			weaveHandler.num_blockers = 12
+			weaveHandler.num_blockers = 18
 		"weaveDone":
 			finishWeave()
 			
@@ -71,6 +72,7 @@ func weaveFinished():
 			current_phase = "weave_explanation_2"
 		"weave_explanation_2":
 			await weaveHandler.revealThread()
+			weaveHandler.setTapestryOffset(24)
 			Dialogic.start("athenaWeaveExplanation3")
 			current_phase = "weave_explanation_3"
 		"weave_explanation_3":
@@ -79,6 +81,7 @@ func weaveFinished():
 			current_phase = "untangle_1"
 		"untangle_1":
 			await weaveHandler.revealThread()
+			weaveHandler.setTapestryOffset(12, 0.05)
 			Dialogic.start("athenaWeaveFinished1")
 			current_phase = "weave_1"
 		"weave_1":
@@ -87,8 +90,10 @@ func weaveFinished():
 			current_phase = "untangle_2"
 		"untangle_2":
 			await weaveHandler.revealThread()
+			weaveHandler.setTapestryOffset(0, 0)
 			Dialogic.start("athenaWeaveFinished2")
 			current_phase = "weave_2"
+			
 			
 func transitionCamera(initial_camera: Camera3D):
 	var original_transform = weaveCam.global_transform
@@ -120,6 +125,7 @@ func giveShield():
 	athenaPlayer.play()
 
 func alreadyFinished():
+	weaveHandler.setTapestryOffset(0, 0)
 	current_phase = "finished"
 	trigger1.deactivate()
 	trigger2.deactivate()

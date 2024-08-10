@@ -100,6 +100,6 @@ one_shot = true
 [node name="sirenPlayer" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_b1h34")
 autoplay = true
-max_distance = 500.0
+max_distance = 300.0
 
 [connection signal="timeout" from="singTimer" to="." method="_on_sing_timer_timeout"]

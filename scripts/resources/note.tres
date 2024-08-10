@@ -8,7 +8,7 @@ script = ExtResource("2_nxced")
 item_id = "note"
 name = "πάπυρος "
 image = ExtResource("1_jqo4w")
-description = "The edges of the coiled papyrus are tattered, waterlogged, rotting, yet the message scrawled in the center remains painfully legible. 
+description = "The edges of the coiled papyrus are tattered, waterlogged, rotting, yet the message scrawled in the center remains painfully legible. Your task is as written:
 
 REACH THE ISLAND
 SLAY THE BEAST

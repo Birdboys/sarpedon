@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArtDetails" load_steps=3 format=3 uid="uid://cbvjipovrwbom"]
+
+[ext_resource type="Texture2D" uid="uid://c7gynad2vyl5w" path="res://assets/originals/ogpainting.jpg" id="1_wgvij"]
+[ext_resource type="Script" path="res://scripts/resources/art_details/art_details.gd" id="2_071f1"]
+
+[resource]
+script = ExtResource("2_071f1")
+art_id = "tapestry"
+art_name = "Medusa's Head"
+art_link = "https://en.wikipedia.org/wiki/Medusa_(Leonardo)"
+art_image = ExtResource("1_wgvij")
