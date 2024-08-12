@@ -1,0 +1,5 @@
+graeae: Back for another game.
+[signal arg="showSecret"]
+[wait time="0.5" hide_text="false"]
+graeae: Splendid, lets begin.
+[signal arg="repeatGame"]

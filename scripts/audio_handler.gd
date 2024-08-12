@@ -19,10 +19,6 @@ var wind_tween
 
 func _ready():
 	populateQueues()
-	
-func _process(delta):
-	
-	pass
 
 func populateQueues():
 	for x in range(queue_length):

@@ -2,6 +2,7 @@ extends Node3D
 @onready var trigger1 := $trigger1
 @onready var trigger2 := $trigger2
 @onready var trigger3 := $trigger3
+@onready var trigger4 := $trigger4
 @onready var weaveHandler := $playArea/weaveGame
 @onready var weaveCam := $weaveCam
 @onready var weaveUI := $weaveCam/weaveUI
@@ -18,6 +19,7 @@ func _ready():
 	trigger1.interacted.connect(introDialogue)
 	trigger2.interacted.connect(startWeave)
 	trigger3.interacted.connect(giveShield)
+	trigger4.interacted.connect(repeatWeave)
 	weaveHandler.weave_finished.connect(weaveFinished)
 	weaveUI.visible = false 
 	weaveCam.current = false
@@ -38,9 +40,16 @@ func startWeave():
 
 func finishWeave():
 	weaveUI.visible = false 
-	#weaveHandler.showTapestry()
 	trigger3.activate()
+	current_phase = "finished"
+	emit_signal("activity_finished")
+	athenaPlayer.play()
+
+func finishRepeatWeave():
+	weaveUI.visible = false
+	trigger4.activate()
 	current_phase = "idle"
+	athenaPlayer.play()
 	emit_signal("activity_finished")
 	
 func handleDialogue(type):
@@ -63,6 +72,8 @@ func handleDialogue(type):
 			weaveHandler.num_blockers = 18
 		"weaveDone":
 			finishWeave()
+		"weaveRepeatDone":
+			finishRepeatWeave()
 			
 func weaveFinished():
 	match current_phase:
@@ -93,6 +104,14 @@ func weaveFinished():
 			weaveHandler.setTapestryOffset(0, 0)
 			Dialogic.start("athenaWeaveFinished2")
 			current_phase = "weave_2"
+		"repeat_weave":
+			await weaveHandler.revealThread(true)
+			Dialogic.start("athenaRepeatCont")
+			current_phase = "repeat_weave_cont"
+		"repeat_weave_cont":
+			await weaveHandler.revealThread()
+			Dialogic.start("athenaRepeatFinished")
+			current_phase = "idle"
 			
 			
 func transitionCamera(initial_camera: Camera3D):
@@ -110,6 +129,8 @@ func transitionCamera(initial_camera: Camera3D):
 	return
 	
 func unTransitionCamera(initial_camera: Camera3D):
+	var original_cam_trans = weaveCam.global_transform
+	var original_cam_fov = weaveCam.fov
 	athenaMesh.visible = true
 	var camera_tween = get_tree().create_tween().set_parallel(true)
 	camera_tween.tween_property(weaveCam, "global_transform", initial_camera.global_transform, 1.0)
@@ -117,11 +138,15 @@ func unTransitionCamera(initial_camera: Camera3D):
 	await camera_tween.finished
 	weaveCam.current = false
 	initial_camera.current = true
+	weaveCam.global_transform = original_cam_trans
+	weaveCam.fov = original_cam_fov
 	return
 
 func giveShield():
+	current_phase = "idle"
 	DataHandler.athena_done = true
 	trigger3.deactivate()
+	trigger4.activate()
 	athenaPlayer.play()
 
 func alreadyFinished():
@@ -130,3 +155,10 @@ func alreadyFinished():
 	trigger1.deactivate()
 	trigger2.deactivate()
 	trigger3.activate()
+	trigger4.deactivate()
+
+func repeatWeave():
+	current_phase = "repeat_weave"
+	Dialogic.start("athenaRepeat")
+	athenaPlayer.stop()
+	trigger4.deactivate()

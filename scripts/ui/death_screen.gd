@@ -5,9 +5,10 @@ extends CanvasLayer
 @export var new_game_loaded := false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	hideMenu()
+	visible = false
+	deathAnim.play("RESET")
 
-func _process(delta):
+func _process(_delta):
 	if new_game_loaded and Input.is_action_just_pressed("interact"):
 		startGameAgain()
 

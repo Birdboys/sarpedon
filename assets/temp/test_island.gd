@@ -46,6 +46,7 @@ func _ready():
 	phorkys.death_area_exit.connect(animateWaters.bind("normal"))
 	worldEnvironment.environment = island_env
 	boat.visible = true
+	introBoat.visible = true
 	deathRect.visible = false
 	winRect.visible = false
 	deathRect.modulate = Color.TRANSPARENT
@@ -61,7 +62,7 @@ func _ready():
 	AudioHandler.togglePlayer("ocean", true)
 	AudioHandler.togglePlayer("wind", true)
 	
-func _process(delta):
+func _process(_delta):
 	if not player_in_cave:
 		var fog_val = remap(clamp(player.global_position.y, 0, 40), 0, 40, 0.05, 0.01)
 		var fog_noise = remap(fogNoise.get_noise_1d(Time.get_ticks_msec()*0.01), -1.0, 1.0, -0.01, 0.01)
@@ -69,7 +70,7 @@ func _process(delta):
 	for node in get_tree().get_nodes_in_group("billboard_comp"):
 		node.target_position = player.global_position
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	for node in get_tree().get_nodes_in_group("needs_player_ground"):
 		if not player.is_invis: node.setTargetPos(player.getGroundPos())
 	for node in get_tree().get_nodes_in_group("needs_player_eyes"):

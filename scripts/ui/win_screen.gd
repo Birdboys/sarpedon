@@ -5,14 +5,14 @@ extends CanvasLayer
 @export var current_phase := "idle"
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	hideMenu()
+	visible = false
+	current_phase = "idle"
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("interact"):
 		if current_phase == "quote_done":
 			AudioHandler.playSound("ui_click")
-			current_phase == "thanking"
+			current_phase = "thanking"
 			winAnim.play("load_thanks")
 		elif current_phase == "thanks_done":
 			AudioHandler.playSound("ui_click")

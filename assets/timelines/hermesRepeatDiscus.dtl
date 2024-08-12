@@ -1,0 +1,3 @@
+hermes: You know what to do, make em fly!
+[wait time="0.5" hide_text="false"]
+[signal arg="playerThrow"]

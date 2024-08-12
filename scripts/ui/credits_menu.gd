@@ -38,7 +38,7 @@ func artLabelPressed():
 	if current_art: OS.shell_open(current_art.art_link)
 	
 func loadArt(art):
-	current_art = await load("res://scripts/resources/art_details/%s.tres" % art)
+	current_art = load("res://scripts/resources/art_details/%s.tres" % art)
 	print(current_art.art_name)
 	artLabel.text = current_art.art_name
 	artImage.texture = current_art.art_image

@@ -559,8 +559,6 @@ _data = {
 collision_layer = 12
 collision_mask = 25
 script = ExtResource("1_y87bo")
-has_invis_helmet = false
-has_winged_sandals = false
 
 [node name="playerCol" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_2a5dh")
@@ -667,6 +665,7 @@ initial_state = NodePath("playerWalk")
 
 [node name="playerWalk" type="Node" parent="stateMachine"]
 script = ExtResource("3_euxff")
+move_speed = 55.0
 movement_control = false
 
 [node name="playerJump" type="Node" parent="stateMachine"]

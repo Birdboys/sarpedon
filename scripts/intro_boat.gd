@@ -18,7 +18,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	boatMesh.mesh.surface_get_material(0).no_depth_test = true
 	
-func _process(delta):
+func _process(_delta):
 	match current_phase:
 		"looking":
 			var rot = Vector3(introCam.rotation.x, camNeck.rotation.y, 0)

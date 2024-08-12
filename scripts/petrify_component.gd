@@ -12,7 +12,7 @@ var target_pos : Vector3
 func _ready():
 	petrifyRay.target_position = Vector3.FORWARD * petrify_length
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	can_see_player = false
 	if not checkConditions(): return
 	

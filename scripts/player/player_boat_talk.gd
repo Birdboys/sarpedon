@@ -5,7 +5,9 @@ func enter():
 	parent.syncCameras()
 	parent.interactPrompt.text = ""
 	Dialogic.timeline_ended.connect(dialogueEnded)
-
+	
+	if parent.shield_hold: parent.setShieldHold(false)
+	
 func update(delta):
 	parent.boat.velocity = parent.boat.velocity.move_toward(Vector3.ZERO, delta * 25)
 	parent.global_position = parent.boat.getPlayerPos()

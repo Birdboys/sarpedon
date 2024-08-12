@@ -17,7 +17,7 @@ var island_scene
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	transitionRect.modulate = Color.TRANSPARENT
-	loading_screen = await loadingScreen.instantiate()
+	loading_screen = loadingScreen.instantiate()
 	PauseMenu.setTheme("black")
 	anim.play("idle")
 	PauseMenu.toggled_on.connect(hideUI.bind(true))

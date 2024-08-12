@@ -124,7 +124,6 @@ func continueProblem():
 func getTileFromPath(curr, prev, next):
 	var next_dif = next - curr
 	var prev_dif = curr - prev
-	var difs = [prev_dif, next_dif]
 	match [prev_dif, next_dif]:
 		[Vector2i(1,0), Vector2i(1,0)], [Vector2i(-1,0), Vector2i(-1,0)]:
 			return [2, 1] if randf() > plus_tile_chance else [3, 0]

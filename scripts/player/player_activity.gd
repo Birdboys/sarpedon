@@ -8,6 +8,7 @@ func enter():
 	parent.setSword(false)
 	parent.setShield(false)
 	parent.velocity = Vector3.ZERO
+	if parent.shield_hold: parent.setShieldHold(false)
 	await parent.activityHandler.transitionCamera(parent.camera)
 
 func update(delta):

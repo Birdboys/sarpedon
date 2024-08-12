@@ -42,7 +42,7 @@ func handleDialogue(type):
 			leaveTrigger.global_position = player.global_position
 			emit_signal("activity_finished")
 
-func transitionCamera(initial_camera: Camera3D):
+func transitionCamera(_initial_camera: Camera3D):
 	return
 	
 func unTransitionCamera(initial_camera: Camera3D):

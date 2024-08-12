@@ -9,7 +9,7 @@ func enter():
 	parent.compass.visible = false
 	AudioHandler.playSound("inventory_open")
 
-func update(delta):
+func update(_delta):
 	if Input.is_action_just_pressed("inventory"):
 		emit_signal("transitioned", self, "playerWalk")
 	if Input.is_action_just_pressed("left"):

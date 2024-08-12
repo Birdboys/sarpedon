@@ -38,8 +38,8 @@ extends CharacterBody3D
 @onready var petrify_cleanse_rate := 0.1
 @onready var death_type := ""
 
-@export var has_invis_helmet := true
-@export var has_winged_sandals := true
+@export var has_invis_helmet := false
+@export var has_winged_sandals := false
 @export var has_sword := false
 @export var has_shield := false
 @export var has_bag := false
@@ -64,7 +64,7 @@ func _ready():
 	PauseMenu.settingsMenu.sens_changed.connect(sensChanged)
 	resetData()
 	
-func _process(delta):
+func _process(_delta):
 	$UI/UIBase/fpsCounter.text = "FPS:%s" % Engine.get_frames_per_second()
 	uiCamera.global_transform = camera.global_transform
 	compassNeedle.rotation = -rotation.y + PI/2
@@ -184,6 +184,15 @@ func handleInteract():
 			stateMachine.on_state_transition(stateMachine.current_state, "playerInventory")
 			await inventoryHandler.inventory_closed
 			setTutorialPrompt("LEAVE ISLAND WITH HEAD")
+		"athena_repeat_weave":
+			activityHandler = collider.get_parent()
+			stateMachine.on_state_transition(stateMachine.current_state, "playerActivity")
+		"hermes_repeat_discus":
+			activityHandler = collider.get_parent()
+			stateMachine.on_state_transition(stateMachine.current_state, "playerActivity")
+		"graeae_monte_repeat":
+			activityHandler = collider.get_parent()
+			stateMachine.on_state_transition(stateMachine.current_state, "playerActivity")
 		_: pass
 
 func handleDialogue(type):
@@ -282,7 +291,7 @@ func deathByPetrify():
 func getGroundPos():
 	return groundPoint.global_position
 
-func exitingShallows(body):
+func exitingShallows(_body):
 	print("EXITING SHALLOWS")
 	if stateMachine.current_state.name == "playerBoat" or stateMachine.current_state.name == "playerDied": return
 	Dialogic.start("nearingDeepWater")
@@ -307,7 +316,7 @@ func gorgonAttack():
 	stateMachine.on_state_transition(stateMachine.current_state, "playerDied")
 	#petrified_perma = true
 	
-func handleFootstep(type=null):
+func handleFootstep(_type=null):
 	footstepRay.force_raycast_update()
 	var ground_surface = footstepRay.get_collider()
 	if ground_surface == null: return

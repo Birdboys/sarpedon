@@ -92,8 +92,6 @@ func sisterAwake():
 func transitionCamera(initial_camera: Camera3D):
 	sisterTalkCam.global_transform = initial_camera.global_transform
 	
-	var initial_pos = initial_camera.global_position
-	var initial_rot = initial_camera.global_rotation
 	var camera_tween = get_tree().create_tween().set_parallel(true).set_ease(Tween.EASE_OUT)
 	var center_pos = (stheno.global_position + euryale.global_position)/2
 	var final_tran = sisterTalkCam.global_transform.looking_at(center_pos)

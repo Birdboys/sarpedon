@@ -12,6 +12,7 @@ extends Node3D
 @onready var helmetBillboard := $invisHelmet/billboardComponent
 @onready var secret := $secret
 @onready var moveTimer := $moveTimer
+@onready var repeatTimer := $repeatTimer
 
 @onready var slot0
 @onready var slot1 
@@ -21,6 +22,7 @@ extends Node3D
 
 @onready var choosing := false
 @onready var choice_id := 1
+@onready var repeat_duration := 2.0
 
 @export var avg_wait_time := 1.0
 @export var wait_time_interval := 0.25
@@ -30,8 +32,9 @@ signal choice_made(correct: bool)
 func _ready():
 	setUpCups()
 	moveTimer.timeout.connect(randomMoveTimer)
-
-func _process(delta):
+	#repeatTimer.timeout.connect(repeatTimeout)
+	
+func _process(_delta):
 	if choosing:
 		if Input.is_action_just_pressed("left"):
 			choice_id = wrap(choice_id+1, 0, 3)
@@ -39,14 +42,11 @@ func _process(delta):
 		if Input.is_action_just_pressed("right"):
 			choice_id = wrap(choice_id-1, 0, 3)
 			toggleCups(choice_id)
-		if Input.is_action_just_pressed("jump"):
-			print("REVEALED")
-			revealInvisHelmet()
 		if Input.is_action_just_pressed("interact"):
 			toggleCups(-1)
-			emit_signal("choice_made", getCupBySlot(choice_id).has_item)
 			choosing = false
-			
+			emit_signal("choice_made", getCupBySlot(choice_id).has_item)
+
 
 func setUpCups():
 	cup0.slot = 0
@@ -109,6 +109,7 @@ func putCupInSlot(cup, slot):
 	new_tween.tween_property(cup, "position", getHalfwayMovePos(cup.position, end_pos), 0.5).set_ease(Tween.EASE_IN)
 	new_tween.tween_property(cup, "position", end_pos, 0.5).set_ease(Tween.EASE_OUT)
 	AudioHandler.playSound3D("cup_slide", cup.global_position)
+
 func getCupBySlot(slot):
 	match slot:
 		0: return slot0
@@ -191,3 +192,13 @@ func randomMoveTimer():
 	else:
 		rotateCups(randf() > 0.5)
 	moveTimer.start(randf_range(0.25, 1.0))
+	
+func repeatGame():
+	randomMoveTimer()
+	await get_tree().create_timer(repeat_duration).timeout
+	startRepeatChoice()
+
+func startRepeatChoice():
+	moveTimer.stop()
+	Dialogic.start("graeaeRepeatDecision")
+	

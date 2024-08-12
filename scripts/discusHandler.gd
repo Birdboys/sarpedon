@@ -58,6 +58,7 @@ func discusLanded():
 	discusUI.visible = false
 	var cam_tween = get_tree().create_tween()
 	cam_tween.tween_property(discusCam, "rotation", Vector3.ZERO, 1.0)
+	await cam_tween.finished
 	emit_signal("discus_landed")
 	
 func startThrow():

@@ -27,11 +27,7 @@ func _ready():
 	attackCol.disabled = true
 	hisser.play(2.5)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-func _physics_process(delta):
+func _physics_process(_delta):
 	match current_phase:
 		"gorgon":
 			navAgent.set_target_position(player_target_pos)
@@ -82,16 +78,16 @@ func attackPlayer():
 	AudioHandler.playSound3D("stheno_cry", global_position)
 	Dialogic.start("sthenoKill")
 	
-func stopAttack(body):
+func stopAttack(_body):
 	player = null
 	print("PLAYER EXIT")
 	attackTimer.stop()
 	
-func transitionCamera(initial_camera: Camera3D):
+func transitionCamera(_initial_camera: Camera3D):
 	grabPlayer()
 	return
 
-func unTransitionCamera(initial_camera: Camera3D):
+func unTransitionCamera(_initial_camera: Camera3D):
 	return
 
 func grabPlayer():

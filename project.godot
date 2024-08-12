@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="sarpedon"
-run/main_scene="res://scenes/ui/main_menu.tscn"
+run/main_scene="res://assets/temp/test_island.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
@@ -42,6 +42,9 @@ directories/dch_directory={
 }
 directories/dtl_directory={
 "athenaIntro": "res://assets/timelines/athenaIntro.dtl",
+"athenaRepeat": "res://assets/timelines/athenaRepeat.dtl",
+"athenaRepeatCont": "res://assets/timelines/athenaRepeatCont.dtl",
+"athenaRepeatFinished": "res://assets/timelines/athenaRepeatFinished.dtl",
 "athenaUntangleFinished1": "res://assets/timelines/athenaUntangleFinished1.dtl",
 "athenaUntangleFinished2": "res://assets/timelines/athenaUntangleFinished2.dtl",
 "athenaWeave1": "res://assets/timelines/athenaWeave1.dtl",
@@ -65,12 +68,19 @@ directories/dtl_directory={
 "graeaeMonte3Reveal1": "res://assets/timelines/graeaeMonte3Reveal1.dtl",
 "graeaeMonte3Reveal2": "res://assets/timelines/graeaeMonte3Reveal2.dtl",
 "graeaeMonte3Reveal3": "res://assets/timelines/graeaeMonte3Reveal3.dtl",
+"graeaeRepeatDecision": "res://assets/timelines/graeaeRepeatDecision.dtl",
+"graeaeRepeatIntro": "res://assets/timelines/graeaeRepeatIntro.dtl",
+"graeaeRepeatLose": "res://assets/timelines/graeaeRepeatLose.dtl",
+"graeaeRepeatWin": "res://assets/timelines/graeaeRepeatWin.dtl",
 "hermesDiscusAfter1": "res://assets/timelines/hermesDiscusAfter1.dtl",
 "hermesDiscusAfter2": "res://assets/timelines/hermesDiscusAfter2.dtl",
 "hermesDiscusAfter3": "res://assets/timelines/hermesDiscusAfter3.dtl",
 "hermesDiscusExplanation": "res://assets/timelines/hermesDiscusExplanation.dtl",
 "hermesDiscusExplanation2": "res://assets/timelines/hermesDiscusExplanation2.dtl",
 "hermesIntro": "res://assets/timelines/hermesIntro.dtl",
+"hermesRepeat": "res://assets/timelines/hermesRepeat.dtl",
+"hermesRepeatDiscus": "res://assets/timelines/hermesRepeatDiscus.dtl",
+"hermesRepeatFinished": "res://assets/timelines/hermesRepeatFinished.dtl",
 "introMaiden": "res://assets/timelines/introMaiden.dtl",
 "maidenInterject": "res://assets/timelines/maidenInterject.dtl",
 "maidenIntro": "res://assets/timelines/maidenIntro.dtl",
@@ -88,7 +98,9 @@ directories/dtl_directory={
 "sistersMaidenIntro": "res://assets/timelines/sistersMaidenIntro.dtl",
 "sistersMaidenWarning": "res://assets/timelines/sistersMaidenWarning.dtl",
 "sthenoKill": "res://assets/timelines/sthenoKill.dtl",
-"test_timeline": "res://assets/timelines/test_timeline.dtl"
+"test_timeline": "res://assets/timelines/test_timeline.dtl",
+"test_timeline_2": "res://test_timeline_2.dtl",
+"test_timeline_3": "res://assets/timelines/test_timeline_3.dtl"
 }
 layout/style_list=["res://assets/dialogicstyle.tres"]
 layout/default_style="res://assets/dialogicstyle.tres"

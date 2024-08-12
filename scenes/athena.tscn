@@ -99,6 +99,15 @@ interact_ret = "athena_take_shield"
 interactable = false
 on_start = false
 
+[node name="trigger4" parent="." instance=ExtResource("7_usl54")]
+size = Vector3(1, 2, 1)
+object_name = "athena_trigger4"
+object_prompt = "WEAVE AGAIN
+[INTERACT]"
+interact_ret = "athena_repeat_weave"
+interactable = false
+on_start = false
+
 [node name="weaveCam" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.985703, 0.168489, 0, -0.168489, 0.985703, 0, 0.215, -0.3)
 
@@ -184,5 +193,6 @@ num_blockers = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.02311)
 stream = ExtResource("10_3jn21")
 unit_size = 30.0
+max_db = -5.0
 autoplay = true
 max_distance = 75.0

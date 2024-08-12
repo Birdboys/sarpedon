@@ -3,6 +3,7 @@ extends Node3D
 @onready var trigger1 := $trigger1
 @onready var trigger2 := $trigger2
 @onready var trigger3 := $trigger3
+@onready var trigger4 := $trigger4
 @onready var monteCam := $monteCam
 @onready var billboardComp := $graeaeMesh/billboardComponent
 @onready var graeaeMesh := $graeaeMesh
@@ -22,12 +23,13 @@ func _ready():
 	trigger1.interacted.connect(introDialogue)
 	trigger2.interacted.connect(monteExplanation)
 	trigger3.interacted.connect(giveInvisHelmet)
+	trigger4.interacted.connect(startRepeatMonte)
 	monteHandler.choice_made.connect(handleChoiceMade)
 	monteUI.visible = false
 	monteHandler.visible = false
 	graeaeAnim.play("cupping")
 	
-func _process(delta):
+func _process(_delta):
 	if show_sisters:
 		for sister in sisterMeshes:
 			sister.mesh.material.set_shader_parameter("transparency", sister_noise.get_noise_1d(Time.get_ticks_msec()/10.0)-0.2)
@@ -47,6 +49,8 @@ func transitionCamera(initial_camera: Camera3D):
 	return
 
 func unTransitionCamera(initial_camera: Camera3D):
+	var original_cam_trans = monteCam.global_transform
+	var original_cam_fov = monteCam.fov
 	var camera_tween = get_tree().create_tween().set_parallel(true)
 	camera_tween.tween_property(monteCam, "global_transform", initial_camera.global_transform, 1.0)
 	camera_tween.tween_property(monteCam, "fov", initial_camera.fov, 1.0)
@@ -54,6 +58,8 @@ func unTransitionCamera(initial_camera: Camera3D):
 	monteCam.current = false
 	initial_camera.current = true
 	monteHandler.helmetBillboard.do_billboard = true
+	monteCam.fov = original_cam_fov
+	monteCam.global_transform = original_cam_trans
 	return
 
 func handleDialogue(type):
@@ -84,8 +90,13 @@ func handleDialogue(type):
 			Dialogic.start("graeaeMonte3")
 			current_phase = "monte_round3"
 		"startChoice": 
+			print("STARTING CHOISE")
 			monteUI.visible = true
 			monteHandler.startChoice()
+		"repeatGame":
+			monteHandler.repeatGame()
+		"repeatDone":
+			repeatActivityDone()
 		_: pass
 	
 func introDialogue():
@@ -110,14 +121,22 @@ func activityDone():
 	billboardComp.do_billboard = true
 	emit_signal("activity_finished")
 
+func repeatActivityDone():
+	current_phase = "idle"
+	trigger4.activate()
+	billboardComp.do_billboard = true
+	emit_signal("activity_finished")
+	graeaeAnim.play("cupping")
+	
 func giveInvisHelmet():
 	trigger3.deactivate()
-	monteHandler.visible = false
+	monteHandler.visible = true
 	monteHandler.setUpCups()
 	DataHandler.graeae_done = true
 	graeaeAnim.play("cupping")
 	
 func handleChoiceMade(correct: bool):
+	print("CHOICE MADE")
 	monteUI.visible = false
 	match current_phase:
 		"explanation":
@@ -135,6 +154,11 @@ func handleChoiceMade(correct: bool):
 		"monte_round3":
 			Dialogic.start("graeaeMonte3Reveal%s" % third_round_tries)
 			third_round_tries += 1
+		"repeat_monte":
+			print("REPEAT WON", correct)
+			if correct: Dialogic.start("graeaeRepeatWin")
+			else: Dialogic.start("graeaeRepeatLose")
+			monteHandler.showSecretCup()
 		_:
 			pass
 
@@ -153,3 +177,12 @@ func cupMoveSound():
 	if cupAudio.playing: cupAudio.stop()
 	cupAudio.stream = AudioHandler.getAudio("cup_slide")
 	cupAudio.play()
+
+func startRepeatMonte():
+	current_phase = "repeat_monte"
+	monteHandler.visible = true
+	graeaeAnim.stop()
+	trigger4.deactivate()
+	billboardComp.do_billboard = false
+	graeaeMesh.rotation.y = 0
+	Dialogic.start("graeaeRepeatIntro")

@@ -301,6 +301,7 @@ libraries = {
 
 [node name="hisser" type="AudioStreamPlayer3D" parent="stheno"]
 stream = ExtResource("12_mke4l")
+max_db = -5.0
 max_distance = 50.0
 
 [node name="euryale" type="CharacterBody3D" parent="." groups=["needs_player_ground"]]
@@ -363,6 +364,7 @@ libraries = {
 
 [node name="hisser" type="AudioStreamPlayer3D" parent="euryale"]
 stream = ExtResource("12_mke4l")
+max_db = -5.0
 max_distance = 50.0
 
 [node name="sisterTalkCam" type="Camera3D" parent="."]

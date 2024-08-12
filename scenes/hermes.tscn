@@ -98,6 +98,26 @@ interact_ret = "hermes_take_sandals"
 interactable = false
 on_start = false
 
+[node name="trigger4" parent="." instance=ExtResource("7_ejpgu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.999075, 0)
+size = Vector3(1, 2, 1)
+object_name = "hermes_trig4"
+object_prompt = "THROW AGAIN
+[INTERACT]"
+interact_ret = "hermes_repeat"
+interactable = false
+on_start = false
+
+[node name="trigger5" parent="." instance=ExtResource("7_ejpgu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.999075, 0)
+size = Vector3(1, 2, 1)
+object_name = "hermes_trig5"
+object_prompt = "THROW AGAIN
+[INTERACT]"
+interact_ret = "hermes_repeat_discus"
+interactable = false
+on_start = false
+
 [node name="discusHandler" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.999075, 0)
 script = ExtResource("8_kwjsr")
@@ -200,3 +220,6 @@ max_distance = 75.0
 libraries = {
 "": SubResource("AnimationLibrary_hcld3")
 }
+
+[node name="runTimer" type="Timer" parent="."]
+one_shot = true

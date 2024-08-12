@@ -153,6 +153,14 @@ interact_ret = "graeae_take_helmet"
 interactable = false
 on_start = false
 
+[node name="trigger4" parent="." instance=ExtResource("5_lyowc")]
+object_name = "graeae_trigger_4"
+object_prompt = "PLAY AGAIN
+[INTERACT]"
+interact_ret = "graeae_monte_repeat"
+interactable = false
+on_start = false
+
 [node name="table" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.544338, -0.503407)
 use_collision = true
@@ -244,6 +252,7 @@ texture = ExtResource("9_yqlps")
 do_billboard = false
 
 [node name="moveTimer" type="Timer" parent="monteHandler"]
+one_shot = true
 
 [node name="graeaeAnim" type="AnimationPlayer" parent="."]
 libraries = {
@@ -252,4 +261,5 @@ libraries = {
 
 [node name="cupAudio" type="AudioStreamPlayer3D" parent="."]
 unit_size = 30.0
+max_db = -5.0
 max_distance = 75.0

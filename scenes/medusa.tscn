@@ -196,7 +196,7 @@ petrify_length = 35.0
 
 [node name="interactBox" parent="headMesh" instance=ExtResource("6_rpq05")]
 collision_layer = 66
-size = Vector3(0.25, 0.25, 0.25)
+size = Vector3(0.75, 0.75, 0.75)
 object_name = "gorgon_head_trigger"
 object_prompt = "TAKE HEAD
 [INTERACT]"

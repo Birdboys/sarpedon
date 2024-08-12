@@ -45,10 +45,8 @@ func _ready():
 	deadHeadTrigger.deactivate()
 	
 	attackCol.disabled = true
-func _process(delta):
-	pass
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	match current_phase:
 		"awake_idle":
 			if medusaPetrify.can_see_player and player: 
@@ -73,7 +71,7 @@ func playerEnteredCave(body):
 	player = body
 	player.footstep.connect(playerFootstep)
 	
-func playerExitedCave(body):
+func playerExitedCave(_body):
 	player_in_cave = false
 	player.footstep.disconnect(playerFootstep)
 	player = null
@@ -170,11 +168,11 @@ func stopAttack(_body):
 	print("PLAYER EXIT")
 	attackTimer.stop()
 
-func transitionCamera(initial_camera: Camera3D):
+func transitionCamera(_initial_camera: Camera3D):
 	grabPlayer()
 	return
 
-func unTransitionCamera(initial_camera: Camera3D):
+func unTransitionCamera(_initial_camera: Camera3D):
 	return
 
 func grabPlayer():

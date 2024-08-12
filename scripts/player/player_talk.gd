@@ -5,6 +5,8 @@ func enter():
 	parent.velocity.z = 0
 	parent.interactPrompt.text = ""
 	Dialogic.timeline_ended.connect(dialogueEnded)
+	
+	if parent.shield_hold: parent.setShieldHold(false)
 
 func update(delta):
 	if not parent.is_on_floor():

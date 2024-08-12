@@ -7,7 +7,7 @@ func enter():
 	boat_dialogue = false
 	boat_death = false
 	
-func update(delta):
+func update(_delta):
 	parent.global_position = parent.boat.getPlayerPos()
 	parent.syncCameras()
 

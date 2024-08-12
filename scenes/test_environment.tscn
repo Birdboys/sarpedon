@@ -121,6 +121,8 @@ mesh = SubResource("BoxMesh_k5u5y")
 
 [node name="playerCharacter" parent="." instance=ExtResource("1_afcxk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.05745, -2.41092)
+has_sword = true
+has_shield = true
 
 [node name="boat" parent="." instance=ExtResource("6_6gxfr")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.0824, 0.370345, -3.17219)

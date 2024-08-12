@@ -1,0 +1,4 @@
+[wait time="0.5" hide_text="false"]
+graeae: Now... where is it?
+[wait time="0.5" hide_text="false"]
+[signal arg="startChoice"]
