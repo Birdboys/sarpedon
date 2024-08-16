@@ -1,4 +1,4 @@
 hermes: Not bad for a first toss!
 hermes: Here, give it another go.
-[wait time="1.0"]
+[wait time="1.0" hide_text="false"]
 [signal arg="playerThrow"]

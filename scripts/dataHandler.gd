@@ -51,7 +51,7 @@ func translate(text: String):
 func translationUpdated():
 	emit_signal("translation_updated")
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	return
 	#if event is InputEventKey and  event.is_pressed and event.keycode == KEY_P:
 	#	var screen_shot = get_viewport().get_texture().get_image()

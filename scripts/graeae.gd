@@ -134,6 +134,7 @@ func giveInvisHelmet():
 	monteHandler.setUpCups()
 	DataHandler.graeae_done = true
 	graeaeAnim.play("cupping")
+	trigger4.activate()
 	
 func handleChoiceMade(correct: bool):
 	print("CHOICE MADE")
@@ -172,6 +173,7 @@ func alreadyFinished():
 	trigger1.deactivate()
 	trigger2.deactivate()
 	trigger3.activate()
+	trigger4.deactivate()
 
 func cupMoveSound():
 	if cupAudio.playing: cupAudio.stop()

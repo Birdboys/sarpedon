@@ -137,4 +137,3 @@ func animateWaters(type):
 	match type:
 		"calm": oceanAnim.play("calm_ocean")
 		"normal": oceanAnim.play_backwards("calm_ocean")
-	

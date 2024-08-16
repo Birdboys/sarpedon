@@ -665,7 +665,6 @@ initial_state = NodePath("playerWalk")
 
 [node name="playerWalk" type="Node" parent="stateMachine"]
 script = ExtResource("3_euxff")
-move_speed = 55.0
 movement_control = false
 
 [node name="playerJump" type="Node" parent="stateMachine"]
@@ -991,6 +990,7 @@ one_shot = true
 
 [node name="petrifyPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("26_xd6u5")
+bus = &"soundEffects"
 
 [node name="flutterPlayer" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)

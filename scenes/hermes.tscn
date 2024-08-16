@@ -215,6 +215,7 @@ original_text = "PRESS [INTERACT] WHEN CIRCLES OVERLAP"
 [node name="footstepper" type="AudioStreamPlayer3D" parent="."]
 unit_size = 30.0
 max_distance = 75.0
+bus = &"soundEffects"
 
 [node name="runAnim" type="AnimationPlayer" parent="."]
 libraries = {

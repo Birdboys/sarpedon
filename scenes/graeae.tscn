@@ -263,3 +263,4 @@ libraries = {
 unit_size = 30.0
 max_db = -5.0
 max_distance = 75.0
+bus = &"soundEffects"

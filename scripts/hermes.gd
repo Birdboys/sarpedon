@@ -34,7 +34,6 @@ func _ready():
 	runAnim.play("run")
 	
 func _process(delta):
-	#print(current_phase)
 	match current_phase:
 		"running":
 			pathFollow.progress += delta * running_speed

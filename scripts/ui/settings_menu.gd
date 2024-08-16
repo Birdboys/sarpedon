@@ -32,8 +32,8 @@ func sensUpdated(val):
 
 func audioUpdated(val):
 	DataHandler.settings['audio_volume'] = val
-	AudioServer.set_bus_volume_db(1, remap(val, 0.0, 100.0, -60.0, 0.0))
+	AudioServer.set_bus_volume_db(1, linear_to_db(val/100.0))
 	
 func musicUpdated(val):
 	DataHandler.settings['music_volume'] = val
-	AudioServer.set_bus_volume_db(2, remap(val, 0.0, 100.0, -60.0, 0.0))
+	AudioServer.set_bus_volume_db(2, linear_to_db(val/100.0))

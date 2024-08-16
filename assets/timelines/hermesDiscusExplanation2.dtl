@@ -3,5 +3,5 @@ hermes: Feels good doesn’t it? Throwing something away and watching it disappe
 hermes: …not having to look back.
 hermes: A-alright, your turn!
 hermes: I throw a little fast, but feel free to take your time.
-[wait time="1.0"]
+[wait time="1.0" hide_text="false"]
 [signal arg="playerThrow"]

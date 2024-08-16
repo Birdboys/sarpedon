@@ -303,6 +303,7 @@ libraries = {
 stream = ExtResource("12_mke4l")
 max_db = -5.0
 max_distance = 50.0
+bus = &"soundEffects"
 
 [node name="euryale" type="CharacterBody3D" parent="." groups=["needs_player_ground"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0)
@@ -366,6 +367,7 @@ libraries = {
 stream = ExtResource("12_mke4l")
 max_db = -5.0
 max_distance = 50.0
+bus = &"soundEffects"
 
 [node name="sisterTalkCam" type="Camera3D" parent="."]
 fov = 90.0

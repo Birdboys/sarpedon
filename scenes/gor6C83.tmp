@@ -1,0 +1,371 @@
+[gd_scene load_steps=35 format=3 uid="uid://5nun341wi85d"]
+
+[ext_resource type="Script" path="res://scripts/gorgons.gd" id="1_471g7"]
+[ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="1_aii50"]
+[ext_resource type="Script" path="res://scripts/stheno.gd" id="2_8t2it"]
+[ext_resource type="PackedScene" uid="uid://d557kilnx4qe" path="res://scenes/components/billboard_component.tscn" id="2_diy4y"]
+[ext_resource type="PackedScene" uid="uid://0or1kfewcx3e" path="res://scenes/components/petrify_component.tscn" id="2_r35w3"]
+[ext_resource type="Texture2D" uid="uid://dqrhssj4ilmxy" path="res://assets/sprites/stheno.png" id="4_orvfn"]
+[ext_resource type="Texture2D" uid="uid://b25ya6vwtpsbp" path="res://assets/sprites/maiden2.png" id="4_pm0xy"]
+[ext_resource type="Texture2D" uid="uid://cf7f7wjps11xm" path="res://assets/sprites/maiden1.png" id="4_u1st4"]
+[ext_resource type="Texture2D" uid="uid://c3c7wajh2bw33" path="res://assets/sprites/maiden4.png" id="5_7gick"]
+[ext_resource type="PackedScene" uid="uid://dt6bxmw7stlh8" path="res://scenes/components/interact_box.tscn" id="5_574f0"]
+[ext_resource type="Script" path="res://scripts/euryale.gd" id="6_fyby4"]
+[ext_resource type="Texture2D" uid="uid://c26bjmcf2aucv" path="res://assets/sprites/maiden5.png" id="6_m8fcc"]
+[ext_resource type="Texture2D" uid="uid://cy0tbug7l5pqf" path="res://assets/sprites/euryale.png" id="6_vu6sh"]
+[ext_resource type="Texture2D" uid="uid://bgqx3lr1judbu" path="res://assets/sprites/stheno_reverse.png" id="11_bfj6d"]
+[ext_resource type="Texture2D" uid="uid://5u0d1qq2f4ea" path="res://assets/sprites/maiden3.png" id="12_08w3s"]
+[ext_resource type="AudioStream" uid="uid://c3pyvlre0y4x1" path="res://assets/sounds/snake_hiss/1.wav" id="12_mke4l"]
+[ext_resource type="Texture2D" uid="uid://b6ljkvq5td0rk" path="res://assets/sprites/maiden6.png" id="13_bjl1w"]
+[ext_resource type="Texture2D" uid="uid://csivkve0gqv45" path="res://assets/sprites/euryale_reverse.png" id="17_2hj28"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_idrjk"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("4_orvfn")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n8uue"]
+material = SubResource("StandardMaterial3D_idrjk")
+flip_faces = true
+size = Vector2(3, 3)
+orientation = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lfh5s"]
+render_priority = 0
+shader = ExtResource("1_aii50")
+shader_parameter/num_sections = 6.0
+shader_parameter/max_section_offset = 0.1
+shader_parameter/image_speed = 1.0
+shader_parameter/offset_speed = 4.0
+shader_parameter/image_seed = 12.3
+shader_parameter/offset_seed = 13.0
+shader_parameter/transparency = 0.9
+shader_parameter/image1 = ExtResource("4_pm0xy")
+shader_parameter/image2 = ExtResource("5_7gick")
+shader_parameter/image3 = ExtResource("6_m8fcc")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tg0sv"]
+material = SubResource("ShaderMaterial_lfh5s")
+flip_faces = true
+size = Vector2(1, 2)
+orientation = 2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pbtxq"]
+radius = 0.25
+height = 1.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hcdt0"]
+radius = 2.0
+
+[sub_resource type="Animation" id="Animation_5tkvn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("stheno/sthenoMesh:mesh:material:albedo_texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_orvfn")]
+}
+
+[sub_resource type="Animation" id="Animation_wfe6o"]
+resource_name = "run"
+length = 0.7
+loop_mode = 1
+step = 0.05
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("stheno")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.35, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"gorgonFootstep"
+}, {
+"args": [],
+"method": &"gorgonFootstep"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("stheno/sthenoMesh:mesh:material:albedo_texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.35, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("11_bfj6d"), ExtResource("4_orvfn")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ajak8"]
+_data = {
+"RESET": SubResource("Animation_5tkvn"),
+"run": SubResource("Animation_wfe6o")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aa3qw"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("6_vu6sh")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1nh6h"]
+material = SubResource("StandardMaterial3D_aa3qw")
+flip_faces = true
+size = Vector2(3, 3)
+orientation = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_762i1"]
+render_priority = 0
+shader = ExtResource("1_aii50")
+shader_parameter/num_sections = 6.0
+shader_parameter/max_section_offset = 0.1
+shader_parameter/image_speed = 1.0
+shader_parameter/offset_speed = 4.0
+shader_parameter/image_seed = 14.0
+shader_parameter/offset_seed = 15.0
+shader_parameter/transparency = 0.9
+shader_parameter/image1 = ExtResource("4_u1st4")
+shader_parameter/image2 = ExtResource("12_08w3s")
+shader_parameter/image3 = ExtResource("13_bjl1w")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6e05d"]
+material = SubResource("ShaderMaterial_762i1")
+flip_faces = true
+size = Vector2(1, 2)
+orientation = 2
+
+[sub_resource type="Animation" id="Animation_cwgej"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("euryaleMesh:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("euryaleMesh:mesh:material:albedo_texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_vu6sh")]
+}
+
+[sub_resource type="Animation" id="Animation_gc73d"]
+resource_name = "fly"
+length = 3.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"gorgonWings"
+}, {
+"args": [],
+"method": &"gorgonWings"
+}, {
+"args": [],
+"method": &"gorgonWings"
+}, {
+"args": [],
+"method": &"gorgonWings"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("euryaleMesh:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.5, 1.75, 2, 2.25, 2.5),
+"transitions": PackedFloat32Array(2, 0.5, 2, 0.5, 1, 2, 0.5, 2, 0.5, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("euryaleMesh:mesh:material:albedo_texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("6_vu6sh"), ExtResource("17_2hj28"), ExtResource("6_vu6sh")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ruiyh"]
+_data = {
+"RESET": SubResource("Animation_cwgej"),
+"fly": SubResource("Animation_gc73d")
+}
+
+[node name="gorgons" type="Node3D"]
+script = ExtResource("1_471g7")
+
+[node name="stheno" type="CharacterBody3D" parent="." groups=["needs_player_ground"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 0)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("2_8t2it")
+
+[node name="sthenoMesh" type="MeshInstance3D" parent="stheno"]
+visible = false
+mesh = SubResource("PlaneMesh_n8uue")
+
+[node name="billboardComponent" parent="stheno/sthenoMesh" instance=ExtResource("2_diy4y")]
+
+[node name="maidenMesh" type="MeshInstance3D" parent="stheno"]
+layers = 4
+mesh = SubResource("PlaneMesh_tg0sv")
+
+[node name="billboardComponent" parent="stheno/maidenMesh" instance=ExtResource("2_diy4y")]
+
+[node name="gorgonCol" type="CollisionShape3D" parent="stheno"]
+shape = SubResource("CapsuleShape3D_pbtxq")
+disabled = true
+
+[node name="navAgent" type="NavigationAgent3D" parent="stheno"]
+path_desired_distance = 2.0
+path_height_offset = -1.5
+avoidance_enabled = true
+radius = 1.0
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0.619608, 1, 1)
+
+[node name="trigger1" parent="stheno" instance=ExtResource("5_574f0")]
+object_name = "sisters_trigger_1"
+object_prompt = "TALK [INTERACT]"
+interact_ret = "sisters_intro"
+
+[node name="petrifyComponent" parent="stheno" instance=ExtResource("2_r35w3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.825632, 0)
+aabb = AABB(-0.05, -0.05, -0.05, 0.1, 0.1, 0.1)
+petrify_length = 35.0
+
+[node name="attackRadius" type="Area3D" parent="stheno"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="attackCol" type="CollisionShape3D" parent="stheno/attackRadius"]
+shape = SubResource("SphereShape3D_hcdt0")
+disabled = true
+
+[node name="attackTimer" type="Timer" parent="stheno"]
+one_shot = true
+
+[node name="grabPos" type="Node3D" parent="stheno"]
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965925, 0.258819, -8.74228e-08, 0.258819, -0.965925, 0, 1, -1.25)
+
+[node name="sthenoAnim" type="AnimationPlayer" parent="stheno"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_ajak8")
+}
+
+[node name="hisser" type="AudioStreamPlayer3D" parent="stheno"]
+stream = ExtResource("12_mke4l")
+max_db = -5.0
+max_distance = 50.0
+
+[node name="euryale" type="CharacterBody3D" parent="." groups=["needs_player_ground"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("6_fyby4")
+
+[node name="euryaleMesh" type="MeshInstance3D" parent="euryale"]
+visible = false
+mesh = SubResource("PlaneMesh_1nh6h")
+
+[node name="billboardComponent" parent="euryale/euryaleMesh" instance=ExtResource("2_diy4y")]
+
+[node name="maidenMesh" type="MeshInstance3D" parent="euryale"]
+layers = 4
+mesh = SubResource("PlaneMesh_6e05d")
+
+[node name="billboardComponent" parent="euryale/maidenMesh" instance=ExtResource("2_diy4y")]
+
+[node name="gorgonCol" type="CollisionShape3D" parent="euryale"]
+shape = SubResource("CapsuleShape3D_pbtxq")
+disabled = true
+
+[node name="navAgent" type="NavigationAgent3D" parent="euryale"]
+path_desired_distance = 2.0
+path_height_offset = -2.5
+avoidance_enabled = true
+radius = 1.0
+debug_path_custom_color = Color(0.223529, 1, 1, 1)
+
+[node name="trigger1" parent="euryale" instance=ExtResource("5_574f0")]
+object_name = "sisters_trigger_1"
+object_prompt = "TALK [INTERACT]"
+interact_ret = "sisters_intro"
+
+[node name="petrifyComponent" parent="euryale" instance=ExtResource("2_r35w3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.825632, 0)
+aabb = AABB(-0.05, -0.05, -0.05, 0.1, 0.1, 0.1)
+petrify_length = 35.0
+
+[node name="attackRadius" type="Area3D" parent="euryale"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="attackCol" type="CollisionShape3D" parent="euryale/attackRadius"]
+shape = SubResource("SphereShape3D_hcdt0")
+disabled = true
+
+[node name="attackTimer" type="Timer" parent="euryale"]
+one_shot = true
+
+[node name="grabPos" type="Node3D" parent="euryale"]
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 0, 1, -1.25)
+
+[node name="euryaleAnim" type="AnimationPlayer" parent="euryale"]
+libraries = {
+"": SubResource("AnimationLibrary_ruiyh")
+}
+
+[node name="hisser" type="AudioStreamPlayer3D" parent="euryale"]
+stream = ExtResource("12_mke4l")
+max_db = -5.0
+max_distance = 50.0
+
+[node name="sisterTalkCam" type="Camera3D" parent="."]
+fov = 90.0

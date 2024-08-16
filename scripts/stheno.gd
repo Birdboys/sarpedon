@@ -14,6 +14,7 @@ extends CharacterBody3D
 @onready var current_phase := "idle"
 @onready var speed := 4.75
 @onready var attack_time := 2.0
+@onready var target_closeness := 0.25
 
 var player_target_pos : Vector3
 var roam_target_pos := Vector3(-118.21, 3.41, 70.79)
@@ -41,6 +42,8 @@ func _physics_process(_delta):
 				var current_agent_position: Vector3 = global_position
 				var next_path_position: Vector3 = navAgent.get_next_path_position()
 				velocity = current_agent_position.direction_to(next_path_position) * speed
+			if navAgent.distance_to_target() < target_closeness:
+				velocity = velocity * 0.1
 			move_and_slide()
 			
 			if velocity.length() > 0:
