@@ -13,6 +13,5 @@ shape = SubResource("SphereShape3D_xl2qg")
 
 [node name="bushMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.3, 0, 0, 0, 0.15, 4.88762e-08, 0, -2.44381e-08, 0.3, 0, 0, 0)
-visible = false
 mesh = ExtResource("1_jcatc")
 skeleton = NodePath("")

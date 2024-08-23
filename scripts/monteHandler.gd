@@ -12,7 +12,6 @@ extends Node3D
 @onready var helmetBillboard := $invisHelmet/billboardComponent
 @onready var secret := $secret
 @onready var moveTimer := $moveTimer
-@onready var repeatTimer := $repeatTimer
 
 @onready var slot0
 @onready var slot1 

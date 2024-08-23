@@ -50,7 +50,7 @@ func playSound3D(audio, pos: Vector3):
 func getAudio(audio):
 	var audio_name = audio
 	if audio_name in audio_num_vars: audio_name = "%s/%s" % [audio_name, randi_range(0, audio_num_vars[audio_name]-1)]
-	var sound_stream = load("Assets/sounds/%s.wav" % audio_name)
+	var sound_stream = load("assets/sounds/%s.wav" % audio_name)
 	return sound_stream
 	
 func setPlayer(player, val):

@@ -24,13 +24,13 @@ void fragment() {
 	float offset_random = random(vec2(trunc(TIME * offset_speed + 13.0 + offset_seed),stripe_id)); //random value for offset
 	float stripe_offset = offset_random * 2.0 * max_section_offset - (max_section_offset);
 	vec4 image_data;
-	
+
 	if ((UV.y + stripe_offset > 1.0) || (UV.y + stripe_offset < 0.0)) {
 		image_data = vec4(0.0,0.0,0.0,0.0);
 	} else {
 		image_data = texture(image1, vec2(UV.x, UV.y + stripe_offset));
 	}
-	
+
 	COLOR.rgb = image_data.rgb;
 	COLOR.a = image_data.a * transparency;
 	//ALPHA_SCISSOR_THRESHOLD = 0.1;
