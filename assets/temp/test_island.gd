@@ -64,7 +64,7 @@ func _ready():
 	
 func _process(_delta):
 	if not player_in_cave:
-		var fog_val = remap(clamp(player.global_position.y, 0, 40), 0, 40, 0.05, 0.01)
+		var fog_val = remap(clamp(player.global_position.y, 0, 40), 0, 40, 0.05, 0.02)
 		var fog_noise = remap(fogNoise.get_noise_1d(Time.get_ticks_msec()*0.01), -1.0, 1.0, -0.01, 0.01)
 		worldEnvironment.environment.fog_density = fog_val + fog_noise
 	for node in get_tree().get_nodes_in_group("billboard_comp"):

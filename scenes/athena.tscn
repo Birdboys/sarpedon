@@ -192,8 +192,9 @@ num_blockers = 3
 [node name="athenaPlayer" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.02311)
 stream = ExtResource("10_3jn21")
-unit_size = 30.0
-max_db = -5.0
+attenuation_model = 3
+unit_size = 100.0
+max_db = -3.0
 autoplay = true
-max_distance = 75.0
+max_distance = 100.0
 bus = &"soundEffects"

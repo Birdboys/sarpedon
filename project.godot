@@ -97,6 +97,7 @@ directories/dtl_directory={
 "sistersMaidenInterruption": "res://assets/timelines/sistersMaidenInterruption.dtl",
 "sistersMaidenIntro": "res://assets/timelines/sistersMaidenIntro.dtl",
 "sistersMaidenWarning": "res://assets/timelines/sistersMaidenWarning.dtl",
+"statueDescriptions": "res://assets/timelines/statueDescriptions.dtl",
 "sthenoKill": "res://assets/timelines/sthenoKill.dtl",
 "test_timeline": "res://assets/timelines/test_timeline.dtl",
 "test_timeline_2": "res://test_timeline_2.dtl",
@@ -106,7 +107,8 @@ layout/style_list=["res://assets/dialogicstyle.tres"]
 layout/default_style="res://assets/dialogicstyle.tres"
 glossary/default_case_sensitive=true
 variables={
-"siren_lul": 0
+"siren_lul": 0,
+"statue_desc": "STATUE_DEFAULT"
 }
 text/letter_speed=0.05
 text/initial_text_reveal_skippable=true

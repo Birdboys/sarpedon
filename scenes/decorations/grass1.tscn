@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1we33vkgavps"]
-
-[ext_resource type="ArrayMesh" uid="uid://cng5ss4byhqcr" path="res://scenes/decorations/grass1Mesh.tres" id="1_yicld"]
-
-[node name="grass1" type="Node3D"]
-
-[node name="grassMesh" type="MeshInstance3D" parent="."]
-mesh = ExtResource("1_yicld")
-skeleton = NodePath("")

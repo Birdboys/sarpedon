@@ -1,0 +1,45 @@
+[gd_resource type="ArrayMesh" load_steps=5 format=4 uid="uid://ux3smuckx020"]
+
+[ext_resource type="Shader" path="res://scripts/shaders/foliage_shader.gdshader" id="1_k7fuy"]
+[ext_resource type="Texture2D" uid="uid://sng2s34v5m6j" path="res://assets/textures/tree3.png" id="2_xx02s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5e15y"]
+render_priority = 0
+shader = ExtResource("1_k7fuy")
+shader_parameter/sway_speed = 1.0
+shader_parameter/sway_strength = 0.075
+shader_parameter/sway_phase_len = 8.0
+shader_parameter/max_world_pos = 30.0
+shader_parameter/texture_albedo = ExtResource("2_xx02s")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_bvnje"]
+_surfaces = [{
+"aabb": AABB(-2.73, -3.77116e-07, -2.73, 5.46, 3.75, 5.46),
+"format": 34896613377,
+"index_count": 48,
+"index_data": PackedByteArray("AQAAAAIABQAEAAYACQAIAAoADQAMAA4AEQAQABIAFQAUABYAGQAYABoAHQAcAB4AAQACAAMABQAGAAcACQAKAAsADQAOAA8AEQASABMAFQAWABcAGQAaABsAHQAeAB8A"),
+"name": "bush07",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 32,
+"vertex_data": PackedByteArray("//8AAJJ/AAAAAAAAkn8AAP///v+SfwAAAAD+/5J/AAAAAAAAbIAAAP//AABsgAAAAAD+/2yAAAD///7/bIAAAGyAAAD//wAAbIAAAAAAAABsgP///v8AAGyA/v8AAAAAkn8AAAAAAACSfwAA//8AAJJ//v8AAAAAkn////7/AAAwJQAAyiUAADTaAADO2gAAMCX+/8olAAA02v//ztoAAM7aAAA02gAAyiUAADAlAADO2v//NNoAAMol/v8wJQAANNoAADAlAAAwJQAANNoAADTa/v8wJQAAMCX//zTaAADKJQAAztoAAM7aAADKJQAAyiX//87aAADO2v7/yiUAAA==")
+}]
+blend_shape_mode = 0
+
+[resource]
+resource_name = "tree3WithWeights_bush07"
+_surfaces = [{
+"aabb": AABB(-2.73, -3.77116e-07, -2.73, 5.46, 3.75, 5.46),
+"attribute_data": PackedByteArray("AAAA/8ICcuYAAAD/af1y5v/////CAvUb/////2n99RsAAAD/Wv1y5gAAAP/RAnLm/////1r99Rv/////0QL1GwAAAP/CAnLmAAAA/2n9cub/////wgL1G/////9p/fUbAAAA/1r9cuYAAAD/0QJy5v////9a/fUb/////9EC9RsAAAD/wgJy5gAAAP9p/XLm/////8IC9Rv/////af31GwAAAP9a/XLmAAAA/9ECcub/////Wv31G//////RAvUbAAAA/8ICcuYAAAD/af1y5v/////CAvUb/////2n99RsAAAD/Wv1y5gAAAP/RAnLm/////1r99Rv/////0QL1Gw=="),
+"format": 34896613407,
+"index_count": 48,
+"index_data": PackedByteArray("AQAAAAIABQAEAAYACQAIAAoADQAMAA4AEQAQABIAFQAUABYAGQAYABoAHQAcAB4AAQACAAMABQAGAAcACQAKAAsADQAOAA8AEQASABMAFQAWABcAGQAaABsAHQAeAB8A"),
+"material": SubResource("ShaderMaterial_5e15y"),
+"name": "bush07",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 32,
+"vertex_data": PackedByteArray("//8AAJJ///8AAAAAkn///////v+Sf///AAD+/5J///8AAAAAbIAAAP//AABsgAAAAAD+/2yAAAD///7/bIAAAGyAAAD///+/bIAAAAAA/79sgP///v//v2yA/v8AAP+/kn8AAAAAAACSfwAA//8AAJJ//v8AAAAAkn////7/AAAwJQAAyiX/nzTaAADO2v+fMCX+/8ol/5802v//ztr/n87aAAA02gAAyiUAADAlAADO2v//NNoAAMol/v8wJQAANNoAADAl/98wJQAANNr/3zTa/v8wJf/fMCX//zTa/9/KJQAAztoAAM7aAADKJQAAyiX//87aAADO2v7/yiUAAP9/////f////3////9/////f/9//3//f/9//3//f/9//38AAP9/AAD/fwAA/38AAP///z////8/////P////z//f/7//3/+//9//v//f/7/gdr/f4Ha/3+B2v9/gdr/f/9/////f////3////9///98pf9/fKX/f3yl/398pf9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_bvnje")

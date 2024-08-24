@@ -30,7 +30,7 @@ shader_parameter/image3 = ExtResource("5_w4n48")
 [sub_resource type="PlaneMesh" id="PlaneMesh_j84vj"]
 material = SubResource("ShaderMaterial_p27bl")
 flip_faces = true
-size = Vector2(1, 2)
+size = Vector2(1.5, 3)
 orientation = 2
 
 [sub_resource type="Animation" id="Animation_55nn6"]
@@ -65,7 +65,7 @@ _data = {
 script = ExtResource("1_s4wmc")
 
 [node name="hermesMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.999075, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 layers = 4
 mesh = SubResource("PlaneMesh_j84vj")
 
@@ -213,8 +213,9 @@ original_text = "PRESS [INTERACT] WHEN CIRCLES OVERLAP"
 [node name="runningPoint" type="Node3D" parent="pathFollow"]
 
 [node name="footstepper" type="AudioStreamPlayer3D" parent="."]
-unit_size = 30.0
-max_distance = 75.0
+attenuation_model = 3
+unit_size = 100.0
+max_distance = 100.0
 bus = &"soundEffects"
 
 [node name="runAnim" type="AnimationPlayer" parent="."]

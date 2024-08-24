@@ -564,14 +564,14 @@ script = ExtResource("1_y87bo")
 shape = SubResource("CapsuleShape3D_2a5dh")
 
 [node name="neck" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 
 [node name="playerCam" type="Camera3D" parent="neck"]
 transform = Transform3D(1, 0, 0, 0, 0.991445, 0.130526, 0, -0.130526, 0.991445, 0, 0, 0)
 cull_mask = 1047565
 h_offset = -0.015
 current = true
-fov = 90.0
+far = 250.0
 script = ExtResource("2_7dfx5")
 trauma_noise = SubResource("FastNoiseLite_73vgs")
 
@@ -599,6 +599,7 @@ render_target_update_mode = 4
 [node name="uiCam" type="Camera3D" parent="neck/playerCam/hudViewportContainer/hudViewport"]
 cull_mask = 1047554
 fov = 90.0
+far = 10.0
 
 [node name="shieldMesh" type="MeshInstance3D" parent="neck/playerCam"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.353, -0.555)
@@ -654,6 +655,7 @@ size = Vector2i(128, 128)
 cull_mask = 1
 current = true
 fov = 60.0
+far = 150.0
 
 [node name="lookRay" type="RayCast3D" parent="backViewport/backCamera"]
 target_position = Vector3(0, 0, -2.5)
@@ -665,6 +667,7 @@ initial_state = NodePath("playerWalk")
 
 [node name="playerWalk" type="Node" parent="stateMachine"]
 script = ExtResource("3_euxff")
+move_speed = 50.0
 movement_control = false
 
 [node name="playerJump" type="Node" parent="stateMachine"]
