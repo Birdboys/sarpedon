@@ -1,0 +1,39 @@
+[gd_resource type="ArrayMesh" load_steps=4 format=4 uid="uid://cvp83krgba10g"]
+
+[ext_resource type="Texture2D" uid="uid://blvhgdrrpdsv2" path="res://assets/textures/bush1.png" id="1_2tilt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ipfwd"]
+albedo_texture = ExtResource("1_2tilt")
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_m8g43"]
+_surfaces = [{
+"aabb": AABB(-0.9828, -1.35762e-07, -0.9828, 1.9656, 1.6875, 1.9656),
+"format": 34896613377,
+"index_count": 48,
+"index_data": PackedByteArray("AQAAAAIABQAEAAYACQAIAAoADQAMAA4AEQAQABIAFQAUABYAGQAYABoAHQAcAB4AAQACAAMABQAGAAcACQAKAAsADQAOAA8AEQASABMAFQAWABcAGQAaABsAHQAeAB8A"),
+"name": "bush08",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 32,
+"vertex_data": PackedByteArray("//8AAJJ/AAAAAAAAkn8AAP///v+SfwAAAAD+/5J/AAAAAAAAbIAAAP//AABsgAAAAAD+/2yAAAD///7/bIAAAGyAAAD//wAAbIAAAAAAAABsgP///v8AAGyA/v8AAAAAkn8AAAAAAACSfwAA//8AAJJ//v8AAAAAkn////7/AAAwJQAAyiUAADTaAADO2gAAMCX+/8olAAA02v7/ztoAAM7aAAA02gAAyiUAADAlAADO2v7/NNoAAMol/v8wJQAANNoAADAlAAAwJQAANNoAADTa/v8wJQAAMCX+/zTaAADKJQAAztoAAM7aAADKJQAAyiX+/87aAADO2v7/yiUAAA==")
+}]
+blend_shape_mode = 0
+
+[resource]
+resource_name = "bushWithWeights_bush08"
+_surfaces = [{
+"aabb": AABB(-0.9828, -1.35762e-07, -0.9828, 1.9656, 1.6875, 1.9656),
+"attribute_data": PackedByteArray("AAAA/8ICcuYAAAD/af1y5gAAAP9p/XLm/////8IC9Rv/////wgL1G/////9p/fUbAAAA/1r9cuYAAAD/0QJy5gAAAP/RAnLm/////1r99Rv/////Wv31G//////RAvUbAAAA/8ICcuYAAAD/af1y5gAAAP9p/XLm/////8IC9Rv/////wgL1G/////9p/fUbAAAA/1r9cuYAAAD/0QJy5gAAAP/RAnLm/////1r99Rv/////Wv31G//////RAvUbAAAA/8ICcuYAAAD/af1y5gAAAP9p/XLm/////8IC9Rv/////wgL1G/////9p/fUbAAAA/1r9cuYAAAD/0QJy5gAAAP/RAnLm/////1r99Rv/////Wv31G//////RAvUbAAAA/8ICcuYAAAD/af1y5gAAAP9p/XLm/////8IC9Rv/////wgL1G/////9p/fUbAAAA/1r9cuYAAAD/0QJy5gAAAP/RAnLm/////1r99Rv/////Wv31G//////RAvUb"),
+"format": 34896613407,
+"index_count": 48,
+"index_data": PackedByteArray("AQAAAAMACAAGAAoADgAMABAAEwASABUAGQAYABsAIAAeACIAJQAkACcAKwAqAC0AAgAEAAUABwAJAAsADQAPABEAFAAWABcAGgAcAB0AHwAhACMAJgAoACkALAAuAC8A"),
+"material": SubResource("StandardMaterial3D_ipfwd"),
+"name": "bush08",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("//8AAJJ///8AAAAAkn///wAAAACSf//////+/5J///////7/kn///wAA/v+Sf///AAAAAGyAAAD//wAAbIAAAP//AABsgAAAAAD+/2yAAAAAAP7/bIAAAP///v9sgAAAbIAAAP///79sgAAAAAD/v2yAAAAAAP+/bID///7//79sgP///v//v2yA/v8AAP+/kn8AAAAAAACSfwAA//8AAJJ/AAD//wAAkn/+/wAAAACSf/7/AAAAAJJ////+/wAAMCUAAMol/5802gAAztr/nzTaAADO2v+fMCX+/8ol/58wJf7/yiX/nzTa/v/O2v+fztoAADTaAADKJQAAMCUAAMolAAAwJQAAztr+/zTaAADO2v7/NNoAAMol/v8wJQAANNoAADAl/98wJQAANNr/3zAlAAA02v/fNNr+/zAl/9802v7/MCX/3zAl/v802v/fyiUAAM7aAADO2gAAyiUAAM7aAADKJQAAyiX+/87aAADKJf7/ztoAAM7a/v/KJQAA/3////9/////f////3////9/////f////3//f/9//3//f/9//3//f/9//3//f/9//38AAP9/AAD/fwAA/38AAP9/AAD/fwAA////P////z////8/////P////z////8//3/+//9//v//f/7//3/+//9//v//f/7/gdr/f4Ha/3+B2v9/gdr/f4Ha/3+B2v9//3////9/////f////3////9/////f///fKX/f3yl/398pf9/fKX/f3yl/398pf9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_m8g43")

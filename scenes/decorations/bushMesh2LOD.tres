@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://7b6gsd5f1ijo" path="res://assets/textures/bush2.png" id="2_ah0kf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vb1y0"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("2_ah0kf")
 texture_filter = 2
 
