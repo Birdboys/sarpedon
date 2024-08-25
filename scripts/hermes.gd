@@ -1,5 +1,6 @@
 extends Node3D
 
+@onready var hermesMesh := $hermesMesh
 @onready var trigger1 := $trigger1
 @onready var trigger2 := $trigger2
 @onready var trigger3 := $trigger3
@@ -47,8 +48,10 @@ func handleDialogue(type):
 			goToDiscusPos(true)
 		"hermesThrow":
 			discusHandler.startAutoThrow()
+			hermesMesh.visible = false
 		"playerThrow":
 			discusHandler.startThrow()
+			hermesMesh.visible = false
 		"giveSandals":
 			trigger3.activate()
 		"repeatDone":
@@ -168,6 +171,7 @@ func startRun():
 	current_phase = "running"
 
 func finishRepeatThrow():
+	hermesMesh.visible = true
 	emit_signal("activity_finished")
 	current_phase = "idle"
 	await get_tree().create_timer(0.5).timeout

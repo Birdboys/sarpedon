@@ -30,7 +30,7 @@ texture_filter = 0
 [sub_resource type="PlaneMesh" id="PlaneMesh_n8uue"]
 material = SubResource("StandardMaterial3D_idrjk")
 flip_faces = true
-size = Vector2(3, 3)
+size = Vector2(3.5, 3.5)
 orientation = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lfh5s"]
@@ -127,7 +127,7 @@ texture_filter = 0
 [sub_resource type="PlaneMesh" id="PlaneMesh_1nh6h"]
 material = SubResource("StandardMaterial3D_aa3qw")
 flip_faces = true
-size = Vector2(3, 3)
+size = Vector2(3.5, 3.5)
 orientation = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_762i1"]
@@ -263,13 +263,14 @@ disabled = true
 
 [node name="navAgent" type="NavigationAgent3D" parent="stheno"]
 path_desired_distance = 2.0
-path_height_offset = -1.5
+path_height_offset = -1.75
 avoidance_enabled = true
 radius = 1.0
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0.619608, 1, 1)
 
 [node name="trigger1" parent="stheno" instance=ExtResource("5_574f0")]
+size = Vector3(1, 2, 1)
 object_name = "sisters_trigger_1"
 object_prompt = "TALK [INTERACT]"
 interact_ret = "sisters_intro"
@@ -329,12 +330,13 @@ disabled = true
 
 [node name="navAgent" type="NavigationAgent3D" parent="euryale"]
 path_desired_distance = 2.0
-path_height_offset = -2.5
+path_height_offset = -2.75
 avoidance_enabled = true
 radius = 1.0
 debug_path_custom_color = Color(0.223529, 1, 1, 1)
 
 [node name="trigger1" parent="euryale" instance=ExtResource("5_574f0")]
+size = Vector3(1, 2, 1)
 object_name = "sisters_trigger_1"
 object_prompt = "TALK [INTERACT]"
 interact_ret = "sisters_intro"

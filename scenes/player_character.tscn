@@ -636,8 +636,6 @@ collision_mask = 0
 [node name="hitboxCol" type="CollisionShape3D" parent="neck/playerCam/swordHitbox"]
 shape = SubResource("CylinderShape3D_n3jkf")
 
-[node name="playerAudio" type="AudioListener3D" parent="neck/playerCam"]
-
 [node name="hoverRay" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 target_position = Vector3(0, -0.75, 0)

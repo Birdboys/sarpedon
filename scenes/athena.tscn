@@ -29,7 +29,7 @@ shader_parameter/image3 = ExtResource("5_vvv0r")
 [sub_resource type="PlaneMesh" id="PlaneMesh_5l8fo"]
 material = SubResource("ShaderMaterial_kx3nv")
 flip_faces = true
-size = Vector2(1, 2)
+size = Vector2(1.5, 3)
 orientation = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3nleu"]
@@ -58,6 +58,7 @@ viewport_path = NodePath("playArea")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vl2fa"]
 resource_local_to_scene = true
 transparency = 1
+cull_mode = 2
 albedo_texture = SubResource("ViewportTexture_37d67")
 texture_filter = 0
 
@@ -71,19 +72,22 @@ orientation = 2
 script = ExtResource("1_w4e46")
 
 [node name="athenaMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 layers = 4
 mesh = SubResource("PlaneMesh_5l8fo")
 
 [node name="billboardComponent" parent="athenaMesh" instance=ExtResource("3_arlp5")]
 
 [node name="trigger1" parent="." instance=ExtResource("7_usl54")]
-size = Vector3(1, 2, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+size = Vector3(1.5, 3, 1.5)
 object_name = "athena_trigger"
 object_prompt = "TALK [INTERACT]"
 interact_ret = "athena_talk"
 
 [node name="trigger2" parent="." instance=ExtResource("7_usl54")]
-size = Vector3(1, 2, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+size = Vector3(1.5, 3, 1.5)
 object_name = "athena_trigger2"
 object_prompt = "TALK [INTERACT]"
 interact_ret = "athena_weave"
@@ -91,7 +95,8 @@ interactable = false
 on_start = false
 
 [node name="trigger3" parent="." instance=ExtResource("7_usl54")]
-size = Vector3(1, 2, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+size = Vector3(1.5, 3, 1.5)
 object_name = "athena_trigger3"
 object_prompt = "TAKE ἀσπίς 
 [INTERACT]"
@@ -100,7 +105,8 @@ interactable = false
 on_start = false
 
 [node name="trigger4" parent="." instance=ExtResource("7_usl54")]
-size = Vector3(1, 2, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+size = Vector3(1.5, 3, 1.5)
 object_name = "athena_trigger4"
 object_prompt = "WEAVE AGAIN
 [INTERACT]"
@@ -109,7 +115,7 @@ interactable = false
 on_start = false
 
 [node name="weaveCam" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.985703, 0.168489, 0, -0.168489, 0.985703, 0, 0.215, -0.3)
+transform = Transform3D(1, 0, 0, 0, 0.985703, 0.168489, 0, -0.168489, 0.985703, 0, 0.32, -0.625)
 
 [node name="weaveUI" type="Control" parent="weaveCam"]
 layout_mode = 3
@@ -150,7 +156,7 @@ original_text = "ROTATE TILE
 [INTERACT]"
 
 [node name="loom" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.985592, 0.169143, 0, -0.169143, 0.985592, 0, 0, -1)
+transform = Transform3D(1.5, 0, 0, 0, 1.47839, 0.253714, 0, -0.253714, 1.47839, 0, 0, -1.58878)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="loom"]
 
