@@ -4,7 +4,7 @@ extends Node3D
 @onready var euryale := $euryale
 @onready var sisterTalkCam := $sisterTalkCam
 @onready var talk_cam_tween
-@onready var current_phase := "angry"
+@onready var current_phase := "idle"
 @export var cave_trigger : Area3D
 @export var cave_player_pos : Node3D
 var player = null

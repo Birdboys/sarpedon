@@ -31,7 +31,7 @@
 [ext_resource type="AudioStream" uid="uid://c03v45dx8a3py" path="res://assets/sounds/petrify_crack.wav" id="26_xd6u5"]
 [ext_resource type="AudioStream" uid="uid://4yd0fbjdmm6" path="res://assets/sounds/sandal_flutter.wav" id="27_b3h32"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2a5dh"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5nip4"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_73vgs"]
 
@@ -556,19 +556,18 @@ _data = {
 }
 
 [node name="playerCharacter" type="CharacterBody3D"]
-collision_layer = 12
-collision_mask = 25
+collision_layer = 2097164
+collision_mask = 2097177
 script = ExtResource("1_y87bo")
-has_winged_sandals = true
 
 [node name="playerCol" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_2a5dh")
+shape = SubResource("CapsuleShape3D_5nip4")
 
 [node name="neck" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 
 [node name="playerCam" type="Camera3D" parent="neck"]
-transform = Transform3D(1, 0, 0, 0, 0.991445, 0.130526, 0, -0.130526, 0.991445, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)
 cull_mask = 1047565
 h_offset = -0.015
 current = true
@@ -666,6 +665,7 @@ initial_state = NodePath("playerWalk")
 
 [node name="playerWalk" type="Node" parent="stateMachine"]
 script = ExtResource("3_euxff")
+move_speed = 55.0
 movement_control = false
 
 [node name="playerJump" type="Node" parent="stateMachine"]

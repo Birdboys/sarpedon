@@ -292,7 +292,7 @@ disabled = true
 one_shot = true
 
 [node name="grabPos" type="Node3D" parent="stheno"]
-transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965925, 0.258819, -8.74228e-08, 0.258819, -0.965925, 0, 1, -1.25)
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965925, 0.258819, -8.74228e-08, 0.258819, -0.965925, 0, 0.75, -1.25)
 
 [node name="sthenoAnim" type="AnimationPlayer" parent="stheno"]
 root_node = NodePath("../..")
@@ -302,7 +302,8 @@ libraries = {
 
 [node name="hisser" type="AudioStreamPlayer3D" parent="stheno"]
 stream = ExtResource("12_mke4l")
-max_db = -5.0
+attenuation_model = 3
+max_db = -3.0
 max_distance = 50.0
 bus = &"soundEffects"
 
@@ -358,7 +359,7 @@ disabled = true
 one_shot = true
 
 [node name="grabPos" type="Node3D" parent="euryale"]
-transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 0, 1, -1.25)
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 0, 0.65, -1.25)
 
 [node name="euryaleAnim" type="AnimationPlayer" parent="euryale"]
 libraries = {
@@ -367,7 +368,8 @@ libraries = {
 
 [node name="hisser" type="AudioStreamPlayer3D" parent="euryale"]
 stream = ExtResource("12_mke4l")
-max_db = -5.0
+attenuation_model = 3
+max_db = -3.0
 max_distance = 50.0
 bus = &"soundEffects"
 

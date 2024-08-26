@@ -172,8 +172,6 @@ mesh = SubResource("PlaneMesh_uy3p3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.631408, -0.320602, 0)
 aabb = AABB(-0.05, -0.05, -0.05, 0.1, 0.1, 0.1)
 petrify_length = 35.0
-enabled = true
-can_petrify = true
 
 [node name="interactBox" parent="sleepMesh" instance=ExtResource("6_rpq05")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.618358, -0.267331, 0)
