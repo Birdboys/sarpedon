@@ -21,4 +21,5 @@ void fragment() {
     ALPHA = albedo_tex.a;
     METALLIC = 0.0;
     ROUGHNESS = 1.0;
+	ALPHA_SCISSOR_THRESHOLD = 0.5;
 }

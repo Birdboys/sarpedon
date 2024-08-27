@@ -212,10 +212,10 @@ tracks/1/path = NodePath("euryaleMesh:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.5, 1.75, 2, 2.25, 2.5),
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.6, 1.85, 2.1, 2.35, 2.6),
 "transitions": PackedFloat32Array(2, 0.5, 2, 0.5, 1, 2, 0.5, 2, 0.5, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 2.5, 0), Vector3(0, 3, 0), Vector3(0, 2.5, 0), Vector3(0, 3, 0), Vector3(0, 2.5, 0), Vector3(0, 2.5, 0), Vector3(0, 3, 0), Vector3(0, 2.5, 0), Vector3(0, 3, 0), Vector3(0, 2.5, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -239,13 +239,14 @@ _data = {
 [node name="gorgons" type="Node3D"]
 script = ExtResource("1_471g7")
 
-[node name="stheno" type="CharacterBody3D" parent="." groups=["needs_player_ground"]]
+[node name="stheno" type="CharacterBody3D" parent="." groups=["needs_player_left"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 0)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("2_8t2it")
 
 [node name="sthenoMesh" type="MeshInstance3D" parent="stheno"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 visible = false
 mesh = SubResource("PlaneMesh_n8uue")
 
@@ -260,14 +261,6 @@ mesh = SubResource("PlaneMesh_tg0sv")
 [node name="gorgonCol" type="CollisionShape3D" parent="stheno"]
 shape = SubResource("CapsuleShape3D_pbtxq")
 disabled = true
-
-[node name="navAgent" type="NavigationAgent3D" parent="stheno"]
-path_desired_distance = 2.0
-path_height_offset = -1.75
-avoidance_enabled = true
-radius = 1.0
-debug_use_custom = true
-debug_path_custom_color = Color(1, 0.619608, 1, 1)
 
 [node name="trigger1" parent="stheno" instance=ExtResource("5_574f0")]
 size = Vector3(1, 2, 1)
@@ -292,7 +285,7 @@ disabled = true
 one_shot = true
 
 [node name="grabPos" type="Node3D" parent="stheno"]
-transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965925, 0.258819, -8.74228e-08, 0.258819, -0.965925, 0, 0.75, -1.25)
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965925, 0.258819, -8.74228e-08, 0.258819, -0.965925, 0, 1.25, -1.25)
 
 [node name="sthenoAnim" type="AnimationPlayer" parent="stheno"]
 root_node = NodePath("../..")
@@ -307,7 +300,13 @@ max_db = -3.0
 max_distance = 50.0
 bus = &"soundEffects"
 
-[node name="euryale" type="CharacterBody3D" parent="." groups=["needs_player_ground"]]
+[node name="navAgent" type="NavigationAgent3D" parent="stheno"]
+avoidance_enabled = true
+radius = 1.0
+debug_enabled = true
+debug_path_custom_color = Color(0.396078, 1, 0.152941, 1)
+
+[node name="euryale" type="CharacterBody3D" parent="." groups=["needs_player_right"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0)
 collision_layer = 0
 collision_mask = 0
@@ -328,13 +327,6 @@ mesh = SubResource("PlaneMesh_6e05d")
 [node name="gorgonCol" type="CollisionShape3D" parent="euryale"]
 shape = SubResource("CapsuleShape3D_pbtxq")
 disabled = true
-
-[node name="navAgent" type="NavigationAgent3D" parent="euryale"]
-path_desired_distance = 2.0
-path_height_offset = -2.75
-avoidance_enabled = true
-radius = 1.0
-debug_path_custom_color = Color(0.223529, 1, 1, 1)
 
 [node name="trigger1" parent="euryale" instance=ExtResource("5_574f0")]
 size = Vector3(1, 2, 1)
@@ -359,7 +351,7 @@ disabled = true
 one_shot = true
 
 [node name="grabPos" type="Node3D" parent="euryale"]
-transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 0, 0.65, -1.25)
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 0, 1.75, -1.25)
 
 [node name="euryaleAnim" type="AnimationPlayer" parent="euryale"]
 libraries = {
@@ -372,6 +364,12 @@ attenuation_model = 3
 max_db = -3.0
 max_distance = 50.0
 bus = &"soundEffects"
+
+[node name="navAgent" type="NavigationAgent3D" parent="euryale"]
+avoidance_enabled = true
+radius = 1.0
+debug_enabled = true
+debug_path_custom_color = Color(0, 0.963484, 0.983899, 1)
 
 [node name="sisterTalkCam" type="Camera3D" parent="."]
 fov = 90.0

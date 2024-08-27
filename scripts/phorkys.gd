@@ -41,8 +41,8 @@ func firstSummon(body):
 	Dialogic.start("phorkysIntro")
 	emit_signal("phorkys_summon")
 	var ocean_pos
-	ocean_pos = body.boat.global_position + body.boat.global_basis.z * body.boat.velocity.length()/2.0 - Vector3.UP * 3
-	var surface_pos = ocean_pos + Vector3.UP * 4
+	ocean_pos = body.boat.global_position + body.boat.global_basis.z * body.boat.velocity.length()/2.0 - Vector3.UP * 4
+	var surface_pos = ocean_pos + Vector3.UP * 5
 	phorkysMesh.visible = true
 	phorkysMesh.global_position = ocean_pos
 	if summon_tween is Tween: summon_tween.kill()

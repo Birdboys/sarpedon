@@ -7,6 +7,7 @@ layers = 8
 script = ExtResource("1_t2kwj")
 
 [node name="petrifyRay" type="RayCast3D" parent="."]
-collision_mask = 2097173
-hit_from_inside = true
+enabled = false
+collision_mask = 273
+collide_with_areas = true
 debug_shape_custom_color = Color(1, 0.282353, 0, 1)

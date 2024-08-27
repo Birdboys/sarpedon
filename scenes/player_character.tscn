@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://ev5ihdel24io"]
+[gd_scene load_steps=70 format=3 uid="uid://ev5ihdel24io"]
 
 [ext_resource type="Script" path="res://scripts/player/player_character.gd" id="1_y87bo"]
 [ext_resource type="Texture2D" uid="uid://djldtb4845f38" path="res://assets/sprites/sword.png" id="2_0ap74"]
@@ -555,9 +555,11 @@ _data = {
 "start_sneak": SubResource("Animation_wqs11")
 }
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_xjftj"]
+
 [node name="playerCharacter" type="CharacterBody3D"]
-collision_layer = 2097164
-collision_mask = 2097177
+collision_layer = 12
+collision_mask = 25
 script = ExtResource("1_y87bo")
 
 [node name="playerCol" type="CollisionShape3D" parent="."]
@@ -569,7 +571,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 [node name="playerCam" type="Camera3D" parent="neck"]
 transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)
 cull_mask = 1047565
-h_offset = -0.015
 current = true
 far = 250.0
 script = ExtResource("2_7dfx5")
@@ -615,7 +616,6 @@ mesh = SubResource("PlaneMesh_eewxe")
 skeleton = NodePath("../..")
 
 [node name="petrifyPostProcess" type="MeshInstance3D" parent="neck/playerCam"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.497977, 0)
 visible = false
 mesh = SubResource("QuadMesh_22sj0")
 skeleton = NodePath("../../..")
@@ -977,10 +977,25 @@ libraries = {
 }
 
 [node name="groundArm" type="SpringArm3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-spring_length = 5.0
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.5, 0)
+collision_mask = 513
+spring_length = 7.0
 
 [node name="groundPoint" type="Node3D" parent="groundArm"]
+
+[node name="groundArmL" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1, 0.5, 0)
+collision_mask = 513
+spring_length = 7.0
+
+[node name="groundPointL" type="Node3D" parent="groundArmL"]
+
+[node name="groundArmR" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1, 0.5, 0)
+collision_mask = 513
+spring_length = 7.0
+
+[node name="groundPointR" type="Node3D" parent="groundArmR"]
 
 [node name="footstepPoint" type="Node3D" parent="."]
 
@@ -997,3 +1012,11 @@ bus = &"soundEffects"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 stream = ExtResource("27_b3h32")
 bus = &"soundEffects"
+
+[node name="petrifyArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="petrifyArea"]
+shape = SubResource("SphereShape3D_xjftj")

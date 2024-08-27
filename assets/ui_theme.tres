@@ -1,14 +1,13 @@
-[gd_resource type="Theme" load_steps=16 format=3 uid="uid://dplwrcgvyhpcw"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://dplwrcgvyhpcw"]
 
-[ext_resource type="FontFile" uid="uid://bguvi2je1ofym" path="res://assets/fonts/FiraSans-Bold.ttf" id="1_c2fos"]
-[ext_resource type="Texture2D" uid="uid://qb2yhowox0qk" path="res://assets/ui/slider_grabber.png" id="2_85c51"]
-[ext_resource type="Texture2D" uid="uid://byubok773wow" path="res://assets/temp/uiborders.png" id="2_aoq5i"]
+[ext_resource type="Texture2D" uid="uid://qb2yhowox0qk" path="res://assets/ui/slider_grabber.png" id="1_713jg"]
+[ext_resource type="Texture2D" uid="uid://byubok773wow" path="res://assets/temp/uiborders.png" id="1_se2cl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tojrn"]
 bg_color = Color(0, 0, 0, 0.901961)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sjmok"]
-texture = ExtResource("2_aoq5i")
+texture = ExtResource("1_se2cl")
 axis_stretch_horizontal = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tpo5s"]
@@ -22,7 +21,7 @@ bg_color = Color(0, 0, 0, 0.901961)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jyxlk"]
 content_margin_top = 16.0
 content_margin_bottom = 16.0
-texture = ExtResource("2_aoq5i")
+texture = ExtResource("1_se2cl")
 texture_margin_bottom = 16.0
 axis_stretch_horizontal = 1
 modulate_color = Color(0, 0, 0, 0.901961)
@@ -30,7 +29,7 @@ modulate_color = Color(0, 0, 0, 0.901961)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6861a"]
 content_margin_top = 16.0
 content_margin_bottom = 16.0
-texture = ExtResource("2_aoq5i")
+texture = ExtResource("1_se2cl")
 texture_margin_bottom = 16.0
 axis_stretch_horizontal = 1
 
@@ -49,7 +48,7 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0ijco"]
 content_margin_top = 16.0
 content_margin_bottom = 16.0
-texture = ExtResource("2_aoq5i")
+texture = ExtResource("1_se2cl")
 texture_margin_top = 16.0
 texture_margin_bottom = 16.0
 axis_stretch_horizontal = 1
@@ -59,7 +58,7 @@ draw_center = false
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nm0dh"]
 content_margin_top = 16.0
 content_margin_bottom = 16.0
-texture = ExtResource("2_aoq5i")
+texture = ExtResource("1_se2cl")
 texture_margin_top = 16.0
 texture_margin_bottom = 16.0
 axis_stretch_horizontal = 1
@@ -73,7 +72,6 @@ content_margin_bottom = 8.0
 bg_color = Color(0, 0, 0, 0.901961)
 
 [resource]
-default_font = ExtResource("1_c2fos")
 default_font_size = 12
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_focus_color = Color(1, 1, 1, 1)
@@ -81,7 +79,7 @@ Button/colors/font_hover_color = Color(0.501961, 0.501961, 0.501961, 1)
 Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 Button/colors/icon_hover_color = Color(0.501961, 0.501961, 0.501961, 1)
 Button/font_sizes/font_size = 24
-Button/fonts/font = ExtResource("1_c2fos")
+Button/fonts/font = null
 Button/styles/disabled = SubResource("StyleBoxFlat_tojrn")
 Button/styles/focus = SubResource("StyleBoxFlat_tojrn")
 Button/styles/hover = SubResource("StyleBoxFlat_tojrn")
@@ -89,9 +87,9 @@ Button/styles/normal = SubResource("StyleBoxFlat_tojrn")
 Button/styles/pressed = SubResource("StyleBoxFlat_tojrn")
 HSlider/constants/center_grabber = 0
 HSlider/constants/grabber_offset = 0
-HSlider/icons/grabber = ExtResource("2_85c51")
-HSlider/icons/grabber_disabled = ExtResource("2_85c51")
-HSlider/icons/grabber_highlight = ExtResource("2_85c51")
+HSlider/icons/grabber = ExtResource("1_713jg")
+HSlider/icons/grabber_disabled = ExtResource("1_713jg")
+HSlider/icons/grabber_highlight = ExtResource("1_713jg")
 HSlider/styles/grabber_area = SubResource("StyleBoxTexture_sjmok")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_sjmok")
 HSlider/styles/slider = SubResource("StyleBoxEmpty_tpo5s")

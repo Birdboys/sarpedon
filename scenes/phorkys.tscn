@@ -22,7 +22,7 @@ shader_parameter/image3 = ExtResource("3_olx0p")
 [sub_resource type="PlaneMesh" id="PlaneMesh_hylr1"]
 material = SubResource("ShaderMaterial_gklpl")
 flip_faces = true
-size = Vector2(4, 4)
+size = Vector2(5, 5)
 orientation = 2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_66aud"]

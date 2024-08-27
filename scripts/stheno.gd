@@ -14,7 +14,7 @@ extends CharacterBody3D
 @onready var current_phase := "idle"
 @onready var speed := 4.75
 @onready var attack_time := 2.0
-@onready var target_closeness := 0.25
+@onready var target_closeness := 1.0
 
 var player_target_pos : Vector3
 var roam_target_pos := Vector3(-118.21, 3.41, 70.79)
@@ -34,17 +34,14 @@ func _physics_process(_delta):
 			#print(navAgent.is_target_reachable(), velocity)
 			navAgent.set_target_position(player_target_pos)
 			var player_reachable = navAgent.is_target_reachable()
-			if player_reachable:
-				var current_agent_position: Vector3 = global_position
-				var next_path_position: Vector3 = navAgent.get_next_path_position()
-				velocity = current_agent_position.direction_to(next_path_position) * speed
-			else:
+			if not player_reachable:
 				navAgent.set_target_position(roam_target_pos)
-				var current_agent_position: Vector3 = global_position
-				var next_path_position: Vector3 = navAgent.get_next_path_position()
-				velocity = current_agent_position.direction_to(next_path_position) * speed
-			#if navAgent.distance_to_target() < target_closeness:
-				#velocity = velocity * 0.1
+			var current_agent_position: Vector3 = global_position
+			var next_path_position: Vector3 = navAgent.get_next_path_position()
+			navAgent.set_velocity(global_position.direction_to(next_path_position).normalized() * speed)
+			velocity = await navAgent.velocity_computed
+			if navAgent.distance_to_target() < target_closeness:
+				velocity = velocity * 0.1
 			move_and_slide()
 			
 			if velocity.length() > 0:
@@ -58,7 +55,9 @@ func setTargetPos(pos):
 	player_target_pos = pos
 	
 func changeToGorgon():
-	if current_phase == "gorgon": return
+	if current_phase == "gorgon": 
+		AudioHandler.playSound3D("stheno_cry", global_position)
+		return
 	attackCol.set_deferred("disabled", false)
 	maidenMesh.visible = false
 	gorgonMesh.visible = true
@@ -95,9 +94,9 @@ func unTransitionCamera(_initial_camera: Camera3D):
 	return
 
 func grabPlayer():
-	var player_tween = get_tree().create_tween()
-	player_tween.tween_property(player, "global_transform", grabPos.global_transform, 0.15)
-	player_tween.tween_interval(0.25)
+	var player_tween = get_tree().create_tween().set_ease(Tween.EASE_OUT)
+	player_tween.tween_property(player, "global_transform", grabPos.global_transform, 0.25)
+	player_tween.tween_interval(0.5)
 	player_tween.tween_callback(player.gorgonAttack)
 	await player_tween.finished
 	current_phase = "attacking"

@@ -24,6 +24,8 @@ extends CharacterBody3D
 @onready var invisEffect := $postProcess/invisEffect
 @onready var petrifyPostProcess := $neck/playerCam/petrifyPostProcess
 @onready var groundPoint := $groundArm/groundPoint
+@onready var groundPointL := $groundArmL/groundPointL
+@onready var groundPointR := $groundArmR/groundPointR
 @onready var footstepPoint := $footstepPoint
 @onready var petrifyTimer := $petrifyTimer
 @onready var petrifyPlayer := $petrifyPlayer
@@ -35,7 +37,7 @@ extends CharacterBody3D
 @onready var compass := $UI/UIBase/compass
 @onready var petrify_val := 0.0
 @onready var petrify_rate := 0.3
-@onready var petrify_cleanse_rate := 0.1
+@onready var petrify_cleanse_rate := 0.25
 @onready var death_type := ""
 
 @export var has_invis_helmet := false
@@ -257,6 +259,7 @@ func pauseToggled():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func handlePetrify(delta):
+	return
 	await get_tree().physics_frame
 	if petrified_perma:
 		petrifyPostProcess.mesh.material.set_shader_parameter("petrify_val", 1.0)
@@ -270,8 +273,8 @@ func handlePetrify(delta):
 		petrifyPostProcess.visible = false
 		petrifyPlayer.stop()
 	else:
-		petrifyPostProcess.mesh.material.set_shader_parameter("petrify_val", petrify_val)
 		petrifyPostProcess.visible = true
+		petrifyPostProcess.mesh.material.set_shader_parameter("petrify_val", petrify_val)
 		if not petrifyPlayer.playing: petrifyPlayer.play()
 		petrifyPlayer.volume_db = remap(clamp(petrify_val, 0, 0.5), 0, 0.5, -25, 0)
 	if petrify_val > 0.9:
@@ -288,8 +291,11 @@ func deathByPetrify():
 	death_type = "petrify"
 	stateMachine.on_state_transition(stateMachine.current_state, "playerDied")
 	
-func getGroundPos():
-	return groundPoint.global_position
+func getGroundPos(dir=""):
+	match dir:
+		"": return groundPoint.global_position
+		"left": return groundPointL.global_position
+		"right": return groundPointR.global_position
 
 func exitingShallows(_body):
 	print("EXITING SHALLOWS")
@@ -360,7 +366,7 @@ func deathByPhorkys():
 	stateMachine.on_state_transition(stateMachine.current_state, "playerDied")
 
 func setTutorialPrompt(t):
-	tutorialTimer.timeout.disconnect(tutorialPrompt.clear)
+	if tutorialTimer.is_connected("timeout", tutorialPrompt.clear): tutorialTimer.timeout.disconnect(tutorialPrompt.clear)
 	tutorialTimer.stop()
 	tutorialPrompt.original_text = t
 	tutorialPrompt.updateTranslation()

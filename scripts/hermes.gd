@@ -127,6 +127,14 @@ func discusLanded():
 			Dialogic.start("hermesDiscusAfter3")
 		"discus_repeat_throw":
 			Dialogic.start("hermesRepeatFinished")
+		"discus_repeat_1":
+			current_phase = "discus_repeat_2"
+			Dialogic.start("hermesDiscusRepeat1")
+		"discus_repeat_2":
+			current_phase = "discus_repeat_3"
+			Dialogic.start("hermesDiscusRepeat2")
+		"discus_repeat_3":
+			Dialogic.start("hermesRepeatFinished")
 		_: 
 			pass
 
@@ -161,7 +169,7 @@ func startDiscusRepeat():
 func startThrowRepeat():
 	print("STARTING ANOTHER THROW")
 	runTimer.stop()
-	current_phase = "discus_repeat_throw"
+	current_phase = "discus_repeat_1"
 	trigger5.deactivate()
 	Dialogic.start("hermesRepeatDiscus")
 

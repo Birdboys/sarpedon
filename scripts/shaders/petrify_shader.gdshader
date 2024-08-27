@@ -11,7 +11,7 @@ float colorToGrey(float r, float g, float b) {
 }
 
 void vertex() {
-  POSITION = vec4(VERTEX, 1.0);
+  POSITION = vec4(VERTEX.xy, 1.0, 1.0);
 }
 
 void fragment() {

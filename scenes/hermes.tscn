@@ -77,6 +77,7 @@ size = Vector3(1.5, 3, 1.5)
 object_name = "hermes_trig1"
 object_prompt = "TALK [INTERACT]"
 interact_ret = "hermes_intro"
+on_start = false
 
 [node name="trigger2" parent="." instance=ExtResource("7_ejpgu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -106,7 +107,6 @@ object_prompt = "THROW AGAIN
 [INTERACT]"
 interact_ret = "hermes_repeat"
 interactable = false
-on_start = false
 
 [node name="trigger5" parent="." instance=ExtResource("7_ejpgu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)

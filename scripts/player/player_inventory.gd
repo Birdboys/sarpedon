@@ -10,6 +10,8 @@ func enter():
 	AudioHandler.playSound("inventory_open")
 
 func update(_delta):
+	parent.camAnim.stop()
+	print(parent.camAnim.is_playing())
 	if Input.is_action_just_pressed("inventory"):
 		emit_signal("transitioned", self, "playerWalk")
 	if Input.is_action_just_pressed("left"):

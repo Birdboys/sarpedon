@@ -73,8 +73,11 @@ func _process(_delta):
 func _physics_process(_delta):
 	for node in get_tree().get_nodes_in_group("needs_player_ground"):
 		if not player.is_invis: node.setTargetPos(player.getGroundPos())
-	for node in get_tree().get_nodes_in_group("needs_player_eyes"):
-		node.setTargetPos(player.camera.global_position)
+	for node in get_tree().get_nodes_in_group("needs_player_left"):
+		node.setTargetPos(player.getGroundPos("left"))
+	for node in get_tree().get_nodes_in_group("needs_player_right"):
+		node.setTargetPos(player.getGroundPos("right"))
+
 	if Vector3(player.global_position.x, 0, player.global_position.z).length() < 150:
 		AudioHandler.setPlayer("ocean", remap(clamp(Vector3(player.global_position.x, 0, player.global_position.z).length(), 0, 150), 0.0, 150.0, -60, 0))
 	AudioHandler.setPlayer("wind", remap(clamp(player.global_position.y, 0, 30), 0, 30, -60, 0))

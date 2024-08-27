@@ -77,6 +77,8 @@ directories/dtl_directory={
 "hermesDiscusAfter3": "res://assets/timelines/hermesDiscusAfter3.dtl",
 "hermesDiscusExplanation": "res://assets/timelines/hermesDiscusExplanation.dtl",
 "hermesDiscusExplanation2": "res://assets/timelines/hermesDiscusExplanation2.dtl",
+"hermesDiscusRepeat1": "res://assets/timelines/hermesDiscusRepeat1.dtl",
+"hermesDiscusRepeat2": "res://assets/timelines/hermesDiscusRepeat2.dtl",
 "hermesIntro": "res://assets/timelines/hermesIntro.dtl",
 "hermesRepeat": "res://assets/timelines/hermesRepeat.dtl",
 "hermesRepeatDiscus": "res://assets/timelines/hermesRepeatDiscus.dtl",
@@ -139,7 +141,15 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/dreadpon.spatial_gardener/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
+
+[global_group]
+
+needs_player_left=""
+needs_player_right=""
+needs_player_eyes=""
+billboard_comp=""
+needs_player_ground=""
 
 [gui]
 
@@ -245,6 +255,8 @@ locale/translations=PackedStringArray("res://assets/input_translation.en.transla
 3d_physics/layer_6="footstep_water"
 3d_physics/layer_7="medusa_head"
 3d_physics/layer_8="sword"
+3d_physics/layer_9="petrify"
+3d_physics/layer_10="navigation"
 
 [rendering]
 

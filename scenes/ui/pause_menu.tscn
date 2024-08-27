@@ -25,15 +25,15 @@ content_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_chpcr"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mibgy"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6joks"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a2ch4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ugvq2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e0751"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a2ch4"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6joks"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mibgy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_veihl"]
 
@@ -458,11 +458,11 @@ size_flags_vertical = 3
 [node name="leftButton" type="Button" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails/gallery/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxEmpty_chpcr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_chpcr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_chpcr")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_chpcr")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_chpcr")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_chpcr")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_chpcr")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_chpcr")
 icon = ExtResource("10_5rvr4")
 flat = true
 icon_alignment = 1
@@ -471,17 +471,17 @@ icon_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxEmpty_mibgy")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6joks")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_a2ch4")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_ugvq2")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_e0751")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_a2ch4")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_6joks")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mibgy")
 flat = true
 text_overrun_behavior = 3
 clip_text = true
@@ -489,11 +489,11 @@ clip_text = true
 [node name="rightButton" type="Button" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer/artDetails/gallery/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxEmpty_veihl")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_veihl")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_veihl")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_veihl")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_veihl")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_veihl")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_veihl")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_veihl")
 icon = ExtResource("11_cmifa")
 flat = true
 icon_alignment = 1

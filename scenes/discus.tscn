@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/discus.gd" id="1_aegs6"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ahisa"]
-height = 0.1
+height = 0.3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n1b4k"]
 albedo_color = Color(0.35, 0.2135, 0.1225, 1)
@@ -18,11 +18,12 @@ collision_layer = 0
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 continuous_cd = true
-max_contacts_reported = 1
 contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_aegs6")
 
 [node name="discusCol" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 shape = SubResource("CylinderShape3D_ahisa")
 
 [node name="discusMesh" type="MeshInstance3D" parent="."]

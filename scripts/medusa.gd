@@ -64,6 +64,8 @@ func _physics_process(_delta):
 			var next_pos = navAgent.get_next_path_position()
 			var next_dir = next_pos - global_position
 			velocity = next_dir * speed
+			if navAgent.distance_to_target() < 0.5:
+				velocity = velocity * 0.1
 			move_and_slide()
 			
 func playerEnteredCave(body):
@@ -109,7 +111,7 @@ func wakeUp():
 	medusaPetrify.can_petrify = true
 	gorgonHeadTrigger.activate()
 	emit_signal("medusa_awake")
-	AudioHandler.playSound3D("medusa_awake", global_position)
+	AudioHandler.playSound3D("medusa_gasp", global_position)
 	Dialogic.toggleAutoload(true)
 	Dialogic.start("medusaMonologue")
 	await Dialogic.timeline_started
@@ -120,8 +122,6 @@ func slain():
 	Dialogic.start("medusaLastWords")
 	attackCol.set_deferred("disabled", true)
 	attackTimer.stop()
-	if "awake" in current_phase:
-		global_position = global_position - Vector3.UP * 1.3
 	current_phase = "dead"
 	sleepMesh.visible = false
 	sleepPetrify.enabled = false
