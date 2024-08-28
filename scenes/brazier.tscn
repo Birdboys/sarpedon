@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cl4ye7v8bgh8l"]
+[gd_scene load_steps=5 format=3 uid="uid://cl4ye7v8bgh8l"]
 
+[ext_resource type="Script" path="res://scripts/brazier.gd" id="1_43bqo"]
 [ext_resource type="Texture2D" uid="uid://beqt1evysc644" path="res://assets/textures/cliffy.png" id="1_nf770"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bpdd1"]
@@ -13,6 +14,7 @@ height = 0.5
 radius = 2.0
 
 [node name="brazier" type="StaticBody3D"]
+script = ExtResource("1_43bqo")
 
 [node name="tempMesh" type="CSGCylinder3D" parent="."]
 use_collision = true

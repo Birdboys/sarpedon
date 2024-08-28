@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="sarpedon"
-run/main_scene="res://assets/temp/test_island.tscn"
+run/main_scene="res://scenes/ui/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
@@ -263,3 +263,10 @@ locale/translations=PackedStringArray("res://assets/input_translation.en.transla
 textures/canvas_textures/default_texture_filter=0
 textures/decals/filter=2
 textures/light_projectors/filter=2
+
+[shader_globals]
+
+current_time={
+"type": "float",
+"value": 0.0
+}

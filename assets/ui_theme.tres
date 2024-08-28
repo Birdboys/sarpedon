@@ -1,7 +1,8 @@
-[gd_resource type="Theme" load_steps=15 format=3 uid="uid://dplwrcgvyhpcw"]
+[gd_resource type="Theme" load_steps=18 format=3 uid="uid://dplwrcgvyhpcw"]
 
 [ext_resource type="Texture2D" uid="uid://qb2yhowox0qk" path="res://assets/ui/slider_grabber.png" id="1_713jg"]
 [ext_resource type="Texture2D" uid="uid://byubok773wow" path="res://assets/temp/uiborders.png" id="1_se2cl"]
+[ext_resource type="Texture2D" uid="uid://cw08dxr623285" path="res://assets/temp/uibordersrot.png" id="3_44u6a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tojrn"]
 bg_color = Color(0, 0, 0, 0.901961)
@@ -16,6 +17,15 @@ content_margin_bottom = 8.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ts2ka"]
 content_margin_left = 8.0
+bg_color = Color(0, 0, 0, 0.901961)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0f5ga"]
+texture = ExtResource("3_44u6a")
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1rw7k"]
+content_margin_left = 8.0
+content_margin_right = 8.0
 bg_color = Color(0, 0, 0, 0.901961)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jyxlk"]
@@ -94,6 +104,11 @@ HSlider/styles/grabber_area = SubResource("StyleBoxTexture_sjmok")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_sjmok")
 HSlider/styles/slider = SubResource("StyleBoxEmpty_tpo5s")
 Panel/styles/panel = SubResource("StyleBoxFlat_ts2ka")
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_0f5ga")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_0f5ga")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_0f5ga")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_1rw7k")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_1rw7k")
 botPanel/base_type = &"Panel"
 botPanel/styles/panel = SubResource("StyleBoxTexture_jyxlk")
 botPanelW/base_type = &"Panel"

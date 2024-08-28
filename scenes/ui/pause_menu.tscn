@@ -183,7 +183,6 @@ size_flags_vertical = 3
 text = "Quit"
 
 [node name="controlsMenu" type="Control" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -203,7 +202,7 @@ theme_override_constants/separation = 2
 
 [node name="firstRow" type="HBoxContainer" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/controlsMenu/controlsVbox"]
 layout_mode = 2
-theme_override_constants/separation = 2
+theme_override_constants/separation = 0
 
 [node name="actionText" type="Label" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/controlsMenu/controlsVbox/firstRow"]
 layout_mode = 2
@@ -220,6 +219,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+size_flags_stretch_ratio = 1.2
 theme_type_variation = &"uiLabel"
 theme_override_styles/normal = SubResource("StyleBoxFlat_fhv12")
 text = "INPUT"
