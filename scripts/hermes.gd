@@ -123,6 +123,7 @@ func discusLanded():
 			Dialogic.start("hermesDiscusAfter2")
 		"player_throw_3":
 			current_phase = "discus_done"
+			hermesMesh.visible = true
 			emit_signal("activity_finished")
 			Dialogic.start("hermesDiscusAfter3")
 		"discus_repeat_throw":
