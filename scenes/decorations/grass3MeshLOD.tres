@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://duyvhal7nbid5" path="res://assets/textures/grass3.png" id="2_xwj4u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cladm"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("2_xwj4u")
 texture_filter = 2
 
