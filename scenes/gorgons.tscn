@@ -284,6 +284,9 @@ disabled = true
 [node name="attackTimer" type="Timer" parent="stheno"]
 one_shot = true
 
+[node name="moveTimer" type="Timer" parent="stheno"]
+one_shot = true
+
 [node name="grabPos" type="Node3D" parent="stheno"]
 transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965925, 0.258819, -8.74228e-08, 0.258819, -0.965925, 0, 1.25, -1.25)
 
@@ -348,6 +351,9 @@ shape = SubResource("SphereShape3D_hcdt0")
 disabled = true
 
 [node name="attackTimer" type="Timer" parent="euryale"]
+one_shot = true
+
+[node name="moveTimer" type="Timer" parent="euryale"]
 one_shot = true
 
 [node name="grabPos" type="Node3D" parent="euryale"]

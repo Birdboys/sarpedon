@@ -8,6 +8,7 @@ extends CharacterBody3D
 @onready var attackRadius := $attackRadius
 @onready var attackCol := $attackRadius/attackCol
 @onready var attackTimer := $attackTimer
+@onready var moveTimer := $moveTimer
 @onready var grabPos := $grabPos
 @onready var anim := $euryaleAnim
 @onready var hisser := $hisser
@@ -15,8 +16,8 @@ extends CharacterBody3D
 @onready var speed := 4.75
 @onready var attack_time := 3.5
 @onready var target_closeness := 1.0
-var player_target_pos : Vector3
-var roam_target_pos := Vector3(-116.46, 3.41, 72.57)
+@onready var move_timeout := 1.0
+var player_target_pos
 var player
 
 signal activity_finished 
@@ -25,16 +26,13 @@ func _ready():
 	attackRadius.body_entered.connect(startAttack)
 	attackRadius.body_exited.connect(stopAttack)
 	attackTimer.timeout.connect(attackPlayer)
+	moveTimer.timeout.connect(updatePathTarget)
 	attackCol.disabled = true
 	hisser.play(0.0)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
 	match current_phase:
 		"gorgon":
-			navAgent.set_target_position(player_target_pos)
-			var player_reachable = navAgent.is_target_reachable()
-			if not player_reachable:
-				navAgent.set_target_position(roam_target_pos)
 			var current_agent_position: Vector3 = global_position
 			var next_path_position: Vector3 = navAgent.get_next_path_position()
 			navAgent.set_velocity(global_position.direction_to(next_path_position).normalized() * speed)
@@ -52,6 +50,11 @@ func _physics_process(_delta):
 func setTargetPos(pos):
 	player_target_pos = pos
 
+func updatePathTarget():
+	if player_target_pos != null:
+		navAgent.target_position = player_target_pos
+	moveTimer.start(move_timeout)
+
 func changeToGorgon():
 	if current_phase == "gorgon": 
 		AudioHandler.playSound3D("euryale_cry", global_position)
@@ -63,6 +66,7 @@ func changeToGorgon():
 	petrifyComp.enabled = true
 	petrifyComp.can_petrify = true
 	current_phase = "gorgon"
+	updatePathTarget()
 	AudioHandler.playSound3D("euryale_cry", global_position)
 	
 

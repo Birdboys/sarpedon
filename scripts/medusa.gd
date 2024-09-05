@@ -10,6 +10,7 @@ extends CharacterBody3D
 @onready var attackRadius := $attackRadius
 @onready var attackCol := $attackRadius/attackCol
 @onready var attackTimer := $attackTimer
+@onready var moveTimer := $moveTimer
 @onready var medusaPetrify := $medusaMesh/petrifyComponent2
 @onready var sleepPetrify := $sleepMesh/petrifyComponent
 @onready var headPetrify := $headMesh/petrifyComponent
@@ -23,6 +24,8 @@ extends CharacterBody3D
 @onready var home_pos := Vector3(-51, -3.63, -15)
 @onready var speed := 2.0
 @onready var attack_time := 3.0
+@onready var target_closeness := 1.0
+@onready var move_timeout := 1.0
 @export var caveArea : Area3D
 
 signal medusa_awake
@@ -31,7 +34,7 @@ signal head_taken
 signal activity_finished
 
 var player
-var target_pos : Vector3
+var player_target_pos
 
 func _ready():
 	caveArea.body_entered.connect(playerEnteredCave)
@@ -39,6 +42,7 @@ func _ready():
 	attackRadius.body_entered.connect(startAttack)
 	attackRadius.body_exited.connect(stopAttack)
 	attackTimer.timeout.connect(attackPlayer)
+	moveTimer.timeout.connect(updatePathTarget)
 	deadHeadTrigger.interacted.connect(headTaken)
 	sleepHeadTrigger.activate()
 	gorgonHeadTrigger.deactivate()
@@ -48,25 +52,18 @@ func _ready():
 	
 func _physics_process(_delta):
 	match current_phase:
-		"awake_idle":
-			if medusaPetrify.can_see_player and player: 
-				setPlayerPos(player.global_position)
-				current_phase = "awake_chasing"
-				return
-		"awake_chasing":
-			anim.play("chase")
-			if navAgent.is_target_reached():
-				current_phase = "awake_idle"
-				anim.stop()
-				return
-			if medusaPetrify.can_see_player and player:
-				setPlayerPos(player.global_position)
-			var next_pos = navAgent.get_next_path_position()
-			var next_dir = next_pos - global_position
-			velocity = next_dir * speed
-			if navAgent.distance_to_target() < 0.5:
+		"awake":
+			var current_agent_position: Vector3 = global_position
+			var next_path_position: Vector3 = navAgent.get_next_path_position()
+			navAgent.set_velocity(global_position.direction_to(next_path_position).normalized() * speed)
+			velocity = await navAgent.velocity_computed
+			if navAgent.distance_to_target() < target_closeness:
 				velocity = velocity * 0.1
 			move_and_slide()
+			if velocity.length() > 0:
+				anim.play("chase")
+			else:
+				anim.stop()
 			
 func playerEnteredCave(body):
 	player_in_cave = true
@@ -92,19 +89,16 @@ func playerFootstep(player_pos, type):
 		"waking_2":
 			if type == "loud":
 				wakeUp()
-		"awake_idle":
-			current_phase = "awake_chasing"
-			setPlayerPos(player_pos)
-		"awake_chasing":
-			setPlayerPos(player_pos)
+		"awake":
+			setTargetPos(player_pos)
 
 func wakeUp():
 	AudioHandler.setPlayer("music", false)
-	current_phase = "awake_idle"
+	current_phase = "awake"
 	sleepMesh.visible = false
 	sleepPetrify.enabled = false
 	sleepHeadTrigger.deactivate()
-	
+	updatePathTarget()
 	attackCol.set_deferred("disabled", false)
 	medusaMesh.visible = true
 	medusaPetrify.enabled = true
@@ -117,11 +111,13 @@ func wakeUp():
 	await Dialogic.timeline_started
 	Dialogic.timeline_started.connect(handleAutoDialogue)
 	
+	
 func slain():
 	AudioHandler.setPlayer("music", false)
 	Dialogic.start("medusaLastWords")
 	attackCol.set_deferred("disabled", true)
 	attackTimer.stop()
+	moveTimer.stop()
 	current_phase = "dead"
 	sleepMesh.visible = false
 	sleepPetrify.enabled = false
@@ -143,12 +139,16 @@ func slain():
 	medusaPlayer.play()
 	AudioHandler.playSound3D("medusa_gasp", global_position)
 	emit_signal("medusa_slain")
-	
-	
-func setPlayerPos(pos):
-	target_pos = pos
-	navAgent.set_target_position(target_pos)
 
+func setTargetPos(pos):
+	player_target_pos = pos
+
+func updatePathTarget():
+	print("MEDUSA PATH UPDATE")
+	if player_target_pos != null:
+		navAgent.target_position = player_target_pos
+	moveTimer.start(move_timeout)
+	
 func headTaken():
 	headMesh.visible = false
 	deadHeadTrigger.deactivate()

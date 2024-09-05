@@ -35,3 +35,6 @@ light_specular = 0.0
 shadow_enabled = true
 omni_range = 100.0
 omni_attenuation = 0.5
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+radius = 2.0

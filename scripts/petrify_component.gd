@@ -6,7 +6,7 @@ extends VisibleOnScreenNotifier3D
 @export var enabled := false
 @export var can_petrify := false
 
-var target_pos : Vector3
+var target_pos
 
 func _ready():
 	petrifyRay.target_position = Vector3.FORWARD * petrify_length

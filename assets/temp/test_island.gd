@@ -73,8 +73,10 @@ func _process(_delta):
 	RenderingServer.global_shader_parameter_set("current_time", Time.get_ticks_msec()/1000.0)
 
 func _physics_process(_delta):
+	for node in get_tree().get_nodes_in_group("needs_player_eyes"):
+		node.setTargetPos(player.getEyePos())
 	for node in get_tree().get_nodes_in_group("needs_player_ground"):
-		if not player.is_invis: node.setTargetPos(player.getGroundPos())
+		node.setTargetPos(player.getGroundPos())
 	for node in get_tree().get_nodes_in_group("needs_player_left"):
 		node.setTargetPos(player.getGroundPos("left"))
 	for node in get_tree().get_nodes_in_group("needs_player_right"):

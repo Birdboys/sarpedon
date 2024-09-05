@@ -259,7 +259,6 @@ func pauseToggled():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func handlePetrify(delta):
-	return
 	await get_tree().physics_frame
 	if petrified_perma:
 		petrifyPostProcess.mesh.material.set_shader_parameter("petrify_val", 1.0)
@@ -292,11 +291,16 @@ func deathByPetrify():
 	stateMachine.on_state_transition(stateMachine.current_state, "playerDied")
 	
 func getGroundPos(dir=""):
+	if is_invis: return null
 	match dir:
 		"": return groundPoint.global_position
 		"left": return groundPointL.global_position
 		"right": return groundPointR.global_position
 
+func getEyePos():
+	if is_invis: return null
+	return camera.global_position
+	
 func exitingShallows(_body):
 	print("EXITING SHALLOWS")
 	if stateMachine.current_state.name == "playerBoat" or stateMachine.current_state.name == "playerDied": return
@@ -377,7 +381,7 @@ func resetData():
 	has_shield = false
 	has_sword = false
 	has_bag = false
-	has_invis_helmet = false
+	has_invis_helmet = true
 	has_winged_sandals = false
 	petrified = false
 	petrified_perma = false
