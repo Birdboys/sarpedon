@@ -82,10 +82,8 @@ func lament():
 	euryale.trigger1.deactivate()
 	stheno.changeToGorgon()
 	euryale.changeToGorgon()
-	Dialogic.toggleAutoload(true)
 	Dialogic.start("sistersGorgonRetaliation")
-	await Dialogic.timeline_started
-	Dialogic.timeline_started.connect(handleAutoDialogue)
+	Dialogic.stopAutoAfterTimeline()
 
 func sisterAwake():
 	current_phase = "angry"
@@ -115,6 +113,6 @@ func unTransitionCamera(initial_camera: Camera3D):
 	return
 
 func handleAutoDialogue():
+	print("TOGGLE AUTO")
 	Dialogic.timeline_started.disconnect(handleAutoDialogue)
 	Dialogic.toggleAutoload(false)
-	

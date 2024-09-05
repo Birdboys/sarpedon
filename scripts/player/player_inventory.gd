@@ -11,14 +11,13 @@ func enter():
 
 func update(_delta):
 	parent.camAnim.stop()
-	print(parent.camAnim.is_playing())
 	if Input.is_action_just_pressed("inventory"):
 		emit_signal("transitioned", self, "playerWalk")
 	if Input.is_action_just_pressed("left"):
 		parent.inventoryHandler.nextItem(false)
 	if Input.is_action_just_pressed("right"):
 		parent.inventoryHandler.nextItem(true)
-		
+			
 func exit():
 	parent.inventoryHandler.closeInventory()
 	parent.compass.visible = true

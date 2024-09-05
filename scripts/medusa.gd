@@ -106,15 +106,13 @@ func wakeUp():
 	gorgonHeadTrigger.activate()
 	emit_signal("medusa_awake")
 	AudioHandler.playSound3D("medusa_gasp", global_position)
-	Dialogic.toggleAutoload(true)
 	Dialogic.start("medusaMonologue")
-	await Dialogic.timeline_started
-	Dialogic.timeline_started.connect(handleAutoDialogue)
-	
+	Dialogic.stopAutoAfterTimeline()
 	
 func slain():
 	AudioHandler.setPlayer("music", false)
 	Dialogic.start("medusaLastWords")
+	Dialogic.stopAutoAfterTimeline()
 	attackCol.set_deferred("disabled", true)
 	attackTimer.stop()
 	moveTimer.stop()
@@ -192,4 +190,3 @@ func handleAutoDialogue():
 	print("HANDLING AUTO DIALOG")
 	Dialogic.timeline_started.disconnect(handleAutoDialogue)
 	Dialogic.toggleAutoload(false)
-	#print("HANDLING AUTO DIALOG, ", Dialogic.Inputs.auto_advance.enabled_forced)
