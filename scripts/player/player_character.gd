@@ -378,10 +378,10 @@ func setTutorialPrompt(t):
 	tutorialTimer.timeout.connect(tutorialPrompt.clear)
 
 func resetData():
-	has_shield = false
+	has_shield = true
 	has_sword = false
 	has_bag = false
-	has_invis_helmet = true
+	has_invis_helmet = false
 	has_winged_sandals = false
 	petrified = false
 	petrified_perma = false

@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://blvhgdrrpdsv2" path="res://assets/textures/bush1.png" id="1_2tilt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ipfwd"]
+shading_mode = 0
 albedo_texture = ExtResource("1_2tilt")
 texture_filter = 2
 

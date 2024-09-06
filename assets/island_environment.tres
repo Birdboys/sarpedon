@@ -8,6 +8,7 @@ filter = false
 
 [sub_resource type="Sky" id="Sky_i0xqh"]
 sky_material = SubResource("PanoramaSkyMaterial_40axr")
+radiance_size = 2
 
 [resource]
 background_mode = 2
@@ -21,7 +22,6 @@ ssil_enabled = true
 sdfgi_min_cell_size = 0.351563
 sdfgi_cascade0_distance = 22.5001
 sdfgi_max_distance = 360.001
-glow_enabled = true
 fog_enabled = true
 fog_light_color = Color(0.626455, 0.670486, 0.878558, 1)
 fog_light_energy = 1.2

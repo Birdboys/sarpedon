@@ -22,7 +22,7 @@ extends CharacterBody3D
 @onready var navAgent := $navAgent
 @onready var medusaPlayer := $medusaPlayer
 @onready var home_pos := Vector3(-51, -3.63, -15)
-@onready var speed := 2.0
+@onready var speed := 4.0
 @onready var attack_time := 3.0
 @onready var target_closeness := 1.0
 @onready var move_timeout := 1.0
