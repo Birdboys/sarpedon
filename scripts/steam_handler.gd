@@ -9,10 +9,9 @@ func _init() -> void:
 
 func _ready() -> void:
 	initializeSteam()
-
 func initializeSteam():
-	return
 	var init_reps = Steam.steamInitEx(false)
+	print(init_reps)
 	if init_reps['status'] > 0:
 		steam_running = false
 	else:

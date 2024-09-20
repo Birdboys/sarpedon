@@ -35,8 +35,13 @@ func loadDeathScreen(type):
 		"siren":
 			deathLine.text = "YOU WERE LULLED BY THE SIRENS"
 			SteamHandler.achievementGet("ACH_SIREN")
-		"gorgon":
+		"stheno","euryale","medusa":
 			deathLine.text = "YOU WERE SLAIN BY THE GORGONS"
+			match type:
+				"stheno": DataHandler.stheno_death = true
+				"euryale": DataHandler.euryale_death = true
+				"medusa": DataHandler.medusa_death = true
+			DataHandler.checkUnholy()
 		"medusa_slain":
 			deathLine.text = "YOU SLAYED MEDUSA"
 			SteamHandler.achievementGet("ACH_WRITTEN")

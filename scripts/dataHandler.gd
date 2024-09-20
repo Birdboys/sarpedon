@@ -4,6 +4,9 @@ extends Node
 @onready var athena_done := false
 @onready var graeae_done := false
 @onready var good_ending := false
+@onready var medusa_death := false
+@onready var stheno_death := false
+@onready var euryale_death := false
 @onready var translation := {
 	"FORWARD": "W",
 	"BACK": "S",
@@ -58,6 +61,9 @@ func _unhandled_input(_event):
 	#	var path = "user://sarpedon_screenshot_%s.png" % screenshot_id
 	#	screenshot_id += 1
 	#	screen_shot.save_jpg(path)
+
+func checkUnholy():
+	if medusa_death and euryale_death and stheno_death: SteamHandler.achievementGet("ACH_UNHOLY")
 
 func resetGame():
 	hermes_done = false

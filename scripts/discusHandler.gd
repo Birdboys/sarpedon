@@ -16,6 +16,9 @@ extends Node3D
 @onready var current_state := "idle"
 var current_discus = null
 
+var perfect_rot_1 := false
+var perfect_rot_2 := false
+var perfect_rot_3 := false
 const MAX_DISCUS_STRENGTH := 30.0
 const MAX_DISCUS_TORQUE := 15.0
 signal discus_landed
@@ -51,6 +54,7 @@ func throwDiscus(force):
 	new_discus.thrown()
 	current_discus = new_discus
 	current_state = "throwing" 
+	if perfect_rot_1 and perfect_rot_2 and perfect_rot_3: SteamHandler.achievementGet("ACH_DISTANCE")
 	
 func discusLanded():
 	current_state = "idle"
@@ -65,6 +69,9 @@ func startThrow():
 	throw_rot_val = 0.0
 	throw_height_val = 0.0
 	throw_strength_val = 0.0
+	perfect_rot_1 = false
+	perfect_rot_2 = false
+	perfect_rot_3 = false
 	discusUI.visible = true
 	tutText.visible = true
 	resetIcons()
@@ -126,11 +133,14 @@ func handleInteract():
 		"spinning1": 
 			current_state = "spinning2"
 			throw_strength_val = remap(abs(target_diff), 1, 0, 0, MAX_DISCUS_STRENGTH)
+			if abs(target_diff) < 0.05: perfect_rot_1 = true
 		"spinning2":
 			current_state = "spinning3"
 			throw_height_val = remap(target_diff, -1, 1, deg_to_rad(0), deg_to_rad(90))
+			if abs(target_diff) < 0.05: perfect_rot_2 = true
 		"spinning3":
 			throw_rot_val = remap(target_diff, 1, -1, deg_to_rad(-45), deg_to_rad(45))
+			if abs(target_diff) < 0.05: perfect_rot_3 = true
 			var throw_force = getThrowForce()
 			throwDiscus(throw_force)
 			AudioHandler.playSound("throw")

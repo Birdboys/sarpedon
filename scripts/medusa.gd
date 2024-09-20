@@ -179,7 +179,7 @@ func grabPlayer():
 	var player_tween = get_tree().create_tween()
 	player_tween.tween_property(player, "global_transform", grabPos.global_transform, 0.15)
 	player_tween.tween_interval(0.25)
-	player_tween.tween_callback(player.gorgonAttack)
+	player_tween.tween_callback(player.gorgonAttack.bind("medusa"))
 	await player_tween.finished
 	current_phase = "idle"
 

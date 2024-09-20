@@ -319,13 +319,13 @@ func sirenAttack():
 	if stateMachine.current_state.name == "playerBoat": stateMachine.current_state.boat_death = true
 	stateMachine.on_state_transition(stateMachine.current_state, "playerDied")
 
-func gorgonAttack():
+func gorgonAttack(gorgon):
 	if sword_up: toggleSword()
 	if shield_up: toggleShield()
 	camera.setTrauma(0.5, true)
 	await get_tree().create_timer(1.5).timeout
 	camera.setTrauma(0.0, false)
-	death_type = "gorgon"
+	death_type = gorgon
 	stateMachine.on_state_transition(stateMachine.current_state, "playerDied")
 	#petrified_perma = true
 	

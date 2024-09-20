@@ -99,7 +99,7 @@ func grabPlayer():
 	var player_tween = get_tree().create_tween().set_ease(Tween.EASE_OUT)
 	player_tween.tween_property(player, "global_transform", grabPos.global_transform, 0.25)
 	player_tween.tween_interval(0.5)
-	player_tween.tween_callback(player.gorgonAttack)
+	player_tween.tween_callback(player.gorgonAttack.bind("stheno"))
 	await player_tween.finished
 	current_phase = "attacking"
 
