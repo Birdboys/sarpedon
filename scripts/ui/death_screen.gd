@@ -26,16 +26,20 @@ func loadDeathScreen(type):
 	match type:
 		"drowned":
 			deathLine.text = "YOU DROWNED IN DEEP WATERS"
+			SteamHandler.achievementGet("ACH_GRAVE")
 		"phorkys":
-			deathLine.text = "YOU SUBMITTED TO THE ABYSS"
+			deathLine.text = "YOU SUCCUMBED TO THE ABYSS"
 		"petrify":
 			deathLine.text = "YOU WERE PETRIFIED BY THE GORGONS"
+			SteamHandler.achievementGet("ACH_FROZEN")
 		"siren":
 			deathLine.text = "YOU WERE LULLED BY THE SIRENS"
+			SteamHandler.achievementGet("ACH_SIREN")
 		"gorgon":
 			deathLine.text = "YOU WERE SLAIN BY THE GORGONS"
 		"medusa_slain":
 			deathLine.text = "YOU SLAYED MEDUSA"
+			SteamHandler.achievementGet("ACH_WRITTEN")
 	deathAnim.play("load_screen")
 	LoadHandler.load_finished.connect(gameLoaded)
 	LoadHandler.startLoad()

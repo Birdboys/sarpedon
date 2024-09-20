@@ -419,3 +419,13 @@ func print_debug_moment() -> void:
 
 func toggleVisibility(on:=true):
 	emit_signal("toggle_visibility", on)
+
+func toggleAutoload(on:=true):
+	Inputs.auto_advance.enabled_forced = on
+
+func stopAutoAfterTimeline():
+	Inputs.auto_advance.enabled_forced = true
+	await get_tree().process_frame
+	await get_tree().process_frame
+	await timeline_started
+	toggleAutoload(false)

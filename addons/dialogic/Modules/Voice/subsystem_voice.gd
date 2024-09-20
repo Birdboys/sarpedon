@@ -61,7 +61,7 @@ func resume() -> void:
 func _ready() -> void:
 	add_child(voice_player)
 	voice_player.finished.connect(_on_voice_finished)
-
+	voice_player.bus = "soundEffects"
 
 ## Whether the current event is a text event and has a voice
 ## event before it.

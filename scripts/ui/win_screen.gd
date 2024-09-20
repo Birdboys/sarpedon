@@ -25,6 +25,7 @@ func showMenu():
 	PauseMenu.toggled_off.connect(toggleVis.bind(true))
 	visible = true
 	winAnim.play("load_screen")
+	SteamHandler.achievementGet("ACH_LEARN")
 	
 func hideMenu():
 	PauseMenu.toggled_on.disconnect(toggleVis)

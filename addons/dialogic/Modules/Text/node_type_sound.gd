@@ -39,6 +39,7 @@ func _ready():
 		get_parent().continued_revealing_text.connect(_on_continued_revealing_text)
 		get_parent().finished_revealing_text.connect(_on_finished_revealing_text)
 
+	bus = "soundEffects"
 
 func _on_started_revealing_text() -> void:
 	if !enabled or (get_parent() is DialogicNode_DialogText and !get_parent().enabled):

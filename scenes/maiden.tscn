@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://pphjkuh5uske"]
+[gd_scene load_steps=11 format=3 uid="uid://pphjkuh5uske"]
 
 [ext_resource type="Script" path="res://scripts/maiden.gd" id="1_i0koe"]
 [ext_resource type="PackedScene" uid="uid://d557kilnx4qe" path="res://scenes/components/billboard_component.tscn" id="2_cbxs8"]
@@ -20,6 +20,45 @@ orientation = 2
 [sub_resource type="SphereShape3D" id="SphereShape3D_tefjd"]
 radius = 0.25
 
+[sub_resource type="Animation" id="Animation_wubn7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("maidenMesh:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dlm6l"]
+resource_name = "sway"
+length = 3.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("maidenMesh:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25, 3),
+"transitions": PackedFloat32Array(0.5, 2, 0.5, 2, 2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0), Vector3(0, -0.1, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0x8hv"]
+_data = {
+"RESET": SubResource("Animation_wubn7"),
+"sway": SubResource("Animation_dlm6l")
+}
+
 [node name="maiden" type="CharacterBody3D"]
 script = ExtResource("1_i0koe")
 
@@ -34,7 +73,6 @@ disabled = true
 [node name="maidenCam" type="Camera3D" parent="."]
 top_level = true
 cull_mask = 1048573
-fov = 90.0
 
 [node name="billboardComponent" parent="." instance=ExtResource("2_cbxs8")]
 
@@ -46,3 +84,8 @@ monitoring = false
 
 [node name="leaveCol" type="CollisionShape3D" parent="leaveTrigger"]
 shape = SubResource("SphereShape3D_tefjd")
+
+[node name="maidenAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0x8hv")
+}

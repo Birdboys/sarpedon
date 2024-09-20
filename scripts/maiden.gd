@@ -3,6 +3,7 @@ extends CharacterBody3D
 @onready var maidenMesh := $maidenMesh
 @onready var maidenCam := $maidenCam
 @onready var leaveTrigger := $leaveTrigger
+@onready var maidenAnim := $maidenAnim
 @onready var current_phase := "idle"
 @onready var spawn_radius := 3.0
 @export var summonArea : Area3D
@@ -31,6 +32,7 @@ func startInteraction(body):
 	body.startActivity(self)
 	summonArea.queue_free()
 	Dialogic.start("maidenInterject")
+	maidenAnim.play("sway")
 
 func handleDialogue(type):
 	match type: 
@@ -55,7 +57,7 @@ func unTransitionCamera(initial_camera: Camera3D):
 
 func goAway(_body):
 	AudioHandler.playSound3D("maiden_leave", global_position)
-	print("WENT AAWAY")
+	print("WENT AAWAY")	
 	emit_signal("maiden_left")
 	leaveTrigger.set_deferred("monitoring", false)
 	AudioHandler.tweenPlayer("music", 0.0, 3.0)

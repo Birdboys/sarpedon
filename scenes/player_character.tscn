@@ -665,7 +665,6 @@ initial_state = NodePath("playerWalk")
 
 [node name="playerWalk" type="Node" parent="stateMachine"]
 script = ExtResource("3_euxff")
-move_speed = 50.0
 movement_control = false
 
 [node name="playerJump" type="Node" parent="stateMachine"]

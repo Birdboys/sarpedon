@@ -1,14 +1,25 @@
 extends Node
 
+var steam_running := false
+
 func _init() -> void:
 	OS.set_environment("SteamAppId", str(480))
 	OS.set_environment("SteamGameId", str(480))
-
+	
 
 func _ready() -> void:
-	var init_reps = Steam.steamInitEx()
-	print("STEAM INIT", init_reps)
-	print("STEAM PERSON", Steam.getPersonaName())
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	initializeSteam()
+
+func initializeSteam():
+	return
+	var init_reps = Steam.steamInitEx(false)
+	if init_reps['status'] > 0:
+		steam_running = false
+	else:
+		steam_running = true
+
+func achievementGet(achievement):
+	if not steam_running: return
+	Steam.setAchievement(achievement)
+	Steam.storeStats()
+	

@@ -40,4 +40,3 @@ func on_state_transition(state, new_state_name):
 	prev_state = current_state.name
 	current_state = new_state
 	
-

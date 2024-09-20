@@ -61,7 +61,6 @@ func _ready():
 	AudioHandler.togglePlayer("ocean", true)
 	AudioHandler.togglePlayer("wind", true)
 	
-	
 func _process(_delta):
 	if not player_in_cave:
 		var fog_val = remap(clamp(player.global_position.y, 0, 40), 0, 40, 0.05, 0.03)
@@ -71,7 +70,7 @@ func _process(_delta):
 		node.target_position = player.global_position
 		
 	RenderingServer.global_shader_parameter_set("current_time", Time.get_ticks_msec()/1000.0)
-
+	
 func _physics_process(_delta):
 	for node in get_tree().get_nodes_in_group("needs_player_eyes"):
 		node.setTargetPos(player.getEyePos())

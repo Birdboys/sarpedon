@@ -54,10 +54,12 @@ func handleInteract():
 			AudioHandler.tweenPlayer("ocean", -15)
 		"line4":
 			current_phase = "tweening4"
+			AudioHandler.tweenPlayer("ocean", 0)
 			var text_tween = get_tree().create_tween()
 			text_tween.tween_property(line4, "modulate", Color.WHITE, 1.0)
 			text_tween.tween_property(self, "current_phase", "finished", 0.1)
-			AudioHandler.tweenPlayer("ocean", 0)
+			await text_tween.finished
+			SteamHandler.achievementGet("ACH_MUSES")
 		"finished":
 			if game_loaded: quoteFinished()
 		_:

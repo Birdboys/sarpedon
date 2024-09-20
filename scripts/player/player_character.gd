@@ -112,7 +112,7 @@ func handlePrompt():
 	interactPrompt.text = DataHandler.translate(interactPrompt.text)
 
 func handleCamera(event):
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton or event is InputEventJoypadButton:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -120,7 +120,7 @@ func handleCamera(event):
 			rotate_y(-event.relative.x * sensitivity)
 			camera.rotate_x(-event.relative.y * sensitivity)
 			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(85))
-
+		
 func handleMovementInput(delta, speed):
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -164,10 +164,12 @@ func handleInteract():
 			has_invis_helmet = true
 			inventoryHandler.acquireItem("invis_helmet")
 			stateMachine.on_state_transition(stateMachine.current_state, "playerInventory")
+			SteamHandler.achievementGet("ACH_GRAEAE")
 		"hermes_take_sandals":
 			has_winged_sandals = true
 			inventoryHandler.acquireItem("winged_sandals")
 			stateMachine.on_state_transition(stateMachine.current_state, "playerInventory")
+			SteamHandler.achievementGet("ACH_HERMES")
 		"athena_weave":
 			activityHandler = collider.get_parent()
 			stateMachine.on_state_transition(stateMachine.current_state, "playerActivity")
@@ -179,6 +181,7 @@ func handleInteract():
 			shield_up = false
 			inventoryHandler.acquireItem("shield")
 			stateMachine.on_state_transition(stateMachine.current_state, "playerInventory")
+			SteamHandler.achievementGet("ACH_ATHENA")
 		"medusa_slain":
 			pass
 		"take_medusa_head":
