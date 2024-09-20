@@ -7,6 +7,7 @@ extends Node
 @onready var medusa_death := false
 @onready var stheno_death := false
 @onready var euryale_death := false
+@onready var player_statue_transforms : Array[Transform3D] = []
 @onready var translation := {
 	"FORWARD": "W",
 	"BACK": "S",

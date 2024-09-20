@@ -103,5 +103,9 @@ func toggleReverb(on:= false):
 func toggleDistortion(on:= false):
 	AudioServer.set_bus_effect_enabled(1, 1, on)
 
+func resetEffects():
+	toggleDistortion(false)
+	toggleReverb(false)
+	
 func temp(dict):
 	print(dict)

@@ -22,6 +22,7 @@ extends Node3D
 @onready var sirens := $sirens
 @onready var island_env := preload("res://assets/island_environment.tres")
 @onready var cave_env := preload("res://assets/cave_environment.tres")
+@onready var playerStatue := preload("res://assets/temp/statue.tscn")
 @onready var player_in_cave := false
 @onready var medusa_dead := false
 @onready var current_time := 0.0
@@ -57,9 +58,10 @@ func _ready():
 	if DataHandler.hermes_done: hermes.alreadyFinished()
 	if DataHandler.athena_done: athena.alreadyFinished()
 	if DataHandler.graeae_done: graeae.alreadyFinished()
-
+	if not DataHandler.player_statue_transforms.is_empty(): loadPlayerStatues(DataHandler.player_statue_transforms)
 	AudioHandler.togglePlayer("ocean", true)
 	AudioHandler.togglePlayer("wind", true)
+	AudioHandler.resetEffects()
 	
 func _process(_delta):
 	if not player_in_cave:
@@ -98,6 +100,12 @@ func playerDied(death_type):
 	queue_free()
 	Dialogic.end_timeline()
 	DeathScreen.loadDeathScreen(death_type)
+	if death_type in ["stheno", "euryale", "medusa", "petrify"]:
+		var player_pos = player.global_position.y
+		var ground_pos = player.groundPoint.global_position.y
+		var diff = player_pos - ground_pos
+		var statue_transform = player.global_transform
+		DataHandler.player_statue_transforms.append(statue_transform)
 	
 func playerCave(_body, entered):
 	if fog_tween: fog_tween.kill()
@@ -143,3 +151,11 @@ func animateWaters(type):
 	match type:
 		"calm": oceanAnim.play("calm_ocean")
 		"normal": oceanAnim.play_backwards("calm_ocean")
+
+func loadPlayerStatues(transforms):
+	for s in transforms:
+		var new_statue = playerStatue.instantiate()
+		new_statue.starting_anim = "ARMCOVER"
+		add_child(new_statue)
+		new_statue.global_transform = s
+		new_statue.rotation.y += PI

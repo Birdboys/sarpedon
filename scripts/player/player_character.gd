@@ -281,7 +281,7 @@ func handlePetrify(delta):
 		petrifyPlayer.volume_db = remap(clamp(petrify_val, 0, 0.5), 0, 0.5, -25, 0)
 	if petrify_val > 0.9:
 		if petrifyTimer.is_stopped():
-			petrifyTimer.start(2)
+			petrifyTimer.start(0.75)
 	else:
 		petrifyTimer.stop()
 
@@ -327,7 +327,7 @@ func gorgonAttack(gorgon):
 	camera.setTrauma(0.0, false)
 	death_type = gorgon
 	stateMachine.on_state_transition(stateMachine.current_state, "playerDied")
-	#petrified_perma = true
+	petrified_perma = true
 	
 func handleFootstep(_type=null):
 	footstepRay.force_raycast_update()

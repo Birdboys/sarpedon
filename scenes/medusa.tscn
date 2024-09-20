@@ -154,6 +154,7 @@ mesh = SubResource("PlaneMesh_fxpil")
 [node name="petrifyComponent2" parent="medusaMesh" instance=ExtResource("6_5vmqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.169463, 1.09928, 0)
 aabb = AABB(-0.05, -0.05, -0.05, 0.1, 0.1, 0.1)
+petrify_length = 75.0
 
 [node name="interactBox" parent="medusaMesh" instance=ExtResource("6_rpq05")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.187722, 1.02543, 0)
@@ -172,7 +173,7 @@ mesh = SubResource("PlaneMesh_uy3p3")
 [node name="petrifyComponent" parent="sleepMesh" instance=ExtResource("6_5vmqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.631408, -0.320602, 0)
 aabb = AABB(-0.05, -0.05, -0.05, 0.1, 0.1, 0.1)
-petrify_length = 35.0
+petrify_length = 75.0
 
 [node name="interactBox" parent="sleepMesh" instance=ExtResource("6_rpq05")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.618358, -0.267331, 0)
@@ -191,7 +192,7 @@ mesh = SubResource("PlaneMesh_c8vgy")
 
 [node name="petrifyComponent" parent="headMesh" instance=ExtResource("6_5vmqo")]
 aabb = AABB(-0.05, -0.05, -0.05, 0.1, 0.1, 0.1)
-petrify_length = 35.0
+petrify_length = 75.0
 
 [node name="interactBox" parent="headMesh" instance=ExtResource("6_rpq05")]
 collision_layer = 66

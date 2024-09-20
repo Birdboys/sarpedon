@@ -9121,3 +9121,7 @@ object_name = "statue_trigger"
 object_prompt = "EXAMINE [INTERACT]"
 interact_ret = "statue_interact"
 on_start = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+visible = false
+size = Vector3(1, 5, 1)

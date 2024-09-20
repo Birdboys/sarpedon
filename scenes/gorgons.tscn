@@ -271,7 +271,7 @@ interact_ret = "sisters_intro"
 [node name="petrifyComponent" parent="stheno" instance=ExtResource("2_r35w3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.825632, 0)
 aabb = AABB(-0.05, -0.05, -0.05, 0.1, 0.1, 0.1)
-petrify_length = 35.0
+petrify_length = 60.0
 
 [node name="attackRadius" type="Area3D" parent="stheno"]
 collision_layer = 0
@@ -340,7 +340,7 @@ interact_ret = "sisters_intro"
 [node name="petrifyComponent" parent="euryale" instance=ExtResource("2_r35w3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.825632, 0)
 aabb = AABB(-0.05, -0.05, -0.05, 0.1, 0.1, 0.1)
-petrify_length = 35.0
+petrify_length = 60.0
 
 [node name="attackRadius" type="Area3D" parent="euryale"]
 collision_layer = 0
