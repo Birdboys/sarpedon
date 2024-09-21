@@ -16,7 +16,7 @@
 [ext_resource type="Script" path="res://scripts/player/player_activity.gd" id="10_nyw2d"]
 [ext_resource type="FontFile" uid="uid://vrrmdx83skor" path="res://addons/dialogic/Example Assets/Fonts/Roboto-Regular.ttf" id="11_cct0y"]
 [ext_resource type="Script" path="res://scripts/player/player_inventory.gd" id="11_smt85"]
-[ext_resource type="Texture2D" uid="uid://byubok773wow" path="res://assets/temp/uiborders.png" id="12_a84qk"]
+[ext_resource type="Texture2D" uid="uid://byubok773wow" path="res://assets/ui/uiborders.png" id="12_a84qk"]
 [ext_resource type="Script" path="res://scripts/player/inventory.gd" id="12_hxb3m"]
 [ext_resource type="Texture2D" uid="uid://0o2dmpxsjwxe" path="res://assets/sprites/invis_helmet.png" id="13_gwvc1"]
 [ext_resource type="Script" path="res://scripts/player/player_sneak.gd" id="14_1g3yq"]
@@ -665,7 +665,6 @@ initial_state = NodePath("playerWalk")
 
 [node name="playerWalk" type="Node" parent="stateMachine"]
 script = ExtResource("3_euxff")
-move_speed = 50.0
 movement_control = false
 
 [node name="playerJump" type="Node" parent="stateMachine"]
@@ -793,6 +792,7 @@ vertical_alignment = 1
 script = ExtResource("23_uqyhl")
 
 [node name="fpsCounter" type="Label" parent="UI/UIBase"]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0

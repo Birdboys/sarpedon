@@ -1,8 +1,8 @@
 [gd_resource type="TileSet" load_steps=15 format=3 uid="uid://bqpsdl6mjaxgw"]
 
-[ext_resource type="Texture2D" uid="uid://bfyaa7yds70ka" path="res://assets/temp/merged_tiles.png" id="1_2ybo3"]
-[ext_resource type="Texture2D" uid="uid://bl3qlj631cjam" path="res://assets/temp/loom_cursor.png" id="2_b4k65"]
-[ext_resource type="Texture2D" uid="uid://b8mvjs1w8ej7p" path="res://assets/temp/weave_end.png" id="3_xpea2"]
+[ext_resource type="Texture2D" uid="uid://bfyaa7yds70ka" path="res://assets/ui/merged_tiles.png" id="1_2ybo3"]
+[ext_resource type="Texture2D" uid="uid://bl3qlj631cjam" path="res://assets/ui/loom_cursor.png" id="2_b4k65"]
+[ext_resource type="Texture2D" uid="uid://b8mvjs1w8ej7p" path="res://assets/ui/weave_end.png" id="3_xpea2"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1a4i6"]
 vertices = PackedVector2Array(9, -10, 32, -10, 32, 9, -10, 9, -10, -32, 9, -32)

@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/weave_game.gd" id="1_yia7r"]
 [ext_resource type="Shader" path="res://scripts/shaders/weave_glitch.gdshader" id="3_yu6fa"]
 [ext_resource type="Texture2D" uid="uid://7slncp5kpf8u" path="res://assets/sprites/tapestry.png" id="4_aao1g"]
-[ext_resource type="Texture2D" uid="uid://cpf81txnwmgm" path="res://assets/temp/weave_texture_low.jpg" id="4_n3bfp"]
+[ext_resource type="Texture2D" uid="uid://cpf81txnwmgm" path="res://assets/textures/weave_texture_low.jpg" id="4_n3bfp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s7uym"]
 shader = ExtResource("3_yu6fa")

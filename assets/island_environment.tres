@@ -1,9 +1,9 @@
 [gd_resource type="Environment" load_steps=4 format=3 uid="uid://nhfawyf85xos"]
 
-[ext_resource type="Texture2D" uid="uid://cnxgic7te4sma" path="res://assets/temp/kloofendal_overcast_puresky_1k.exr" id="1_sp5lm"]
+[ext_resource type="Texture2D" uid="uid://cnxgic7te4sma" path="res://assets/textures/kloofendal_overcast_puresky_1k.exr" id="1_5gl0v"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_40axr"]
-panorama = ExtResource("1_sp5lm")
+panorama = ExtResource("1_5gl0v")
 filter = false
 
 [sub_resource type="Sky" id="Sky_i0xqh"]

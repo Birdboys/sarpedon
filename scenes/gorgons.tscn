@@ -306,7 +306,6 @@ bus = &"soundEffects"
 [node name="navAgent" type="NavigationAgent3D" parent="stheno"]
 avoidance_enabled = true
 radius = 1.0
-debug_enabled = true
 debug_path_custom_color = Color(0.396078, 1, 0.152941, 1)
 
 [node name="euryale" type="CharacterBody3D" parent="." groups=["needs_player_right"]]
@@ -374,7 +373,6 @@ bus = &"soundEffects"
 [node name="navAgent" type="NavigationAgent3D" parent="euryale"]
 avoidance_enabled = true
 radius = 1.0
-debug_enabled = true
 debug_path_custom_color = Color(0, 0.963484, 0.983899, 1)
 
 [node name="sisterTalkCam" type="Camera3D" parent="."]

@@ -20,8 +20,6 @@ extends Node3D
 @onready var medusa := $medusa
 @onready var phorkys := $phorkys
 @onready var sirens := $sirens
-@onready var island_env := preload("res://assets/island_environment.tres")
-@onready var cave_env := preload("res://assets/cave_environment.tres")
 @onready var playerStatue := preload("res://assets/temp/statue.tscn")
 @onready var player_in_cave := false
 @onready var medusa_dead := false
@@ -44,7 +42,6 @@ func _ready():
 	medusaLairTrigger.body_exited.connect(playerCave.bind(false))
 	phorkys.phorkys_summon.connect(animateWaters.bind("calm"))
 	phorkys.death_area_exit.connect(animateWaters.bind("normal"))
-	worldEnvironment.environment = island_env
 	boat.visible = true
 	introBoat.visible = true
 	deathRect.visible = false

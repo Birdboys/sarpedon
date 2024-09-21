@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=4 uid="uid://ds5vh4yxvjpn3"]
 
 [ext_resource type="Script" path="res://scripts/sirens.gd" id="1_sm0u3"]
-[ext_resource type="Texture2D" uid="uid://bphtf1wm5xpab" path="res://assets/temp/halfy.png" id="2_dnkr1"]
+[ext_resource type="Texture2D" uid="uid://bphtf1wm5xpab" path="res://assets/textures/halfy.png" id="2_dnkr1"]
 [ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="2_yejcj"]
 [ext_resource type="Texture2D" uid="uid://dnko8uw84nij6" path="res://assets/sprites/siren1.png" id="3_5030n"]
 [ext_resource type="PackedScene" uid="uid://d557kilnx4qe" path="res://scenes/components/billboard_component.tscn" id="4_8pg7a"]

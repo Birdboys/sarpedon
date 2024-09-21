@@ -8,9 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://d1p7biwygoab0" path="res://assets/sprites/hermes3.png" id="5_w4n48"]
 [ext_resource type="PackedScene" uid="uid://dt6bxmw7stlh8" path="res://scenes/components/interact_box.tscn" id="7_ejpgu"]
 [ext_resource type="Script" path="res://scripts/discusHandler.gd" id="8_kwjsr"]
-[ext_resource type="Texture2D" uid="uid://dymhqgriaflra" path="res://assets/temp/discusbg_blank.png" id="8_nepbv"]
-[ext_resource type="Texture2D" uid="uid://df6ynljmpqpp0" path="res://assets/temp/discusindi.png" id="9_cj6ip"]
-[ext_resource type="Texture2D" uid="uid://c2224nusrwyr2" path="res://assets/temp/discusbg.png" id="10_oym8d"]
+[ext_resource type="Texture2D" uid="uid://dymhqgriaflra" path="res://assets/ui/discusbg_blank.png" id="8_nepbv"]
+[ext_resource type="Texture2D" uid="uid://df6ynljmpqpp0" path="res://assets/ui/discusindi.png" id="9_cj6ip"]
+[ext_resource type="Texture2D" uid="uid://c2224nusrwyr2" path="res://assets/ui/discusbg.png" id="10_oym8d"]
 [ext_resource type="PackedScene" uid="uid://beabw8ir817ar" path="res://scenes/components/action_label.tscn" id="12_hpvec"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p27bl"]
