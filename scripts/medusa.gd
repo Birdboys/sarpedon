@@ -93,7 +93,7 @@ func playerFootstep(player_pos, type):
 			setTargetPos(player_pos)
 
 func wakeUp():
-	AudioHandler.setPlayer("music", false)
+	AudioHandler.togglePlayer("music", false)
 	current_phase = "awake"
 	sleepMesh.visible = false
 	sleepPetrify.enabled = false
@@ -110,7 +110,7 @@ func wakeUp():
 	Dialogic.stopAutoAfterTimeline()
 	
 func slain():
-	AudioHandler.setPlayer("music", false)
+	AudioHandler.togglePlayer("music", false)
 	Dialogic.start("medusaLastWords")
 	Dialogic.stopAutoAfterTimeline()
 	attackCol.set_deferred("disabled", true)

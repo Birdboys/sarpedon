@@ -67,7 +67,11 @@ func _process(_delta):
 		worldEnvironment.environment.fog_density = fog_val + fog_noise
 	for node in get_tree().get_nodes_in_group("billboard_comp"):
 		node.target_position = player.global_position
-		
+	
+	if Input.is_action_just_pressed("test"):
+		Dialogic.start("athenaIntro")
+	if Input.is_action_just_pressed("escape"):
+		Dialogic.end_timeline()
 	RenderingServer.global_shader_parameter_set("current_time", Time.get_ticks_msec()/1000.0)
 	
 func _physics_process(_delta):
@@ -89,11 +93,13 @@ func activateBoat():
 
 func playerDied(death_type):
 	print("PLAYER DIED", death_type)
+	AudioHandler.tweenPlayer("chase", -60)
 	deathRect.visible = true
 	var end_tween = get_tree().create_tween()
 	end_tween.tween_property(deathRect, "modulate", Color.WHITE, 2.5)
 	await end_tween.finished
 	PauseMenu.setTheme("white")
+	AudioHandler.togglePlayer("chase", false)
 	queue_free()
 	Dialogic.end_timeline()
 	DeathScreen.loadDeathScreen(death_type)
@@ -117,6 +123,7 @@ func playerCave(_body, entered):
 	AudioHandler.toggleReverb(entered)
 	 
 func gameWin(_body):
+	AudioHandler.tweenPlayer("chase", -60)
 	if medusa_dead:
 		deathRect.visible = true
 		var end_tween = get_tree().create_tween()
@@ -133,6 +140,7 @@ func gameWin(_body):
 		await end_tween.finished
 		queue_free()
 		WinScreen.showMenu()
+	AudioHandler.togglePlayer("chase", false)
 	Dialogic.end_timeline()
 
 func medusaSlain():
@@ -142,6 +150,9 @@ func medusaSlain():
 func headTaken():
 	await get_tree().create_timer(8.0).timeout
 	gorgons.lament()
+	AudioHandler.togglePlayer("chase", true)
+	AudioHandler.setPlayer("chase", 0.0)
+	AudioHandler.seekPlayer("chase", 0.0)
 	
 func animateWaters(type):
 	print("ANIMATE WATERS")

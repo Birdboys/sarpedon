@@ -4,6 +4,7 @@ extends Node
 @onready var soundQueue3D := $soundEffectQueue3D
 @onready var oceanPlayer := $oceanPlayer
 @onready var windPlayer := $windPlayer
+@onready var chaseMusicPlayer := $chaseMusicPlayer
 @onready var players := []
 @onready var players_3d := []
 @onready var queue_length := 10
@@ -16,7 +17,7 @@ extends Node
 var ocean_tween
 var music_tween
 var wind_tween 
-
+var chase_tween
 func _ready():
 	populateQueues()
 #	var dir_path = "res://assets/timelines/"
@@ -72,6 +73,7 @@ func setPlayer(player, val):
 		"ocean": oceanPlayer.volume_db = val
 		"music": bgMusicPlayer.volume_db = val
 		"wind": windPlayer.volume_db = val
+		"chase": chaseMusicPlayer.volume_db = val
 
 func tweenPlayer(player, val, time=1.0):
 	match player:
@@ -87,13 +89,22 @@ func tweenPlayer(player, val, time=1.0):
 			if music_tween: music_tween.kill()
 			music_tween = get_tree().create_tween()
 			music_tween.tween_property(bgMusicPlayer, "volume_db", val, time)
-		
+		"chase":
+			if chase_tween: chase_tween.kill()
+			chase_tween = get_tree().create_tween()
+			chase_tween.tween_property(chaseMusicPlayer, "volume_db", val, time)
+
 func togglePlayer(player, on):
 	match player:
 		"ocean": oceanPlayer.playing = on
 		"wind": windPlayer.playing = on
 		"music": bgMusicPlayer.playing = on
-
+		"chase": chaseMusicPlayer.playing = on
+		
+func seekPlayer(player, val):
+	match player:
+		"chase": chaseMusicPlayer.seek(val)
+		
 func reset3DPlayer(index):
 	players_3d[index].global_position = Vector3.ZERO
 

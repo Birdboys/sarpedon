@@ -182,6 +182,7 @@ size_flags_vertical = 3
 text = "Quit"
 
 [node name="controlsMenu" type="Control" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -379,6 +380,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 
 [node name="creditsMenu" type="Control" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

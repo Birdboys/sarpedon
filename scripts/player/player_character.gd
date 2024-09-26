@@ -109,6 +109,9 @@ func handlePrompt():
 			interactPrompt.text = backLookRay.get_collider().getPrompt()
 	else:
 		interactPrompt.text = ""
+	if "SLAY" in interactPrompt.text and not sword_up: 
+		interactPrompt.text = ""
+		return
 	interactPrompt.text = DataHandler.translate(interactPrompt.text)
 
 func handleCamera(event):
@@ -381,7 +384,7 @@ func setTutorialPrompt(t):
 	tutorialTimer.timeout.connect(tutorialPrompt.clear)
 
 func resetData():
-	has_shield = true
+	has_shield = false
 	has_sword = false
 	has_bag = false
 	has_invis_helmet = false

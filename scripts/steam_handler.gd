@@ -9,6 +9,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	initializeSteam()
+	
 func initializeSteam():
 	var init_reps = Steam.steamInitEx(false)
 	print(init_reps)

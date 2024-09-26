@@ -17,7 +17,6 @@ func _process(_delta):
 		elif current_phase == "thanks_done":
 			AudioHandler.playSound("ui_click")
 			get_tree().change_scene_to_packed(mainMenu)
-			DataHandler.resetGame()
 			hideMenu()
 		
 func showMenu():

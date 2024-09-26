@@ -59,7 +59,6 @@ func playerEnter():
 	boatMesh.mesh.surface_get_material(0).no_depth_test = true
 	creakTimer.start(randf_range(2.0,5.0))
 	
-
 func playerExit():
 	in_boat = false
 	enterBox.activate()

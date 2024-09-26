@@ -2,7 +2,7 @@ extends Node3D
 @onready var goin := false
 @onready var is_ready := false
 @onready var islandScene
-@onready var sussy_keycodes := [KEY_TAB, KEY_ALT, KEY_ESCAPE, KEY_P]
+@onready var sussy_keycodes := [KEY_TAB, KEY_ALT, KEY_ESCAPE, KEY_P, KEY_DELETE, KEY_CTRL]
 
 @onready var anim := $mainAnim
 @onready var tooltipAnim := $tooltipAnim
@@ -29,7 +29,9 @@ func _ready():
 	AudioHandler.togglePlayer("music", true)
 	AudioHandler.tweenPlayer("wind", 0, 3.0)
 	AudioHandler.tweenPlayer("music", 0, 3.0)
+	print("GOOD ENDING",DataHandler.good_ending)
 	if DataHandler.good_ending:
+		print("DOIN IT")
 		DataHandler.resetGame()
 		medusaMesh.visible = true
 	else:

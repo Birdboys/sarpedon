@@ -32,10 +32,6 @@ extends Node
 @onready var screenshot_id := 0
 signal translation_updated
 
-func _ready():
-	print()
-	
-
 func translate(text: String):
 	if not text.contains("["): return text
 	var text_array = text.split(" ")
@@ -54,14 +50,6 @@ func translate(text: String):
 
 func translationUpdated():
 	emit_signal("translation_updated")
-
-func _unhandled_input(_event):
-	return
-	#if event is InputEventKey and  event.is_pressed and event.keycode == KEY_P:
-	#	var screen_shot = get_viewport().get_texture().get_image()
-	#	var path = "user://sarpedon_screenshot_%s.png" % screenshot_id
-	#	screenshot_id += 1
-	#	screen_shot.save_jpg(path)
 
 func checkUnholy():
 	if medusa_death and euryale_death and stheno_death: SteamHandler.achievementGet("ACH_UNHOLY")
