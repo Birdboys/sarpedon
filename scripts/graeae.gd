@@ -34,7 +34,6 @@ func _process(_delta):
 		for sister in sisterMeshes:
 			sister.mesh.material.set_shader_parameter("transparency", sister_noise.get_noise_1d(Time.get_ticks_msec()/10.0)-0.2)
 
-
 func transitionCamera(initial_camera: Camera3D):
 	var original_transform = monteCam.global_transform
 	var original_fov = monteCam.fov

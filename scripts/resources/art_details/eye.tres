@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArtDetails" load_steps=3 format=3 uid="uid://brgxqoysmt036"]
+
+[ext_resource type="Texture2D" uid="uid://baft4nbgmqn7d" path="res://assets/originals/ogeye.png" id="1_4cs70"]
+[ext_resource type="Script" path="res://scripts/resources/art_details/art_details.gd" id="2_rxwy3"]
+
+[resource]
+script = ExtResource("2_rxwy3")
+art_id = "eye"
+art_name = "Neck-amphora"
+art_link = "https://www.britishmuseum.org/collection/object/G_1866-0805-3"
+art_image = ExtResource("1_4cs70")

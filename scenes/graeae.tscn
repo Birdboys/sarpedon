@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://scripts/monteHandler.gd" id="6_iba7j"]
 [ext_resource type="PackedScene" uid="uid://beabw8ir817ar" path="res://scenes/components/action_label.tscn" id="6_yv6ta"]
 [ext_resource type="PackedScene" uid="uid://b3olvk0uaabxt" path="res://scenes/cup.tscn" id="7_6con7"]
-[ext_resource type="Texture2D" uid="uid://4awym5lfpoaw" path="res://assets/temp/eyeball.png" id="8_wj4ev"]
+[ext_resource type="Texture2D" uid="uid://ben0c03vgeedj" path="res://assets/sprites/eye.png" id="9_1ip3b"]
 [ext_resource type="Texture2D" uid="uid://0o2dmpxsjwxe" path="res://assets/sprites/invis_helmet.png" id="9_yqlps"]
 [ext_resource type="ArrayMesh" uid="uid://dvqybqd3xefno" path="res://scenes/decorations/rock4Mesh.tres" id="11_o51uj"]
 [ext_resource type="PackedScene" uid="uid://dx2u2nu16ipyi" path="res://scenes/decorations/rock4Body.tscn" id="12_6w0x2"]
@@ -237,9 +237,9 @@ slot = 2
 
 [node name="secret" type="Sprite3D" parent="monteHandler"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.009, -0.726)
-pixel_size = 0.003
+pixel_size = 0.002
 texture_filter = 0
-texture = ExtResource("8_wj4ev")
+texture = ExtResource("9_1ip3b")
 
 [node name="invisHelmet" type="Sprite3D" parent="monteHandler"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.035, 0.008, -0.617)
