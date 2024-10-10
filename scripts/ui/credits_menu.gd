@@ -9,11 +9,14 @@ extends Control
 @onready var artDetails := $HBoxContainer/artDetails
 @onready var galleryButton := $HBoxContainer/artDetails/openGallery
 @onready var gallery := $HBoxContainer/artDetails/gallery
+@onready var creditsText := $HBoxContainer/creditsText
+
 func _ready():
 	leftButton.pressed.connect(leftPressed)
 	rightButton.pressed.connect(rightPressed)
 	artLabel.pressed.connect(artLabelPressed)
 	galleryButton.pressed.connect(openGallery)
+	creditsText.meta_clicked.connect(openLink)
 	loadArt(art_list[index])
 	
 func open():
@@ -48,7 +51,10 @@ func clearArt():
 	artLabel.text = ""
 	artImage.texture = null
 
-func openGallery():
+func openGallery():                                    
 	gallery.visible = true
 	galleryButton.visible = false
-	
+
+func openLink(link):
+	AudioHandler.playSound("ui_click")
+	OS.shell_open(str(link))

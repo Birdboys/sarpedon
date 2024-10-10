@@ -20,21 +20,7 @@ var wind_tween
 var chase_tween
 func _ready():
 	populateQueues()
-#	var dir_path = "res://assets/timelines/"
-#	var dir = DirAccess.open(dir_path)
-#	var count = 0
-#	if dir:
-#		dir.list_dir_begin()
-#		var file_name = dir.get_next()
-#		while file_name != "":
-#			print(file_name)
-#			var tl : DialogicTimeline = load(dir_path + file_name)
-#			var length = len(tl.as_text().split("\n"))
-#			print(length)
-#			count += length
-#			file_name = dir.get_next()
-#	print(count)
-			
+
 func populateQueues():
 	for x in range(queue_length):
 		var new_player = AudioStreamPlayer.new()

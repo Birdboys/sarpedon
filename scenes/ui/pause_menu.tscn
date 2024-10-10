@@ -380,7 +380,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 
 [node name="creditsMenu" type="Control" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -406,23 +405,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer"]
+[node name="creditsText" type="RichTextLabel" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/normal_font = ExtResource("7_ow5pn")
 theme_override_font_sizes/normal_font_size = 18
 theme_override_styles/focus = SubResource("StyleBoxEmpty_nkbwf")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_nkbwf")
-text = "Game Design, Programming, Story, Writing- 
-Colby Bird
+bbcode_enabled = true
+text = "Game Design, Programming, Environment, Narrative, Dialogue - [u][url=\"https://birdboys.github.io/birdPortfolio/\"]Colby Bird[/url][/u]
 
-Music - Someone
+Music - [u][url=\"https://drsanic.itch.io/\"]Kyle Roth[/url][/u]
 
-Sounds - Pixabay et al.
+Sounds - [u][url=\"https://birdboys.github.io/birdPortfolio/\"]Colby Bird[/url][/u], Pixabay
+
+Textures & Skybox - Polyhaven
+
+Sensitivity Readers - [u][url=\"https://www.artstation.com/recari\"]Reagan Riley[/url][/u], Amber Tate-Bird, Peyton Williams
+
+Head Tester - [u][url=\"https://www.youtube.com/@wyzegye\"]Logan Bird[/url][/u]
 
 Testers - Family and Friends
 
-"
+Special Thanks - The Met, Theoi, The Histocrat, YOU
+
+THANKS FOR PLAYING"
 
 [node name="artDetails" type="Control" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel/creditsMenu/HBoxContainer"]
 layout_mode = 2
