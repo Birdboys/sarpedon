@@ -23,6 +23,7 @@ func showMenu():
 	was_mouse_captured = Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	Dialogic.toggleVisibility(false)
+	#Dialogic.paused = true
 	current_menu = "main"
 	visible = true
 	get_tree().paused = true
@@ -37,6 +38,7 @@ func hideMenu():
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	Dialogic.toggleVisibility(true)
+	#Dialogic.paused = false
 	current_menu = "closed"
 	visible = false
 	get_tree().paused = false
@@ -91,6 +93,7 @@ func handleEscape():
 			showMenu()
 	AudioHandler.playSound("ui_click")
 	
-func _unhandled_input(event):
+func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
 		handleEscape()
+		get_viewport().set_input_as_handled()

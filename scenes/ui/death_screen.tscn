@@ -191,13 +191,13 @@ self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 28
+text = "YOU DROWNED IN DEEP WATERS"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="loadingText" type="Label" parent="deathUI/screenMargin/quoteBorder/quoteMargin"]
 visible = false
-self_modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8

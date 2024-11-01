@@ -31,13 +31,13 @@ func loadDeathScreen(type):
 		"phorkys":
 			deathLine.text = "YOU SUCCUMBED TO THE ABYSS"
 		"petrify":
-			deathLine.text = "YOU WERE PETRIFIED BY THE GORGONS"
+			deathLine.text = "YOU WERE PETRIFIED BY A GORGON"
 			SteamHandler.achievementGet("ACH_FROZEN")
 		"siren":
 			deathLine.text = "YOU WERE LULLED BY THE SIRENS"
 			SteamHandler.achievementGet("ACH_SIREN")
 		"stheno","euryale","medusa":
-			deathLine.text = "YOU WERE SLAIN BY THE GORGONS"
+			deathLine.text = "YOU WERE SLAIN BY %s" % type.to_upper()
 			match type:
 				"stheno": DataHandler.stheno_death = true
 				"euryale": DataHandler.euryale_death = true

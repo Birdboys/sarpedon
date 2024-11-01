@@ -280,4 +280,5 @@ func _apply_sounds_settings() -> void:
 	type_sounds.ignore_characters = typing_sounds_ignore_characters
 
 func toggleVisibility(on):
-	$Anchor.visible = on
+	print("toggling", on)
+	#$Anchor.visible = on

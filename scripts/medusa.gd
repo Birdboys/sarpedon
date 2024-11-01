@@ -81,10 +81,12 @@ func playerFootstep(player_pos, type):
 		"sleeping":
 			if type == "loud":
 				Dialogic.start("medusaWaking1")
+				Dialogic.stopAutoAfterTimeline()
 				current_phase = "waking_1"
 		"waking_1":
 			if type == "loud":
 				Dialogic.start("medusaWaking2")
+				Dialogic.stopAutoAfterTimeline()
 				current_phase = "waking_2"
 		"waking_2":
 			if type == "loud":
@@ -104,11 +106,11 @@ func wakeUp():
 	medusaPetrify.enabled = true
 	medusaPetrify.can_petrify = true
 	gorgonHeadTrigger.activate()
-	emit_signal("medusa_awake")
+	emit_signal("medusa_aweake")
 	AudioHandler.playSound3D("medusa_gasp", global_position)
 	Dialogic.start("medusaMonologue")
 	Dialogic.stopAutoAfterTimeline()
-	
+
 func slain():
 	AudioHandler.togglePlayer("music", false)
 	Dialogic.start("medusaLastWords")

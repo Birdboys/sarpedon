@@ -157,9 +157,9 @@ aabb = AABB(-0.05, -0.05, -0.05, 0.1, 0.1, 0.1)
 petrify_length = 75.0
 
 [node name="interactBox" parent="medusaMesh" instance=ExtResource("6_rpq05")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.187722, 1.02543, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.187722, 0.66178, 0)
 collision_layer = 66
-size = Vector3(1.1993, 0.822397, 0.35)
+size = Vector3(2, 1.5, 0.35)
 object_name = "gorgon_head_hitbox"
 object_prompt = "SLAY [USE_SWORD]"
 interact_ret = "medusa_slain"
@@ -178,9 +178,9 @@ enabled = true
 can_petrify = true
 
 [node name="interactBox" parent="sleepMesh" instance=ExtResource("6_rpq05")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.618358, -0.267331, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.377581, -0.262448, 0)
 collision_layer = 66
-size = Vector3(0.25, 0.25, 0.25)
+size = Vector3(1, 0.5, 0.5)
 object_name = "sleeping_head_hitbox"
 object_prompt = "SLAY [USE_SWORD]"
 interact_ret = "medusa_slain"
@@ -198,7 +198,6 @@ petrify_length = 75.0
 
 [node name="interactBox" parent="headMesh" instance=ExtResource("6_rpq05")]
 collision_layer = 66
-size = Vector3(0.75, 0.75, 0.75)
 object_name = "gorgon_head_trigger"
 object_prompt = "TAKE HEAD
 [INTERACT]"

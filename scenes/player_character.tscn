@@ -676,7 +676,6 @@ script = ExtResource("5_fv6td")
 [node name="playerHover" type="Node" parent="stateMachine"]
 script = ExtResource("6_0tkkq")
 move_speed = 8.0
-hover_dist = 1.0
 
 [node name="playerTalk" type="Node" parent="stateMachine"]
 script = ExtResource("7_n0ojd")

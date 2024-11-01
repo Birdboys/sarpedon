@@ -169,9 +169,9 @@ func hideSisters():
 
 func alreadyFinished():
 	current_phase = "idle"
+	trigger3.activate()
 	trigger1.deactivate()
 	trigger2.deactivate()
-	trigger3.activate()
 	trigger4.deactivate()
 
 func cupMoveSound():
