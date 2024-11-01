@@ -27,6 +27,7 @@ func loadDeathScreen(type):
 		"drowned":
 			deathLine.text = "YOU DROWNED IN DEEP WATERS"
 			SteamHandler.achievementGet("ACH_GRAVE")
+			print("juices")
 		"phorkys":
 			deathLine.text = "YOU SUCCUMBED TO THE ABYSS"
 		"petrify":

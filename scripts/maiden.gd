@@ -60,6 +60,8 @@ func goAway(_body):
 	print("WENT AAWAY")	
 	emit_signal("maiden_left")
 	leaveTrigger.set_deferred("monitoring", false)
+	AudioHandler.togglePlayer("music", true)
+	AudioHandler.seekPlayer("music", 0.0)
 	AudioHandler.tweenPlayer("music", 0.0, 3.0)
 	var leave_pos = global_position + Vector3(Vector3(global_position - player.global_position).x, 0, Vector3(global_position - player.global_position).z).normalized() * 20
 	var leave_tween = get_tree().create_tween().set_parallel(true).set_ease(Tween.EASE_IN)

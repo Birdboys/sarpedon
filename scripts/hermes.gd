@@ -16,6 +16,7 @@ extends Node3D
 @onready var current_phase := "running"
 @onready var path_progress := 0.0
 @onready var running_speed := 3.5
+@onready var num_throw_responses := 9
 @export var runningPath : Path3D
 @export var discusPos : Node3D
 
@@ -130,10 +131,18 @@ func discusLanded():
 			Dialogic.start("hermesRepeatFinished")
 		"discus_repeat_1":
 			current_phase = "discus_repeat_2"
+			var throw_response = randi_range(0, num_throw_responses)
+			while throw_response == Dialogic.VAR.discus_repeat:
+				throw_response = randi_range(0, num_throw_responses)
+			Dialogic.VAR.discus_repeat = throw_response
 			Dialogic.start("hermesDiscusRepeat1")
 		"discus_repeat_2":
 			current_phase = "discus_repeat_3"
-			Dialogic.start("hermesDiscusRepeat2")
+			var throw_response = randi_range(0, num_throw_responses)
+			while throw_response == Dialogic.VAR.discus_repeat:
+				throw_response = randi_range(0, num_throw_responses)
+			Dialogic.VAR.discus_repeat = throw_response
+			Dialogic.start("hermesDiscusRepeat1")
 		"discus_repeat_3":
 			Dialogic.start("hermesRepeatFinished")
 		_: 
@@ -168,7 +177,6 @@ func startDiscusRepeat():
 	Dialogic.start("hermesRepeat")
 
 func startThrowRepeat():
-	print("STARTING ANOTHER THROW")
 	runTimer.stop()
 	current_phase = "discus_repeat_1"
 	trigger5.deactivate()

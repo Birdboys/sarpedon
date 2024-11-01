@@ -304,7 +304,6 @@ func getGroundPos(dir=""):
 		"right": return groundPointR.global_position
 
 func getEyePos():
-	if is_invis: return null
 	return camera.global_position
 	
 func exitingShallows(_body):
@@ -314,7 +313,7 @@ func exitingShallows(_body):
 
 func enteringDeep(_body):
 	if stateMachine.current_state.name == "playerBoat" or stateMachine.current_state.name == "playerDied": return
-	death_type = "drowning"
+	death_type = "drowned"
 	stateMachine.on_state_transition(stateMachine.current_state, "playerDied")
 
 func sirenAttack():
@@ -384,10 +383,11 @@ func setTutorialPrompt(t):
 	tutorialTimer.timeout.connect(tutorialPrompt.clear)
 
 func resetData():
-	has_shield = false
 	has_sword = false
 	has_bag = false
+	has_shield = false
 	has_invis_helmet = false
 	has_winged_sandals = false
 	petrified = false
 	petrified_perma = false
+	death_type = ""

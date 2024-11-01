@@ -3,31 +3,47 @@
 [ext_resource type="Script" path="res://scripts/brazier.gd" id="1_43bqo"]
 [ext_resource type="Texture2D" uid="uid://beqt1evysc644" path="res://assets/textures/cliffy.png" id="1_nf770"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nbcyr"]
+seed = -1
+frequency = 0.005
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bpdd1"]
 albedo_texture = ExtResource("1_nf770")
 uv1_scale = Vector3(0.2, 0.2, 0.2)
 uv1_triplanar = true
 texture_filter = 0
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_n2ix1"]
-height = 0.5
-radius = 2.0
-
-[node name="brazier" type="StaticBody3D"]
+[node name="brazier" type="CSGCombiner3D"]
+use_collision = true
 script = ExtResource("1_43bqo")
+brazier_noise = SubResource("FastNoiseLite_nbcyr")
 
 [node name="tempMesh" type="CSGCylinder3D" parent="."]
 use_collision = true
-radius = 2.0
+radius = 1.5
+height = 0.25
+smooth_faces = false
+material = SubResource("StandardMaterial3D_bpdd1")
+
+[node name="tempMesh3" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+operation = 2
+use_collision = true
+radius = 1.45
+height = 0.2
+smooth_faces = false
+material = SubResource("StandardMaterial3D_bpdd1")
+
+[node name="tempMesh2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
+use_collision = true
+radius = 1.0
 height = 0.5
 smooth_faces = false
 material = SubResource("StandardMaterial3D_bpdd1")
 
-[node name="tempCol" type="CollisionShape3D" parent="."]
-shape = SubResource("CylinderShape3D_n2ix1")
-
 [node name="light" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.242881, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.319081, 0)
 light_color = Color(1, 0.770827, 0.558319, 1)
 light_energy = 12.0
 light_size = 0.36

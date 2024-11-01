@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://ds1ri7vmsu0tc"]
+[gd_scene load_steps=16 format=4 uid="uid://ds1ri7vmsu0tc"]
 
 [ext_resource type="Script" path="res://scripts/intro_boat.gd" id="1_ujvt1"]
 [ext_resource type="Texture2D" uid="uid://cncucmcomt5ip" path="res://assets/temp/testboat_boat_texture.png" id="2_vnsuc"]
@@ -51,24 +51,9 @@ load_path = "res://.godot/imported/testboat_boat_top_texture.png-5198a70b8a71296
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f1you"]
 resource_name = "Material.002"
-cull_mode = 2
 albedo_texture = SubResource("CompressedTexture2D_crlrs")
 uv1_scale = Vector3(0.41, 0.41, 0.41)
 texture_filter = 2
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_010s1"]
-_surfaces = [{
-"aabb": AABB(-1.125, -0.03915, -0.5625, 2.25, 0.0783, 1.12501),
-"format": 34896613377,
-"index_count": 36,
-"index_data": PackedByteArray("AQACAAAAAQADAAIAAgAFAAAAAgAHAAUABAAHAAYABAAFAAcAAQAGAAMAAQAEAAYAAwAHAAIAAwAGAAcAAAAEAAEAAAAFAAQA"),
-"name": "Material.002",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 8,
-"vertex_data": PackedByteArray("AAAAAP7/AAAAAAAAAAAAAP//AAD+/wAA//8AAAAAAAAAAP//AAAAAAAA///+/wAA/////wAAAAD//////v8AAA==")
-}]
-blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_t2vxw"]
 resource_name = "testboat_Cube_004"
@@ -86,7 +71,6 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAAP7/VNUAAAAAAABU1f//AAD+/1TV//8AAAAAVNUAAAAAAAD/vwAAAAAAAFTVAAAAAP7///8AAAAA/v9U1f//AAAAAFTV//8AAAAA/7///wAA/v9U1f//AAD+////AAD//wAAVNUAAP//AAD/vwAA//8AAFTVAAD///7/VNUAAP///v///wAA///+/1TV/////wAAVNX/////AABU1f////8AAP+///////7/VNX//////v9U1f/////+////VNWqKlTVqipU1aoqVNWqKv9//3+qqlRV/z//v6qqVFVUVaqq/3//f1RVqqr/P/+/VFVUVf9//3+qqlRVVFVUVf8//7+qqlRVVFWqqlRVVFX/f/9/VFWqqlRVVFX/P/+/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_010s1")
 
 [sub_resource type="Animation" id="Animation_kdtyt"]
 length = 0.001
@@ -314,6 +298,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="boatTopMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.33, 0, 0, 0, 1.33, 0, 0, 0, 1.33, 0, 0.74, 0)
+cast_shadow = 2
 mesh = SubResource("ArrayMesh_t2vxw")
 skeleton = NodePath("")
 
@@ -325,3 +310,4 @@ libraries = {
 
 [node name="introBoatAudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_a5w4e")
+bus = &"soundEffects"

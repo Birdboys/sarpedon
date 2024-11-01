@@ -5,7 +5,7 @@ extends Node3D
 @onready var player_in_sing_range := false
 @onready var player_in_pull_range := false
 @onready var player_attacked := false
-@onready var num_sing_texts := 22
+@onready var num_sing_texts := 21
 @onready var attack_timeout := 10.0
 @onready var capsize_distance := 15.0
 

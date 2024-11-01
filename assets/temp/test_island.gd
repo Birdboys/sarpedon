@@ -28,6 +28,7 @@ extends Node3D
 @export var fogNoise : FastNoiseLite
 
 var fog_tween
+
 func _ready():
 	AudioHandler.playSound("boat_hit")
 	maiden.maiden_left.connect(activateBoat)
@@ -51,14 +52,10 @@ func _ready():
 	player.camera.current = true
 	player.startActivity(introBoat)
 	PauseMenu.setTheme("black")
-	
-	if DataHandler.hermes_done: hermes.alreadyFinished()
-	if DataHandler.athena_done: athena.alreadyFinished()
-	if DataHandler.graeae_done: graeae.alreadyFinished()
-	if not DataHandler.player_statue_transforms.is_empty(): loadPlayerStatues(DataHandler.player_statue_transforms)
 	AudioHandler.togglePlayer("ocean", true)
 	AudioHandler.togglePlayer("wind", true)
 	AudioHandler.resetEffects()
+	handleRepeat()
 	
 func _process(_delta):
 	if not player_in_cave:
@@ -94,12 +91,14 @@ func activateBoat():
 func playerDied(death_type):
 	print("PLAYER DIED", death_type)
 	AudioHandler.tweenPlayer("chase", -60)
+	AudioHandler.tweenPlayer("music", -60)
 	deathRect.visible = true
 	var end_tween = get_tree().create_tween()
 	end_tween.tween_property(deathRect, "modulate", Color.WHITE, 2.5)
 	await end_tween.finished
 	PauseMenu.setTheme("white")
 	AudioHandler.togglePlayer("chase", false)
+	AudioHandler.togglePlayer("music", false)
 	queue_free()
 	Dialogic.end_timeline()
 	DeathScreen.loadDeathScreen(death_type)
@@ -124,6 +123,7 @@ func playerCave(_body, entered):
 	 
 func gameWin(_body):
 	AudioHandler.tweenPlayer("chase", -60)
+	AudioHandler.tweenPlayer("music", -60)
 	if medusa_dead:
 		deathRect.visible = true
 		var end_tween = get_tree().create_tween()
@@ -141,6 +141,7 @@ func gameWin(_body):
 		queue_free()
 		WinScreen.showMenu()
 	AudioHandler.togglePlayer("chase", false)
+	AudioHandler.togglePlayer("music", false)
 	Dialogic.end_timeline()
 
 func medusaSlain():
@@ -167,3 +168,11 @@ func loadPlayerStatues(transforms):
 		add_child(new_statue)
 		new_statue.global_transform = s
 		new_statue.rotation.y += PI
+
+func handleRepeat():
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	if DataHandler.hermes_done: hermes.alreadyFinished()
+	if DataHandler.athena_done: athena.alreadyFinished()
+	if DataHandler.graeae_done: graeae.alreadyFinished()
+	if not DataHandler.player_statue_transforms.is_empty(): loadPlayerStatues(DataHandler.player_statue_transforms)

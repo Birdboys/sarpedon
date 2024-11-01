@@ -1,9 +1,13 @@
 [signal arg="showSecret"]
 graeae: It’s been so long since we’ve gotten to play.
 [signal arg="swapCups"]
-graeae: We can hardly remember the last ti–why yes, I think it was the thief.
+graeae: We can hardly remember the last ti–why yes, I think it was...
 [signal arg="swapCups"]
-graeae: Our last guest was a troublemaker, a rule breaker.
+graeae: Our last guest was a troublemaker, a rule breaker, a thief.
+[signal arg="swapCups"]
+graeae: He manipulated us, stole our secrets...
+[signal arg="swapCups"]
+graeae: used them to get to her.
 [signal arg="swapCups"]
 graeae: Fate shouldn’t favor such trickery, yet in the end he won the game...
 [signal arg="swapCups"]

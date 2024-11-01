@@ -676,6 +676,7 @@ script = ExtResource("5_fv6td")
 [node name="playerHover" type="Node" parent="stateMachine"]
 script = ExtResource("6_0tkkq")
 move_speed = 8.0
+hover_dist = 1.0
 
 [node name="playerTalk" type="Node" parent="stateMachine"]
 script = ExtResource("7_n0ojd")
@@ -701,6 +702,7 @@ interact_control = false
 
 [node name="playerSneak" type="Node" parent="stateMachine"]
 script = ExtResource("14_1g3yq")
+sneak_speed = 3.5
 
 [node name="playerBoatTalk" type="Node" parent="stateMachine"]
 script = ExtResource("15_04qwm")

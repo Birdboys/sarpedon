@@ -1,11 +1,8 @@
-extends StaticBody3D
+extends CSGCombiner3D
 
 @export var brazier_noise : FastNoiseLite
-
-func _ready() -> void:
-	pass # Replace with function body.
-
+@onready var light := $light
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	light.light_energy = 12 + 5 * brazier_noise.get_noise_1d(Time.get_ticks_msec()/1000)

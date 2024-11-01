@@ -1,6 +1,7 @@
 graeae: So close… but no.
 graeae: The secret…
 [signal arg="revealHelmet"]
+[wait time="1.0" hide_text="false"]
 graeae: …is here.
 graeae: A lovely trick isn’t it?
 graeae: You–well he shouldn’t feel bad–there was no hope anyway.

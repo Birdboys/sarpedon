@@ -380,6 +380,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 
 [node name="creditsMenu" type="Control" parent="pauseUI/pauseMargin/pauseBorder/panelMargin/VBoxContainer/menuPanel"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -427,7 +428,7 @@ Head Tester - [u][url=\"https://www.youtube.com/@wyzegye\"]Logan Bird[/url][/u]
 
 Testers - Family and Friends
 
-Special Thanks - The Met, Theoi, The Histocrat, YOU
+Special Thanks - The Godot Team, The Met, Theoi, The Histocrat, YOU
 
 THANKS FOR PLAYING"
 

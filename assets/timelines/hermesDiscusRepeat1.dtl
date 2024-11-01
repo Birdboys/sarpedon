@@ -1,3 +1,22 @@
-hermes: Nice!
+if {discus_repeat} == 0:
+	hermes: Wow!
+elif {discus_repeat} == 1:
+	hermes: Brilliant!
+elif {discus_repeat} == 2:
+	hermes: Well met!
+elif {discus_repeat} == 3:
+	hermes: Astounding!
+elif {discus_repeat} == 4:
+	hermes: Nice shot!
+elif {discus_repeat} == 5:
+	hermes: Yippee!
+elif {discus_repeat} == 6:
+	hermes: Haha!
+elif {discus_repeat} == 7:
+	hermes: Huzzah!
+elif {discus_repeat} == 8:
+	hermes: Incredible!
+elif {discus_repeat} == 9:
+	hermes: Watch out Crocus!
 [wait time="1.0" hide_text="false"]
 [signal arg="playerThrow"]

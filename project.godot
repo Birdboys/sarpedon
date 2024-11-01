@@ -13,6 +13,8 @@ config_version=5
 config/name="sarpedon"
 run/main_scene="res://scenes/ui/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
+boot_splash/bg_color=Color(0.627451, 0.670588, 0.878431, 1)
+boot_splash/show_image=false
 config/icon="res://assets/ui/icon.png"
 config/windows_native_icon="res://assets/ui/icon.ico"
 
@@ -111,6 +113,7 @@ layout/style_list=["res://assets/dialogicstyle.tres"]
 layout/default_style="res://assets/dialogicstyle.tres"
 glossary/default_case_sensitive=true
 variables={
+"discus_repeat": 0,
 "siren_lul": 0,
 "statue_desc": "STATUE_DEFAULT"
 }

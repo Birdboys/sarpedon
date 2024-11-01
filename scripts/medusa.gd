@@ -185,8 +185,3 @@ func grabPlayer():
 
 func gorgonFootstep():
 	AudioHandler.playSound3D("footstep_cave", global_position)
-
-func handleAutoDialogue():
-	print("HANDLING AUTO DIALOG")
-	Dialogic.timeline_started.disconnect(handleAutoDialogue)
-	Dialogic.toggleAutoload(false)

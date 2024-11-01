@@ -422,10 +422,11 @@ func toggleVisibility(on:=true):
 
 func toggleAutoload(on:=true):
 	Inputs.auto_advance.enabled_forced = on
-
+	print("AUTOLOAD", on)
+	
 func stopAutoAfterTimeline():
-	Inputs.auto_advance.enabled_forced = true
-	await get_tree().process_frame
-	await get_tree().process_frame
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	toggleAutoload(true)
 	await timeline_started
 	toggleAutoload(false)
