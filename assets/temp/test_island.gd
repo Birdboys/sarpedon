@@ -65,10 +65,6 @@ func _process(_delta):
 	for node in get_tree().get_nodes_in_group("billboard_comp"):
 		node.target_position = player.global_position
 	
-	if Input.is_action_just_pressed("test"):
-		Dialogic.start("athenaIntro")
-	if Input.is_action_just_pressed("escape"):
-		Dialogic.end_timeline()
 	RenderingServer.global_shader_parameter_set("current_time", Time.get_ticks_msec()/1000.0)
 	
 func _physics_process(_delta):

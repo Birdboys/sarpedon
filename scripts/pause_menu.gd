@@ -95,5 +95,5 @@ func handleEscape():
 	
 func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
-		handleEscape()
 		get_viewport().set_input_as_handled()
+		handleEscape()
