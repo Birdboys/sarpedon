@@ -55,6 +55,7 @@ func _ready():
 	AudioHandler.togglePlayer("ocean", true)
 	AudioHandler.togglePlayer("wind", true)
 	AudioHandler.resetEffects()
+	Dialogic.toggleAutoload(false)
 	handleRepeat()
 	
 func _process(_delta):
